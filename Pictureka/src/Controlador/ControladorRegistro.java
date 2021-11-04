@@ -47,5 +47,6 @@ package Controlador;
 
 	    @FXML
 	    private Label lbl_colorAvatar;
-
+	    
+	   
 }

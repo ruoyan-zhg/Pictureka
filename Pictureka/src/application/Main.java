@@ -1,5 +1,4 @@
 package application;
-package controlador;
 	
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,14 +6,14 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-
+import Controlador.ControladorRegistro;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			//Llamamos al codigo hecho en fxml
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaRegistro.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/VentanaRegistro.fxml"));
 			ControladorRegistro controlRegister = new ControladorRegistro();
 			//Asociamos la vista con el controlador
 			loader.setController(controlRegister);

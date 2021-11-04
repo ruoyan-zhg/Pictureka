@@ -8,27 +8,34 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
 <Pane fx:id="PaneRegistro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="569.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="txtfieldUser" layoutX="487.0" layoutY="184.0" prefHeight="31.0" prefWidth="217.0" />
-      <Label fx:id="lblUser" layoutX="394.0" layoutY="184.0" prefHeight="31.0" prefWidth="69.0" text="Usuario:" />
-      <Label fx:id="lbl_repeatPassword" layoutX="312.0" layoutY="373.0" prefHeight="31.0" prefWidth="151.0" text="Repita su contraseña: " textAlignment="CENTER" />
-      <Label fx:id="lbl_password" layoutX="373.0" layoutY="311.0" prefHeight="31.0" prefWidth="80.0" text="Contraseña:" />
-      <PasswordField fx:id="txtFieldPassword" layoutX="487.0" layoutY="311.0" prefHeight="31.0" prefWidth="217.0" />
-      <PasswordField fx:id="txtFieldRepeatPassword" layoutX="487.0" layoutY="373.0" prefHeight="31.0" prefWidth="217.0" />
-      <DatePicker fx:id="chooserCalendario" layoutX="487.0" layoutY="245.0" />
-      <Label fx:id="lbl_calendario" layoutX="313.0" layoutY="250.0" text="Fecha de nacimiento:" />
-      <Button fx:id="BtnCrearUser" layoutX="518.0" layoutY="447.0" mnemonicParsing="false" text="Crear Usuario" />
-      <ColorPicker fx:id="comboBxColorAvatar" layoutX="487.0" layoutY="125.0" prefHeight="31.0" prefWidth="217.0" />
-      <Label fx:id="lbl_colorAvatar" layoutX="342.0" layoutY="125.0" prefHeight="31.0" prefWidth="120.0" text="Color de avatar:" />
+      <TextField fx:id="txtfieldUser" layoutX="477.0" layoutY="214.0" prefHeight="31.0" prefWidth="217.0" />
+      <Label fx:id="lblUser" layoutX="402.0" layoutY="214.0" prefHeight="31.0" prefWidth="69.0" text="Usuario:" />
+      <Label fx:id="lbl_repeatPassword" layoutX="312.0" layoutY="416.0" prefHeight="31.0" prefWidth="151.0" text="Repita su contraseña: " textAlignment="CENTER" />
+      <Label fx:id="lbl_password" layoutX="374.0" layoutY="365.0" prefHeight="31.0" prefWidth="80.0" text="Contraseña:" />
+      <PasswordField fx:id="txtFieldPassword" layoutX="477.0" layoutY="365.0" prefHeight="31.0" prefWidth="217.0" />
+      <PasswordField fx:id="txtFieldRepeatPassword" layoutX="477.0" layoutY="416.0" prefHeight="31.0" prefWidth="217.0" />
+      <DatePicker fx:id="chooserCalendario" layoutX="477.0" layoutY="317.0" />
+      <Label fx:id="lbl_calendario" layoutX="312.0" layoutY="322.0" text="Fecha de nacimiento:" />
+      <Button fx:id="BtnCrearUser" layoutX="463.0" layoutY="503.0" mnemonicParsing="false" text="Crear Usuario" />
+      <ColorPicker fx:id="comboBxColorAvatar" layoutX="477.0" layoutY="156.0" prefHeight="31.0" prefWidth="217.0" />
+      <Label fx:id="lbl_colorAvatar" layoutX="354.0" layoutY="156.0" prefHeight="31.0" prefWidth="120.0" text="Color de avatar:" />
       <ImageView fx:id="imgPaneLogo" fitHeight="255.0" fitWidth="262.0" layoutX="43.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Imagenes_Multimedia/Ｐｉｃｔｕｒｅｋａ.png" />
          </image>
       </ImageView>
-      <Button fx:id="BtnCancel" layoutX="132.0" layoutY="447.0" mnemonicParsing="false" text="Cancelar" />
-      <Button layoutX="132.0" layoutY="110.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="BtnCancel" layoutX="236.0" layoutY="503.0" mnemonicParsing="false" text="Cancelar" />
+      <Label fx:id="lbl_dni" layoutX="420.0" layoutY="269.0" prefHeight="31.0" prefWidth="69.0" text="DNI:" />
+      <TextField fx:id="txtfieldUser1" layoutX="477.0" layoutY="269.0" prefHeight="31.0" prefWidth="217.0" />
+      <AnchorPane prefHeight="569.0" prefWidth="774.0">
+         <children>
+            <AnchorPane layoutX="39.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </AnchorPane>
    </children>
 </Pane>

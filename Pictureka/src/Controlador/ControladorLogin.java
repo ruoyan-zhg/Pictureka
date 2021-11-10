@@ -32,8 +32,6 @@ public class ControladorLogin {
     @FXML
     private Button miBotton1;
 
-    @FXML
-    private Avatar miAvatar;
 
     @FXML
     void IniciarSesion(ActionEvent event) {

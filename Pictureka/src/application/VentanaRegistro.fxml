@@ -22,7 +22,7 @@
       <Button fx:id="BtnCrearUser" layoutX="425.0" layoutY="478.0" mnemonicParsing="false" text="Crear Usuario" />
       <ImageView fx:id="imgPaneLogo" fitHeight="164.0" fitWidth="239.0" layoutX="47.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Imagenes_Multimedia/welcome-15.gif" />
+            <Image url="@../../Imagenes_Multimedia/welcome-15.gif" />
          </image>
       </ImageView>
       <Button fx:id="BtnCancel" layoutX="255.0" layoutY="478.0" mnemonicParsing="false" text="Cancelar" />

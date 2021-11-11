@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="31.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Desktop/Captura%20de%20pantalla%202021-11-02%20a%20las%2018.59.09.png" />
+            <Image url="@../../Imagenes_Multimedia/Ｐｉｃｔｕｒｅｋａ.png" />
          </image></ImageView>
       <Label fx:id="LabelUsuario" layoutX="252.0" layoutY="166.0" text="USUARIO" />
       <Label fx:id="LabelContrasenia" layoutX="238.0" layoutY="242.0" text="CONTRASEÑA" />

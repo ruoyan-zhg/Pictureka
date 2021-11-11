@@ -9,24 +9,30 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="PaneRegistro" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="PaneRegistro" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="918.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="txtfieldUser" layoutX="477.0" layoutY="111.0" prefHeight="31.0" prefWidth="217.0" />
-      <Label fx:id="lblUser" layoutX="404.0" layoutY="119.0" prefHeight="31.0" prefWidth="69.0" text="Usuario:" textAlignment="RIGHT" />
-      <Label fx:id="lbl_repeatPassword" layoutX="312.0" layoutY="372.0" prefHeight="31.0" prefWidth="151.0" text="Repita su contraseña: " textAlignment="CENTER" />
-      <Label fx:id="lbl_password" layoutX="380.0" layoutY="307.0" prefHeight="31.0" prefWidth="80.0" text="Contraseña:" />
-      <PasswordField fx:id="txtFieldPassword" layoutX="477.0" layoutY="307.0" prefHeight="31.0" prefWidth="217.0" />
-      <PasswordField fx:id="txtFieldRepeatPassword" layoutX="477.0" layoutY="357.0" prefHeight="31.0" prefWidth="217.0" />
-      <DatePicker fx:id="chooserCalendario" layoutX="477.0" layoutY="243.0" />
-      <Label fx:id="lbl_calendario" layoutX="324.0" layoutY="247.0" text="Fecha de nacimiento:" />
-      <Button fx:id="BtnCrearUser" layoutX="425.0" layoutY="478.0" mnemonicParsing="false" text="Crear Usuario" />
-      <ImageView fx:id="imgPaneLogo" fitHeight="164.0" fitWidth="239.0" layoutX="47.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="BtnCrearUser" layoutX="529.0" layoutY="620.0" mnemonicParsing="false" text="Crear Usuario" />
+      <Button fx:id="BtnCancel" layoutX="291.0" layoutY="620.0" mnemonicParsing="false" text="Cancelar" />
+      <Pane layoutX="295.0" layoutY="196.0" prefHeight="416.0" prefWidth="329.0">
+         <children>
+            <Label fx:id="lblUser" alignment="CENTER" layoutX="130.0" layoutY="14.0" prefHeight="31.0" prefWidth="69.0" text="Usuario:" textAlignment="RIGHT" />
+            <TextField fx:id="txtfieldUser" layoutX="56.0" layoutY="45.0" prefHeight="31.0" prefWidth="217.0" />
+            <Label fx:id="lblEmail" alignment="CENTER" layoutX="89.0" layoutY="82.0" prefHeight="31.0" prefWidth="151.0" text="Correo electrónico: " textAlignment="RIGHT" />
+            <TextField fx:id="txtFieldEmail" layoutX="56.0" layoutY="113.0" prefHeight="31.0" prefWidth="217.0" />
+            <Label fx:id="lbl_dni" alignment="CENTER" layoutX="130.0" layoutY="144.0" prefHeight="31.0" prefWidth="69.0" text="DNI:" />
+            <TextField fx:id="txtFieldDNI" layoutX="56.0" layoutY="168.0" prefHeight="31.0" prefWidth="217.0" />
+            <Label fx:id="lbl_calendario" alignment="CENTER" layoutX="92.0" layoutY="205.0" text="Fecha de nacimiento:" />
+            <DatePicker fx:id="chooserCalendario" layoutX="56.0" layoutY="233.0" />
+            <Label fx:id="lbl_password" alignment="CENTER" layoutX="125.0" layoutY="271.0" prefHeight="31.0" prefWidth="80.0" text="Contraseña:" />
+            <PasswordField fx:id="txtFieldPassword" layoutX="53.0" layoutY="302.0" prefHeight="31.0" prefWidth="217.0" />
+            <Label fx:id="lbl_repeatPassword" alignment="CENTER" layoutX="89.0" layoutY="333.0" prefHeight="31.0" prefWidth="151.0" text="Repita su contraseña: " textAlignment="CENTER" />
+            <PasswordField fx:id="txtFieldRepeatPassword" layoutX="56.0" layoutY="369.0" prefHeight="31.0" prefWidth="217.0" />
+         </children>
+      </Pane>
+      <ImageView fx:id="imgPaneLogo" fitHeight="164.0" fitWidth="239.0" layoutX="690.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Imagenes_Multimedia/welcome-15.gif" />
          </image>
       </ImageView>
-      <Button fx:id="BtnCancel" layoutX="255.0" layoutY="478.0" mnemonicParsing="false" text="Cancelar" />
-      <Label fx:id="lbl_dni" layoutX="420.0" layoutY="170.0" prefHeight="31.0" prefWidth="69.0" text="DNI:" />
-      <TextField fx:id="txtfieldUser1" layoutX="477.0" layoutY="170.0" prefHeight="31.0" prefWidth="217.0" />
    </children>
 </Pane>

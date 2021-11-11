@@ -5,16 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import Controlador.ControladorInicioSesion;
 import Controlador.ControladorLogo;
-import Controlador.ControladorRegistro;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			//REGISTRO
+
 			//Llamamos al codigo hecho en fxml
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/VentanaLogo.fxml"));
 			ControladorLogo controlLogo = new ControladorLogo();

@@ -26,14 +26,15 @@ public class ControladorLogo {
     @FXML
     void entrarApp(ActionEvent event) {
 
-        FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaRegistro.fxml"));
-        ControladorRegistro controlerRegistro = new ControladorRegistro();
-        loaderApp.setController(controlerRegistro);
+        FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
+        ControladorInicioSesion controlerInicio = new ControladorInicioSesion();
+        loaderApp.setController(controlerInicio);
         Parent root;
         try {
             root = loaderApp.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.setMaximized(true);
             stage.show();
             
             //Obtenemos la ventanaLogo

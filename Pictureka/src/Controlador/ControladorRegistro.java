@@ -1,6 +1,7 @@
 package Controlador;
 
-	import javafx.fxml.FXML;
+	import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 	import javafx.scene.control.Button;
 	import javafx.scene.control.ColorPicker;
 	import javafx.scene.control.DatePicker;
@@ -49,4 +50,15 @@ package Controlador;
 	    private Label lbl_colorAvatar;
 	    
 	   
-}
+	    @FXML
+	    void cancelRegistro(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void crearUsuario(ActionEvent event) {
+
+	    }
+
+	}
+	    

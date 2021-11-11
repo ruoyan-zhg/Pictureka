@@ -34,7 +34,7 @@ public class ControladorLogo {
             root = loaderApp.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setMaximized(true);
+            //stage.setMaximized(true);
             stage.show();
             
             //Obtenemos la ventanaLogo

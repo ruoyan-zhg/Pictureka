@@ -11,8 +11,8 @@
 
 <Pane fx:id="PaneRegistro" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="918.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="BtnCrearUser" layoutX="529.0" layoutY="620.0" mnemonicParsing="false" text="Crear Usuario" />
-      <Button fx:id="BtnCancel" layoutX="291.0" layoutY="620.0" mnemonicParsing="false" text="Cancelar" />
+      <Button fx:id="btnCrearUser" layoutX="529.0" layoutY="620.0" mnemonicParsing="false" text="Crear Usuario" />
+      <Button fx:id="btnCancelRegistro" layoutX="291.0" layoutY="620.0" mnemonicParsing="false" text="Cancelar" />
       <Pane layoutX="295.0" layoutY="196.0" prefHeight="416.0" prefWidth="329.0">
          <children>
             <Label fx:id="lblUser" alignment="CENTER" layoutX="130.0" layoutY="14.0" prefHeight="31.0" prefWidth="69.0" text="Usuario:" textAlignment="RIGHT" />

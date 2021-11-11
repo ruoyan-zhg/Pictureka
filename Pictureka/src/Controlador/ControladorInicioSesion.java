@@ -7,11 +7,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class ControladorInicioSesion {
 
@@ -50,14 +52,13 @@ public class ControladorInicioSesion {
     	FXMLLoader loaderRegistro = new FXMLLoader(getClass().getResource("/application/VentanaRegistro.fxml"));
         ControladorInicioSesion controlerInicio = new ControladorInicioSesion();
         loaderRegistro.setController(controlerInicio);
-        Parent root;
         
         try {
-            Pane registerPane = (Pane) loaderRegistro.load();
+        	Pane registerPane = (Pane) loaderRegistro.load();
             anchorPaneLogin.getChildren().clear();
             anchorPaneLogin.getChildren().add(registerPane);
-        } catch (IOException e) {
             
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

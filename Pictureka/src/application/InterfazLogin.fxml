@@ -7,11 +7,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPaneLogin" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPaneLogin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="LabelUsuario" layoutX="252.0" layoutY="166.0" text="USUARIO" />
       <Label fx:id="LabelContrasenia" layoutX="238.0" layoutY="242.0" text="CONTRASEÑA" />
-      <Button fx:id="btnRegistrarse" layoutX="338.0" layoutY="377.0" mnemonicParsing="false" onAction="#Registrarse" text="Registrase" textFill="#09252f" />
+      <Button fx:id="btnRegistrarse" layoutX="338.0" layoutY="377.0" mnemonicParsing="false" onAction="#Registrarse" style="-fx-cursor: wait;" text="Registrase" textFill="#09252f" />
       <Button fx:id="btnIniciarSesion" layoutX="331.0" layoutY="318.0" mnemonicParsing="false" onAction="#IniciarSesion" text="Iniciar Sesión" />
       <Label fx:id="LabelPictureka" layoutX="98.0" layoutY="291.0" text="Pictureka" />
       <TextField fx:id="miTextoUsuario" layoutX="341.0" layoutY="170.0" />

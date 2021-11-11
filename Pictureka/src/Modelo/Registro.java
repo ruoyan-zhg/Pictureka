@@ -16,7 +16,7 @@ public class Registro {
 	private String contrasenia;
 	*/
 	
-	public void registrarCliente(String nombre, String apellido, String) {
+	public void registrarCliente(String nombre, String apellido) {
 		
 			
 	}

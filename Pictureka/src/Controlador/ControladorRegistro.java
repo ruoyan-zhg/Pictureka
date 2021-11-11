@@ -1,64 +1,71 @@
 package Controlador;
 
-	import javafx.event.ActionEvent;
+
+
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-	import javafx.scene.control.Button;
-	import javafx.scene.control.ColorPicker;
-	import javafx.scene.control.DatePicker;
-	import javafx.scene.control.Label;
-	import javafx.scene.control.PasswordField;
-	import javafx.scene.control.TextField;
-	import javafx.scene.image.ImageView;
-	import javafx.scene.layout.Pane;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
-	public class ControladorRegistro {
+public class ControladorRegistro {
 
-	    @FXML
-	    private Pane PaneRegistro;
+    @FXML
+    private Pane PaneRegistro;
 
-	    @FXML
-	    private TextField txtfieldUser;
+    @FXML
+    private Button btnCrearUser;
 
-	    @FXML
-	    private Label lblUser;
+    @FXML
+    private Button btnCancelRegistro;
 
-	    @FXML
-	    private Label lbl_repeatPassword;
+    @FXML
+    private Label lblUser;
 
-	    @FXML
-	    private Label lbl_password;
+    @FXML
+    private TextField txtfieldUser;
 
-	    @FXML
-	    private PasswordField txtFieldPassword;
+    @FXML
+    private Label lblEmail;
 
-	    @FXML
-	    private PasswordField txtFieldRepeatPassword;
+    @FXML
+    private TextField txtFieldEmail;
 
-	    @FXML
-	    private DatePicker chooserCalendario;
+    @FXML
+    private Label lbl_dni;
 
-	    @FXML
-	    private Label lbl_calendario;
+    @FXML
+    private TextField txtFieldDNI;
 
-	    @FXML
-	    private Button BtnCrearUser;
+    @FXML
+    private Label lbl_calendario;
 
-	    @FXML
-	    private ColorPicker comboBxColorAvatar;
+    @FXML
+    private DatePicker chooserCalendario;
 
-	    @FXML
-	    private Label lbl_colorAvatar;
-	    
-	   
-	    @FXML
-	    void cancelRegistro(ActionEvent event) {
+    @FXML
+    private Label lbl_password;
 
-	    }
+    @FXML
+    private PasswordField txtFieldPassword;
 
-	    @FXML
-	    void crearUsuario(ActionEvent event) {
+    @FXML
+    private Label lbl_repeatPassword;
 
-	    }
+    @FXML
+    private PasswordField txtFieldRepeatPassword;
 
-	}
-	    
+    @FXML
+    private ImageView imgPaneLogo;
+
+}

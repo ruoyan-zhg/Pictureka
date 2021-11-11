@@ -4,7 +4,8 @@ public class Administrador extends Usuario{
 
 	//Atributos
 	//Numero que obtiene el admin para poder acceder a la app
-	private String numUsuario;
+	private String nombre;
+	private String apellido1;
 	private String apellido2;
 	
 	
@@ -29,11 +30,17 @@ public class Administrador extends Usuario{
 	
 	//Getters y Setters
 	
-	public String getNumUsuario() {
-		return numUsuario;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setNumUsuario(String numUsuario) {
-		this.numUsuario = numUsuario;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getApellido1() {
+		return apellido1;
+	}
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
 	}
 	public String getApellido2() {
 		return apellido2;

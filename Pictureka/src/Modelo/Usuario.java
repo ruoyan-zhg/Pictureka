@@ -5,8 +5,7 @@ public class Usuario {
 	//Atributos
 	//Identificador para diferenciar el tipo de usuario al leer el Json
 	private int identificadorUser;
-	private String nombre;
-	private String apellido1;
+	private String usuario;
 	private String dni;
 	private String email;
 	private String contrasenia;
@@ -37,23 +36,17 @@ public class Usuario {
 	public void setIdentificadorUser(int identificadorUser) {
 		this.identificadorUser = identificadorUser;
 	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getApellido1() {
-		return apellido1;
-	}
-	public void setApellido1(String apellido1) {
-		this.apellido1 = apellido1;
-	}
 	public String getDni() {
 		return dni;
 	}
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 	public String getEmail() {
 		return email;

@@ -29,9 +29,9 @@
             <PasswordField fx:id="txtFieldRepeatPassword" layoutX="56.0" layoutY="369.0" prefHeight="31.0" prefWidth="217.0" />
          </children>
       </Pane>
-      <ImageView fx:id="imgPaneLogo" fitHeight="164.0" fitWidth="239.0" layoutX="690.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgPaneLogo" fitHeight="164.0" fitWidth="239.0" layoutX="340.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Imagenes_Multimedia/welcome-15.gif" />
+            <Image url="@../../Imagenes_Multimedia/welcome-15.gif" />
          </image>
       </ImageView>
    </children>

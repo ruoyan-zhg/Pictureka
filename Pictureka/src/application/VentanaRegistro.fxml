@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="PaneRegistro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="569.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="PaneRegistro" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="txtfieldUser" layoutX="477.0" layoutY="111.0" prefHeight="31.0" prefWidth="217.0" />
       <Label fx:id="lblUser" layoutX="404.0" layoutY="119.0" prefHeight="31.0" prefWidth="69.0" text="Usuario:" textAlignment="RIGHT" />

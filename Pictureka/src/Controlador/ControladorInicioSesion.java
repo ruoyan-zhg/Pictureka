@@ -13,7 +13,7 @@ public class ControladorInicioSesion {
     private Label LabelUsuario;
 
     @FXML
-    private Label LabelContraseña;
+    private Label LabelContrasenia;
 
     @FXML
     private Button Registrarse;
@@ -28,7 +28,7 @@ public class ControladorInicioSesion {
     private TextField miTextoUsuario;
 
     @FXML
-    private TextField miTextoContraseña;
+    private TextField miTextoContrasenia;
 
     @FXML
     void IniciarSesion(ActionEvent event) {
@@ -38,7 +38,7 @@ public class ControladorInicioSesion {
 
     @FXML
     void Registrarse(ActionEvent event) {
-    	String texto = miTextoContraseña.getText();
+    	String texto = miTextoContrasenia.getText();
 
     }
 

@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import Controlador.ControladorInicioSesion;
+import Controlador.ControladorLogo;
 import Controlador.ControladorRegistro;
 
 public class Main extends Application {
@@ -21,22 +22,9 @@ public class Main extends Application {
 			loader.setController(controlLogo);
 			//Llamar a la funcion load de loadere
 			Parent root = loader.load();
-<<<<<<< Updated upstream
 			
-=======
-
->>>>>>> Stashed changes
-			//INICIO SESION
-			FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
-			ControladorInicioSesion controlInicioSesion = new ControladorInicioSesion();
-			loader.setController(controlInicioSesion);
-			Parent root2 = loader.load();
-<<<<<<< Updated upstream
-			
-=======
-
->>>>>>> Stashed changes
 			primaryStage.setScene(new Scene(root));
+
 			primaryStage.setResizable(false);
 			primaryStage.show();
 

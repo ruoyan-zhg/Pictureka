@@ -14,7 +14,7 @@
             <Image url="@../../../../../Desktop/Captura%20de%20pantalla%202021-11-02%20a%20las%2018.59.09.png" />
          </image></ImageView>
       <Label fx:id="LabelUsuario" layoutX="252.0" layoutY="166.0" text="USUARIO" />
-      <Label fx:id="LabelContraseña" layoutX="238.0" layoutY="242.0" text="CONTRASEÑA" />
+      <Label fx:id="LabelContrasenia" layoutX="238.0" layoutY="242.0" text="CONTRASEÑA" />
       <Button fx:id="Registrarse" layoutX="338.0" layoutY="377.0" mnemonicParsing="false" onAction="#Registrarse" text="Registrase" textFill="#09252f" />
       <Button fx:id="IniciarSesion" layoutX="331.0" layoutY="318.0" mnemonicParsing="false" onAction="#IniciarSesion" text="Iniciar Sesión" />
       <Label fx:id="LabelPictureka" layoutX="85.0" layoutY="290.0" text="Pictureka" />
@@ -23,6 +23,6 @@
             <Image url="@../../../../../Desktop/203-2030760_doug-petereson-perfil-whatsapp-sin-recortar-clipart.png" />
          </image></Avatar>
       <TextField fx:id="miTextoUsuario" layoutX="341.0" layoutY="170.0" />
-      <TextField fx:id="miTextoContraseña" layoutX="341.0" layoutY="237.0" />
+      <TextField fx:id="miTextoContrasenia" layoutX="341.0" layoutY="237.0" />
    </children>
 </AnchorPane>

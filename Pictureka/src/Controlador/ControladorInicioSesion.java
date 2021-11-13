@@ -3,65 +3,65 @@ package Controlador;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXButton;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 public class ControladorInicioSesion {
 
     @FXML
-    private AnchorPane anchorPaneLogin;
+    private Pane paneLogin;
 
     @FXML
-    private Label LabelUsuario;
+    private ImageView imgLogo;
 
     @FXML
-    private Label LabelContrasenia;
+    private Label lblUsuario;
 
     @FXML
-    private Button btnRegistrarse;
+    private Label lblContrasenia;
 
     @FXML
-    private Button btnIniciarSesion;
+    private TextField textUsuario;
 
     @FXML
-    private Label LabelPictureka;
+    private TextField textConstrasenia;
 
     @FXML
-    private TextField miTextoUsuario;
+    private JFXButton btnInicioSesion;
 
     @FXML
-    private TextField miTextoContrasenia;
+    private JFXButton btnRegistrarse;
 
     @FXML
-    void IniciarSesion(ActionEvent event) {
+    void InicarSesion(ActionEvent event) {
 
     }
 
     @FXML
     void Registrarse(ActionEvent event) {
     	
-    	FXMLLoader loaderRegistro = new FXMLLoader(getClass().getResource("/application/VentanaRegistro.fxml"));
-        ControladorInicioSesion controlerInicio = new ControladorInicioSesion();
-        loaderRegistro.setController(controlerInicio);
-        
+    	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaRegistro.fxml"));
+        ControladorRegistro controlerRegistro = new ControladorRegistro();
+        loaderApp.setController(controlerRegistro);
         try {
-        	Pane registerPane = (Pane) loaderRegistro.load();
-            anchorPaneLogin.getChildren().clear();
-            anchorPaneLogin.getChildren().add(registerPane);
-            
+            Pane registerPane = (Pane) loaderApp.load();
+            paneLogin.getChildren().clear();
+            paneLogin.getChildren().add(registerPane);
         } catch (IOException e) {
+            
             e.printStackTrace();
         }
+    	
+
     }
 
 }
+
 

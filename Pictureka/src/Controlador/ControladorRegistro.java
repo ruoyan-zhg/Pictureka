@@ -1,14 +1,10 @@
 package Controlador;
 
-
-
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -16,56 +12,85 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
 
 public class ControladorRegistro {
 
     @FXML
-    private Pane PaneRegistro;
+    private VBox vboxRegistro;
 
     @FXML
-    private Button btnCrearUser;
+    private Pane paneRegistro;
 
     @FXML
-    private Button btnCancelRegistro;
+    private ImageView imgPaneRegistro;
 
     @FXML
-    private Label lblUser;
+    private Label lblUsuarioRegistro;
 
     @FXML
-    private TextField txtfieldUser;
+    private TextField textUsuarioRegistro;
 
     @FXML
-    private Label lblEmail;
+    private Label lblCorreoElectronico;
 
     @FXML
-    private TextField txtFieldEmail;
+    private TextField textCorreoElectronico;
 
     @FXML
-    private Label lbl_dni;
+    private Label lblDni;
 
     @FXML
-    private TextField txtFieldDNI;
+    private TextField textDni;
 
     @FXML
-    private Label lbl_calendario;
+    private Label lblFechaNacimiento;
 
     @FXML
     private DatePicker chooserCalendario;
 
     @FXML
-    private Label lbl_password;
+    private Label lblContraseniaRegistro;
+
+    @FXML
+    private Label lblRepeatPassword;
+
+    @FXML
+    private PasswordField textFieldRepeatPassword;
 
     @FXML
     private PasswordField txtFieldPassword;
 
     @FXML
-    private Label lbl_repeatPassword;
+    private Button btnCancelRegistro;
 
     @FXML
-    private PasswordField txtFieldRepeatPassword;
+    private Button btnRegistrar;
 
     @FXML
-    private ImageView imgPaneLogo;
+    void CancelRegistro(ActionEvent event) {
+    	
+    	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
+        ControladorInicioSesion controlerInicioSesion = new ControladorInicioSesion();
+        loaderApp.setController(controlerInicioSesion);
+        try {
+            Pane registerPane = (Pane) loaderApp.load();
+            paneRegistro.getChildren().clear();
+            paneRegistro.getChildren().add(registerPane);
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
+    	
+    	
+    	
+    }
+
+    @FXML
+    void RegistrarUsuario(ActionEvent event) {
+    	
+    	
+    }
 
 }
+

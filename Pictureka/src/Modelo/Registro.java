@@ -33,7 +33,6 @@ public class Registro {
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
 				usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia));
 				estado = 0;		
-				
 			}else {
 				estado = 3;
 			}
@@ -41,16 +40,62 @@ public class Registro {
 		else{
 			estado = 2;
 		}
-		return estado;
-		
-			
+		return estado;	
 	}
-	public void registrarAdministrador() {
+	public int registrarAdministrador(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
+			String apellido2) {
+		/*
+		 * VALORES DE ESTADO
+		 * 
+		 * 0 = completo 
+		 * 1 = sin completar las comprobaciones
+		 * 2 = email no valido 
+		 * 3 = email ya registrado anteriormente
+		 * 
+		 * 
+		 */
 		
+		recuperarUsuarios();
+		int estado = 1;
+		if (validarEmail(email)) {		//devuelve true si el email es valido
+			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
+				usuarios.addElement(new Guardia(usuario, dni, email, contrasenia, nombre, apellido1,
+					 apellido2));
+				estado = 0;		
+			}else {
+				estado = 3;
+			}
+		}
+		else{
+			estado = 2;
+		}
+		return estado;	
 		
 	}
-	public void registrarGuardia() {
+	public int registrarGuardia() {
+		/*
+		 * VALORES DE ESTADO
+		 * 
+		 * 0 = completo 
+		 * 1 = sin completar las comprobaciones
+		 * 2 = email no valido 
+		 * 3 = email ya registrado anteriormente
+		 */
 		
+		recuperarUsuarios();
+		int estado = 1;
+		if (validarEmail(email)) {		//devuelve true si el email es valido
+			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
+				usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia));
+				estado = 0;		
+			}else {
+				estado = 3;
+			}
+		}
+		else{
+			estado = 2;
+		}
+		return estado;	
 		
 	}
 	public boolean validarEmail(String email) {

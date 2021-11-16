@@ -5,6 +5,7 @@ public class modelo_Museo {
 	
 	
 	public modelo_Museo() {
-		
+		Registro _registro = new Registro();
+		registro = _registro;
 	}
 }

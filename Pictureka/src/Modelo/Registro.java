@@ -120,6 +120,22 @@ public class Registro {
 		return estado;	
 		
 	}
+
+
+	public boolean loginDeUsuarios(String emailOUsuario, String contrasenia) {
+		boolean login = false;
+		int contador = 0;
+		recuperarUsuarios();
+		while (login != true && contador < usuarios.size()) {
+			if(usuarios.elementAt(contador).getEmail().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)||
+					usuarios.elementAt(contador).getUsuario().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)) {
+				login = true;
+			}
+			contador++;
+		}
+		return login;
+	}
+
 	public boolean validarEmail(String email) {
 		// Patrón para validar el email
 		boolean comprobar = false;
@@ -129,14 +145,13 @@ public class Registro {
         Matcher mather = pattern.matcher(email);
         if (mather.find() == true) {
             comprobar = true;
-        } else {
         }
         return comprobar;
 	}
 	public boolean emailRepetido(String email) {
 		boolean noRepetido = true;
 		int contador = 0;
-		while (noRepetido != true && contador < usuarios.size()) {
+		while (noRepetido != false && contador < usuarios.size()) {
 			if (usuarios.elementAt(contador).getEmail().equals(email)) {
 				noRepetido = false;	
 			}
@@ -146,13 +161,14 @@ public class Registro {
 	public boolean usuarioRepetido(String usuario) {
 		boolean noRepetido = true;
 		int contador = 0;
-		while (noRepetido != true && contador < usuarios.size()) {
+		while (noRepetido != false && contador < usuarios.size()) {
 			if (usuarios.elementAt(contador).getEmail().equals(usuario)) {
 				noRepetido = false;	
 			}
 		}
 		return noRepetido;
 	}
+	
 	public void recuperarUsuarios() {
 		Datos datos = new Datos();
 		//Try catch quizas el archivo no abre
@@ -163,6 +179,5 @@ public class Registro {
 		//Try catch quizas el archivo no abre
 		datos.serializarArrayAJson(usuarios);
 	}
-	
 
 }

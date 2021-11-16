@@ -5,21 +5,26 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane fx:id="paneLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="MyAnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="imgLogo" fitHeight="225.0" fitWidth="239.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../Imagenes_Multimedia/Ｐｉｃｔｕｒｅｋａ.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="lblUsuario" contentDisplay="CENTER" layoutX="239.0" layoutY="173.0" prefHeight="30.0" prefWidth="84.0" style="-fx-font-size: 20;" text="Usuario" textAlignment="CENTER" />
-      <Label fx:id="lblContrasenia" contentDisplay="CENTER" layoutX="226.0" layoutY="270.0" prefHeight="30.0" prefWidth="111.0" style="-fx-font-size: 20;" text="Contraseña" />
-      <TextField fx:id="textUsuario" layoutX="350.0" layoutY="165.0" prefHeight="30.0" prefWidth="209.0" />
-      <TextField fx:id="textConstrasenia" layoutX="350.0" layoutY="263.0" prefHeight="30.0" prefWidth="209.0" />
-      <JFXButton fx:id="btnInicioSesion" layoutX="386.0" layoutY="342.0" onAction="#InicarSesion" prefHeight="37.0" prefWidth="137.0" style="-fx-cursor: hand; -fx-border-color: black; -fx-background-color: linear-gradient(#4568DC, #B06AB3); -fx-font-family: Courier New; -fx-font-weight: bold; -fx-text-fill: white;" text="Iniciar Sesión" />
-      <JFXButton fx:id="btnRegistrarse" layoutX="386.0" layoutY="404.0" onAction="#Registrarse" prefHeight="37.0" prefWidth="137.0" style="-fx-cursor: hand; -fx-border-color: black; -fx-background-color: linear-gradient(#4568DC, #B06AB3); -fx-font-family: Courier New; -fx-font-weight: bold; -fx-text-fill: white;" text="Registrarse" />
+      <Pane fx:id="paneLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fx:id="imgLogo" fitHeight="225.0" fitWidth="239.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Imagenes_Multimedia/Ｐｉｃｔｕｒｅｋａ.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblUsuario" contentDisplay="CENTER" layoutX="239.0" layoutY="173.0" prefHeight="30.0" prefWidth="84.0" style="-fx-font-size: 20;" text="Usuario" textAlignment="CENTER" />
+            <Label fx:id="lblContrasenia" contentDisplay="CENTER" layoutX="226.0" layoutY="270.0" prefHeight="30.0" prefWidth="111.0" style="-fx-font-size: 20;" text="Contraseña" />
+            <TextField fx:id="textUsuario" layoutX="350.0" layoutY="165.0" prefHeight="30.0" prefWidth="209.0" />
+            <TextField fx:id="textConstrasenia" layoutX="350.0" layoutY="263.0" prefHeight="30.0" prefWidth="209.0" />
+            <JFXButton fx:id="btnInicioSesion" layoutX="386.0" layoutY="342.0" onAction="#InicarSesion" prefHeight="37.0" prefWidth="137.0" style="-fx-cursor: hand; -fx-border-color: black; -fx-background-color: linear-gradient(#4568DC, #B06AB3); -fx-font-family: Courier New; -fx-font-weight: bold; -fx-text-fill: white;" text="Iniciar Sesión" />
+            <JFXButton fx:id="btnRegistrarse" layoutX="386.0" layoutY="404.0" onAction="#Registrarse" prefHeight="37.0" prefWidth="137.0" style="-fx-cursor: hand; -fx-border-color: black; -fx-background-color: linear-gradient(#4568DC, #B06AB3); -fx-font-family: Courier New; -fx-font-weight: bold; -fx-text-fill: white;" text="Registrarse" />
+         </children>
+      </Pane>
    </children>
-</Pane>
+</AnchorPane>

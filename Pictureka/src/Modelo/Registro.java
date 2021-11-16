@@ -25,14 +25,21 @@ public class Registro {
 		 * 1 = sin completar las comprobaciones
 		 * 2 = email no valido 
 		 * 3 = email ya registrado anteriormente
+		 * 4
 		 */
 		
 		recuperarUsuarios();
 		int estado = 1;
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
-				usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia));
-				estado = 0;		
+				if (usuarioRepetido(usuario)) {
+					usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia));
+					estado = 0;	
+				}
+				else {
+					estado = 4;
+				}
+					
 			}else {
 				estado = 3;
 			}
@@ -51,7 +58,7 @@ public class Registro {
 		 * 1 = sin completar las comprobaciones
 		 * 2 = email no valido 
 		 * 3 = email ya registrado anteriormente
-		 * 
+		 * 4 = usuario repetido
 		 * 
 		 */
 		
@@ -59,9 +66,15 @@ public class Registro {
 		int estado = 1;
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
-				usuarios.addElement(new Guardia(usuario, dni, email, contrasenia, nombre, apellido1,
-					 apellido2));
-				estado = 0;		
+				if (usuarioRepetido(usuario)) {
+					usuarios.addElement(new Guardia(usuario, dni, email, contrasenia, nombre, apellido1,
+							 apellido2));
+					escribirUsuarios();
+					estado = 0;
+				}
+				else {
+					estado = 4;
+				}	
 			}else {
 				estado = 3;
 			}
@@ -72,7 +85,8 @@ public class Registro {
 		return estado;	
 		
 	}
-	public int registrarGuardia() {
+	public int registrarGuardia(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
+			String apellido2) {
 		/*
 		 * VALORES DE ESTADO
 		 * 
@@ -80,14 +94,22 @@ public class Registro {
 		 * 1 = sin completar las comprobaciones
 		 * 2 = email no valido 
 		 * 3 = email ya registrado anteriormente
+		 * 4 = usuario repetido
 		 */
 		
 		recuperarUsuarios();
 		int estado = 1;
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
-				usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia));
-				estado = 0;		
+				if (usuarioRepetido(usuario)) {
+					usuarios.addElement(new Administrador(usuario, dni, email, contrasenia, nombre, apellido1,
+							 apellido2));
+					escribirUsuarios();
+					estado = 0;
+				}
+				else {
+					estado = 4;
+				}	
 			}else {
 				estado = 3;
 			}
@@ -116,6 +138,16 @@ public class Registro {
 		int contador = 0;
 		while (noRepetido != true && contador < usuarios.size()) {
 			if (usuarios.elementAt(contador).getEmail().equals(email)) {
+				noRepetido = false;	
+			}
+		}
+		return noRepetido;
+	}
+	public boolean usuarioRepetido(String usuario) {
+		boolean noRepetido = true;
+		int contador = 0;
+		while (noRepetido != true && contador < usuarios.size()) {
+			if (usuarios.elementAt(contador).getEmail().equals(usuario)) {
 				noRepetido = false;	
 			}
 		}

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ControladorLogo {
@@ -17,6 +18,9 @@ public class ControladorLogo {
     @FXML
     private AnchorPane anchorPane;
 	
+    @FXML
+    private Pane PaneLogo;
+    
     @FXML
     private ImageView imageLogo;
 

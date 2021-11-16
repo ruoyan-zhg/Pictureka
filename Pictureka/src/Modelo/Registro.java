@@ -26,17 +26,12 @@ public class Registro {
 		 * 2 = email no valido 
 		 * 3 = email ya registrado anteriormente
 		 */
-		private int identificadorUser;
-		private String usuario;
-		private String dni;
-		private String email;
-		private String contrasenia;
 		
 		recuperarUsuarios();
 		int estado = 1;
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
-				usuarios.addElement(Cliente(1, ));
+				usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia));
 				estado = 0;		
 				
 			}else {

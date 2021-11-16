@@ -19,7 +19,7 @@ public class Main extends Application {
 			loader.setController(controlLogo);
 			//Llamar a la funcion load de loadere
 			Parent root = loader.load();
-			
+			primaryStage.setMinHeight(250);
 			primaryStage.setScene(new Scene(root));
 
 			//primaryStage.setResizable(false);

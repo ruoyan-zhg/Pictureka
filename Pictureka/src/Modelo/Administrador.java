@@ -11,10 +11,17 @@ public class Administrador extends Usuario{
 	
 	
 	//Constructores
-	
-	
-	
-	
+
+	public Administrador(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
+			String apellido2) {
+		super(3,usuario, dni, email, contrasenia);
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+	}
+
+
+
 	//Métodos
 	
 	

@@ -12,7 +12,8 @@ import java.util.regex.Pattern;
 public class Registro {
 	private Vector <Usuario> usuarios;
 	
-	public Registro (Vector <Usuario> _usuarios) {
+	public Registro () {
+		Vector <Usuario> _usuarios = new Vector<Usuario>();
 		this.usuarios = _usuarios;
 	}
 	
@@ -25,9 +26,17 @@ public class Registro {
 		 * 2 = email no valido 
 		 * 3 = email ya registrado anteriormente
 		 */
+		private int identificadorUser;
+		private String usuario;
+		private String dni;
+		private String email;
+		private String contrasenia;
+		
+		recuperarUsuarios();
 		int estado = 1;
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
+				usuarios.addElement(Cliente(1, ));
 				estado = 0;		
 				
 			}else {
@@ -74,13 +83,13 @@ public class Registro {
 	}
 	public void recuperarUsuarios() {
 		Datos datos = new Datos();
-		try {
-			datos.desserializarJsonAusuarios();
-		}
-		catch() {
-			
-		}
-		
+		//Try catch quizas el archivo no abre
+		this.usuarios = datos.desserializarJsonAusuarios();
+	}
+	public void escribirUsuarios() {
+		Datos datos = new Datos();
+		//Try catch quizas el archivo no abre
+		datos.serializarArrayAJson(usuarios);
 	}
 	
 

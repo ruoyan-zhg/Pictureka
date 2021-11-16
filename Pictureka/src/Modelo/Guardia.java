@@ -12,10 +12,17 @@ public class Guardia extends Usuario{
 	//Atributo del horario de trabajo
 	
 	//Constructores
+
+	public Guardia(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
+			String apellido2) {
+		super(2,usuario, dni, email, contrasenia);
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+	}
 	
-	
-	
-	
+
+
 	//Métodos
 
 	

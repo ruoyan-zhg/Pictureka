@@ -11,6 +11,15 @@ public class Usuario {
 	private String contrasenia;
 	
 	//Contructores
+
+	public Usuario(int identificadorUser, String usuario, String dni, String email, String contrasenia) {
+		super();
+		this.identificadorUser = identificadorUser;
+		this.usuario = usuario;
+		this.dni = dni;
+		this.email = email;
+		this.contrasenia = contrasenia;
+	}
 	
 	
 	

@@ -17,7 +17,7 @@
               <buttons>
                   <ImageView fx:id="imgViewLupa" fitHeight="43.0" fitWidth="69.0" onMouseClicked="#tocarLupa" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Imagenes_Multimedia/lupa2.png" />
+                        <Image url="@../../Imagenes_Multimedia/lupa2.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -26,7 +26,7 @@
                   <JFXTextField fx:id="txtField_busqueda" />
                   <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Imagenes_Multimedia/calendar-icon.png" />
+                        <Image url="@../../Imagenes_Multimedia/calendar-icon.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -34,7 +34,7 @@
                   </ImageView>
                   <ImageView fitHeight="53.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Imagenes_Multimedia/Ticket-icon.png" />
+                        <Image url="@../../Imagenes_Multimedia/Ticket-icon.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -42,7 +42,7 @@
                   </ImageView>
                   <ImageView fitHeight="53.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Imagenes_Multimedia/avatarNoRegistrado.png" />
+                        <Image url="@../../Imagenes_Multimedia/avatarNoRegistrado.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -52,7 +52,7 @@
             </ButtonBar>
             <ImageView fx:id="imgViewSlider" fitHeight="236.0" fitWidth="195.0" onMouseClicked="#cambioImg" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes_Multimedia/people.jpg" />
+                  <Image url="@../../Imagenes_Multimedia/people.jpg" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />

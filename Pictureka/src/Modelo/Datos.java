@@ -3,6 +3,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -38,7 +39,6 @@ public class Datos {
 		
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 		String representacionVisible = prettyGson.toJson(usuarios);
-		System.out.println(representacionVisible);
 		
 		try(FileWriter writer = new FileWriter("usuarios.json")){
 			prettyGson.toJson(usuarios, writer);
@@ -47,6 +47,21 @@ public class Datos {
         }
 		
 	}
+	/*
+	public void serializarArrayAJson() {
+		
+		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+		String representacionBonita = prettyGson.toJson(empleados);
+		System.out.println(representacionBonita);
+		
+		try(FileWriter writer = new FileWriter("empleados.json")){
+			prettyGson.toJson(empleados, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+	}
+	*/
 	
 	public Vector<Usuario> desserializarJsonAusuarios() {
 		Vector<Usuario> usuarios = new Vector<Usuario>();

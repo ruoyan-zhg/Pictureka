@@ -34,6 +34,8 @@ public class Registro {
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
 				if (usuarioRepetido(usuario)) {
 					usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia));
+					escribirUsuarios();
+					System.out.println(usuarios.size());
 					estado = "Validacion completada con exito";
 				}
 				else {
@@ -182,8 +184,11 @@ public class Registro {
 	public void escribirUsuarios() {
 		Datos datos = new Datos();
 		//Try catch quizas el archivo no abre
-		
+		for (int i = 0; i< usuarios.size(); i++) {
+			System.out.println(usuarios.elementAt(i).getUsuario());
+		}
 		datos.serializarArrayAJson(usuarios);
 	}
+	
 
 }

@@ -1,6 +1,7 @@
 package Controlador;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
@@ -103,6 +104,8 @@ public class ControladorRegistro {
     	String estado;
     	if(txtFieldPassword.getText().equals(textFieldRepeatPassword.getText())) {
     		estado = museo.registrarClientes(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), txtFieldPassword.getText());
+    		//LocalDate date = chooserCalendario.getValue();
+    		//System.out.println(date);
     		if (estado.equals("Validacion completada con exito")) {
     			confirmacion.setHeaderText(estado);
     			confirmacion.show();

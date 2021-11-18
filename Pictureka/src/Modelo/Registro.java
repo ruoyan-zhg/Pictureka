@@ -152,9 +152,6 @@ public class Registro {
 	public boolean emailRepetido(String email) {
 		boolean noRepetido = true;
 		int contador = 0;
-		if(usuarios != null){
-			
-		}
 		System.out.println(usuarios.size());
 		while (noRepetido != false && contador < usuarios.size()) {
 			if (usuarios.elementAt(contador).getEmail().equals(email)) {
@@ -177,7 +174,10 @@ public class Registro {
 	public void recuperarUsuarios() {
 		Datos datos = new Datos();
 		//Try catch quizas el archivo no abre
-		this.usuarios = datos.desserializarJsonAusuarios();
+		Vector<Usuario> _usuarios = datos.desserializarJsonAusuarios();
+		if(_usuarios != null){ 
+			this.usuarios = _usuarios ;
+		}
 	}
 	public void escribirUsuarios() {
 		Datos datos = new Datos();

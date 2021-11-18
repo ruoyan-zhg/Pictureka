@@ -57,6 +57,7 @@ public class Datos {
 			usuarios = gson.fromJson(reader, tipoListausuarios);
         } catch (IOException e) {
             e.printStackTrace();
+            
         }
 		
 		return usuarios;

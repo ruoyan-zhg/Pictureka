@@ -17,7 +17,7 @@ public class Registro {
 		this.usuarios = _usuarios;
 	}
 	
-	public int registrarCliente(String usuario, String dni, String email, String Contrasenia) {
+	public String registrarCliente(String usuario, String dni, String email, String Contrasenia) {
 		/*
 		 * VALORES DE ESTADO
 		 * 
@@ -29,27 +29,27 @@ public class Registro {
 		 */
 		
 		recuperarUsuarios();
-		int estado = 1;
+		String estado = "Validacion incompleta";
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
 				if (usuarioRepetido(usuario)) {
 					usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia));
-					estado = 0;	
+					estado = "Validacion completada con exito";
 				}
 				else {
-					estado = 4;
+					estado = "Usuario ya registrado";
 				}
 					
 			}else {
-				estado = 3;
+				estado = "El email introducido ya ha sido registrado";
 			}
 		}
 		else{
-			estado = 2;
+			estado = "El email introducido no es valido";
 		}
 		return estado;	
 	}
-	public int registrarAdministrador(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
+	public String registrarAdministrador(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
 			String apellido2) {
 		/*
 		 * VALORES DE ESTADO
@@ -63,29 +63,29 @@ public class Registro {
 		 */
 		
 		recuperarUsuarios();
-		int estado = 1;
+		String estado = "Validacion incompleta";
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
 				if (usuarioRepetido(usuario)) {
 					usuarios.addElement(new Guardia(usuario, dni, email, contrasenia, nombre, apellido1,
 							 apellido2));
 					escribirUsuarios();
-					estado = 0;
+					estado = "Validacion completada con exito";
 				}
 				else {
-					estado = 4;
+					estado = "Usuario ya registrado";
 				}	
 			}else {
-				estado = 3;
+				estado = "El email introducido ya ha sido registrado";
 			}
 		}
 		else{
-			estado = 2;
+			estado = "El email introducido no es valido";
 		}
 		return estado;	
 		
 	}
-	public int registrarGuardia(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
+	public String registrarGuardia(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
 			String apellido2) {
 		/*
 		 * VALORES DE ESTADO
@@ -98,24 +98,24 @@ public class Registro {
 		 */
 		
 		recuperarUsuarios();
-		int estado = 1;
+		String estado = "Validacion incompleta";
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
 				if (usuarioRepetido(usuario)) {
 					usuarios.addElement(new Administrador(usuario, dni, email, contrasenia, nombre, apellido1,
 							 apellido2));
 					escribirUsuarios();
-					estado = 0;
+					estado = "Validacion completada con exito";
 				}
 				else {
-					estado = 4;
+					estado = "Usuario ya registrado";
 				}	
 			}else {
-				estado = 3;
+				estado = "El email introducido ya ha sido registrado";
 			}
 		}
 		else{
-			estado = 2;
+			estado = "El email introducido no es valido";
 		}
 		return estado;	
 		
@@ -126,6 +126,7 @@ public class Registro {
 		boolean login = false;
 		int contador = 0;
 		recuperarUsuarios();
+		System.out.println(usuarios.size());
 		while (login != true && contador < usuarios.size()) {
 			if(usuarios.elementAt(contador).getEmail().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)||
 					usuarios.elementAt(contador).getUsuario().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)) {
@@ -151,6 +152,10 @@ public class Registro {
 	public boolean emailRepetido(String email) {
 		boolean noRepetido = true;
 		int contador = 0;
+		if(usuarios != null){
+			
+		}
+		System.out.println(usuarios.size());
 		while (noRepetido != false && contador < usuarios.size()) {
 			if (usuarios.elementAt(contador).getEmail().equals(email)) {
 				noRepetido = false;	
@@ -177,6 +182,7 @@ public class Registro {
 	public void escribirUsuarios() {
 		Datos datos = new Datos();
 		//Try catch quizas el archivo no abre
+		
 		datos.serializarArrayAJson(usuarios);
 	}
 

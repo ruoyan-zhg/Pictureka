@@ -2,9 +2,11 @@ package Controlador;
 
 import java.io.IOException;
 
+import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -81,6 +83,8 @@ public class ControladorRegistro {
             Pane registerPane = (Pane) loaderApp.load();
             paneRegistro.getChildren().clear();
             paneRegistro.getChildren().add(registerPane);
+            
+           
         } catch (IOException e) {
             
             e.printStackTrace();
@@ -92,7 +96,28 @@ public class ControladorRegistro {
 
     @FXML
     void RegistrarUsuario(ActionEvent event) {
+    	modelo_Museo museo = new modelo_Museo();
+    	Alert error = new Alert(Alert.AlertType.ERROR);
+    	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
     	
+    	String estado;
+    	if(txtFieldPassword.getText().equals(textFieldRepeatPassword.getText())) {
+    		estado = museo.registrarClientes(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), txtFieldPassword.getText());
+    		if (estado.equals("Validacion completada con exito")) {
+    			confirmacion.setHeaderText(estado);
+    			confirmacion.show();
+    		}
+    		else {
+    			
+    			error.setHeaderText(estado);
+    			error.show();
+    		}
+    		
+    	}
+    	else {
+    		 error.setHeaderText("Error: las contraseñas no coinciden");
+    		 error.show();
+    	}
     	
     }
 

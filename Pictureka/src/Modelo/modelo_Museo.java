@@ -8,20 +8,19 @@ public class modelo_Museo {
 		Registro _registro = new Registro();
 		registro = _registro;
 	}
-	public int registrarClientes(String usuario, String dni, String email, String Contrasenia) {
-		int estado = this.registro.registrarCliente(usuario, dni, email, Contrasenia);
+	public String registrarClientes(String usuario, String dni, String email, String Contrasenia) {
+		String estado = this.registro.registrarCliente(usuario, dni, email, Contrasenia);
 		return estado;
-		
 	}
-	public int registrarAdministradores(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
+	public String registrarAdministradores(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
 			String apellido2) {
-		int estado = this.registro.registrarAdministrador(usuario, dni, email, contrasenia, nombre, apellido1,
+		String estado = this.registro.registrarAdministrador(usuario, dni, email, contrasenia, nombre, apellido1,
 				 apellido2);
 		return estado;
 	}
-	public int registrarGuardias(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
+	public String registrarGuardias(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
 			String apellido2) {
-		int estado = this.registro.registrarGuardia(usuario, dni, email, contrasenia, nombre, apellido1,
+		String estado = this.registro.registrarGuardia(usuario, dni, email, contrasenia, nombre, apellido1,
 				 apellido2);
 		return estado;
 	}

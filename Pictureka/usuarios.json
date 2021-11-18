@@ -5,5 +5,12 @@
     "dni": "asas",
     "email": "asas@gmail.com",
     "contrasenia": "asas"
+  },
+  {
+    "identificadorUser": 1,
+    "usuario": "sdsd",
+    "dni": "sdsd",
+    "email": "sdsd@gmail.com",
+    "contrasenia": "sdsd"
   }
 ]

@@ -30,9 +30,13 @@ public class Registro {
 		
 		recuperarUsuarios();
 		String estado = "Validacion incompleta";
+		System.out.println("antes");
 		if (validarEmail(email)) {		//devuelve true si el email es valido
+			System.out.println("email");
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
+				System.out.println("repemail");
 				if (usuarioRepetido(usuario)) {
+					System.out.println("add");
 					usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia));
 					escribirUsuarios();
 					System.out.println(usuarios.size());
@@ -128,7 +132,6 @@ public class Registro {
 		boolean login = false;
 		int contador = 0;
 		recuperarUsuarios();
-		System.out.println(usuarios.size());
 		while (login != true && contador < usuarios.size()) {
 			if(usuarios.elementAt(contador).getEmail().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)||
 					usuarios.elementAt(contador).getUsuario().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)) {
@@ -159,6 +162,7 @@ public class Registro {
 			if (usuarios.elementAt(contador).getEmail().equals(email)) {
 				noRepetido = false;	
 			}
+			contador++;
 		}
 		return noRepetido;
 	}
@@ -169,6 +173,7 @@ public class Registro {
 			if (usuarios.elementAt(contador).getEmail().equals(usuario)) {
 				noRepetido = false;	
 			}
+			contador++;
 		}
 		return noRepetido;
 	}

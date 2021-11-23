@@ -35,7 +35,7 @@
                         <Insets left="30.0" right="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="textConstrasenia" alignment="CENTER" prefHeight="27.0" prefWidth="269.0">
+                  <TextField fx:id="textConstrasenia" prefHeight="27.0" prefWidth="269.0">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" top="5.0" />
                      </VBox.margin>

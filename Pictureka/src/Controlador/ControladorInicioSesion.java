@@ -59,7 +59,32 @@ public class ControladorInicioSesion {
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
     	if (museo.loginUsuario(textUsuario.getText(), textConstrasenia.getText())) {
     		confirmacion.setHeaderText("Login correcto");
-    		confirmacion.show();
+    		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
+    		confirmacion.showAndWait();
+
+    			//Llamamos al codigo hecho en fxml
+    			FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
+    			ControladorVPrincipal controlVPrincipal = new ControladorVPrincipal();
+    			//Asociamos la vista con el controlador
+    			loaderApp.setController(controlVPrincipal);
+    			//Llamar a la funcion load de loadere
+    			Parent root;
+    			try {
+    				root = loaderApp.load();
+    		        Stage stage = new Stage();
+    		        stage.setScene(new Scene(root));
+    		        stage.show();
+    		        
+    		        //Obtenemos la ventanaLogo
+    		        Stage primaryStage = (Stage)btnInicioSesion.getScene().getWindow();
+    		        //Escondemos la ventana
+    		        primaryStage.hide();
+    			} catch (IOException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    		
+    		
     	}
     	else {
     		error.setHeaderText("Error: El usuario/email o contraseña introducida son incorrectas");

@@ -23,15 +23,22 @@ public class ControladorVPrincipal {
 
     @FXML
     private JFXTextField txtField_busqueda;
-    
+
     @FXML
     private ImageView imgViewSlider;
-    
+
+    @FXML
+    private ImageView imgViewSlider3;
+
     @FXML
     private ImageView imgViewSlider2;
 
     @FXML
-    private ImageView imgViewSlider3;
+    private ImageView imgView_BtnFlecha1;
+
+    @FXML
+    private ImageView imgView_BtnFlecha;
+
     
     int count = 0;
 

@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.time.LocalDate;
+
 public class Guardia extends Usuario{
 	
 	//Atributos
@@ -13,9 +15,9 @@ public class Guardia extends Usuario{
 	
 	//Constructores
 
-	public Guardia(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
+	public Guardia(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento, String nombre, String apellido1,
 			String apellido2) {
-		super(2,usuario, dni, email, contrasenia);
+		super(2,usuario, dni, email, contrasenia, fechaNacimiento);
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;

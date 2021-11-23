@@ -1,4 +1,5 @@
 package Modelo;
+import java.time.LocalDate;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,7 +18,7 @@ public class Registro {
 		this.usuarios = _usuarios;
 	}
 	
-	public String registrarCliente(String usuario, String dni, String email, String Contrasenia) {
+	public String registrarCliente(String usuario, String dni, String email, String Contrasenia, LocalDate fechaNacimiento) {
 		/*
 		 * VALORES DE ESTADO
 		 * 
@@ -37,7 +38,7 @@ public class Registro {
 				System.out.println("repemail");
 				if (usuarioRepetido(usuario)) {
 					System.out.println("add");
-					usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia));
+					usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia, fechaNacimiento));
 					escribirUsuarios();
 					System.out.println(usuarios.size());
 					estado = "Validacion completada con exito";
@@ -56,7 +57,7 @@ public class Registro {
 		return estado;	
 	}
 	public String registrarAdministrador(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
-			String apellido2) {
+			String apellido2, LocalDate fechaNacimiento) {
 		/*
 		 * VALORES DE ESTADO
 		 * 
@@ -73,7 +74,7 @@ public class Registro {
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
 				if (usuarioRepetido(usuario)) {
-					usuarios.addElement(new Guardia(usuario, dni, email, contrasenia, nombre, apellido1,
+					usuarios.addElement(new Guardia(usuario, dni, email, contrasenia, fechaNacimiento, nombre, apellido1,
 							 apellido2));
 					escribirUsuarios();
 					estado = "Validacion completada con exito";
@@ -92,7 +93,7 @@ public class Registro {
 		
 	}
 	public String registrarGuardia(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
-			String apellido2) {
+			String apellido2, LocalDate fechaNacimiento) {
 		/*
 		 * VALORES DE ESTADO
 		 * 
@@ -108,7 +109,7 @@ public class Registro {
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
 				if (usuarioRepetido(usuario)) {
-					usuarios.addElement(new Administrador(usuario, dni, email, contrasenia, nombre, apellido1,
+					usuarios.addElement(new Administrador(usuario, dni, email, contrasenia, fechaNacimiento, nombre, apellido1,
 							 apellido2));
 					escribirUsuarios();
 					estado = "Validacion completada con exito";

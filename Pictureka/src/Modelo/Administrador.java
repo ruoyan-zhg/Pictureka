@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.time.LocalDate;
+
 public class Administrador extends Usuario{
 
 	//Atributos
@@ -12,9 +14,9 @@ public class Administrador extends Usuario{
 	
 	//Constructores
 
-	public Administrador(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
+	public Administrador(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento , String nombre, String apellido1,
 			String apellido2) {
-		super(3,usuario, dni, email, contrasenia);
+		super(3,usuario, dni, email, contrasenia,fechaNacimiento);
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;

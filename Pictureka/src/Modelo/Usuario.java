@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.time.LocalDate;
+
 public class Usuario {
 
 	//Atributos
@@ -9,16 +11,23 @@ public class Usuario {
 	private String dni;
 	private String email;
 	private String contrasenia;
+	private LocalDate fechaNacimiento;
 	
 	//Contructores
 
-	public Usuario(int identificadorUser, String usuario, String dni, String email, String contrasenia) {
+	
+
+
+
+
+	public Usuario(int identificadorUser, String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento) {
 		super();
 		this.identificadorUser = identificadorUser;
 		this.usuario = usuario;
 		this.dni = dni;
 		this.email = email;
 		this.contrasenia = contrasenia;
+		this.fechaNacimiento = fechaNacimiento;
 	}
 	
 	
@@ -69,7 +78,13 @@ public class Usuario {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
-	
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
 }
 
 

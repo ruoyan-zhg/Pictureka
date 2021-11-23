@@ -15,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -22,12 +23,12 @@ public class ControladorRegistro {
 	
 	@FXML
 	private AnchorPane anchorPaneRegistro;
+	
+    @FXML
+    private GridPane gridPaneRegistro;
 
     @FXML
     private VBox vboxRegistro;
-
-    @FXML
-    private Pane paneRegistro;
 
     @FXML
     private ImageView imgPaneRegistro;
@@ -82,8 +83,8 @@ public class ControladorRegistro {
         loaderApp.setController(controlerInicioSesion);
         try {
             Pane registerPane = (Pane) loaderApp.load();
-            paneRegistro.getChildren().clear();
-            paneRegistro.getChildren().add(registerPane);
+            gridPaneRegistro.getChildren().clear();
+            gridPaneRegistro.getChildren().add(registerPane);
             
            
         } catch (IOException e) {

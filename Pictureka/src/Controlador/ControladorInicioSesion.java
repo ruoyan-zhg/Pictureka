@@ -14,11 +14,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class ControladorInicioSesion {
 	@FXML
 	private AnchorPane MyAnchorPane;
+	
+    @FXML
+    private GridPane gridPaneLogin;
 
     @FXML
     private Pane paneLogin;
@@ -67,9 +72,9 @@ public class ControladorInicioSesion {
         ControladorRegistro controlerRegistro = new ControladorRegistro();
         loaderApp.setController(controlerRegistro);
         try {
-            Pane registerPane = (Pane) loaderApp.load();
-            paneLogin.getChildren().clear();
-            paneLogin.getChildren().add(registerPane);
+            VBox registerPane = (VBox) loaderApp.load();
+            gridPaneLogin.getChildren().clear();
+            gridPaneLogin.getChildren().add(registerPane);
         } catch (IOException e) {
             
             e.printStackTrace();

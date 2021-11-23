@@ -27,10 +27,18 @@ public class ControladorVPrincipal {
     @FXML
     private ImageView imgViewSlider;
     
+    @FXML
+    private ImageView imgViewSlider2;
+
+    @FXML
+    private ImageView imgViewSlider3;
+    
     int count = 0;
 
     @FXML
     void cambioImg(MouseEvent event) {
+    	//System.out.println(count+"\n");
+    	
     	ArrayList<Image> imagenes = new ArrayList<Image>();
     	
     	imagenes.add(new Image("/MonaLisa.jpg"));
@@ -38,17 +46,21 @@ public class ControladorVPrincipal {
     	imagenes.add(new Image("/Sixtina.jpg"));
     	imagenes.add(new Image("/scream.jpg"));
     	imagenes.add(new Image("/VanGogh.jpg"));
+    	imagenes.add(new Image("/people.jpg"));
     	
-    	imgViewSlider.setImage(imagenes.get(count));
+    	
+    	
+    	imgViewSlider.setImage(imgViewSlider2.getImage());
+    	imgViewSlider2.setImage(imgViewSlider3.getImage());
+    	imgViewSlider3.setImage(imagenes.get(count));
+    	
     	count++;
-    	System.out.println(count+"\n");
-    	
-    	if(count==imagenes.size()) {
+    	if(count>=imagenes.size()) {
     		count=0;
     	}
     	
-    	
-    	
+    	//System.out.println(count+"\n");
+    
     	
     }
 

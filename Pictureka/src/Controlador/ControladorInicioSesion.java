@@ -9,6 +9,8 @@ import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class ControladorInicioSesion {
 	@FXML
@@ -71,14 +74,32 @@ public class ControladorInicioSesion {
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaRegistro.fxml"));
         ControladorRegistro controlerRegistro = new ControladorRegistro();
         loaderApp.setController(controlerRegistro);
+        
+        Parent root;
+		try {
+			root = loaderApp.load();
+	        Stage stage = new Stage();
+	        stage.setScene(new Scene(root));
+	        stage.show();
+	        
+	        //Obtenemos la ventanaLogo
+	        Stage primaryStage = (Stage)btnRegistrarse.getScene().getWindow();
+	        //Escondemos la ventana
+	        primaryStage.hide();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        /*
         try {
-            VBox registerPane = (VBox) loaderApp.load();
-            gridPaneLogin.getChildren().clear();
-            gridPaneLogin.getChildren().add(registerPane);
+            AnchorPane registerPane = (AnchorPane) loaderApp.load();
+            MyAnchorPane.getChildren().clear();
+            MyAnchorPane.getChildren().add(registerPane);
         } catch (IOException e) {
             
             e.printStackTrace();
         }
+        */
     	
 
     }

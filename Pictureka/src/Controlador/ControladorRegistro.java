@@ -139,7 +139,7 @@ public class ControladorRegistro {
             	}
         	}
     		else {
-    			error.setHeaderText("Error: El registro solo esta permitido para personas adultas");
+    			error.setHeaderText("Error: Rango de edad no aceptable");
        		 	error.show();
     		}
     	}

@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="lib/gson-2.8.6.jar"/>
 	<classpathentry kind="lib" path="lib/jfoenix-8.0.10.jar"/>
 	<classpathentry kind="lib" path="lib/controlsfx-8.40.18.jar"/>
+	<classpathentry kind="lib" path="lib/view-11.10.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

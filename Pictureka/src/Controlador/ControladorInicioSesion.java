@@ -58,8 +58,6 @@ public class ControladorInicioSesion {
     	modelo_Museo museo = new modelo_Museo();
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
-    	System.out.println(textUsuario.getText());
-		System.out.println(textContrasenia.getText());
     	if (museo.loginUsuario(textUsuario.getText(), textContrasenia.getText())) {
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal

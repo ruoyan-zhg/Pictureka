@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -44,7 +45,7 @@ public class ControladorInicioSesion {
     private TextField textUsuario;
 
     @FXML
-    private TextField textConstrasenia;
+    private PasswordField textContrasenia;
 
     @FXML
     private JFXButton btnInicioSesion;
@@ -57,7 +58,9 @@ public class ControladorInicioSesion {
     	modelo_Museo museo = new modelo_Museo();
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
-    	if (museo.loginUsuario(textUsuario.getText(), textConstrasenia.getText())) {
+    	System.out.println(textUsuario.getText());
+		System.out.println(textContrasenia.getText());
+    	if (museo.loginUsuario(textUsuario.getText(), textContrasenia.getText())) {
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
     		confirmacion.showAndWait();

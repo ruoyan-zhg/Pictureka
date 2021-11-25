@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -35,24 +36,21 @@
                         <Insets left="30.0" right="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="textConstrasenia" prefHeight="27.0" prefWidth="269.0">
+                  <TextField fx:id="textUsuario" prefHeight="27.0" prefWidth="333.0">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" top="5.0" />
                      </VBox.margin>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
                   </TextField>
                   <Label fx:id="lblContrasenia" contentDisplay="CENTER" prefHeight="30.0" prefWidth="111.0" style="-fx-font-size: 20;" text="Contraseña">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="textUsuario" prefHeight="27.0" prefWidth="333.0">
+                  <PasswordField fx:id="textContrasenia" prefHeight="27.0" prefWidth="333.0">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" top="5.0" />
                      </VBox.margin>
-                  </TextField>
+                  </PasswordField>
                   <JFXButton fx:id="btnRegistrarse" onAction="#Registrarse" prefHeight="37.0" prefWidth="137.0" style="-fx-cursor: hand; -fx-border-color: black; -fx-background-color: linear-gradient(#4568DC, #B06AB3); -fx-font-family: Courier New; -fx-font-weight: bold; -fx-text-fill: white;" text="Registrarse">
                      <VBox.margin>
                         <Insets bottom="15.0" top="25.0" />

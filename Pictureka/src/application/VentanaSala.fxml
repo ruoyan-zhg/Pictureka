@@ -21,6 +21,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
+                  <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Imagenes_Multimedia/cerrarSesion.png" />
+                     </image>
+                  </ImageView>
               </buttons>
             </ButtonBar>
          </children>

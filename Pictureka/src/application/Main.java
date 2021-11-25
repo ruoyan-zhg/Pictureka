@@ -20,6 +20,7 @@ public class Main extends Application {
 			//Llamar a la funcion load de loadere
 			Parent root = loader.load();
 			primaryStage.setScene(new Scene(root));
+			primaryStage.setTitle("Pictureka");
 
 			primaryStage.setResizable(false);
 			primaryStage.show();

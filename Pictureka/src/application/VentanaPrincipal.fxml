@@ -27,7 +27,7 @@
                      </cursor>
                   </ImageView>
                   <JFXTextField fx:id="txtField_busqueda" />
-                  <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgCalendar" fitHeight="45.0" fitWidth="50.0" onMouseClicked="#verEventos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/calendar-icon.png" />
                      </image>
@@ -35,7 +35,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="53.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgTickets" fitHeight="53.0" fitWidth="64.0" onMouseClicked="#reservarTicket" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/Ticket-icon.png" />
                      </image>
@@ -43,7 +43,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="53.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgUsuario" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/avatarNoRegistrado.png" />
                      </image>

@@ -73,6 +73,8 @@ public class ControladorInicioSesion {
     				root = loaderApp.load();
     		        Stage stage = new Stage();
     		        stage.setScene(new Scene(root));
+    		        stage.setMinHeight(500);
+    		        stage.setMinWidth(700);
     		        stage.show();
     		        
     		        //Obtenemos la ventanaLogo
@@ -83,8 +85,8 @@ public class ControladorInicioSesion {
     				// TODO Auto-generated catch block
     				e.printStackTrace();
     			}
-    		
-    		
+  
+    
     	}
     	else {
     		error.setHeaderText("Error: El usuario/email o contraseña introducida son incorrectas");
@@ -93,13 +95,30 @@ public class ControladorInicioSesion {
 
     }
 
-    @FXML
+
+
+	@FXML
     void Registrarse(ActionEvent event) {
     	
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaRegistro.fxml"));
         ControladorRegistro controlerRegistro = new ControladorRegistro();
         loaderApp.setController(controlerRegistro);
         
+        try {
+        	AnchorPane registerPane = (AnchorPane) loaderApp.load();
+        	MyAnchorPane.getChildren().clear();
+            AnchorPane.setTopAnchor(registerPane, 0.0);
+            AnchorPane.setRightAnchor(registerPane, 0.0);
+            AnchorPane.setLeftAnchor(registerPane, 0.0);
+            AnchorPane.setBottomAnchor(registerPane, 0.0);
+            MyAnchorPane.getChildren().setAll(registerPane);
+            
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        /*
         Parent root;
 		try {
 			root = loaderApp.load();
@@ -115,18 +134,8 @@ public class ControladorInicioSesion {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        /*
-        try {
-            AnchorPane registerPane = (AnchorPane) loaderApp.load();
-            MyAnchorPane.getChildren().clear();
-            MyAnchorPane.getChildren().add(registerPane);
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }
-        */
+		*/
     	
-
     }
 
 }

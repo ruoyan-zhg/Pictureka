@@ -1,43 +1,60 @@
 package Controlador;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class ControladorVPrincipal {
 
-    @FXML
-    private AnchorPane anchorPanePrincipal;
+	 @FXML
+	 private AnchorPane anchorPanePrincipal;
 
-    @FXML
-    private VBox VBoxPrincipal;
+	 @FXML
+	 private VBox VBoxPrincipal;
 
-    @FXML
-    private ImageView imgViewLupa;
+	 @FXML
+	 private ImageView imgViewLupa;
 
-    @FXML
-    private JFXTextField txtField_busqueda;
+	 @FXML
+	 private JFXTextField txtField_busqueda;
 
-    @FXML
-    private ImageView imgViewSlider;
+	 @FXML
+	 private ImageView imgCalendar;
 
-    @FXML
-    private ImageView imgViewSlider3;
+	 @FXML
+	 private ImageView imgTickets;
 
-    @FXML
-    private ImageView imgViewSlider2;
+	 @FXML
+	 private ImageView imgUsuario;
 
-    @FXML
-    private ImageView imgView_BtnFlecha1;
+	 @FXML
+	 private ImageView imgViewSlider;
 
-    @FXML
-    private ImageView imgView_BtnFlecha;
+	 @FXML
+	 private ImageView imgViewSlider3;
+
+	 @FXML
+	 private ImageView imgViewSlider2;
+
+	 @FXML
+	 private ImageView imgView_BtnFlecha1;
+
+	 @FXML
+	 private ImageView imgView_BtnFlecha;
 
     
     int count = 0;
@@ -72,8 +89,26 @@ public class ControladorVPrincipal {
     }
 
     @FXML
-    void tocarLupa(MouseEvent event) {
+    void accederPerfil(MouseEvent event) {
     	
+    	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
+        ControladorInicioSesion controlerInicio = new ControladorInicioSesion();
+        loaderApp.setController(controlerInicio);
+    }
+
+    @FXML
+    void reservarTicket(MouseEvent event) {
+    	
+    }
+
+    @FXML
+    void tocarLupa(MouseEvent event) {
+
+    }
+
+    @FXML
+    void verEventos(MouseEvent event) {
+
     }
 
 }

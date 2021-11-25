@@ -3,11 +3,13 @@ package Controlador;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -26,16 +28,22 @@ import javafx.stage.Stage;
 public class ControladorRegistro {
 	
 	@FXML
-	private AnchorPane anchorPaneRegistro;
-	
-    @FXML
-    private GridPane gridPaneRegistro;
+    private AnchorPane anchorPaneRegistro;
 
     @FXML
-    private VBox vboxRegistro;
+    private GridPane gridRegistro;
+
+    @FXML
+    private Button btnCancelRegistro;
+
+    @FXML
+    private Button btnRegistrar;
 
     @FXML
     private ImageView imgPaneRegistro;
+
+    @FXML
+    private VBox vboxRegistro;
 
     @FXML
     private Label lblUsuarioRegistro;
@@ -60,11 +68,12 @@ public class ControladorRegistro {
 
     @FXML
     private DatePicker chooserCalendario;
-    
-    
 
     @FXML
     private Label lblContraseniaRegistro;
+
+    @FXML
+    private PasswordField txtFieldPassword;
 
     @FXML
     private Label lblRepeatPassword;
@@ -73,23 +82,32 @@ public class ControladorRegistro {
     private PasswordField textFieldRepeatPassword;
 
     @FXML
-    private PasswordField txtFieldPassword;
-
-    @FXML
-    private Button btnCancelRegistro;
-
-    @FXML
-    private Button btnRegistrar;
-
-    @FXML
     public void initialize() {
     	chooserCalendario.setValue(LocalDate.now());
     }
     @FXML
     void CancelRegistro(ActionEvent event) {
+    	
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
         ControladorInicioSesion controlerInicioSesion = new ControladorInicioSesion();
         loaderApp.setController(controlerInicioSesion);
+        
+        AnchorPane registerPane;
+		try {
+			registerPane = (AnchorPane) loaderApp.load();
+	        anchorPaneRegistro.getChildren().clear();
+	        AnchorPane.setTopAnchor(registerPane, 0.0);
+	        AnchorPane.setRightAnchor(registerPane, 0.0);
+	        AnchorPane.setLeftAnchor(registerPane, 0.0);
+	        AnchorPane.setBottomAnchor(registerPane, 0.0);
+	        anchorPaneRegistro.getChildren().setAll(registerPane);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        
+        /*
         Parent root;
 		try {
 			root = loaderApp.load();
@@ -105,6 +123,7 @@ public class ControladorRegistro {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
     	
     }
 
@@ -147,5 +166,6 @@ public class ControladorRegistro {
     		error.setHeaderText("Error: Introduzca su fecha de nacimiento por favor");
 		 	error.show();
     }
+    
 }
 

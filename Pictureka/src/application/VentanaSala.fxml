@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="Principal" fx:id="anchorPanePrincipal" prefHeight="833.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="Principal" fx:id="anchorPaneSala" prefHeight="833.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox fx:id="VBoxPrincipal" prefHeight="834.0" prefWidth="1028.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="VBoxSala" layoutY="-6.0" prefHeight="834.0" prefWidth="1028.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
          <children>
-            <ButtonBar prefHeight="53.0" prefWidth="874.0" style="-fx-background-color: #FAFAAF;">
-              <buttons>
-                  <ImageView fx:id="imgUsuario" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true">
+            <JFXToolbar fx:id="ToolBarSala" prefHeight="53.0" prefWidth="1156.0" style="-fx-background-color: #61ABEE;">
+               <right>
+                  <ImageView fx:id="imgGuardia" fitHeight="53.0" fitWidth="61.0" onMouseClicked="#verPerfil" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/guardiaAvatar.png" />
                      </image>
@@ -21,13 +28,82 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+               </right>
+               <left>
+                  <ImageView fx:id="imgCerrarSesion" fitHeight="52.0" fitWidth="62.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/cerrarSesion.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
-              </buttons>
-            </ButtonBar>
+               </left>
+            </JFXToolbar>
+            <GridPane fx:id="GridPaneSala" prefHeight="403.0" prefWidth="1156.0" style="-fx-background-color: #EBEBEB;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="15.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="35.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="15.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="35.0" prefWidth="0.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="0.0" minHeight="0.0" percentHeight="100.0" prefHeight="0.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="imgTemperatura" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Imagenes_Multimedia/temperatura.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="imgLuz" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../../Imagenes_Multimedia/luz.png" />
+                     </image>
+                  </ImageView>
+                  <TextArea fx:id="textTemperatura" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <TextArea fx:id="textLuz" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <GridPane fx:id="GridSensorDistancia" alignment="CENTER" prefHeight="380.0" prefWidth="1156.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="50.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="50.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="50.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="50.0" prefWidth="0.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="0.0" minHeight="0.0" percentHeight="100.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="0.0" minHeight="0.0" percentHeight="100.0" prefHeight="0.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="imgDistancia" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@../../Imagenes_Multimedia/distancia.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton fx:id="btnA" prefHeight="158.0" prefWidth="186.0" style="-fx-background-color: #fcff0d; -fx-background-radius: 15; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="A" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Georgia Bold" size="73.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnB" prefHeight="158.0" prefWidth="186.0" style="-fx-background-color: #fcff0d; -fx-background-radius: 15; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="B" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Georgia Bold" size="73.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnC" prefHeight="158.0" prefWidth="186.0" style="-fx-background-color: #fcff0d; -fx-background-radius: 15; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="C" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Georgia Bold" size="73.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnD" prefHeight="158.0" prefWidth="186.0" style="-fx-background-color: #fcff0d; -fx-background-radius: 15; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="D" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Georgia Bold" size="73.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </GridPane>
          </children>
       </VBox>
    </children>

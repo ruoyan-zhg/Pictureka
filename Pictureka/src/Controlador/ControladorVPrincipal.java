@@ -78,6 +78,9 @@ public class ControladorVPrincipal {
 	}
 	
 	int count = 0;
+	int countDos = 1;
+	int countTres = 2;
+	
 	
 	
     
@@ -89,17 +92,28 @@ public class ControladorVPrincipal {
     	
     	//Array al que se le pasan las imagenes a presentar en el image slider
     	
-    	
-    	imgViewSlider.setImage(imgViewSlider2.getImage());
-    	imgViewSlider2.setImage(imgViewSlider3.getImage());
-    	imgViewSlider3.setImage(imagenes.get(count));
-    	
     	count++;
+    	countDos++;
+    	countTres++;
     	if(count>=imagenes.size()) {
     		count=0;
     	}
+    	if(countDos>=imagenes.size()) {
+    		countDos=0;
+    	}
+    	if(countTres>=imagenes.size()) {
+    		countTres=0;
+    	}
     	
-    	//System.out.println(count+"\n");
+    	imgViewSlider.setImage(imagenes.get(count));
+    	imgViewSlider2.setImage(imagenes.get(countDos));
+    	imgViewSlider3.setImage(imagenes.get(countTres));
+    	
+    	
+    	
+    	System.out.println("Uno"+count+"\n");
+    	System.out.println("Dos"+countDos+"\n");
+    	System.out.println("Tres"+countTres+"\n");
     
     	
     }
@@ -109,13 +123,29 @@ public class ControladorVPrincipal {
     @FXML
     void cambioImgAtras(MouseEvent event) {
     	
+    	
+    	
+    	
+    	System.out.println("Uno "+count+"\n");
+    	System.out.println("Dos "+countDos+"\n");
+    	System.out.println("Tres "+countTres+"\n");
+    	
     	count--;
+    	countDos--;
+    	countTres--;
     	if(count<0) {
     		count=(imagenes.size())-1;
     	}
-    	imgViewSlider3.setImage(imgViewSlider2.getImage());
-    	imgViewSlider2.setImage(imgViewSlider.getImage());
+    	if(countDos<0) {
+    		countDos=(imagenes.size())-1;
+    	}
+    	if(countTres<0) {
+    		countTres=(imagenes.size())-1;
+    	}
     	imgViewSlider.setImage(imagenes.get(count));
+    	imgViewSlider2.setImage(imagenes.get(countDos));
+    	imgViewSlider3.setImage(imagenes.get(countTres));
+    	
     	
     }
 

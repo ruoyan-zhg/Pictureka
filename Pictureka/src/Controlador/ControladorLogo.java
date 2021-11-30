@@ -36,8 +36,8 @@ public class ControladorLogo {
             root = loaderApp.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-	        stage.setMinHeight(400);
-	        stage.setMinWidth(550);
+	        stage.setMinHeight(700);
+	        stage.setMinWidth(700);
             stage.show();
             
             

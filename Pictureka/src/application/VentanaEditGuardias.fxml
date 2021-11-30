@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.MasterDetailPane?>
+
+<AnchorPane id="Principal" fx:id="anchorPaneSala" prefHeight="833.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="VBoxSala" prefHeight="834.0" prefWidth="1028.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXToolbar fx:id="ToolBarSala" style="-fx-background-color: #A40DFF;">
+               <right>
+                  <ImageView fx:id="imgAdministrador" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#verPerfil" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../../Imagenes_Multimedia/administradorAvatar.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </right>
+               <left>
+                  <ImageView fx:id="imgCerrarSesion" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../../Imagenes_Multimedia/cerrarSesion.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </left>
+            </JFXToolbar>
+            <MasterDetailPane detailSide="BOTTOM" prefHeight="783.0" prefWidth="1156.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

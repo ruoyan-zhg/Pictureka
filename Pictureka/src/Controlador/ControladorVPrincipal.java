@@ -24,7 +24,16 @@ public class ControladorVPrincipal {
 	 private AnchorPane anchorPanePrincipal;
 
 	 @FXML
-	 private VBox VBoxPrincipal;
+	 private BorderPane BordPanePrincipal;
+
+	 @FXML
+	 private ImageView btnContacto;
+
+	 @FXML
+	 private ImageView btnCorreo;
+
+	 @FXML
+	 private ImageView btnMensaje;
 
 	 @FXML
 	 private ImageView imgViewLupa;
@@ -56,22 +65,29 @@ public class ControladorVPrincipal {
 	 @FXML
 	 private ImageView imgView_BtnFlecha;
 
+	ArrayList<Image> imagenes = new ArrayList<Image>();
+ 	
+	@FXML
+	public void initialize() {
+		imagenes.add(new Image("/MonaLisa.jpg"));
+	 	imagenes.add(new Image("/Dali.jpg"));
+	 	imagenes.add(new Image("/Sixtina.jpg"));
+	 	imagenes.add(new Image("/scream.jpg"));
+	 	imagenes.add(new Image("/VanGogh.jpg"));
+	 	imagenes.add(new Image("/people.jpg"));
+	}
+	
+	int count = 0;
+	
+	
     
-    int count = 0;
+    
+	
 
     @FXML
     void cambioImg(MouseEvent event) {
-    	//System.out.println(count+"\n");
     	
-    	ArrayList<Image> imagenes = new ArrayList<Image>();
-    	
-    	imagenes.add(new Image("/MonaLisa.jpg"));
-    	imagenes.add(new Image("/Dali.jpg"));
-    	imagenes.add(new Image("/Sixtina.jpg"));
-    	imagenes.add(new Image("/scream.jpg"));
-    	imagenes.add(new Image("/VanGogh.jpg"));
-    	imagenes.add(new Image("/people.jpg"));
-    	
+    	//Array al que se le pasan las imagenes a presentar en el image slider
     	
     	
     	imgViewSlider.setImage(imgViewSlider2.getImage());
@@ -87,6 +103,22 @@ public class ControladorVPrincipal {
     
     	
     }
+    
+    
+    
+    @FXML
+    void cambioImgAtras(MouseEvent event) {
+    	
+    	count--;
+    	if(count<0) {
+    		count=(imagenes.size())-1;
+    	}
+    	imgViewSlider3.setImage(imgViewSlider2.getImage());
+    	imgViewSlider2.setImage(imgViewSlider.getImage());
+    	imgViewSlider.setImage(imagenes.get(count));
+    	
+    }
+
 
     @FXML
     void accederPerfil(MouseEvent event) {
@@ -108,6 +140,25 @@ public class ControladorVPrincipal {
 
     @FXML
     void verEventos(MouseEvent event) {
+
+    }
+    @FXML
+    void mandarCorreo(MouseEvent event) {
+
+    }
+
+    @FXML
+    void mandarMensaje(MouseEvent event) {
+
+    }
+
+    @FXML
+    void mostrarContacto(MouseEvent event) {
+
+    }
+    
+    @FXML
+    void tocarCalendario(MouseEvent event) {
 
     }
 

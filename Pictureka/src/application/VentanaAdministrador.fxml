@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="Principal" fx:id="anchorPanePrincipal" prefHeight="833.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="VBoxPrincipal" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXToolbar prefHeight="83.0" prefWidth="1156.0" style="-fx-background-color: #FF8000;">
+               <left>
+                  <ImageView fx:id="imgCerrarSesion" fitHeight="67.0" fitWidth="84.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../../Imagenes_Multimedia/cerrarSesion.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </left>
+               <right>
+                  <ImageView fx:id="imgUsuario3" fitHeight="70.0" fitWidth="67.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../../Imagenes_Multimedia/guardiaAvatar.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </right>
+            </JFXToolbar>
+            <GridPane prefHeight="787.0" prefWidth="1156.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="10.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="85.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="10.0" prefWidth="0.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" percentHeight="45.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="45.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane GridPane.columnIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <LineChart GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children>
+                  </GridPane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+                     <right>
+                        <GridPane prefHeight="351.0" prefWidth="75.0" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="229.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="193.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <ImageView fx:id="imgUsuario4" fitHeight="84.0" fitWidth="74.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Imagenes_Multimedia/AgregarUsuario.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <ImageView fx:id="imgUsuario41" fitHeight="84.0" fitWidth="74.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                 <image>
+                                    <Image url="@../../Imagenes_Multimedia/editarUsuario.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </GridPane>
+                     </right>
+                  </BorderPane>
+                  <JFXToolbar style="-fx-background-color: #FF8000;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <left>
+                        <ImageView fx:id="imgCerrarSesion1" fitHeight="195.0" fitWidth="310.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/temperatura.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </left>
+                     <right>
+                        <ImageView fx:id="imgUsuario31" fitHeight="230.0" fitWidth="253.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true" style="-fx-translate-x: -20;" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/Alerta.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </right>
+                     <center>
+                        <ImageView fx:id="imgCerrarSesion11" fitHeight="213.0" fitWidth="250.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/Foto.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </center>
+                     <top>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sensores" wrappingWidth="250.87939453125" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="59.0" />
+                           </font>
+                        </Text>
+                     </top>
+                  </JFXToolbar>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

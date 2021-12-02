@@ -32,14 +32,33 @@
                   </ImageView>
                </left>
                <right>
-                  <ImageView fx:id="imgUsuario3" fitHeight="70.0" fitWidth="67.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                     <image>
-                        <Image url="@../../Imagenes_Multimedia/guardiaAvatar.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
+                  <GridPane prefHeight="67.0" prefWidth="148.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fx:id="imgAvatarAdmin" fitHeight="63.0" fitWidth="61.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/administradorAvatar.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="imgInformes" fitHeight="76.0" fitWidth="82.0" onMouseClicked="#accederInformes" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/correo.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </GridPane>
                </right>
             </JFXToolbar>
             <GridPane prefHeight="787.0" prefWidth="1156.0">
@@ -64,7 +83,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <LineChart GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <LineChart fx:id="tablaEntradas" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -76,17 +95,18 @@
                   </GridPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                      <right>
-                        <GridPane prefHeight="351.0" prefWidth="75.0" BorderPane.alignment="CENTER">
+                        <GridPane prefHeight="345.0" prefWidth="74.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="229.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="193.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="242.0" minHeight="0.0" prefHeight="81.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="242.0" minHeight="0.0" prefHeight="65.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="193.0" minHeight="0.0" prefHeight="130.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ImageView fx:id="imgUsuario4" fitHeight="84.0" fitWidth="74.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgAniadirUsuario" fitHeight="84.0" fitWidth="74.0" onMouseClicked="#aniadirUsuario" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../Imagenes_Multimedia/AgregarUsuario.png" />
                                  </image>
@@ -94,7 +114,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <ImageView fx:id="imgUsuario41" fitHeight="84.0" fitWidth="74.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                              <ImageView fx:id="imgEditarUsuario" fitHeight="84.0" fitWidth="74.0" onMouseClicked="#editarUsuario" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                  <image>
                                     <Image url="@../../Imagenes_Multimedia/editarUsuario.png" />
                                  </image>
@@ -108,7 +128,7 @@
                   </BorderPane>
                   <JFXToolbar style="-fx-background-color: #FF8000;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <left>
-                        <ImageView fx:id="imgCerrarSesion1" fitHeight="195.0" fitWidth="310.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                        <ImageView fx:id="imgTemperatura" fitHeight="195.0" fitWidth="310.0" onMouseClicked="#SensorTemperatura" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                            <image>
                               <Image url="@../../Imagenes_Multimedia/temperatura.png" />
                            </image>
@@ -118,7 +138,7 @@
                         </ImageView>
                      </left>
                      <right>
-                        <ImageView fx:id="imgUsuario31" fitHeight="230.0" fitWidth="253.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true" style="-fx-translate-x: -20;" BorderPane.alignment="CENTER">
+                        <ImageView fx:id="imgDistancia" fitHeight="230.0" fitWidth="253.0" onMouseClicked="#SensorDistancia" pickOnBounds="true" preserveRatio="true" style="-fx-translate-x: -20;" BorderPane.alignment="CENTER">
                            <image>
                               <Image url="@../../Imagenes_Multimedia/Alerta.png" />
                            </image>
@@ -128,7 +148,7 @@
                         </ImageView>
                      </right>
                      <center>
-                        <ImageView fx:id="imgCerrarSesion11" fitHeight="213.0" fitWidth="250.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                        <ImageView fx:id="imgLuz" fitHeight="213.0" fitWidth="250.0" onMouseClicked="#SensorLuz" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                            <image>
                               <Image url="@../../Imagenes_Multimedia/Foto.png" />
                            </image>
@@ -138,7 +158,7 @@
                         </ImageView>
                      </center>
                      <top>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sensores" wrappingWidth="250.87939453125" BorderPane.alignment="CENTER">
+                        <Text fx:id="textSensores" strokeType="OUTSIDE" strokeWidth="0.0" text="Sensores" wrappingWidth="250.87939453125" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="59.0" />
                            </font>

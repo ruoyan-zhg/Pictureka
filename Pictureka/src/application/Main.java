@@ -20,8 +20,9 @@ public class Main extends Application {
 			//Llamar a la funcion load de loadere
 			Parent root = loader.load();
 			primaryStage.setScene(new Scene(root));
+			//Se establece el titulo de la ventana
 			primaryStage.setTitle("Pictureka");
-
+			//Se establece que la ventana del logo no sea resizable
 			primaryStage.setResizable(false);
 			primaryStage.show();
 

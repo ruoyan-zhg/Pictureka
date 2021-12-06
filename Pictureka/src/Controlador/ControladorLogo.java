@@ -26,6 +26,7 @@ public class ControladorLogo {
     @FXML
     void entrarApp(ActionEvent event) {
 
+    	//Se carga el contenido de la ventana de login 
         FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
         ControladorInicioSesion controlerInicio = new ControladorInicioSesion();
         loaderApp.setController(controlerInicio);

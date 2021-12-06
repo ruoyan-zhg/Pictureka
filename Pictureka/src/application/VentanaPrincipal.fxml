@@ -165,7 +165,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <JFXTextArea prefHeight="257.0" prefWidth="385.0" style="-fx-background-color: #FFFFFF;" text="&quot;Creo que hay una nueva conciencia en este siglo XXI, donde el diseño es tan importante para nuestra forma de vida como lo es para los museos, salas de conciertos y edificios civiles&quot;. &#10;-Daniel Libeskind" unFocusColor="WHITE" wrapText="true" GridPane.columnIndex="1">
+                        <JFXTextArea editable="false" prefHeight="257.0" prefWidth="385.0" style="-fx-background-color: #FFFFFF;" text="&quot;Creo que hay una nueva conciencia en este siglo XXI, donde el diseño es tan importante para nuestra forma de vida como lo es para los museos, salas de conciertos y edificios civiles&quot;. &#10;-Daniel Libeskind" unFocusColor="WHITE" wrapText="true" GridPane.columnIndex="1">
                            <font>
                               <Font name="Palatino Linotype" size="22.0" />
                            </font>

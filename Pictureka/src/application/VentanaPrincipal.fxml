@@ -105,7 +105,7 @@
                      <children>
                         <ImageView fx:id="imgViewSlider" fitHeight="190.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                            <image>
-                              <Image url="@../people.jpg" />
+                              <Image url="@../MonaLisa.jpg" />
                            </image>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -113,12 +113,12 @@
                         </ImageView>
                         <ImageView fx:id="imgViewSlider3" fitHeight="190.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                            <image>
-                              <Image url="@../VanGogh.jpg" />
+                              <Image url="@../Sixtina.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="imgViewSlider2" fitHeight="190.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                            <image>
-                              <Image url="@../MonaLisa.jpg" />
+                              <Image url="@../Dali.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="imgView_BtnFlecha1" fitHeight="64.0" fitWidth="101.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#cambioImgAtras" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
@@ -157,9 +157,9 @@
                               <Image url="@../../Imagenes_Multimedia/museo-louvre-paris%20(1).jpg" />
                            </image>
                         </ImageView>
-                        <ImageView id="Actividades recientes" fx:id="btnFechasImportantes" fitHeight="274.0" fitWidth="321.0" onMouseClicked="#tocarCalendario" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                        <ImageView id="Actividades recientes" fx:id="btnFechasImportantes" fitHeight="282.0" fitWidth="385.0" onMouseClicked="#tocarCalendario" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                            <image>
-                              <Image url="@../../Imagenes_Multimedia/Calendario_Fechas.png" />
+                              <Image url="@../../Imagenes_Multimedia/Mockups.jpg" />
                            </image>
                            <cursor>
                               <Cursor fx:constant="HAND" />

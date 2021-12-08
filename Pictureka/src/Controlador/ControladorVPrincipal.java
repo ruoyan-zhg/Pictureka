@@ -33,6 +33,18 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * En la clase ControladorVPrincipal, manejamos todos los eventos que ocurren en la vista <b>VentanaPrincipal</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
+
+
 public class ControladorVPrincipal {
 
 	 @FXML
@@ -79,11 +91,13 @@ public class ControladorVPrincipal {
 
 	 @FXML
 	 private ImageView imgView_BtnFlecha;
-
-	ArrayList<Image> imagenes = new ArrayList<Image>();
+	 
+	 //ArrayList que guardara las imagenes que se mostraran en la ventana principal
+	 ArrayList<Image> imagenes = new ArrayList<Image>();
  	
 	@FXML
 	public void initialize() {
+		//Se añaden al ArrayList las imagenes que queremos que se muestren
 		imagenes.add(new Image("/MonaLisa.jpg"));
 	 	imagenes.add(new Image("/Dali.jpg"));
 	 	imagenes.add(new Image("/Sixtina.jpg"));
@@ -103,9 +117,14 @@ public class ControladorVPrincipal {
 	
 
     @FXML
+    /**
+     * 
+     * Mueve las imágenes a la derecha, tantas veces como el usuario pulse el botón.
+     * 
+     * @param event   Evento causado por el usuario al pulsar el botón de slide derecho.
+     */
     void cambioImg(MouseEvent event) {
     	
-    	//Array al que se le pasan las imagenes a presentar en el image slider
     	
     	count++;
     	countDos++;
@@ -136,10 +155,14 @@ public class ControladorVPrincipal {
     
     
     @FXML
+    
+    /**
+     * 
+     * Mueve las imágenes a la izquierda, tantas veces como el usuario pulse el botón.
+     * 
+     * @param event   Evento causado por el usuario al pulsar el botón de slide izquierdo.
+     */
     void cambioImgAtras(MouseEvent event) {
-    	
-    	
-    	
     	
     	System.out.println("Uno "+count+"\n");
     	System.out.println("Dos "+countDos+"\n");
@@ -166,6 +189,12 @@ public class ControladorVPrincipal {
 
 
     @FXML
+    /**
+     * 
+     * Dirige al usuario a la ventana para inicar sesión, ya que se puede acceder al programa sin la necesidad de estar registrado.
+     * 
+     * @param event   Evento causado cuando el usuario pulsa sobre la imagen del avatar.
+     */
     void accederPerfil(MouseEvent event) {
     	
     	//Se carga el contenido de la ventana
@@ -274,6 +303,12 @@ public class ControladorVPrincipal {
     
 
     @FXML
+    /**
+     * 
+     * Muestra la ventana de reserva de tickets.
+     * 
+     * @param event   Evento causado cuando el usuario pulsa la imagen de los tickets.
+     */
     void reservarTicket(MouseEvent event) {
     	
     	//Se carga el contenido de la ventana

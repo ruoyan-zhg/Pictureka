@@ -16,21 +16,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ControladorInicioSesion {
-	@FXML
-	private AnchorPane MyAnchorPane;
-	
-    @FXML
-    private GridPane gridPaneLogin;
 
     @FXML
-    private Pane paneLogin;
+    private AnchorPane MyAnchorPane;
+
+    @FXML
+    private GridPane gridPaneLogin;
 
     @FXML
     private ImageView imgLogo;
@@ -39,19 +36,47 @@ public class ControladorInicioSesion {
     private Label lblUsuario;
 
     @FXML
-    private Label lblContrasenia;
+    private TextField textUsuario;
 
     @FXML
-    private TextField textUsuario;
+    private Label lblContrasenia;
 
     @FXML
     private PasswordField textContrasenia;
 
     @FXML
+    private JFXButton btnRegistrarse;
+
+    @FXML
     private JFXButton btnInicioSesion;
 
     @FXML
-    private JFXButton btnRegistrarse;
+    private ImageView btnVolver;
+
+    @FXML
+    void volverAtras(MouseEvent event) {
+    	
+    	//Cargamos la ventana principal 
+    	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
+        loaderPrincipal.setController(controlerPrincipal);
+        
+        try {
+        	AnchorPane principal = (AnchorPane) loaderPrincipal.load();
+        	MyAnchorPane.getChildren().clear();
+            AnchorPane.setTopAnchor(principal, 0.0);
+            AnchorPane.setRightAnchor(principal, 0.0);
+            AnchorPane.setLeftAnchor(principal, 0.0);
+            AnchorPane.setBottomAnchor(principal, 0.0);
+            MyAnchorPane.getChildren().setAll(principal);
+            
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    }
 
     @FXML
     void InicarSesion(ActionEvent event) {
@@ -123,24 +148,6 @@ public class ControladorInicioSesion {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        /*
-        Parent root;
-		try {
-			root = loaderApp.load();
-	        Stage stage = new Stage();
-	        stage.setScene(new Scene(root));
-	        stage.show();
-	        
-	        //Obtenemos la ventanaLogo
-	        Stage primaryStage = (Stage)btnRegistrarse.getScene().getWindow();
-	        //Escondemos la ventana
-	        primaryStage.hide();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
     	
     }
 

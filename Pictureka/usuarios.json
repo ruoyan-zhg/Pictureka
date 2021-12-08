@@ -12,5 +12,20 @@
     "dni": "sdsd",
     "email": "sdsd@gmail.com",
     "contrasenia": "sdsd"
+  },
+  {
+    "nombre": "Juan",
+    "apellido1": "Lopez",
+    "apellido2": "Sanchez",
+    "identificadorUser": 3,
+    "usuario": "1100",
+    "dni": "6754830L",
+    "email": "juan@gmail.com",
+    "contrasenia": "juan123",
+    "fechaNacimiento": {
+      "year": 1991,
+      "month": 9,
+      "day": 11
+    }
   }
 ]

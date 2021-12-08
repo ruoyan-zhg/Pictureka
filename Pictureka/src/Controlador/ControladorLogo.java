@@ -26,10 +26,10 @@ public class ControladorLogo {
     @FXML
     void entrarApp(ActionEvent event) {
 
-    	//Se carga el contenido de la ventana de login 
-        FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
-        ControladorInicioSesion controlerInicio = new ControladorInicioSesion();
-        loaderApp.setController(controlerInicio);
+    	//Se carga el contenido de la ventana principal
+        FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
+        loaderApp.setController(controlerPrincipal);
         
         
         Parent root;
@@ -37,8 +37,9 @@ public class ControladorLogo {
             root = loaderApp.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-	        stage.setMinHeight(700);
-	        stage.setMinWidth(700);
+            stage.setMaximized(true);
+	        stage.setMinHeight(900);
+	        stage.setMinWidth(950);
             stage.show();
             
             

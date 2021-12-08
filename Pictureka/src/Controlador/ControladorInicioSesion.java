@@ -62,7 +62,11 @@ public class ControladorInicioSesion {
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
     		confirmacion.showAndWait();
-
+    			
+    		
+    			// TODO Comprobar dependiendo de quien inicie sesion, mostrar una ventana u otra
+    		
+    			
     			//Llamamos al codigo hecho en fxml
     			FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
     			ControladorVPrincipal controlVPrincipal = new ControladorVPrincipal();
@@ -74,8 +78,9 @@ public class ControladorInicioSesion {
     				root = loaderApp.load();
     		        Stage stage = new Stage();
     		        stage.setScene(new Scene(root));
-    		        stage.setMinHeight(500);
-    		        stage.setMinWidth(700);
+    		        stage.setMaximized(true);
+    		        stage.setMinHeight(900);
+    		        stage.setMinWidth(950);
     		        stage.show();
     		        
     		        //Obtenemos la ventanaLogo

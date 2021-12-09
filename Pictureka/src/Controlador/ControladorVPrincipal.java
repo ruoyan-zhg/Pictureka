@@ -16,6 +16,7 @@ import Modelo.Guardia;
 import Modelo.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,11 +27,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 
 /**
@@ -52,6 +62,9 @@ public class ControladorVPrincipal {
 
 	 @FXML
 	 private BorderPane BordPanePrincipal;
+	 
+	 @FXML
+	 private GridPane gridPaneInfo;
 
 	 @FXML
 	 private ImageView btnContacto;
@@ -78,19 +91,26 @@ public class ControladorVPrincipal {
 	 private ImageView imgUsuario;
 
 	 @FXML
-	 private ImageView imgViewSlider;
+	 private Region regionUno;
 
 	 @FXML
-	 private ImageView imgViewSlider3;
+	 private Region regionDos;
 
 	 @FXML
-	 private ImageView imgViewSlider2;
+	 private Region regionTres;
+	 
+	 @FXML
+	 private Region regionMuseo;
+
 
 	 @FXML
 	 private ImageView imgView_BtnFlecha1;
 
 	 @FXML
 	 private ImageView imgView_BtnFlecha;
+	 
+	 @FXML
+	 private Region regionImg;
 	 
 	 //ArrayList que guardara las imagenes que se mostraran en la ventana principal
 	 ArrayList<Image> imagenes = new ArrayList<Image>();
@@ -104,8 +124,19 @@ public class ControladorVPrincipal {
 	 	imagenes.add(new Image("/scream.jpg"));
 	 	imagenes.add(new Image("/VanGogh.jpg"));
 	 	imagenes.add(new Image("/people.jpg"));
+	 	regionUno.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(0)), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	regionDos.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(1)), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	regionTres.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(2)), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	
+	 	Image horario = new Image("/Horarios.jpg");
+	 	Image museo = new Image("/museoLouvre.jpg");
+	 	
+	 	regionImg.setBackground(new Background(new BackgroundFill(new ImagePattern(horario), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	regionMuseo.setBackground(new Background(new BackgroundFill(new ImagePattern(museo), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	
 	}
 	
+	//Contadores que indicaran como un puntero las imagenes que se muestran en los imgviews del image slider
 	int count = 0;
 	int countDos = 1;
 	int countTres = 2;
@@ -139,16 +170,13 @@ public class ControladorVPrincipal {
     		countTres=0;
     	}
     	
-    	imgViewSlider.setImage(imagenes.get(count));
-    	imgViewSlider2.setImage(imagenes.get(countDos));
-    	imgViewSlider3.setImage(imagenes.get(countTres));
     	
     	
+    	regionUno.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(count)), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	regionDos.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countDos)), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	regionTres.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countTres)), CornerRadii.EMPTY, Insets.EMPTY)));
     	
-    	System.out.println("Uno"+count+"\n");
-    	System.out.println("Dos"+countDos+"\n");
-    	System.out.println("Tres"+countTres+"\n");
-    
+    	
     	
     }
     
@@ -164,9 +192,7 @@ public class ControladorVPrincipal {
      */
     void cambioImgAtras(MouseEvent event) {
     	
-    	System.out.println("Uno "+count+"\n");
-    	System.out.println("Dos "+countDos+"\n");
-    	System.out.println("Tres "+countTres+"\n");
+    	
     	
     	count--;
     	countDos--;
@@ -180,9 +206,11 @@ public class ControladorVPrincipal {
     	if(countTres<0) {
     		countTres=(imagenes.size())-1;
     	}
-    	imgViewSlider.setImage(imagenes.get(count));
-    	imgViewSlider2.setImage(imagenes.get(countDos));
-    	imgViewSlider3.setImage(imagenes.get(countTres));
+    	
+    	
+    	regionUno.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(count)), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	regionDos.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countDos)), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	regionTres.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countTres)), CornerRadii.EMPTY, Insets.EMPTY)));
     	
     	
     }

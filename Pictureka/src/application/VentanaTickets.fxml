@@ -16,13 +16,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPaneTickets" prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane layoutX="-18.0" layoutY="-11.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="-18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="-11.0">
+      <BorderPane fx:id="BorderPaneTickets" layoutX="-18.0" layoutY="-11.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="-18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="-11.0">
          <left>
             <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" BorderPane.alignment="CENTER">
                <children>
-                  <GridPane>
+                  <GridPane fx:id="gridPaneTickets">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.31620025634766" minWidth="10.0" prefWidth="103.31620025634766" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.84229278564453" minWidth="10.0" prefWidth="96.68379974365234" />
@@ -38,35 +38,35 @@
                         <RowConstraints minHeight="50.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="Label2" prefHeight="56.0" prefWidth="86.0" text="Tickets">
+                        <Label fx:id="lblTickets" prefHeight="56.0" prefWidth="86.0" text="Tickets">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <JFXTextField GridPane.columnIndex="1" />
-                        <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" text="Horario" GridPane.rowIndex="1">
+                        <JFXTextField fx:id="textTickets" GridPane.columnIndex="1" />
+                        <JFXTextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lblHorario" alignment="CENTER" text="Horario" GridPane.rowIndex="1">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <JFXTimePicker prefHeight="27.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <JFXTimePicker fx:id="hourTickets" prefHeight="27.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <padding>
                               <Insets right="16.0" />
                            </padding>
                         </JFXTimePicker>
-                        <JFXDatePicker showWeekNumbers="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-                        <JFXButton style="-fx-background-color: yellow;" text="Cancelar" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <JFXDatePicker fx:id="dateTickets" showWeekNumbers="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+                        <JFXButton fx:id="btnCancelar" onAction="#CancelarReserva" style="-fx-background-color: yellow;" text="Cancelar" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton style="-fx-background-color: yellow;" text="Continuar" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                        <JFXButton fx:id="btnContinuar" onAction="#ReservarTickets" style="-fx-background-color: yellow;" text="Continuar" GridPane.columnIndex="2" GridPane.rowIndex="5">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </JFXButton>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <ImageView fx:id="imgTickets" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <image>
                               <Image url="@../../../../../Desktop/1f4c6.png" />
                            </image>

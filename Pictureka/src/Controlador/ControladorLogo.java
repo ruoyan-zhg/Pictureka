@@ -11,6 +11,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * En la clase ControladorLogo, manejamos los eventos que ocurran en la vista <b>VentanaLogo</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
+
 public class ControladorLogo {
 
 
@@ -24,27 +35,37 @@ public class ControladorLogo {
     private Button btnEntrar;
 
     @FXML
+    /**
+     * 
+     * El usuario pulsa el botón <b>Entrar</b> y se muestra la ventana principal del programa.
+     * 
+     * @param event    Momento en el que el usuario pulsa el botón.
+     */
     void entrarApp(ActionEvent event) {
 
-    	//Se carga el contenido de la ventana de login 
-        FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
-        ControladorInicioSesion controlerInicio = new ControladorInicioSesion();
-        loaderApp.setController(controlerInicio);
+    	//Se carga el contenido de la ventana principal
+        FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
+        //Se le asigna el controlador de la ventana principal
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
+        loaderApp.setController(controlerPrincipal);
         
-        
+        //Sacamos una ventana nueva
         Parent root;
         try {
             root = loaderApp.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-	        stage.setMinHeight(700);
-	        stage.setMinWidth(700);
+            //Hacemos que la ventana se muestre maximizada
+            stage.setMaximized(true);
+            //Medidas minimas de la ventana
+	        stage.setMinHeight(900);
+	        stage.setMinWidth(950);
             stage.show();
             
             
             //Obtenemos la ventanaLogo
             Stage primaryStage = (Stage)btnEntrar.getScene().getWindow();
-            //Escondemos la ventana
+            //Escondemos la ventanaLogo
             primaryStage.hide();
             
         } catch (IOException e) {

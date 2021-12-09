@@ -7,6 +7,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import Controlador.ControladorLogo;
 
+/**
+ * 
+ * En la clase <i>Main</i> se inicia el programa.
+ * 
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
+
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {

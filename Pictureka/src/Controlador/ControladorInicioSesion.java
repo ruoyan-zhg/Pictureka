@@ -2,9 +2,11 @@ package Controlador;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import com.jfoenix.controls.JFXButton;
 
+import Modelo.Guardia;
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -79,25 +82,31 @@ public class ControladorInicioSesion {
     }
 
     @FXML
+    /**
+     * 
+     * Recoge el nombre de usuario o email y la contraseña para comprobar que tal usuario existe, y de esa manera mostrar la vista correspondiente
+     * 
+     * @param event   Evento causado cuando el usuario pulsa sobre el botón de <b>Inicar sesión</b> para poder acceder a la aplicación
+     */
     void InicarSesion(ActionEvent event) {
+    	
     	modelo_Museo museo = new modelo_Museo();
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
-    	if (museo.loginUsuario(textUsuario.getText(), textContrasenia.getText())) {
+    	
+    	//Comprueba que lo devuelto por el método loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
+    	if (museo.loginUsuario(textUsuario.getText(), textContrasenia.getText())==1) {
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
     		confirmacion.showAndWait();
     			
-    		
-    			// TODO Comprobar dependiendo de quien inicie sesion, mostrar una ventana u otra
-    		
     			
     			//Llamamos al codigo hecho en fxml
     			FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
     			ControladorVPrincipal controlVPrincipal = new ControladorVPrincipal();
     			//Asociamos la vista con el controlador
     			loaderApp.setController(controlVPrincipal);
-    			//Llamar a la funcion load de loadere
+    			//Llamar a la funcion load de loader
     			Parent root;
     			try {
     				root = loaderApp.load();
@@ -118,6 +127,82 @@ public class ControladorInicioSesion {
     			}
   
     
+    	}
+    	else if (museo.loginUsuario(textUsuario.getText(), textContrasenia.getText())==2) {
+    		
+    		confirmacion.setHeaderText("Login correcto");
+    		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
+    		confirmacion.showAndWait();
+    		//Se carga el contenido de la ventana
+        	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
+        	//Se le asigna el controlador de la ventana para editar información de los guardias
+            ControladorGuardia controlerGuardia= new ControladorGuardia();
+            loaderApp.setController(controlerGuardia);
+            Parent root;
+			try {
+				root = loaderApp.load();
+		        Stage stage = new Stage();
+		        stage.setScene(new Scene(root));
+		        stage.setMaximized(true);
+		        stage.setMinHeight(900);
+		        stage.setMinWidth(950);
+		        stage.show();
+		        
+		        //Obtenemos la ventanaLogo
+		        Stage primaryStage = (Stage)btnInicioSesion.getScene().getWindow();
+		        //Escondemos la ventana
+		        primaryStage.hide();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+    	}
+    	else if (museo.loginUsuario(textUsuario.getText(), textContrasenia.getText())==3) {
+    		
+    		confirmacion.setHeaderText("Login correcto");
+    		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
+    		confirmacion.showAndWait();
+    		//Se carga el contenido de la ventana
+        	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaEditGuardias.fxml"));
+        	//Se le asigna el controlador de la ventana para editar información de los guardias
+            ControladorEditGuardias controlerAdmin = new ControladorEditGuardias();
+            loaderApp.setController(controlerAdmin);
+            Parent root;
+			try {
+				root = loaderApp.load();
+		        Stage stage = new Stage();
+		        stage.setScene(new Scene(root));
+		        stage.setMaximized(true);
+		        stage.setMinHeight(900);
+		        stage.setMinWidth(950);
+		        stage.show();
+		        
+		        //Obtenemos la ventanaLogo
+		        Stage primaryStage = (Stage)btnInicioSesion.getScene().getWindow();
+		        //Escondemos la ventana
+		        primaryStage.hide();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
+    		
+    		//Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al tipo de dato que queremos guardar
+    		controlerAdmin.getUsuario().setCellValueFactory(new PropertyValueFactory<>("usuario"));
+    		controlerAdmin.getNombre().setCellValueFactory(new PropertyValueFactory<>("nombre"));
+    		controlerAdmin.getPrimerApellido().setCellValueFactory(new PropertyValueFactory<>("apellido1"));
+    		controlerAdmin.getSegundoApellido().setCellValueFactory(new PropertyValueFactory<>("apellido2"));
+    		controlerAdmin.getEmail().setCellValueFactory(new PropertyValueFactory<>("email"));
+    		controlerAdmin.getDNI().setCellValueFactory(new PropertyValueFactory<>("dni"));
+    		controlerAdmin.getFechaNacimiento().setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+    		controlerAdmin.getContrasenia().setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
+    		
+    		
+    		//Se crea un guardia con cierta informacion y se añade a la tabla
+    		controlerAdmin.getTableView().getItems().add(new Guardia("2308", "534859348K", "jolie@gmail.com", "123456", LocalDate.of(2001, 9, 27), "Jolie", "Alain", "Vasquez"));
+    		
+    		
     	}
     	else {
     		error.setHeaderText("Error: El usuario/email o contraseña introducida son incorrectas");

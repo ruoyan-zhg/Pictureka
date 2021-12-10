@@ -14,9 +14,6 @@
     "contrasenia": "sdsd"
   },
   {
-    "nombre": "Oscar",
-    "apellido1": "Gonzalez",
-    "apellido2": "Guerra",
     "identificadorUser": 2,
     "usuario": "1100",
     "dni": "695693403L",
@@ -26,6 +23,21 @@
       "year": 2001,
       "month": 11,
       "day": 23
+    }
+  },
+  {
+    "nombre": "Jorge",
+    "apellido1": "Jimenez",
+    "apellido2": "Garcia",
+    "identificadorUser": 3,
+    "usuario": "1032",
+    "dni": "58358011P",
+    "email": "jorge@gmail.com",
+    "contrasenia": "jorge567",
+    "fechaNacimiento": {
+      "year": 1997,
+      "month": 8,
+      "day": 21
     }
   }
 ]

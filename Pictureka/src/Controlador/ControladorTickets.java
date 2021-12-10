@@ -1,5 +1,7 @@
 package Controlador;
 
+import java.io.IOException;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
@@ -7,6 +9,7 @@ import com.jfoenix.controls.JFXTimePicker;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -61,7 +64,36 @@ public class ControladorTickets {
 
     @FXML
     void CancelarReserva(ActionEvent event) {
+    	
+    	//Se carga el contenido de la ventana
+    	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
+    	//Se le asigna el controlador de la ventana para editar información de los guardias
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
+        loaderPrincipal.setController(controlerPrincipal);
+        AnchorPane PaneVentanaPrincipal;
 
+		try {
+			//Se carga en un AnchorPane la ventana
+			PaneVentanaPrincipal = (AnchorPane) loaderPrincipal.load();
+			
+			//Se elimina el contenido de la ventana padre
+        	anchorPanePrincipal.getChildren().clear();
+        	
+        	//Se ajusta el AnchorPane para que sea escalable
+            AnchorPane.setTopAnchor(PaneVentanaPrincipal, 0.0);
+            AnchorPane.setRightAnchor(PaneVentanaPrincipal, 0.0);
+            AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
+            AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
+            
+
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
+            
+           
+            
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
     }
 
     @FXML

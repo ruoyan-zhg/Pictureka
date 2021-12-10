@@ -26,7 +26,7 @@ public class modelo_Museo {
 				 apellido2, fechaNacimiento);
 		return estado;
 	}
-	public boolean loginUsuario(String emailOUsuario, String contrasenia) {
+	public int loginUsuario(String emailOUsuario, String contrasenia) {
 		return registro.loginDeUsuarios(emailOUsuario, contrasenia);
 	}
 }

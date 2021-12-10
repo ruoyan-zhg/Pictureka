@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXTextField;
 
+import Modelo.Administrador;
 import Modelo.Guardia;
+import Modelo.Registro;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -206,7 +208,7 @@ public class ControladorVPrincipal {
      */
     void accederPerfil(MouseEvent event) {
 
-    	/*
+    	
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
     	//Se le asigna el controlador de la ventana para editar información de los guardias
@@ -237,56 +239,7 @@ public class ControladorVPrincipal {
 			e1.printStackTrace();
 		}
     }
-    */	
-    	
-    	
-    	//Se carga el contenido de la ventana
-    	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaEditGuardias.fxml"));
-    	//Se le asigna el controlador de la ventana para editar información de los guardias
-        ControladorEditGuardias controlerAdmin = new ControladorEditGuardias();
-        loaderApp.setController(controlerAdmin);
-        AnchorPane PaneEditGuardias;
-
-		try {
-			//Se carga en un AnchorPane la ventana
-			PaneEditGuardias = (AnchorPane) loaderApp.load();
-			
-			//Se elimina el contenido de la ventana padre
-        	anchorPanePrincipal.getChildren().clear();
-        	
-        	//Se ajusta el AnchorPane para que sea escalable
-            AnchorPane.setTopAnchor(PaneEditGuardias, 0.0);
-            AnchorPane.setRightAnchor(PaneEditGuardias, 0.0);
-            AnchorPane.setLeftAnchor(PaneEditGuardias, 0.0);
-            AnchorPane.setBottomAnchor(PaneEditGuardias, 0.0);
-            
-
-            
-            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
-            anchorPanePrincipal.getChildren().setAll(PaneEditGuardias);
-            
-           
-            
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-        
-		
-		//Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al tipo de dato que queremos guardar
-		controlerAdmin.getUsuario().setCellValueFactory(new PropertyValueFactory<>("usuario"));
-		controlerAdmin.getNombre().setCellValueFactory(new PropertyValueFactory<>("nombre"));
-		controlerAdmin.getPrimerApellido().setCellValueFactory(new PropertyValueFactory<>("apellido1"));
-		controlerAdmin.getSegundoApellido().setCellValueFactory(new PropertyValueFactory<>("apellido2"));
-		controlerAdmin.getEmail().setCellValueFactory(new PropertyValueFactory<>("email"));
-		controlerAdmin.getDNI().setCellValueFactory(new PropertyValueFactory<>("dni"));
-		controlerAdmin.getFechaNacimiento().setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-		controlerAdmin.getContrasenia().setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
-		
-		
-		//Se crea un guardia con cierta informacion y se añade a la tabla
-		controlerAdmin.getTableView().getItems().add(new Guardia("2308", "534859348K", "jolie@gmail.com", "123456", LocalDate.of(2001, 9, 27), "Jolie", "Alain", "Vasquez"));
-    }
-		 
+	
 
     @FXML
     /**
@@ -328,7 +281,10 @@ public class ControladorVPrincipal {
 
     }
 
-    @FXML
+
+
+
+	@FXML
     void mandarCorreo(MouseEvent event) {
 
     }
@@ -350,7 +306,19 @@ public class ControladorVPrincipal {
 
     @FXML
     void verEventos(MouseEvent event) {
-
+    			
     }
+    
+    public AnchorPane getAnchorPanePrincipal() {
+		return anchorPanePrincipal;
+	}
+
+
+
+	public void setAnchorPanePrincipal(AnchorPane anchorPanePrincipal) {
+		this.anchorPanePrincipal = anchorPanePrincipal;
+	}
+
+    
 
 }

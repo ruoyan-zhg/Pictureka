@@ -76,12 +76,12 @@
                         </Label>
                         <JFXTimePicker fx:id="hourTickets" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                         <JFXDatePicker fx:id="dateTickets" showWeekNumbers="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                        <JFXButton fx:id="btnCancelar" onAction="#CancelarReserva" style="-fx-background-color: yellow;" text="Cancelar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                        <JFXButton fx:id="btnCancelar" onAction="#CancelarReserva" ripplerFill="TRANSPARENT" style="-fx-background-color: yellow; -fx-cursor: hand;" text="Cancelar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="btnContinuar" onAction="#ReservarTickets" style="-fx-background-color: yellow;" text="Continuar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                        <JFXButton fx:id="btnContinuar" onAction="#ReservarTickets" style="-fx-background-color: yellow; -fx-cursor: hand;" text="Continuar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                            <font>
                               <Font size="16.0" />
                            </font>

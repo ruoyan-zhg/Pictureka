@@ -70,7 +70,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="imgUsuario" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgUsuario" fitHeight="53.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/avatarNoRegistrado.png" />
                      </image>

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane fx:id="AnchorTabEditarGuardia" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane fx:id="gridPaneEditarGuardia" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
@@ -26,22 +27,27 @@
             <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Usuario" GridPane.halignment="CENTER" />
-            <TextField GridPane.columnIndex="1" />
-            <Label text="Nombre" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-            <TextField GridPane.columnIndex="3" />
-            <Label text="Primer apellido" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Label text="Segundo apellido" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label text="Email" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="DNI" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Label text="Fecha de nacimiento" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Contraseña" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label fx:id="lblUsuarioGuardia" text="Usuario" GridPane.halignment="CENTER" />
+            <TextField fx:id="textUsuarioGuardia" GridPane.columnIndex="1" />
+            <Label fx:id="lblNombreGuardia" text="Nombre" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+            <TextField fx:id="textNombreGuardia" GridPane.columnIndex="3" />
+            <Label fx:id="lblApellido1Guardia" text="Primer apellido" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="lblApellido2Guardia" text="Segundo apellido" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <TextField fx:id="textApellido1Guardia" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="textApellido2Guardia" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label fx:id="lblEmailGuardia" text="Email" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <TextField fx:id="textEmailGuardia" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="lblDniGuardia" text="DNI" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <TextField fx:id="textDniGuardia" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="lblFechaGuardia" text="Fecha de nacimiento" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <TextField fx:id="textFechaGuardia" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="lblContraseniaGuardia" text="Contraseña" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <TextField fx:id="textContraseniaGuardia" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <JFXButton fx:id="btnGuardarGuardia" onAction="#guardarGuardia" prefHeight="54.0" prefWidth="163.0" style="-fx-background-color: #29F49D;" text="Guardar cambios" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </JFXButton>
          </children>
       </GridPane>
    </children>

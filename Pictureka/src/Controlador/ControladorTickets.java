@@ -9,14 +9,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 public class ControladorTickets {
 
     @FXML
-    private AnchorPane anchorPaneTickets;
+    private AnchorPane anchorPanePrincipal;
+
+    @FXML
+    private VBox VBoxPrincipal;
+
+    @FXML
+    private ImageView imgCliente;
+
+    @FXML
+    private ImageView imgCerrarSesion;
 
     @FXML
     private BorderPane BorderPaneTickets;
@@ -47,7 +58,7 @@ public class ControladorTickets {
 
     @FXML
     private ImageView imgTickets;
-    
+
     @FXML
     void CancelarReserva(ActionEvent event) {
 
@@ -55,6 +66,11 @@ public class ControladorTickets {
 
     @FXML
     void ReservarTickets(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cerrarSesion(MouseEvent event) {
 
     }
 

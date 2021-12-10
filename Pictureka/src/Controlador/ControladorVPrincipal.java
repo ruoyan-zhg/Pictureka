@@ -206,7 +206,7 @@ public class ControladorVPrincipal {
      */
     void accederPerfil(MouseEvent event) {
 
-    	
+    	/*
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
     	//Se le asigna el controlador de la ventana para editar información de los guardias
@@ -237,10 +237,9 @@ public class ControladorVPrincipal {
 			e1.printStackTrace();
 		}
     }
+    */	
     	
     	
-    	
-    	/*
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaEditGuardias.fxml"));
     	//Se le asigna el controlador de la ventana para editar información de los guardias
@@ -286,28 +285,8 @@ public class ControladorVPrincipal {
 		
 		//Se crea un guardia con cierta informacion y se añade a la tabla
 		controlerAdmin.getTableView().getItems().add(new Guardia("2308", "534859348K", "jolie@gmail.com", "123456", LocalDate.of(2001, 9, 27), "Jolie", "Alain", "Vasquez"));
-		
-		//Se carga la segunda ventana del TabPane
-        FXMLLoader loaderTabAniadir = new FXMLLoader(getClass().getResource("/application/TabAniadirGuardia.fxml"));
-    	//Se le asigna el controlador de la ventana para editar información de los guardias
-        //TODO Pasarle a este  controlador el controlador de edit guardias para que no saque un null pointer al cargar el nuevo guardia en la tabla 
-        ControladorTabAniadirGuardia controlerTabAniadir = new ControladorTabAniadirGuardia();
-        loaderTabAniadir.setController(controlerTabAniadir);
-        AnchorPane anchorTabAniadir;
-        
-        try {
-			anchorTabAniadir = (AnchorPane) loaderTabAniadir.load();
-			controlerAdmin.getAnchorTabAniadir().getChildren().clear();
-            AnchorPane.setBottomAnchor(anchorTabAniadir, 0.0);
-            AnchorPane.setRightAnchor(anchorTabAniadir, 0.0);
-            AnchorPane.setLeftAnchor(anchorTabAniadir, 0.0);
-            AnchorPane.setBottomAnchor(anchorTabAniadir, 0.0);
-            controlerAdmin.getAnchorTabAniadir().getChildren().setAll(anchorTabAniadir);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/    
+    }
+		 
 
     @FXML
     /**

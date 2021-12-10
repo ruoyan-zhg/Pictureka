@@ -116,12 +116,51 @@ public class ControladorEditGuardias {
     @FXML
     void AniadirGuardia(Event event) {
     	
+		//Se carga la segunda ventana del TabPane
+        FXMLLoader loaderTabAniadir = new FXMLLoader(getClass().getResource("/application/TabAniadirGuardia.fxml"));
+    	//Se le asigna el controlador de la ventana para editar información de los guardias
+        //TODO Pasarle a este  controlador el controlador de edit guardias para que no saque un null pointer al cargar el nuevo guardia en la tabla 
+        ControladorTabAniadirGuardia controlerTabAniadir = new ControladorTabAniadirGuardia();
+        loaderTabAniadir.setController(controlerTabAniadir);
+        AnchorPane anchorTabAniadir;
+        
+        try {
+			anchorTabAniadir = (AnchorPane) loaderTabAniadir.load();
+			AnchorTabAniadir.getChildren().clear();
+            AnchorPane.setBottomAnchor(anchorTabAniadir, 0.0);
+            AnchorPane.setRightAnchor(anchorTabAniadir, 0.0);
+            AnchorPane.setLeftAnchor(anchorTabAniadir, 0.0);
+            AnchorPane.setBottomAnchor(anchorTabAniadir, 0.0);
+            AnchorTabAniadir.getChildren().setAll(anchorTabAniadir);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 
 	@FXML
     void EditarGuardia(Event event) {
-
+		
+		FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/TabEditarGuardia.fxml"));
+        ControladorTabEditarGuardia controlerPrincipal = new ControladorTabEditarGuardia();
+        loaderApp.setController(controlerPrincipal);
+        
+        try {
+        	AnchorPane registerPane = (AnchorPane) loaderApp.load();
+        	AnchorEditGuardia.getChildren().clear();
+            AnchorPane.setTopAnchor(registerPane, 0.0);
+            AnchorPane.setRightAnchor(registerPane, 0.0);
+            AnchorPane.setLeftAnchor(registerPane, 0.0);
+            AnchorPane.setBottomAnchor(registerPane, 0.0);
+            AnchorEditGuardia.getChildren().setAll(registerPane);
+            
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
     }
 
 

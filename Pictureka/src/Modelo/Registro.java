@@ -109,7 +109,7 @@ public class Registro {
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
 				if (usuarioRepetido(usuario)) {
-					usuarios.addElement(new Administrador(usuario, dni, email, contrasenia, fechaNacimiento, nombre, apellido1,
+					usuarios.addElement(new Guardia(usuario, dni, email, contrasenia, fechaNacimiento, nombre, apellido1,
 							 apellido2));
 					escribirUsuarios();
 					estado = "Validacion completada con exito";
@@ -137,6 +137,12 @@ public class Registro {
 			if(usuarios.elementAt(contador).getEmail().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)||
 					usuarios.elementAt(contador).getUsuario().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)) {
 				login = true;
+				/*
+				if (usuarios.get(contador).getIdentificadorUser()==1) {
+				 	System.out.println("Hola");
+				}
+				*/
+				
 			}
 			contador++;
 		}

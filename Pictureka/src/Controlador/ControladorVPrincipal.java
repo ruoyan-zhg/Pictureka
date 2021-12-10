@@ -3,25 +3,13 @@ package Controlador;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Vector;
-
-import org.controlsfx.control.MasterDetailPane;
-import org.controlsfx.control.PropertySheet;
 
 import com.jfoenix.controls.JFXTextField;
 
-import Modelo.Datos;
 import Modelo.Guardia;
-import Modelo.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Side;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,19 +17,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.stage.Stage;
 
 /**
  * 
@@ -57,60 +37,59 @@ import javafx.stage.Stage;
 
 public class ControladorVPrincipal {
 
-	 @FXML
-	 private AnchorPane anchorPanePrincipal;
+    @FXML
+    private AnchorPane anchorPanePrincipal;
 
-	 @FXML
-	 private BorderPane BordPanePrincipal;
-	 
-	 @FXML
-	 private GridPane gridPaneInfo;
+    @FXML
+    private BorderPane BordPanePrincipal;
 
-	 @FXML
-	 private ImageView btnContacto;
+    @FXML
+    private ImageView btnContacto;
 
-	 @FXML
-	 private ImageView btnCorreo;
+    @FXML
+    private ImageView btnCorreo;
 
-	 @FXML
-	 private ImageView btnMensaje;
+    @FXML
+    private ImageView btnMensaje;
 
-	 @FXML
-	 private ImageView imgViewLupa;
+    @FXML
+    private ImageView imgViewLupa;
 
-	 @FXML
-	 private JFXTextField txtField_busqueda;
+    @FXML
+    private JFXTextField txtField_busqueda;
 
-	 @FXML
-	 private ImageView imgCalendar;
+    @FXML
+    private ImageView imgCalendar;
 
-	 @FXML
-	 private ImageView imgTickets;
+    @FXML
+    private ImageView imgTickets;
 
-	 @FXML
-	 private ImageView imgUsuario;
+    @FXML
+    private ImageView imgUsuario;
 
-	 @FXML
-	 private Region regionUno;
+    @FXML
+    private ImageView imgView_BtnFlecha1;
 
-	 @FXML
-	 private Region regionDos;
+    @FXML
+    private ImageView imgView_BtnFlecha;
 
-	 @FXML
-	 private Region regionTres;
-	 
-	 @FXML
-	 private Region regionMuseo;
+    @FXML
+    private Region regionUno;
 
+    @FXML
+    private Region regionDos;
 
-	 @FXML
-	 private ImageView imgView_BtnFlecha1;
+    @FXML
+    private Region regionTres;
 
-	 @FXML
-	 private ImageView imgView_BtnFlecha;
-	 
-	 @FXML
-	 private Region regionImg;
+    @FXML
+    private GridPane gridPaneInfo;
+
+    @FXML
+    private Region regionImg;
+
+    @FXML
+    private Region regionMuseo;
 	 
 	 //ArrayList que guardara las imagenes que se mostraran en la ventana principal
 	 ArrayList<Image> imagenes = new ArrayList<Image>();
@@ -124,15 +103,18 @@ public class ControladorVPrincipal {
 	 	imagenes.add(new Image("/scream.jpg"));
 	 	imagenes.add(new Image("/VanGogh.jpg"));
 	 	imagenes.add(new Image("/people.jpg"));
+	 	
 	 	regionUno.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(0)), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	regionDos.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(1)), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	regionTres.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(2)), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	
 	 	
 	 	Image horario = new Image("/Horarios.jpg");
 	 	Image museo = new Image("/museoLouvre.jpg");
 	 	
 	 	regionImg.setBackground(new Background(new BackgroundFill(new ImagePattern(horario), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	regionMuseo.setBackground(new Background(new BackgroundFill(new ImagePattern(museo), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	
 	 	
 	}
 	
@@ -215,7 +197,6 @@ public class ControladorVPrincipal {
     	
     }
 
-
     @FXML
     /**
      * 
@@ -224,6 +205,7 @@ public class ControladorVPrincipal {
      * @param event   Evento causado cuando el usuario pulsa sobre la imagen del avatar.
      */
     void accederPerfil(MouseEvent event) {
+
     	
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
@@ -246,7 +228,6 @@ public class ControladorVPrincipal {
             AnchorPane.setBottomAnchor(PaneInicioSesion, 0.0);
             
 
-            
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneInicioSesion);
             
@@ -255,6 +236,7 @@ public class ControladorVPrincipal {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+    }
     	
     	
     	
@@ -301,13 +283,14 @@ public class ControladorVPrincipal {
 		controlerAdmin.getFechaNacimiento().setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
 		controlerAdmin.getContrasenia().setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
 		
+		
 		//Se crea un guardia con cierta informacion y se añade a la tabla
 		controlerAdmin.getTableView().getItems().add(new Guardia("2308", "534859348K", "jolie@gmail.com", "123456", LocalDate.of(2001, 9, 27), "Jolie", "Alain", "Vasquez"));
-	    
 		
 		//Se carga la segunda ventana del TabPane
         FXMLLoader loaderTabAniadir = new FXMLLoader(getClass().getResource("/application/TabAniadirGuardia.fxml"));
     	//Se le asigna el controlador de la ventana para editar información de los guardias
+        //TODO Pasarle a este  controlador el controlador de edit guardias para que no saque un null pointer al cargar el nuevo guardia en la tabla 
         ControladorTabAniadirGuardia controlerTabAniadir = new ControladorTabAniadirGuardia();
         loaderTabAniadir.setController(controlerTabAniadir);
         AnchorPane anchorTabAniadir;
@@ -324,11 +307,7 @@ public class ControladorVPrincipal {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
-		
-		
-    }
-    
+		*/    
 
     @FXML
     /**
@@ -337,18 +316,18 @@ public class ControladorVPrincipal {
      * 
      * @param event   Evento causado cuando el usuario pulsa la imagen de los tickets.
      */
-    void reservarTicket(MouseEvent event) {
+    void reservarTickets(MouseEvent event) {
     	
     	//Se carga el contenido de la ventana
-    	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaTickets.fxml"));
+    	FXMLLoader loaderTickets = new FXMLLoader(getClass().getResource("/application/VentanaTickets.fxml"));
     	//Se le asigna el controlador de la ventana para editar información de los guardias
         ControladorTickets controlerTickets = new ControladorTickets();
-        loaderApp.setController(controlerTickets);
+        loaderTickets.setController(controlerTickets);
         AnchorPane PaneTickets;
-
-		try {
+        
+        try {
 			//Se carga en un AnchorPane la ventana
-			PaneTickets = (AnchorPane) loaderApp.load();
+			PaneTickets = (AnchorPane) loaderTickets.load();
 			
 			//Se elimina el contenido de la ventana padre
         	anchorPanePrincipal.getChildren().clear();
@@ -358,29 +337,18 @@ public class ControladorVPrincipal {
             AnchorPane.setRightAnchor(PaneTickets, 0.0);
             AnchorPane.setLeftAnchor(PaneTickets, 0.0);
             AnchorPane.setBottomAnchor(PaneTickets, 0.0);
-            
-
-            
+       
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneTickets);
             
            
             
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-    	
-    }
-
-    @FXML
-    void tocarLupa(MouseEvent event) {
 
     }
 
-    @FXML
-    void verEventos(MouseEvent event) {
-
-    }
     @FXML
     void mandarCorreo(MouseEvent event) {
 
@@ -395,9 +363,14 @@ public class ControladorVPrincipal {
     void mostrarContacto(MouseEvent event) {
 
     }
-    
+
     @FXML
-    void tocarCalendario(MouseEvent event) {
+    void tocarLupa(MouseEvent event) {
+
+    }
+
+    @FXML
+    void verEventos(MouseEvent event) {
 
     }
 

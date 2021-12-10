@@ -60,7 +60,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="imgTickets" fitHeight="53.0" fitWidth="64.0" onMouseClicked="#reservarTicket" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgTickets" fitHeight="53.0" fitWidth="64.0" onMouseClicked="#reservarTickets" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/Ticket-icon.png" />
                      </image>

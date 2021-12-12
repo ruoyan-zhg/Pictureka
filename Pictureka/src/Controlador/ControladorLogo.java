@@ -75,4 +75,28 @@ public class ControladorLogo {
     	
     }
 
+	public Button getBtnEntrar() {
+		return btnEntrar;
+	}
+
+	public void setBtnEntrar(Button btnEntrar) {
+		this.btnEntrar = btnEntrar;
+	}
+
+	public AnchorPane getAnchorPane() {
+		return anchorPane;
+	}
+
+	public void setAnchorPane(AnchorPane anchorPane) {
+		this.anchorPane = anchorPane;
+	}
+
+	public ImageView getImageLogo() {
+		return imageLogo;
+	}
+
+	public void setImageLogo(ImageView imageLogo) {
+		this.imageLogo = imageLogo;
+	}
+
 }

@@ -3,17 +3,14 @@ package Controlador;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.List;
+
+import com.jfoenix.controls.JFXButton;
 
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -21,29 +18,30 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.scene.layout.Region;
 
 public class ControladorRegistro {
-	
-	@FXML
+
+    @FXML
     private AnchorPane anchorPaneRegistro;
 
     @FXML
     private GridPane gridRegistro;
 
     @FXML
-    private Button btnCancelRegistro;
-
-    @FXML
-    private Button btnRegistrar;
+    private Region regionRegistro;
 
     @FXML
     private ImageView imgPaneRegistro;
 
     @FXML
-    private VBox vboxRegistro;
+    private JFXButton btnCancelRegistro;
+
+    @FXML
+    private JFXButton btnRegistrar;
+
+    @FXML
+    private GridPane gridInfoRegistro;
 
     @FXML
     private Label lblUsuarioRegistro;
@@ -82,12 +80,8 @@ public class ControladorRegistro {
     private PasswordField textFieldRepeatPassword;
 
     @FXML
-    public void initialize() {
-    	chooserCalendario.setValue(LocalDate.now());
-    }
-    @FXML
     void CancelRegistro(ActionEvent event) {
-    	
+
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
         ControladorInicioSesion controlerInicioSesion = new ControladorInicioSesion();
         loaderApp.setController(controlerInicioSesion);
@@ -124,11 +118,11 @@ public class ControladorRegistro {
 			e.printStackTrace();
 		}
 		*/
-    	
     }
 
     @FXML
     void RegistrarUsuario(ActionEvent event) {
+
     	modelo_Museo museo = new modelo_Museo();
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
@@ -166,6 +160,5 @@ public class ControladorRegistro {
     		error.setHeaderText("Error: Introduzca su fecha de nacimiento por favor");
 		 	error.show();
     }
-    
-}
 
+}

@@ -1,10 +1,19 @@
 package application;
 
+import javafx.animation.Interpolator;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
+import com.jfoenix.transitions.JFXFillTransition;
+
 import Controlador.ControladorLogo;
 
 /**
@@ -27,6 +36,11 @@ public class Main extends Application {
 			//Llamamos al codigo hecho en fxml
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/VentanaLogo.fxml"));
 			ControladorLogo controlLogo = new ControladorLogo();
+			//Creamos 2 tipos de animaciones
+			ScaleTransition scale = new ScaleTransition();
+			JFXFillTransition fill = new JFXFillTransition();
+
+			
 			//Asociamos la vista con el controlador
 			loader.setController(controlLogo);
 			//Llamar a la funcion load de loadere
@@ -34,8 +48,31 @@ public class Main extends Application {
 			primaryStage.setScene(new Scene(root));
 			//Se establece el titulo de la ventana
 			primaryStage.setTitle("Pictureka");
+			
 			//Se establece que la ventana del logo no sea resizable
 			primaryStage.setResizable(false);
+			
+			//Animacion del boton de entrar
+			fill.setCycleCount(TranslateTransition.INDEFINITE);
+			fill.setDuration(Duration.millis(2500));
+			fill.setRegion(controlLogo.getBtnEntrar());
+			fill.setFromValue(Color.WHITE);
+			fill.setToValue(Color.rgb(210, 167, 244));
+			
+			//Animacion de la imagen del logo
+			scale.setNode(controlLogo.getImageLogo());
+			scale.setDuration(Duration.millis(2500));
+			scale.setCycleCount(TranslateTransition.INDEFINITE);
+			scale.setInterpolator(Interpolator.LINEAR);
+			scale.setByX(0.3);
+			scale.setByY(0.3);
+			scale.setAutoReverse(true);
+			
+			//Mostramos las animaciones creadas
+			fill.play();
+			scale.play();
+			
+			
 			primaryStage.show();
 
 		} catch(Exception e) {

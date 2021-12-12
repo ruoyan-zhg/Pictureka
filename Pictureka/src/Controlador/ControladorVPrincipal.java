@@ -230,9 +230,6 @@ public class ControladorVPrincipal {
      */
     void accederPerfil(MouseEvent event) {
 
-    	
-    	
-    	
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaEditGuardias.fxml"));
     	//Se le asigna el controlador de la ventana para editar información de los guardias

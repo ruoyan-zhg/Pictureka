@@ -41,7 +41,7 @@
             </ToolBar>
          </bottom>
          <top>
-            <ButtonBar prefHeight="79.0" prefWidth="1156.0" style="-fx-background-color: #FAFAAF;" BorderPane.alignment="CENTER">
+            <ButtonBar fx:id="btnBarArriba" prefHeight="79.0" prefWidth="1156.0" style="-fx-background-color: #FAFAAF;" BorderPane.alignment="CENTER">
               <buttons>
                   <ImageView fx:id="imgViewLupa" fitHeight="43.0" fitWidth="69.0" onMouseClicked="#tocarLupa" pickOnBounds="true" preserveRatio="true">
                      <image>

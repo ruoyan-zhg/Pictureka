@@ -11,17 +11,26 @@ import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 
 public class ControladorInicioSesion {
@@ -121,6 +130,11 @@ public class ControladorInicioSesion {
     		        Stage primaryStage = (Stage)btnInicioSesion.getScene().getWindow();
     		        //Escondemos la ventana
     		        primaryStage.hide();
+    		        controlVPrincipal.setLogged(true);
+    		        controlVPrincipal.getBtnBarArriba().setStyle("-fx-background-color: #00aae4");
+    		        controlVPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
+    		        System.out.println(controlVPrincipal.getLogged());
+    		        
     			} catch (IOException e) {
     				// TODO Auto-generated catch block
     				e.printStackTrace();
@@ -152,6 +166,8 @@ public class ControladorInicioSesion {
 		        Stage primaryStage = (Stage)btnInicioSesion.getScene().getWindow();
 		        //Escondemos la ventana
 		        primaryStage.hide();
+		        
+		        
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

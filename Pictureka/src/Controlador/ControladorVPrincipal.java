@@ -29,10 +29,10 @@ import javafx.scene.paint.ImagePattern;
  * 
  * En la clase ControladorVPrincipal, manejamos todos los eventos que ocurren en la vista <b>VentanaPrincipal</b>.
  * 
- * @author Jolie Alain V�squez
- * @author Oscar Gonz�lez Guerra
+ * @author Jolie Alain Vasquez
+ * @author Oscar Gonzalez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmer�n L�pez
+ * @author Lian Salmeron Lopez
  *
  */
 
@@ -156,9 +156,9 @@ public class ControladorVPrincipal {
     @FXML
     /**
      * 
-     * Mueve las im�genes a la derecha, tantas veces como el usuario pulse el bot�n.
+     * Mueve las imagenes a la derecha, tantas veces como el usuario pulse el boton.
      * 
-     * @param event   Evento causado por el usuario al pulsar el bot�n de slide derecho.
+     * @param event   Evento causado por el usuario al pulsar el boton de slide derecho.
      */
     void cambioImg(MouseEvent event) {
     	
@@ -192,9 +192,9 @@ public class ControladorVPrincipal {
     
     /**
      * 
-     * Mueve las im�genes a la izquierda, tantas veces como el usuario pulse el bot�n.
+     * Mueve las imagenes a la izquierda, tantas veces como el usuario pulse el boton.
      * 
-     * @param event   Evento causado por el usuario al pulsar el bot�n de slide izquierdo.
+     * @param event   Evento causado por el usuario al pulsar el boton de slide izquierdo.
      */
     void cambioImgAtras(MouseEvent event) {
     	
@@ -224,7 +224,7 @@ public class ControladorVPrincipal {
     @FXML
     /**
      * 
-     * Dirige al usuario a la ventana para inicar sesi�n, ya que se puede acceder al programa sin la necesidad de estar registrado.
+     * Dirige al usuario a la ventana para inicar sesion, ya que se puede acceder al programa sin la necesidad de estar registrado.
      * 
      * @param event   Evento causado cuando el usuario pulsa sobre la imagen del avatar.
      */

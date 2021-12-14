@@ -12,38 +12,36 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="Principal" fx:id="anchorPanePrincipal" prefHeight="990.0" prefWidth="2000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="Principal" fx:id="anchorPanePrincipal" prefHeight="730.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane fx:id="BordPanePrincipal" prefHeight="432.0" prefWidth="1156.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <ToolBar fx:id="ToolBar" prefHeight="91.0" prefWidth="1156.0" BorderPane.alignment="CENTER">
+            <ToolBar prefHeight="91.0" prefWidth="1156.0" BorderPane.alignment="CENTER">
                <items>
-                  <ImageView fx:id="btnContacto" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mostrarContactoEventos" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btnContacto" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mostrarContacto1" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/contacto.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="btnCorreo" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mandarCorreoEventos" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btnCorreo" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mandarCorreo1" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/arroba.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="btnMensaje" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mandarMensajeEventos" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btnMensaje" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mandarMensaje1" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/letter.png" />
                      </image>
                   </ImageView>
                </items>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
             </ToolBar>
          </bottom>
          <top>
-            <ButtonBar fx:id="ButtonBarPrincipal" prefHeight="79.0" prefWidth="1156.0" style="-fx-background-color: #FAFAAF;" BorderPane.alignment="CENTER">
+            <ButtonBar fx:id="btnBarArriba" prefHeight="79.0" prefWidth="1156.0" style="-fx-background-color: #FAFAAF;" BorderPane.alignment="CENTER">
               <buttons>
                   <ImageView fx:id="imgViewLupa" fitHeight="43.0" fitWidth="69.0" onMouseClicked="#tocarLupa" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -62,7 +60,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="imgTickets" fitHeight="53.0" fitWidth="64.0" onMouseClicked="#reservarTicket" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgTickets" fitHeight="53.0" fitWidth="64.0" onMouseClicked="#reservarTickets" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/Ticket-icon.png" />
                      </image>
@@ -70,7 +68,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="imgUsuario" fitHeight="53.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgUsuario" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/avatarNoRegistrado.png" />
                      </image>
@@ -85,16 +83,16 @@
             </ButtonBar>
          </top>
          <center>
-            <GridPane fx:id="GridPaneCuadros" prefWidth="1156.0" BorderPane.alignment="CENTER">
+            <GridPane prefWidth="1156.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane fx:id="GridPaneObras" prefHeight="220.0" prefWidth="1020.0" style="-fx-background-color: #CC2258;">
+                  <GridPane prefHeight="220.0" prefWidth="1020.0" style="-fx-background-color: #CC2258;">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="10.0" prefWidth="0.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="26.7" prefWidth="0.0" />
@@ -103,27 +101,9 @@
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="10.0" prefWidth="0.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="0.0" percentHeight="100.0" prefHeight="0.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="imgViewSlider" fitHeight="190.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                           <image>
-                              <Image url="@../MonaLisa.jpg" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                        <ImageView fx:id="imgViewSlider3" fitHeight="190.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
-                           <image>
-                              <Image url="@../Sixtina.jpg" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="imgViewSlider2" fitHeight="190.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-                           <image>
-                              <Image url="@../Dali.jpg" />
-                           </image>
-                        </ImageView>
                         <ImageView fx:id="imgView_BtnFlecha1" fitHeight="64.0" fitWidth="101.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#cambioImgAtras" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
                            <image>
                               <Image url="@../../Imagenes_Multimedia/Flecha.png" />
@@ -143,43 +123,35 @@
                               <Insets />
                            </GridPane.margin>
                         </ImageView>
+                        <Region fx:id="region1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                        <Region fx:id="region2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+                        <Region fx:id="region3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
                      </children>
                   </GridPane>
                   <GridPane fx:id="GridPaneObras2" alignment="BOTTOM_CENTER" prefHeight="320.0" prefWidth="1172.0" style="-fx-background-color: #FFFFFF;" GridPane.rowIndex="1">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="47.0" prefWidth="0.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="33.0" prefWidth="0.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="35.0" prefWidth="0.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="10.0" percentWidth="47.79999999999998" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="307.35760498046875" minHeight="10.0" prefHeight="307.35760498046875" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="226.11920166015625" minHeight="10.0" prefHeight="107.64239501953125" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="20.0" prefWidth="0.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="30.0" prefWidth="0.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="10.0" percentWidth="2.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="20.0" prefWidth="0.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="307.35760498046875" minHeight="10.0" percentHeight="100.0" prefHeight="307.35760498046875" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="imgViewQuitasol" fitHeight="240.0" fitWidth="442.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="TOP">
-                           <image>
-                              <Image url="@../../../../../Desktop/Imagenes%20proyecto/El_Quitasol_(Goya).jpeg" />
-                           </image>
-                        </ImageView>
-                        <JFXTextArea fx:id="TextAreaQuitasol" editable="false" prefHeight="260.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF;" text=" El quitasol puede clasificarse tanto dentro del estilo neoclásico como dentro del rococó, ya que cuenta &#10;con características tanto de un estilo como de otro. &#10;Las características principales del neoclasicismo, y que podemos ver reflejadas en el quitasol son: &#10;perfección formal, serenidad, predominio del dibujo, modelos de la escultura clásica, temática moralizante y &#10;ejemplarizante, uso de colores primarios. Los rasgos principales del rococó son: una elección de colores&#10;claros (en especial el blanco), colores luminosos y suaves, intenta reflejar el aspecto agradable, exótico, sensual &#10;&#10;y refinado de las cosas y casi no utiliza los contrastes.&#10;" unFocusColor="WHITE" wrapText="true" GridPane.columnIndex="1">
+                        <JFXTextArea fx:id="TextAreaQuitasol" editable="false" style="-fx-background-color: #FFFFFF;" text="&#9;&#9;&#9;&quot;El quitasol&quot; &#10;puede clasificarse tanto dentro del estilo neoclásico como dentro del rococó, ya que cuenta &#10;con características tanto de un estilo como de otro. &#10;Las características principales del neoclasicismo, y que podemos ver reflejadas en el quitasol son: &#10;perfección formal, serenidad, predominio del dibujo, modelos de la escultura clásica, temática moralizante y &#10;ejemplarizante, uso de colores primarios. Los rasgos principales del rococó son: una elección de colores&#10;claros (en especial el blanco), colores luminosos y suaves, intenta reflejar el aspecto agradable, exótico, sensual &#10;&#10;y refinado de las cosas y casi no utiliza los contrastes.&#10;" unFocusColor="WHITE" wrapText="true" GridPane.columnIndex="1">
                            <font>
-                              <Font name="Palatino Linotype" size="22.0" />
+                              <Font name="Palatino Linotype" size="18.0" />
                            </font>
                         </JFXTextArea>
-                        <ImageView fx:id="imgViewMeninas" fitHeight="269.0" fitWidth="245.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-                           <image>
-                              <Image url="@../../../../../Desktop/Imagenes%20proyecto/Las_Meninas_01.jpeg" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets left="30.0" top="35.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <JFXTextArea fx:id="TextAreaMeninas" text="&quot;Las meninas&quot; Pintado por Velázquez en 1656, durante la que fue la última década de su existencia, cinco años después de regresar de su segundo viaje italiano y del nacimiento de la infanta Margarita -la luminosamente palmaria protagonista del cuadro, aunque haya otros mimbres soterrados en la penumbra- y a tan solo cuatro de la muerte del artista, acaecida en 1660 tras regresar del solemne acto que se celebró en la isla de los Faisanes por el que se entregaba en matrimonio a la infanta María Teresa al rey Luis XIV de Francia, este retrato de la familia real " GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                        <JFXTextArea fx:id="TextAreaMeninas" focusColor="#ffffff00" text="&#9;&#9;&#9;&quot;Las meninas&quot; &#10;Pintado por Velázquez en 1656.&#10;Durante la que fue la última década de su existencia, cinco años después de regresar de su segundo viaje italiano y del nacimiento de la infanta Margarita &#10;&#10;-la luminosamente palmaria protagonista del cuadro, aunque haya otros mimbres soterrados en la penumbra- y a tan solo cuatro de la muerte del artista, acaecida en 1660 tras regresar del solemne acto que se celebró en la isla de los Faisanes por el que se entregaba en matrimonio a la infanta María Teresa al rey Luis XIV de Francia, este retrato de la familia real " unFocusColor="#4d4d4d00" GridPane.columnIndex="4" GridPane.halignment="CENTER">
                            <font>
-                              <Font name="Palatino Linotype" size="22.0" />
+                              <Font name="Palatino Linotype" size="18.0" />
                            </font>
                         </JFXTextArea>
+                        <Region fx:id="regionEventoDerecha" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="3" />
+                        <Region fx:id="regionEventoIzq" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </GridPane>
                </children>

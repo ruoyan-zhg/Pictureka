@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -84,6 +85,9 @@ public class ControladorTickets {
             AnchorPane.setRightAnchor(PaneVentanaPrincipal, 0.0);
             AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
             AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
+            controlerPrincipal.setLogged(true);
+            controlerPrincipal.getBtnBarArriba().setStyle("-fx-background-color: #00aae4");
+	        controlerPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
             
 
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre

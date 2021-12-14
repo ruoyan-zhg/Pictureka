@@ -133,7 +133,9 @@ public class ControladorInicioSesion {
     		        controlVPrincipal.setLogged(true);
     		        controlVPrincipal.getBtnBarArriba().setStyle("-fx-background-color: #00aae4");
     		        controlVPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
-    		        System.out.println(controlVPrincipal.getLogged());
+    		        controlVPrincipal.getLblBienvenido().setText("¡Bienvenido "+(textUsuario.getText())+"!");
+    		        controlVPrincipal.getLblBienvenido().setStyle("-fx-background-color: #00aae4");
+    		        
     		        
     			} catch (IOException e) {
     				// TODO Auto-generated catch block

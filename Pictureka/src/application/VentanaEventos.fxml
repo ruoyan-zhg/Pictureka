@@ -21,17 +21,17 @@
          <bottom>
             <ToolBar fx:id="ToolBar" prefHeight="91.0" prefWidth="1156.0" BorderPane.alignment="CENTER">
                <items>
-                  <ImageView fx:id="btnContacto" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mostrarContacto" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btnContacto" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mostrarContactoEventos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/contacto.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="btnCorreo" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mandarCorreo" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btnCorreo" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mandarCorreoEventos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/arroba.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="btnMensaje" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mandarMensaje" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btnMensaje" fitHeight="63.0" fitWidth="65.0" onMouseClicked="#mandarMensajeEventos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/letter.png" />
                      </image>

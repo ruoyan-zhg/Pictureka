@@ -1,18 +1,12 @@
 package Controlador;
 
-import java.awt.event.MouseEvent;
-import java.io.IOException;
-
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -102,17 +96,17 @@ public class ControladorEventos {
     }
 
     @FXML
-    void mandarCorreo(MouseEvent event) {
+    void mandarCorreoEventos(MouseEvent event) {
 
     }
 
     @FXML
-    void mandarMensaje(MouseEvent event) {
+    void mandarMensajeEventos(MouseEvent event) {
 
     }
 
     @FXML
-    void mostrarContacto(MouseEvent event) {
+    void mostrarContactoEventos(MouseEvent event) {
 
     }
 
@@ -127,18 +121,10 @@ public class ControladorEventos {
     }
 
     @FXML
-    void verEventos(ActionEvent event) {
-    	
-    	//Llamamos al codigo hecho en fxml
-		FXMLLoader loaderCalendar = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-		ControladorVPrincipal controlVPrincipal = new ControladorVPrincipal();
-		//Asociamos la vista con el controlador
-		loaderCalendar.setController(controlVPrincipal);
-		
-		
-    	
-    
+    void verEventos(MouseEvent event) {
+
     }
+
 }
 
 

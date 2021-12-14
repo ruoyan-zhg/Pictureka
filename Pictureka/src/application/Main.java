@@ -10,7 +10,6 @@ import javafx.util.Duration;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 import com.jfoenix.transitions.JFXFillTransition;
 

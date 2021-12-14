@@ -92,12 +92,12 @@
                 <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="btnCancelar" prefHeight="76.0" prefWidth="172.0" style="-fx-background-color: #A829F4; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Cancelar" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                  <JFXButton fx:id="btnCancelar" prefHeight="76.0" prefWidth="172.0" style="-fx-background-color: #C581FB; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Cancelar" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="btnGuardar" prefHeight="76.0" prefWidth="172.0" style="-fx-background-color: #A829F4; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Guardar cambios" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                  <JFXButton fx:id="btnGuardar" prefHeight="76.0" prefWidth="172.0" style="-fx-background-color: #C581FB; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Guardar cambios" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>

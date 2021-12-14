@@ -20,7 +20,7 @@
                   <Rectangle2D />
                </viewport>
             </ImageView>
-            <Button fx:id="btnEntrar" mnemonicParsing="false" onAction="#entrarApp" prefHeight="27.0" prefWidth="94.0" text="Entrar">
+            <Button fx:id="btnEntrar" mnemonicParsing="false" onAction="#entrarApp" prefHeight="27.0" prefWidth="94.0" style="-fx-border-color: black;" text="Entrar">
                <font>
                   <Font name="Lucida Fax Demibold" size="18.0" />
                </font></Button>

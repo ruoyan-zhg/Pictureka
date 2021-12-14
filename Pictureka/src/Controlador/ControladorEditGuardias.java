@@ -116,11 +116,14 @@ public class ControladorEditGuardias {
     @FXML
     void AniadirGuardia(Event event) {
     	
+    	ControladorEditGuardias controladorEdit = new ControladorEditGuardias();
+    	
+    	
 		//Se carga la segunda ventana del TabPane
         FXMLLoader loaderTabAniadir = new FXMLLoader(getClass().getResource("/application/TabAniadirGuardia.fxml"));
     	//Se le asigna el controlador de la ventana para editar información de los guardias
         //TODO Pasarle a este  controlador el controlador de edit guardias para que no saque un null pointer al cargar el nuevo guardia en la tabla 
-        ControladorTabAniadirGuardia controlerTabAniadir = new ControladorTabAniadirGuardia();
+        ControladorTabAniadirGuardia controlerTabAniadir = new ControladorTabAniadirGuardia(controladorEdit);
         loaderTabAniadir.setController(controlerTabAniadir);
         AnchorPane anchorTabAniadir;
         

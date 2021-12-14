@@ -17,6 +17,8 @@ import javafx.scene.layout.GridPane;
 
 public class ControladorTabAniadirGuardia {
 
+	ControladorEditGuardias controlerEdit = new ControladorEditGuardias();
+	
     @FXML
     private AnchorPane anchorPaneTab1;
 
@@ -74,10 +76,19 @@ public class ControladorTabAniadirGuardia {
     @FXML
     private JFXDatePicker DateGuardiaNacimiento;
 
+    
+    public ControladorTabAniadirGuardia(ControladorEditGuardias controladorEdit) {
+
+    	controlerEdit = controladorEdit;
+	}
+    
+    public ControladorTabAniadirGuardia() {
+    	
+    }
+    
     @FXML
     void GuardarNuevoGuardia(ActionEvent event) {
     	
-    	ControladorEditGuardias controlerEdit = new ControladorEditGuardias();
     	Registro registro = new Registro();
     	
     	String usuarioNuevo;
@@ -101,7 +112,7 @@ public class ControladorTabAniadirGuardia {
     	//Se escribe en el json de usuarios
     	registro.registrarGuardia(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo);
     	//Se supone que se tiene que añadir a la tabla pero saca un null pointer
-    	//controlerEdit.getTableView().getItems().add(new Guardia(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
+    	this.controlerEdit.getTableView().getItems().add(new Guardia(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
     	
     	
     	

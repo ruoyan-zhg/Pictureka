@@ -2,6 +2,7 @@ package Controlador;
 
 import com.jfoenix.controls.JFXButton;
 
+import Modelo.Guardia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -70,7 +71,8 @@ public class ControladorTabEditarGuardia {
 
     @FXML
     void guardarGuardia(ActionEvent event) {
-
+    	
+    	
     }
 
 }

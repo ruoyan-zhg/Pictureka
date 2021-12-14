@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -62,6 +63,9 @@ public class ControladorVPrincipal {
 
     @FXML
     private JFXTextField txtField_busqueda;
+    
+    @FXML
+    private Label lblBienvenido;
 
     @FXML
     private ImageView imgCalendar;
@@ -146,7 +150,9 @@ public class ControladorVPrincipal {
 	public ImageView getAvatarUsuario() {
 		return imgUsuario;
 	}
-	
+	public Label getLblBienvenido() {
+		return lblBienvenido;
+	}
 	
 	
     

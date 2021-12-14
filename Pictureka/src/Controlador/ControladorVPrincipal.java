@@ -29,10 +29,10 @@ import javafx.scene.paint.ImagePattern;
  * 
  * En la clase ControladorVPrincipal, manejamos todos los eventos que ocurren en la vista <b>VentanaPrincipal</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain Vï¿½squez
+ * @author Oscar Gonzï¿½lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian Salmerï¿½n Lï¿½pez
  *
  */
 
@@ -103,7 +103,7 @@ public class ControladorVPrincipal {
  	
 	@FXML
 	public void initialize() {
-		//Se añaden al ArrayList las imagenes que queremos que se muestren
+		//Se aï¿½aden al ArrayList las imagenes que queremos que se muestren
 		imagenes.add(new Image("/MonaLisa.jpg"));
 	 	imagenes.add(new Image("/Dali.jpg"));
 	 	imagenes.add(new Image("/Sixtina.jpg"));
@@ -156,9 +156,9 @@ public class ControladorVPrincipal {
     @FXML
     /**
      * 
-     * Mueve las imágenes a la derecha, tantas veces como el usuario pulse el botón.
+     * Mueve las imï¿½genes a la derecha, tantas veces como el usuario pulse el botï¿½n.
      * 
-     * @param event   Evento causado por el usuario al pulsar el botón de slide derecho.
+     * @param event   Evento causado por el usuario al pulsar el botï¿½n de slide derecho.
      */
     void cambioImg(MouseEvent event) {
     	
@@ -192,9 +192,9 @@ public class ControladorVPrincipal {
     
     /**
      * 
-     * Mueve las imágenes a la izquierda, tantas veces como el usuario pulse el botón.
+     * Mueve las imï¿½genes a la izquierda, tantas veces como el usuario pulse el botï¿½n.
      * 
-     * @param event   Evento causado por el usuario al pulsar el botón de slide izquierdo.
+     * @param event   Evento causado por el usuario al pulsar el botï¿½n de slide izquierdo.
      */
     void cambioImgAtras(MouseEvent event) {
     	
@@ -224,7 +224,7 @@ public class ControladorVPrincipal {
     @FXML
     /**
      * 
-     * Dirige al usuario a la ventana para inicar sesión, ya que se puede acceder al programa sin la necesidad de estar registrado.
+     * Dirige al usuario a la ventana para inicar sesiï¿½n, ya que se puede acceder al programa sin la necesidad de estar registrado.
      * 
      * @param event   Evento causado cuando el usuario pulsa sobre la imagen del avatar.
      */
@@ -232,14 +232,14 @@ public class ControladorVPrincipal {
 
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaEditGuardias.fxml"));
-    	//Se le asigna el controlador de la ventana para editar información de los guardias
+    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
         ControladorEditGuardias controlerAdmin = new ControladorEditGuardias();
         loaderApp.setController(controlerAdmin);
         AnchorPane PaneEditGuardias;
         
 		if(logged == false) {
 			Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+			error.setHeaderText("Oh no! Para acceder a esta funciï¿½n debes estar iniciado sesiï¿½n.");
 			error.showAndWait();
 			abrirLogin();
 		        	
@@ -260,7 +260,7 @@ public class ControladorVPrincipal {
             
 
             
-            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneEditGuardias);
             
            
@@ -281,7 +281,7 @@ public class ControladorVPrincipal {
 		controlerAdmin.getContrasenia().setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
 		
 		
-		//Se crea un guardia con cierta informacion y se añade a la tabla
+		//Se crea un guardia con cierta informacion y se aï¿½ade a la tabla
 		controlerAdmin.getTableView().getItems().add(new Guardia("2308", "534859348K", "jolie@gmail.com", "123456", LocalDate.of(2001, 9, 27), "Jolie", "Alain", "Vasquez"));
 		}
     }
@@ -298,7 +298,7 @@ public class ControladorVPrincipal {
     	
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderTickets = new FXMLLoader(getClass().getResource("/application/VentanaTickets.fxml"));
-    	//Se le asigna el controlador de la ventana para editar información de los guardias
+    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
         ControladorTickets controlerTickets = new ControladorTickets();
         loaderTickets.setController(controlerTickets);
         AnchorPane PaneTickets;
@@ -306,7 +306,7 @@ public class ControladorVPrincipal {
         
         if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+			error.setHeaderText("Oh no! Para acceder a esta funciï¿½n debes estar iniciado sesiï¿½n.");
     		error.showAndWait();
         	abrirLogin();
         	
@@ -325,7 +325,7 @@ public class ControladorVPrincipal {
                  AnchorPane.setLeftAnchor(PaneTickets, 0.0);
                  AnchorPane.setBottomAnchor(PaneTickets, 0.0);
             
-                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+                 //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
                  anchorPanePrincipal.getChildren().setAll(PaneTickets);
                  
                 
@@ -360,13 +360,45 @@ public class ControladorVPrincipal {
 
     @FXML
     void verEventos(MouseEvent event) {
+    	// carga el contenido de la ventana
+    	FXMLLoader loaderEventos = new FXMLLoader(getClass().getResource("/application/VentanaEventos.fxml"));
+    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
+        ControladorEventos controlerEventos = new ControladorEventos();
+        loaderEventos.setController(controlerEventos);
+        AnchorPane PaneCalendar;
 
+        
+        try {
+			//Se carga en un AnchorPane la ventana
+            PaneCalendar = (AnchorPane) loaderEventos.load();
+			
+			//Se elimina el contenido de la ventana padre
+        	anchorPanePrincipal.getChildren().clear();
+        	
+        	//Se ajusta el AnchorPane para que sea escalable
+            AnchorPane.setTopAnchor(PaneCalendar, 0.0);
+            AnchorPane.setRightAnchor(PaneCalendar, 0.0);
+            AnchorPane.setLeftAnchor(PaneCalendar, 0.0);
+            AnchorPane.setBottomAnchor(PaneCalendar, 0.0);
+            
+
+            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
+            anchorPanePrincipal.getChildren().setAll(PaneCalendar);
+            
+           
+            
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
     }
+
+
+    
     
     void abrirLogin() {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
-    	//Se le asigna el controlador de la ventana para editar información de los guardias
+    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
         ControladorInicioSesion controlerInicio = new ControladorInicioSesion();
         loaderApp.setController(controlerInicio);
         AnchorPane PaneInicioSesion;
@@ -385,7 +417,7 @@ public class ControladorVPrincipal {
             AnchorPane.setBottomAnchor(PaneInicioSesion, 0.0);
             
 
-            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneInicioSesion);
             
            

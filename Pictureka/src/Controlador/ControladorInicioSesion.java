@@ -181,10 +181,13 @@ public class ControladorInicioSesion {
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
     		confirmacion.showAndWait();
+    		
+    		
+    		
     		//Se carga el contenido de la ventana
-        	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaEditGuardias.fxml"));
+        	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
         	//Se le asigna el controlador de la ventana para editar información de los guardias
-            ControladorEditGuardias controlerAdmin = new ControladorEditGuardias();
+            ControladorAdministrador controlerAdmin = new ControladorAdministrador();
             loaderApp.setController(controlerAdmin);
             Parent root;
 			try {
@@ -205,7 +208,7 @@ public class ControladorInicioSesion {
 				e.printStackTrace();
 			}
             
-    		
+    		/*
     		//Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al tipo de dato que queremos guardar
     		controlerAdmin.getUsuario().setCellValueFactory(new PropertyValueFactory<>("usuario"));
     		controlerAdmin.getNombre().setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -219,7 +222,7 @@ public class ControladorInicioSesion {
     		
     		//Se crea un guardia con cierta informacion y se añade a la tabla
     		controlerAdmin.getTableView().getItems().add(new Guardia("2308", "534859348K", "jolie@gmail.com", "123456", LocalDate.of(2001, 9, 27), "Jolie", "Alain", "Vasquez"));
-    		
+    		*/
     		
     	}
     	else {

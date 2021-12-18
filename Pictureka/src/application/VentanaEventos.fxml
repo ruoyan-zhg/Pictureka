@@ -150,7 +150,7 @@
                               <Font name="Palatino Linotype" size="18.0" />
                            </font>
                         </JFXTextArea>
-                        <Region fx:id="regionEventoDerecha" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="3" />
+                        <Region fx:id="regionEventoDerecha" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
                         <Region fx:id="regionEventoIzq" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </GridPane>

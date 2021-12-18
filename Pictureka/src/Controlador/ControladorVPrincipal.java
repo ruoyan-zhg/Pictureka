@@ -10,6 +10,8 @@ import Modelo.Guardia;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
@@ -25,6 +27,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
+import javafx.stage.Stage;
 
 /**
  * 
@@ -235,61 +238,18 @@ public class ControladorVPrincipal {
      * @param event   Evento causado cuando el usuario pulsa sobre la imagen del avatar.
      */
     void accederPerfil(MouseEvent event) {
-
-    	//Se carga el contenido de la ventana
-    	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaEditGuardias.fxml"));
-    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
-        ControladorEditGuardias controlerAdmin = new ControladorEditGuardias();
-        loaderApp.setController(controlerAdmin);
-        AnchorPane PaneEditGuardias;
-        
-		if(logged == false) {
-			Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta funciï¿½n debes estar iniciado sesiï¿½n.");
-			error.showAndWait();
-			abrirLogin();
-		        	
-		}
-		else {
-		try {
-			//Se carga en un AnchorPane la ventana
-			PaneEditGuardias = (AnchorPane) loaderApp.load();
-			
-			//Se elimina el contenido de la ventana padre
-        	anchorPanePrincipal.getChildren().clear();
+		
+    	if(logged == false) {
+        	Alert error = new Alert(Alert.AlertType.ERROR);
+			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+    		error.showAndWait();
+        	abrirLogin();
         	
-        	//Se ajusta el AnchorPane para que sea escalable
-            AnchorPane.setTopAnchor(PaneEditGuardias, 0.0);
-            AnchorPane.setRightAnchor(PaneEditGuardias, 0.0);
-            AnchorPane.setLeftAnchor(PaneEditGuardias, 0.0);
-            AnchorPane.setBottomAnchor(PaneEditGuardias, 0.0);
-            
-
-            
-            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
-            anchorPanePrincipal.getChildren().setAll(PaneEditGuardias);
-            
-           
-            
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-        
-		
-		//Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al tipo de dato que queremos guardar
-		controlerAdmin.getUsuario().setCellValueFactory(new PropertyValueFactory<>("usuario"));
-		controlerAdmin.getNombre().setCellValueFactory(new PropertyValueFactory<>("nombre"));
-		controlerAdmin.getPrimerApellido().setCellValueFactory(new PropertyValueFactory<>("apellido1"));
-		controlerAdmin.getSegundoApellido().setCellValueFactory(new PropertyValueFactory<>("apellido2"));
-		controlerAdmin.getEmail().setCellValueFactory(new PropertyValueFactory<>("email"));
-		controlerAdmin.getDNI().setCellValueFactory(new PropertyValueFactory<>("dni"));
-		controlerAdmin.getFechaNacimiento().setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-		controlerAdmin.getContrasenia().setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
-		
-		
-		//Se crea un guardia con cierta informacion y se aï¿½ade a la tabla
-		controlerAdmin.getTableView().getItems().add(new Guardia("2308", "534859348K", "jolie@gmail.com", "123456", LocalDate.of(2001, 9, 27), "Jolie", "Alain", "Vasquez"));
-		}
+        }
+        else {
+        	System.out.println("Ventana info");
+        }
+    	
     }
 		 
 
@@ -304,7 +264,7 @@ public class ControladorVPrincipal {
     	
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderTickets = new FXMLLoader(getClass().getResource("/application/VentanaTickets.fxml"));
-    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         ControladorTickets controlerTickets = new ControladorTickets();
         loaderTickets.setController(controlerTickets);
         AnchorPane PaneTickets;
@@ -312,7 +272,7 @@ public class ControladorVPrincipal {
         
         if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta funciï¿½n debes estar iniciado sesiï¿½n.");
+			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
     		error.showAndWait();
         	abrirLogin();
         	
@@ -331,7 +291,7 @@ public class ControladorVPrincipal {
                  AnchorPane.setLeftAnchor(PaneTickets, 0.0);
                  AnchorPane.setBottomAnchor(PaneTickets, 0.0);
             
-                 //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
+                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                  anchorPanePrincipal.getChildren().setAll(PaneTickets);
                  
                 
@@ -368,7 +328,7 @@ public class ControladorVPrincipal {
     void verEventos(MouseEvent event) {
     	// carga el contenido de la ventana
     	FXMLLoader loaderEventos = new FXMLLoader(getClass().getResource("/application/VentanaEventos.fxml"));
-    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         ControladorEventos controlerEventos = new ControladorEventos();
         loaderEventos.setController(controlerEventos);
         AnchorPane PaneCalendar;
@@ -388,7 +348,7 @@ public class ControladorVPrincipal {
             AnchorPane.setBottomAnchor(PaneCalendar, 0.0);
             
 
-            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneCalendar);
             
            
@@ -404,7 +364,7 @@ public class ControladorVPrincipal {
     void abrirLogin() {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
-    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         ControladorInicioSesion controlerInicio = new ControladorInicioSesion();
         loaderApp.setController(controlerInicio);
         AnchorPane PaneInicioSesion;
@@ -423,7 +383,7 @@ public class ControladorVPrincipal {
             AnchorPane.setBottomAnchor(PaneInicioSesion, 0.0);
             
 
-            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneInicioSesion);
             
            

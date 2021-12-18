@@ -82,9 +82,6 @@ public class ControladorTabAniadirGuardia {
     	controlerEdit = controladorEdit;
 	}
     
-    public ControladorTabAniadirGuardia() {
-    	
-    }
     
     @FXML
     void GuardarNuevoGuardia(ActionEvent event) {
@@ -100,6 +97,7 @@ public class ControladorTabAniadirGuardia {
     	String contraseniaNuevo;
     	LocalDate fechaNacimientoNuevo;
     	
+    	//Recoge lo introducido por el usuario
     	usuarioNuevo = textUsuario.getText();
     	nombreNuevo = textNombre.getText();
     	apellido1Nuevo = text1Apellido.getText();

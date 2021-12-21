@@ -104,6 +104,25 @@ public class ControladorAdministrador {
 
     @FXML
     void editarEventos(MouseEvent event) {
+    	FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaEditarEventos.fxml"));
+        controladorEditarEventos controlerEditEvents = new controladorEditarEventos();
+        loaderEdit.setController(controlerEditEvents);
+        
+        try {
+        	AnchorPane PaneEdit = (AnchorPane) loaderEdit.load();
+        	anchorPanePrincipal.getChildren().clear();
+            AnchorPane.setTopAnchor(PaneEdit, 0.0);
+            AnchorPane.setRightAnchor(PaneEdit, 0.0);
+            AnchorPane.setLeftAnchor(PaneEdit, 0.0);
+            AnchorPane.setBottomAnchor(PaneEdit, 0.0);
+            anchorPanePrincipal.getChildren().setAll(PaneEdit);
+            
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
 
     }
 

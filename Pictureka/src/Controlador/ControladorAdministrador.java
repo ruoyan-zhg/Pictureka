@@ -15,44 +15,44 @@ import javafx.scene.text.Text;
 
 public class ControladorAdministrador {
 
-    @FXML
-    private AnchorPane anchorPanePrincipal;
+	 @FXML
+	 private AnchorPane anchorPanePrincipal;
 
-    @FXML
-    private VBox VBoxPrincipal;
-    
-    @FXML
-    private JFXToolbar toolBarAdministrador;
+	 @FXML
+	 private VBox VBoxPrincipal;
 
-    @FXML
-    private ImageView imgCerrarSesion;
+	 @FXML
+	private JFXToolbar toolBarAdministrador;
 
-    @FXML
-    private ImageView imgAvatarAdmin;
+	 @FXML
+	 private ImageView imgCerrarSesion;
 
-    @FXML
-    private ImageView imgInformes;
+	 @FXML
+	 private ImageView imgAvatarAdmin;
 
-    @FXML
-    private LineChart<?, ?> tablaEntradas;
+	 @FXML
+	 private ImageView imgInformes;
 
-    @FXML
-    private ImageView imgAniadirUsuario;
+	 @FXML
+	 private LineChart<?, ?> tablaEntradas;
 
-    @FXML
-    private ImageView imgEditarUsuario;
+	 @FXML
+	 private ImageView imgEditarGuardias;
 
-    @FXML
-    private ImageView imgTemperatura;
+	 @FXML
+	 private ImageView imgEditarEventos;
 
-    @FXML
-    private ImageView imgDistancia;
+	 @FXML
+	 private ImageView imgTemperatura;
 
-    @FXML
-    private ImageView imgLuz;
+	 @FXML
+	 private ImageView imgDistancia;
 
-    @FXML
-    private Text textSensores;
+	 @FXML
+	 private ImageView imgLuz;
+
+	 @FXML
+	 private Text textSensores;
 
     @FXML
     void SensorDistancia(MouseEvent event) {
@@ -80,11 +80,6 @@ public class ControladorAdministrador {
     }
 
     @FXML
-    void aniadirUsuario(MouseEvent event) {
-
-    }
-
-    @FXML
     void cerrarSesion(MouseEvent event) {
     	
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
@@ -106,9 +101,32 @@ public class ControladorAdministrador {
 		}
     }
 
-    @FXML
-    void editarUsuario(MouseEvent event) {
 
+    @FXML
+    void editarEventos(MouseEvent event) {
+
+    }
+
+    @FXML
+    void editarGuardias(MouseEvent event) {
+    	
+    	FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaEditGuardias.fxml"));
+        ControladorEditGuardias controlerEdit = new ControladorEditGuardias();
+        loaderEdit.setController(controlerEdit);
+        
+        try {
+        	AnchorPane PaneEdit = (AnchorPane) loaderEdit.load();
+        	anchorPanePrincipal.getChildren().clear();
+            AnchorPane.setTopAnchor(PaneEdit, 0.0);
+            AnchorPane.setRightAnchor(PaneEdit, 0.0);
+            AnchorPane.setLeftAnchor(PaneEdit, 0.0);
+            AnchorPane.setBottomAnchor(PaneEdit, 0.0);
+            anchorPanePrincipal.getChildren().setAll(PaneEdit);
+            
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
 

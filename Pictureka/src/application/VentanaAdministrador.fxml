@@ -106,17 +106,17 @@
                               <RowConstraints maxHeight="193.0" minHeight="0.0" prefHeight="130.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ImageView fx:id="imgAniadirUsuario" fitHeight="84.0" fitWidth="74.0" onMouseClicked="#aniadirUsuario" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgEditarGuardias" fitHeight="92.0" fitWidth="74.0" onMouseClicked="#editarGuardias" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../Imagenes_Multimedia/AgregarUsuario.png" />
+                                    <Image url="@../../Imagenes_Multimedia/EditarGuardias.png" />
                                  </image>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <ImageView fx:id="imgEditarUsuario" fitHeight="84.0" fitWidth="74.0" onMouseClicked="#editarUsuario" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                              <ImageView fx:id="imgEditarEventos" fitHeight="106.0" fitWidth="74.0" onMouseClicked="#editarEventos" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                                  <image>
-                                    <Image url="@../../Imagenes_Multimedia/editarUsuario.png" />
+                                    <Image url="@../../Imagenes_Multimedia/EditarEventos.png" />
                                  </image>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />

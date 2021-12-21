@@ -1,6 +1,11 @@
 package Controlador;
 
+import java.io.IOException;
+
+import com.jfoenix.controls.JFXToolbar;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.LineChart;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -15,6 +20,9 @@ public class ControladorAdministrador {
 
     @FXML
     private VBox VBoxPrincipal;
+    
+    @FXML
+    private JFXToolbar toolBarAdministrador;
 
     @FXML
     private ImageView imgCerrarSesion;
@@ -78,13 +86,39 @@ public class ControladorAdministrador {
 
     @FXML
     void cerrarSesion(MouseEvent event) {
-
+    	
+    	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
+        loaderPrincipal.setController(controlerPrincipal);
+        
+        try {
+        	AnchorPane registerPane = (AnchorPane) loaderPrincipal.load();
+        	anchorPanePrincipal.getChildren().clear();
+            AnchorPane.setTopAnchor(registerPane, 0.0);
+            AnchorPane.setRightAnchor(registerPane, 0.0);
+            AnchorPane.setLeftAnchor(registerPane, 0.0);
+            AnchorPane.setBottomAnchor(registerPane, 0.0);
+            anchorPanePrincipal.getChildren().setAll(registerPane);
+            
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @FXML
     void editarUsuario(MouseEvent event) {
 
     }
+    
+
+	public JFXToolbar getToolBarAdministrador() {
+		return toolBarAdministrador;
+	}
+
+	public void setToolBarAdministrador(JFXToolbar toolBarAdministrador) {
+		this.toolBarAdministrador = toolBarAdministrador;
+	}
 
 }
 

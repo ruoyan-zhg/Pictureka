@@ -20,7 +20,7 @@
    <children>
       <VBox fx:id="VBoxPrincipal" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXToolbar prefHeight="83.0" prefWidth="1156.0" style="-fx-background-color: #FF8000;">
+            <JFXToolbar fx:id="toolBarAdministrador" prefHeight="83.0" prefWidth="1156.0" style="-fx-background-color: #FF8000;">
                <left>
                   <ImageView fx:id="imgCerrarSesion" fitHeight="67.0" fitWidth="84.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>

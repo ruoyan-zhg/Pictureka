@@ -1,0 +1,26 @@
+[
+  {
+    "identificador": 1,
+    "nombre": "Exposicion 1",
+    "imagen": "/Quitasol.png",
+    "informacion": "En este evento se llevará a cabo bla bla bla"
+  },
+  {
+    "identificador": 2,
+    "nombre": "Exposicion 2",
+    "imagen": "/LasMeninas.png",
+    "informacion": "En este evento se llevará a cabo bla "
+  },
+  {
+    "identificador": 3,
+    "nombre": "Exposicion 3",
+    "imagen": "/LasMeninas.png",
+    "informacion": "En este evento se llevará a cabo Las meninas "
+  },
+  {
+    "identificador": 4,
+    "nombre": "Exposicion 4",
+    "imagen": "/Sixtina.jpg",
+    "informacion": "En este evento se llevará a cabo La capilla sixtina"
+  }
+]

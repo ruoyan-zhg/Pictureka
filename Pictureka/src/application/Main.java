@@ -11,9 +11,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 
+import java.util.Vector;
+
 import com.jfoenix.transitions.JFXFillTransition;
 
 import Controlador.ControladorLogo;
+import Modelo.*;
 
 /**
  * 
@@ -66,6 +69,8 @@ public class Main extends Application {
 			scale.setByX(0.3);
 			scale.setByY(0.3);
 			scale.setAutoReverse(true);
+			
+			
 			
 			//Mostramos las animaciones creadas
 			fill.play();

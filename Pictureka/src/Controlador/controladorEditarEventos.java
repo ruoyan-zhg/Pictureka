@@ -2,10 +2,13 @@ package Controlador;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Vector;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXToolbar;
 
+import Modelo.Datos;
+import Modelo.Evento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -55,9 +58,14 @@ import javafx.stage.FileChooser;
 	    @FXML
 	    private Button btnAniadirCambios;
 	    
+	    Datos handler = new Datos(); //Instanciamos un objeto para meter el Json de eventos en un vector
+	  	Vector<Evento> eventos = new Vector<Evento>(); //creamos el vector de eventos
+	    
 	    public void initialize() {
 	    	ObservableList<String> list = FXCollections.observableArrayList("1","2","3","4");
 	    	comboBoxElegirEvento.setItems(list);
+	    	
+	    	eventos = handler.desserializarJsonAEventos();//Ingresamos los datos del Json al vector de eventos
 	    }
 	    
 	    String imagen; //Almacena el nombre (ubicacion de la imagen) que se añadirá al evento
@@ -75,6 +83,8 @@ import javafx.stage.FileChooser;
 	    	if(comboBoxElegirEvento.getValue() != null) {
 	    		if(txtAreaInfo.getLength()>=10 && txtAreaInfo.getText() != null) {
 	    			if(imagen!= null) {
+	    				
+	    				
 	    				aviso.setTitle("Exito.");
 	    	    		aviso.setHeaderText("Evento cambiado exitosamente.");
 	    	    		aviso.showAndWait();

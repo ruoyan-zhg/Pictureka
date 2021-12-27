@@ -1,6 +1,8 @@
 package Controlador;
 
 import java.util.ArrayList;
+import java.util.Vector;
+
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
+import Modelo.*;
 
 public class ControladorEventos {
 
@@ -86,6 +89,8 @@ public class ControladorEventos {
     
     //ArrayList que guardara las imagenes que se mostraran en la ventana principal
   	ArrayList<Image> imagenes = new ArrayList<Image>();
+  	Datos handler = new Datos(); //Instanciamos un objeto para meter el Json de eventos en un vector
+  	Vector<Evento> eventos = new Vector<Evento>(); //creamos el vector de eventos
   	
   	//Contadores que indicaran como un puntero las imagenes que se muestran en los imgviews del image slider
    	int count = 0;
@@ -103,13 +108,16 @@ public class ControladorEventos {
   	 	imagenes.add(new Image("/VanGogh.jpg"));
   	 	imagenes.add(new Image("/people.jpg"));
   	 	
+  	 	eventos = handler.desserializarJsonAEventos();//Ingresamos los datos del Json al vector de eventos
+  	 	
   	 	region1.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(0)), CornerRadii.EMPTY, Insets.EMPTY)));
   	 	region2.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(1)), CornerRadii.EMPTY, Insets.EMPTY)));
   	 	region3.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(2)), CornerRadii.EMPTY, Insets.EMPTY)));
   	 	
   	 	
-  	 	Image horario = new Image("/LasMeninas.png");
-  	 	Image museo = new Image("/Quitasol.png");
+  	 	Image horario = new Image(eventos.elementAt(0).getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
+  	 	Image museo = new Image(eventos.elementAt(1).getImagen());
+  	 	//Luego se le asigna la descripcion (A futuro).
   	 	
   	 	regionEventoIzq.setBackground(new Background(new BackgroundFill(new ImagePattern(museo), CornerRadii.EMPTY, Insets.EMPTY)));
   	 	regionEventoDerecha.setBackground(new Background(new BackgroundFill(new ImagePattern(horario), CornerRadii.EMPTY, Insets.EMPTY)));

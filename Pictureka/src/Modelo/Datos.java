@@ -47,6 +47,19 @@ public class Datos {
         }
 		
 	}
+	
+	public void serializarVectorEventosAJson(Vector<Evento> eventos) {
+		
+		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+		String representacionVisible = prettyGson.toJson(eventos);
+		
+		try(FileWriter writer = new FileWriter("Eventos.json")){
+			prettyGson.toJson(eventos, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+	}
 	/*
 	public void serializarArrayAJson() {
 		
@@ -76,6 +89,22 @@ public class Datos {
         }
 		
 		return usuarios;
+	}
+	
+	
+	public Vector<Evento> desserializarJsonAEventos() {
+		Vector<Evento> eventos = new Vector<Evento>();
+		
+		try (Reader reader = new FileReader("Eventos.json")) {
+			Gson gson = new Gson();
+			Type tipoListaEventos = new TypeToken<Vector<Evento>>(){}.getType();
+			eventos = gson.fromJson(reader, tipoListaEventos);
+        } catch (IOException e) {
+            e.printStackTrace();
+            
+        }
+		
+		return eventos;
 	}
 }
 

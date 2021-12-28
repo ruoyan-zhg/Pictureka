@@ -1,26 +1,26 @@
 [
   {
     "identificador": 1,
-    "nombre": "Exposicion 1",
+    "nombre": "El quitasol",
     "imagen": "/Quitasol.png",
-    "informacion": "En este evento se llevará a cabo bla bla bla"
+    "informacion": "Puede clasificarse tanto dentro del estilo neoclásico como dentro del rococó, ya que cuenta con características tanto de un estilo como de otro. Las características principales del neoclasicismo, y que podemos ver reflejadas en el quitasol son: perfección formal, serenidad, predominio del dibujo, modelos de la escultura clásica, temática moralizante y ejemplarizante, uso de colores primarios. Los rasgos principales del rococó son: una elección de colores claros (en especial el blanco), colores luminosos y suaves, intenta reflejar el aspecto agradable, exótico, sensual y refinado de las cosas y casi no utiliza los contrastes."
   },
   {
     "identificador": 2,
-    "nombre": "Exposicion 2",
+    "nombre": "Las Meninas",
     "imagen": "/LasMeninas.png",
-    "informacion": "En este evento se llevará a cabo bla "
+    "informacion": "Pintado por Velázquez en 1656. Durante la que fue la última década de su existencia, cinco años después de regresar de su segundo viaje italiano y del nacimiento de la infanta Margarita la luminosamente palmaria protagonista del cuadro, aunque haya otros mimbres soterrados en la penumbra- y a tan solo cuatro de la muerte del artista, acaecida en 1660 tras regresar del solemne acto que se celebró en la isla de los Faisanes por el que se entregaba en matrimonio a la infanta María Teresa al rey Luis XIV de Francia, este retrato de la familia real"
   },
   {
     "identificador": 3,
     "nombre": "Exposicion 3",
-    "imagen": "/LasMeninas.png",
-    "informacion": "En este evento se llevará a cabo Las meninas "
+    "imagen": "/MonaLisa.jpg",
+    "informacion": "Este es el evento tres"
   },
   {
     "identificador": 4,
-    "nombre": "Exposicion 4",
-    "imagen": "/Sixtina.jpg",
-    "informacion": "En este evento se llevará a cabo La capilla sixtina"
+    "nombre": "La ciudad habitada",
+    "imagen": "/City.jpg",
+    "informacion": "Esta exposicion esta basada en la habitual vida de las personas."
   }
 ]

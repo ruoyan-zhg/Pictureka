@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -75,17 +76,42 @@ public class ControladorEventos {
     private GridPane GridPaneObras2;
 
     @FXML
-    private JFXTextArea TextAreaQuitasol;
-
-    @FXML
-    private JFXTextArea TextAreaMeninas;
-
-
-    @FXML
     private Region regionEventoDerecha;
 
     @FXML
     private Region regionEventoIzq;
+
+    @FXML
+    private JFXTextArea txtAreaUno;
+
+    @FXML
+    private Label lblEventoUno;
+
+    @FXML
+    private JFXTextArea txtAreaDos;
+
+    @FXML
+    private Label lblEventoDos;
+
+    @FXML
+    private Region regionEventAbajoIzq;
+
+    @FXML
+    private Region regionEventoAbajoDer;
+
+    @FXML
+    private Label lblEventoTres;
+
+    @FXML
+    private JFXTextArea txtAreaTres;
+
+    @FXML
+    private Label lblEventoCuatro;
+
+    @FXML
+    private JFXTextArea txtAreaCuatro;
+
+
     
     //ArrayList que guardara las imagenes que se mostraran en la ventana principal
   	ArrayList<Image> imagenes = new ArrayList<Image>();
@@ -108,19 +134,42 @@ public class ControladorEventos {
   	 	imagenes.add(new Image("/VanGogh.jpg"));
   	 	imagenes.add(new Image("/people.jpg"));
   	 	
-  	 	eventos = handler.desserializarJsonAEventos();//Ingresamos los datos del Json al vector de eventos
+  	 	eventos = handler.desserializarJsonAEventos();
+  	 	
   	 	
   	 	region1.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(0)), CornerRadii.EMPTY, Insets.EMPTY)));
   	 	region2.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(1)), CornerRadii.EMPTY, Insets.EMPTY)));
   	 	region3.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(2)), CornerRadii.EMPTY, Insets.EMPTY)));
   	 	
   	 	
-  	 	Image horario = new Image(eventos.elementAt(0).getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
-  	 	Image museo = new Image(eventos.elementAt(1).getImagen());
-  	 	//Luego se le asigna la descripcion (A futuro).
+  	 	//Cosas de la Informacion
+  	 	Image arribaIzq = new Image(eventos.elementAt(0).getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
+  	 	Image arribaDer = new Image(eventos.elementAt(1).getImagen());
+  	 	Image abajoIzq = new Image(eventos.elementAt(2).getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
+  	 	Image abajoDer = new Image(eventos.elementAt(3).getImagen());
   	 	
-  	 	regionEventoIzq.setBackground(new Background(new BackgroundFill(new ImagePattern(museo), CornerRadii.EMPTY, Insets.EMPTY)));
-  	 	regionEventoDerecha.setBackground(new Background(new BackgroundFill(new ImagePattern(horario), CornerRadii.EMPTY, Insets.EMPTY)));
+  	 	
+  	 	//asignamos imagenes a la region
+  	 	
+  	 	regionEventoIzq.setBackground(new Background(new BackgroundFill(new ImagePattern(arribaIzq), CornerRadii.EMPTY, Insets.EMPTY)));
+  	 	regionEventoDerecha.setBackground(new Background(new BackgroundFill(new ImagePattern(arribaDer), CornerRadii.EMPTY, Insets.EMPTY)));
+  	 	regionEventAbajoIzq.setBackground(new Background(new BackgroundFill(new ImagePattern(abajoIzq), CornerRadii.EMPTY, Insets.EMPTY)));
+  	 	regionEventoAbajoDer.setBackground(new Background(new BackgroundFill(new ImagePattern(abajoDer), CornerRadii.EMPTY, Insets.EMPTY)));
+  	 	
+  	 	//asignamos los titulos
+  	 	
+  	 	lblEventoUno.setText(eventos.elementAt(0).getNombre());
+  	 	lblEventoDos.setText(eventos.elementAt(1).getNombre());
+  	 	lblEventoTres.setText(eventos.elementAt(2).getNombre());
+  	 	lblEventoCuatro.setText(eventos.elementAt(3).getNombre());
+  	 	
+  	 	//asignamos las descripciones
+  	 	
+  	 	txtAreaUno.setText(eventos.elementAt(0).getInformacion());
+  	 	txtAreaDos.setText(eventos.elementAt(1).getInformacion());
+  	 	txtAreaTres.setText(eventos.elementAt(2).getInformacion());
+  	 	txtAreaCuatro.setText(eventos.elementAt(3).getInformacion());
+  	 	
   	 	
   	 	
   	}

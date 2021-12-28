@@ -11,11 +11,14 @@ import java.util.regex.Pattern;
  */
 
 public class Registro {
-	private Vector <Usuario> usuarios;
+	private Vector <Cliente> usuarios;
+	private Vector<Staff> staff;
 	
 	public Registro () {
-		Vector <Usuario> _usuarios = new Vector<Usuario>();
+		Vector <Cliente> _usuarios = new Vector<Cliente>();
+		Vector <Staff> _staff = new Vector<Staff>();
 		this.usuarios = _usuarios;
+		this.staff = _staff;
 	}
 	
 	public String registrarCliente(String usuario, String dni, String email, String Contrasenia, LocalDate fechaNacimiento) {
@@ -30,11 +33,13 @@ public class Registro {
 		 */
 		
 		recuperarUsuarios();
+		recuperarStaff();
 		String estado = "Validacion incompleta";
 		System.out.println("antes");
 		if (validarEmail(email)) {		//devuelve true si el email es valido
 			System.out.println("email");
-			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
+			//Comprobamos si el email esta registrado en clientes y el staff
+			if (emailRepetido(email) && emailRepetidoStaff(email)){		//devuelve true si el email no ha sido registrado
 				System.out.println("repemail");
 				if (usuarioRepetido(usuario)) {
 					System.out.println("add");
@@ -68,15 +73,15 @@ public class Registro {
 		 * 4 = usuario repetido
 		 * 
 		 */
-		
 		recuperarUsuarios();
+		recuperarStaff();;
 		String estado = "Validacion incompleta";
 		if (validarEmail(email)) {		//devuelve true si el email es valido
-			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
-				if (usuarioRepetido(usuario)) {
-					usuarios.addElement(new Administrador(usuario, dni, email, contrasenia, fechaNacimiento, nombre, apellido1,
+			if (emailRepetido(email) && emailRepetidoStaff(email)){		//devuelve true si el email no ha sido registrado
+				if (staffRepetido(usuario)) {
+					staff.addElement(new Administrador(usuario, dni, email, contrasenia, fechaNacimiento, nombre, apellido1,
 							 apellido2));
-					escribirUsuarios();
+					escribirStaff();
 					estado = "Validacion completada con exito";
 				}
 				else {
@@ -105,13 +110,14 @@ public class Registro {
 		 */
 		
 		recuperarUsuarios();
+		recuperarStaff();
 		String estado = "Validacion incompleta";
 		if (validarEmail(email)) {		//devuelve true si el email es valido
-			if (emailRepetido(email)){		//devuelve true si el email no ha sido registrado
-				if (usuarioRepetido(usuario)) {
-					usuarios.addElement(new Guardia(usuario, dni, email, contrasenia, fechaNacimiento, nombre, apellido1,
+			if (emailRepetido(email) && emailRepetidoStaff(email)){		//devuelve true si el email no ha sido registrado
+				if (usuarioRepetido(usuario) && staffRepetido(usuario)) {
+					staff.addElement(new Guardia(usuario, dni, email, contrasenia, fechaNacimiento, nombre, apellido1,
 							 apellido2));
-					escribirUsuarios();
+					escribirStaff();
 					estado = "Validacion completada con exito";
 				}
 				else {
@@ -130,27 +136,47 @@ public class Registro {
 
 
 	public int loginDeUsuarios(String emailOUsuario, String contrasenia) {
+		
 		int tipoUsuario = 0;
 		boolean login = false;
+		boolean esCliente = false;
 		int contador = 0;
+		int contadorStaff = 0
+				;
 		recuperarUsuarios();
+		recuperarStaff();
+		
 		while (login != true && contador < usuarios.size()) {
 			if(usuarios.elementAt(contador).getEmail().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)||
 					usuarios.elementAt(contador).getUsuario().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)) {
-				login = true;
-				
-				if (usuarios.elementAt(contador).getIdentificadorUser()==1) {
+					login = true;
+					esCliente = true;
 					tipoUsuario = 1;
-				}
-				else if (usuarios.elementAt(contador).getIdentificadorUser()==2) {
-					tipoUsuario = 2;
-				}
-				else if (usuarios.elementAt(contador).getIdentificadorUser()==3) {
-					tipoUsuario = 3;
-				}
+				
 			}
 			contador++;
 		}
+		
+
+		if (esCliente==false) {
+			while (login !=true && contadorStaff < staff.size()) {
+				if(staff.elementAt(contadorStaff).getEmail().equals(emailOUsuario) && staff.elementAt(contadorStaff).getContrasenia().equals(contrasenia)||
+						staff.elementAt(contadorStaff).getUsuario().equals(emailOUsuario) && staff.elementAt(contadorStaff).getContrasenia().equals(contrasenia)) {
+						login = true;
+						esCliente = false;
+							
+						if (staff.elementAt(contadorStaff).getIdentificadorUser()==2) {
+							tipoUsuario = 2;
+						}
+						else if (staff.elementAt(contadorStaff).getIdentificadorUser()==3) {
+							tipoUsuario = 3;
+						}
+					}
+					contadorStaff++;
+				}
+		}
+		
+		
 		return tipoUsuario;
 	}
 	
@@ -179,6 +205,21 @@ public class Registro {
 		}
 		return noRepetido;
 	}
+	
+	public boolean emailRepetidoStaff(String email) {
+		boolean noRepetido = true;
+		int contador = 0;
+		System.out.println(staff.size());
+		while (noRepetido != false && contador < staff.size()) {
+			if (staff.elementAt(contador).getEmail().equals(email)) {
+				noRepetido = false;	
+			}
+			contador++;
+		}
+		return noRepetido;
+	}
+	
+	
 	public boolean usuarioRepetido(String usuario) {
 		boolean noRepetido = true;
 		int contador = 0;
@@ -191,14 +232,34 @@ public class Registro {
 		return noRepetido;
 	}
 	
+	public boolean staffRepetido(String staffs) {
+		boolean noRepetido = true;
+		int contador = 0;
+		while (noRepetido != false && contador < staff.size()) {
+			if (staff.elementAt(contador).getEmail().equals(staffs)) {
+				noRepetido = false;	
+			}
+			contador++;
+		}
+		return noRepetido;
+	}
+	
+	
+	
+	
+	
+	
+	
+	//ESCRITURA Y LECTURA DE LOS CLIENTES
 	public void recuperarUsuarios() {
 		Datos datos = new Datos();
 		//Try catch quizas el archivo no abre
-		Vector<Usuario> _usuarios = datos.desserializarJsonAusuarios();
+		Vector<Cliente> _usuarios = datos.desserializarJsonAusuarios();
 		if(_usuarios != null){ 
 			this.usuarios = _usuarios ;
 		}
 	}
+	
 	public void escribirUsuarios() {
 		Datos datos = new Datos();
 		//Try catch quizas el archivo no abre
@@ -206,6 +267,27 @@ public class Registro {
 			System.out.println(usuarios.elementAt(i).getUsuario());
 		}
 		datos.serializarArrayAJson(usuarios);
+	}
+	
+	
+	
+	//ESCRITURA Y LECTURA DE JSON DEL STAFF
+	public void escribirStaff() {
+		Datos datos = new Datos();
+		//Try catch quizas el archivo no abre
+		for (int i = 0; i< staff.size(); i++) {
+			System.out.println(staff.elementAt(i).getUsuario());
+		}
+		datos.serializarStaffAJson(staff);
+	}
+	
+	public void recuperarStaff() {
+		Datos datos = new Datos();
+		//Try catch quizas el archivo no abre
+		Vector<Staff> _staff = datos.desserializarJsonStaff();
+		if(_staff != null){ 
+			this.staff = _staff;
+		}
 	}
 	
 

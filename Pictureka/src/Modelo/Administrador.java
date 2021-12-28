@@ -2,13 +2,8 @@ package Modelo;
 
 import java.time.LocalDate;
 
-public class Administrador extends Usuario{
+public class Administrador extends Staff {
 
-	//Atributos
-	//Numero que obtiene el admin para poder acceder a la app
-	private String nombre;
-	private String apellido1;
-	private String apellido2;
 	
 	
 	
@@ -16,46 +11,12 @@ public class Administrador extends Usuario{
 
 	public Administrador(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento , String nombre, String apellido1,
 			String apellido2) {
-		super(3,usuario, dni, email, contrasenia,fechaNacimiento);
-		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.apellido2 = apellido2;
+		super(3,usuario, nombre, apellido1, apellido2, dni, email, contrasenia,fechaNacimiento);
 	}
 
 
 
 	//Métodos
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//Getters y Setters
-	
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getApellido1() {
-		return apellido1;
-	}
-	public void setApellido1(String apellido1) {
-		this.apellido1 = apellido1;
-	}
-	public String getApellido2() {
-		return apellido2;
-	}
-	public void setApellido2(String apellido2) {
-		this.apellido2 = apellido2;
-	}
-	
+
 }

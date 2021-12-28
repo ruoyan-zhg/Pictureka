@@ -129,6 +129,8 @@ public class ControladorVPrincipal {
 	 	regionImg.setBackground(new Background(new BackgroundFill(new ImagePattern(horario), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	regionMuseo.setBackground(new Background(new BackgroundFill(new ImagePattern(museo), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	
+	 	lblBienvenido.setVisible(false);
+	 	
 	 	
 	}
 	

@@ -3,12 +3,15 @@ package Controlador;
 import java.time.LocalDate;
 import java.util.Date;
 
+import javax.management.modelmbean.ModelMBeanOperationInfo;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 
 import Modelo.Guardia;
 import Modelo.Registro;
+import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -86,7 +89,7 @@ public class ControladorTabAniadirGuardia {
     @FXML
     void GuardarNuevoGuardia(ActionEvent event) {
     	
-    	Registro registro = new Registro();
+    	modelo_Museo modelo = new modelo_Museo();
     	
     	String usuarioNuevo;
     	String nombreNuevo;
@@ -108,7 +111,7 @@ public class ControladorTabAniadirGuardia {
     	fechaNacimientoNuevo = DateGuardiaNacimiento.getValue();
     	
     	//Se escribe en el json de usuarios
-    	registro.registrarGuardia(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo);
+    	modelo.registrarGuardias(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo);
     	//Se supone que se tiene que añadir a la tabla pero saca un null pointer
     	this.controlerEdit.getTableView().getItems().add(new Guardia(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
     	

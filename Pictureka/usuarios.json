@@ -1,40 +1,26 @@
 [
   {
-    "identificadorUser": 1,
+    "identificadorCliente": 1,
     "usuario": "asas",
-    "dni": "asas",
+    "dni": "1110584H",
     "email": "asas@gmail.com",
-    "contrasenia": "asas"
-  },
-  {
-    "identificadorUser": 1,
-    "usuario": "sdsd",
-    "dni": "sdsd",
-    "email": "sdsd@gmail.com",
-    "contrasenia": "sdsd"
-  },
-  {
-    "identificadorUser": 2,
-    "usuario": "1100",
-    "dni": "695693403L",
-    "email": "oscar@gmail.com",
-    "contrasenia": "oscar123",
+    "contrasenia": "asas",
     "fechaNacimiento": {
-      "year": 2001,
-      "month": 11,
-      "day": 23
+      "year": 1998,
+      "month": 5,
+      "day": 28
     }
   },
   {
-    "identificadorUser": 3,
-    "usuario": "1032",
-    "dni": "58358011P",
-    "email": "jorge@gmail.com",
-    "contrasenia": "jorge567",
+    "identificadorCliente": 1,
+    "usuario": "Lucia",
+    "dni": "87654378P",
+    "email": "lucia@gmail.com",
+    "contrasenia": "lucia123",
     "fechaNacimiento": {
-      "year": 1997,
-      "month": 8,
-      "day": 21
+      "year": 1985,
+      "month": 9,
+      "day": 11
     }
   }
 ]

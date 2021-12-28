@@ -101,7 +101,7 @@
                   </ImageView>
               </buttons>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ButtonBar>
          </top>

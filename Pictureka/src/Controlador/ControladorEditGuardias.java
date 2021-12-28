@@ -1,11 +1,14 @@
 package Controlador;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Vector;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
 
+import Modelo.Datos;
 import Modelo.Guardia;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -14,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,6 +25,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class ControladorEditGuardias {
+
 
     @FXML
     private AnchorPane anchorPaneEditGuardia;
@@ -90,7 +95,40 @@ public class ControladorEditGuardias {
 
     @FXML
     private JFXButton btnGuardar;
-
+    
+    @FXML
+    public void initialize() {
+    	
+    	
+    	/*
+    	for (int i=0; i<guardias.size(); i++) {
+    		
+    		if (guardias.get(i).getIdentificadorUser()==2) {
+    			
+    			tableView.getItems().add(new Guardia(guardias.get(i).getUsuario(), guardias.get(i).getDni(), guardias.get(i).getEmail(),
+    			guardias.get(i).getContrasenia(), guardias.get(i).getFechaNacimiento(), guardias.get(i).getNombre(), 
+    			guardias.get(i).getApellido1(), guardias.get(i).getApellido2()));
+    		}
+    		
+	
+    	}
+    	*/
+    		
+		//Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al tipo de dato que queremos guardar
+    	Usuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+    	Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+    	PrimerApellido.setCellValueFactory(new PropertyValueFactory<>("apellido1"));
+    	SegundoApellido.setCellValueFactory(new PropertyValueFactory<>("apellido2"));
+    	Email.setCellValueFactory(new PropertyValueFactory<>("email"));
+    	DNI.setCellValueFactory(new PropertyValueFactory<>("dni"));
+    	FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+    	Contrasenia.setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
+    	
+    	tableView.getItems().add(new Guardia("1003", "5545989K", "raul@gmail.com", "raul321", LocalDate.of(2002, 8, 12), "Raul", "Jimenez", "Ochoa"));
+		
+    }
+    
+    
     @FXML
     void cerrarSesion(MouseEvent event) {
     	
@@ -144,7 +182,7 @@ public class ControladorEditGuardias {
     void EditarGuardia(Event event) {
 		
 		FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/TabEditarGuardia.fxml"));
-        ControladorTabEditarGuardia controlerPrincipal = new ControladorTabEditarGuardia();
+        ControladorTabEditarGuardia controlerPrincipal = new ControladorTabEditarGuardia(this);
         loaderApp.setController(controlerPrincipal);
         
         try {
@@ -156,11 +194,11 @@ public class ControladorEditGuardias {
             AnchorPane.setBottomAnchor(registerPane, 0.0);
             AnchorEditGuardia.getChildren().setAll(registerPane);
             
+            
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
     }
 

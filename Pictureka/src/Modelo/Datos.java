@@ -35,7 +35,7 @@ public class Datos {
 	}
 	*/
 
-	public void serializarArrayAJson(Vector<Usuario> usuarios) {
+	public void serializarArrayAJson(Vector<Cliente> usuarios) {
 		
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 		String representacionVisible = prettyGson.toJson(usuarios);
@@ -60,6 +60,19 @@ public class Datos {
         }
 		
 	}
+	
+	public void serializarStaffAJson(Vector<Staff> staff) {
+		
+		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+		String representacionVisible = prettyGson.toJson(staff);
+		
+		try(FileWriter writer = new FileWriter("staff.json")){
+			prettyGson.toJson(staff, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+	}
 	/*
 	public void serializarArrayAJson() {
 		
@@ -76,12 +89,12 @@ public class Datos {
 	}
 	*/
 	
-	public Vector<Usuario> desserializarJsonAusuarios() {
-		Vector<Usuario> usuarios = new Vector<Usuario>();
+	public Vector<Cliente> desserializarJsonAusuarios() {
+		Vector<Cliente> usuarios = new Vector<Cliente>();
 		
 		try (Reader reader = new FileReader("usuarios.json")) {
 			Gson gson = new Gson();
-			Type tipoListausuarios = new TypeToken<Vector<Usuario>>(){}.getType();
+			Type tipoListausuarios = new TypeToken<Vector<Cliente>>(){}.getType();
 			usuarios = gson.fromJson(reader, tipoListausuarios);
         } catch (IOException e) {
             e.printStackTrace();
@@ -105,6 +118,21 @@ public class Datos {
         }
 		
 		return eventos;
+	}
+	
+	public Vector<Staff> desserializarJsonStaff() {
+		Vector<Staff> staff = new Vector<Staff>();
+		
+		try (Reader reader = new FileReader("staff.json")) {
+			Gson gson = new Gson();
+			Type tipoListaStaff = new TypeToken<Vector<Staff>>(){}.getType();
+			staff = gson.fromJson(reader, tipoListaStaff);
+        } catch (IOException e) {
+            e.printStackTrace();
+            
+        }
+		
+		return staff;
 	}
 }
 

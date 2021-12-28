@@ -1,0 +1,32 @@
+[
+  {
+    "nombre": "Paula",
+    "apellido1": "Sanchez",
+    "apellido2": "Morales",
+    "identificadorUser": 2,
+    "usuario": "2045",
+    "dni": "43578445H",
+    "email": "paula@gmail.com",
+    "contrasenia": "paula567",
+    "fechaNacimiento": {
+      "year": 2021,
+      "month": 12,
+      "day": 10
+    }
+  },
+  {
+	"nombre": "Jorge",
+    "apellido1": "Hernandez",
+    "apellido2": "Fernandez",
+    "identificadorUser": 3,
+    "usuario": "1032",
+    "dni": "54820482J",
+    "email": "jorge@gmail.com",
+    "contrasenia": "jorge567",
+    "fechaNacimiento": {
+      "year": 1997,
+      "month": 11,
+      "day": 25
+   }
+  }
+]

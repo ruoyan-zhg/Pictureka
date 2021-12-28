@@ -207,22 +207,6 @@ public class ControladorInicioSesion {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            
-    		/*
-    		//Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al tipo de dato que queremos guardar
-    		controlerAdmin.getUsuario().setCellValueFactory(new PropertyValueFactory<>("usuario"));
-    		controlerAdmin.getNombre().setCellValueFactory(new PropertyValueFactory<>("nombre"));
-    		controlerAdmin.getPrimerApellido().setCellValueFactory(new PropertyValueFactory<>("apellido1"));
-    		controlerAdmin.getSegundoApellido().setCellValueFactory(new PropertyValueFactory<>("apellido2"));
-    		controlerAdmin.getEmail().setCellValueFactory(new PropertyValueFactory<>("email"));
-    		controlerAdmin.getDNI().setCellValueFactory(new PropertyValueFactory<>("dni"));
-    		controlerAdmin.getFechaNacimiento().setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-    		controlerAdmin.getContrasenia().setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
-    		
-    		
-    		//Se crea un guardia con cierta informacion y se añade a la tabla
-    		controlerAdmin.getTableView().getItems().add(new Guardia("2308", "534859348K", "jolie@gmail.com", "123456", LocalDate.of(2001, 9, 27), "Jolie", "Alain", "Vasquez"));
-    		*/
     		
     	}
     	else {

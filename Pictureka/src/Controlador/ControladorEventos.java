@@ -1,12 +1,15 @@
 package Controlador;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -110,6 +113,24 @@ public class ControladorEventos {
 
     @FXML
     private JFXTextArea txtAreaCuatro;
+    
+    
+	 private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
+		
+   boolean logged; //Este nos dira si la parsona esta logueada o no
+   
+   
+	 
+	 public ControladorEventos(String usuario) {
+		 if (usuario == "vacio") {
+			 logged = false;
+		 }
+		 else {
+			 this.usuario = usuario;
+			 logged = true;
+		 }
+		 
+	}
 
 
     
@@ -122,7 +143,6 @@ public class ControladorEventos {
    	int count = 0;
    	int countDos = 1;
    	int countTres = 2;
-   	boolean logged = false; //Este nos dira si la parsona esta logueada o no
    	
   	@FXML
   	public void initialize() {
@@ -193,6 +213,44 @@ public class ControladorEventos {
   	}
     @FXML
     void accederPerfil(MouseEvent event) {
+    	if(logged == false) {
+        	Alert error = new Alert(Alert.AlertType.ERROR);
+			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+    		error.showAndWait();
+        	
+        }
+        else {
+        	//Se carga el contenido de la ventana
+        	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
+        	//Se le asigna el controlador de la ventana para editar información de los guardias
+            ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
+            loaderPrincipala.setController(controlerPrincipal);
+            AnchorPane PaneVentanaPrincipal;
+
+    		try {
+    			//Se carga en un AnchorPane la ventana
+    			PaneVentanaPrincipal = (AnchorPane) loaderPrincipala.load();
+    			
+    			//Se elimina el contenido de la ventana padre
+    			anchorPanePrincipal.getChildren().clear();
+            	
+            	//Se ajusta el AnchorPane para que sea escalable
+                AnchorPane.setTopAnchor(PaneVentanaPrincipal, 0.0);
+                AnchorPane.setRightAnchor(PaneVentanaPrincipal, 0.0);
+                AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
+                AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
+                
+
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+                anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
+                
+               
+                
+    		} catch (IOException e1) {
+    			e1.printStackTrace();
+    		}
+
+        }
 
     }
 

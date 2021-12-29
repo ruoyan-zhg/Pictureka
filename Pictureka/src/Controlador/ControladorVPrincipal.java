@@ -261,7 +261,6 @@ public class ControladorVPrincipal {
 			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
     		error.showAndWait();
         	abrirLogin();
-        	
         }
         else {
         	//Se carga el contenido de la ventana
@@ -375,7 +374,7 @@ public class ControladorVPrincipal {
     	// carga el contenido de la ventana
     	FXMLLoader loaderEventos = new FXMLLoader(getClass().getResource("/application/VentanaEventos.fxml"));
     	//Se le asigna el controlador de la ventana para editar informacion de los guardias
-        ControladorEventos controlerEventos = new ControladorEventos();
+        ControladorEventos controlerEventos = new ControladorEventos(usuario);
         loaderEventos.setController(controlerEventos);
         AnchorPane PaneCalendar;
 

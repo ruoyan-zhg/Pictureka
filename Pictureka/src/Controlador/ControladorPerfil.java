@@ -128,8 +128,6 @@ public class ControladorPerfil {
 
 	 @FXML
 	  	public void initialize() {
-		 System.out.println(identificador+" "+usuario);
-		 System.out.println(staff.getApellido2());
 		 	switch(identificador) {
 		 		case 1:
 		 			RUsuario.setText(cliente.getUsuario());

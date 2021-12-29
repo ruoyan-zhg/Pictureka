@@ -140,6 +140,8 @@ public class ControladorPerfil {
 		 			RApellido1.setVisible(false);
 		 			RApellido2.setVisible(false);
 		 			RNombre.setVisible(false);
+		 			LabelReserva.setVisible(false);
+		 			RReserva.setVisible(false);
 		 			
 		 			break;
 		 		case 2:
@@ -271,6 +273,8 @@ public class ControladorPerfil {
 		RApellido2.setText(staff.getApellido2());
 		RNombre.setText(staff.getNombre());	
 		imgUsuario1.setVisible(false);
+		LabelReserva.setVisible(false);
+		RReserva.setVisible(false);
     }
 }
 

@@ -1,25 +1,25 @@
 [
   {
+    "identificadorUser": 2,
+    "usuario": "2045",
     "nombre": "Paula",
     "apellido1": "Sanchez",
     "apellido2": "Morales",
-    "identificadorUser": 2,
-    "usuario": "2045",
     "dni": "43578445H",
     "email": "paula@gmail.com",
     "contrasenia": "paula567",
     "fechaNacimiento": {
-      "year": 2021,
+      "year": 2001,
       "month": 12,
       "day": 10
     }
   },
   {
-	"nombre": "Jorge",
-    "apellido1": "Hernandez",
-    "apellido2": "Fernandez",
     "identificadorUser": 3,
     "usuario": "1032",
+    "nombre": "Jorge",
+    "apellido1": "Hernandez",
+    "apellido2": "Fernandez",
     "dni": "54820482J",
     "email": "jorge@gmail.com",
     "contrasenia": "jorge567",
@@ -27,6 +27,21 @@
       "year": 1997,
       "month": 11,
       "day": 25
-   }
+    }
+  },
+  {
+    "identificadorUser": 2,
+    "usuario": "1102",
+    "nombre": "Rodrigo",
+    "apellido1": "Hernandez",
+    "apellido2": "Rivera",
+    "dni": "69990358J",
+    "email": "rodrigoR@gmail.com",
+    "contrasenia": "rodri124",
+    "fechaNacimiento": {
+      "year": 1998,
+      "month": 6,
+      "day": 9
+    }
   }
 ]

@@ -59,7 +59,9 @@ public class ControladorAdministrador {
 		
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
-    
+    public ControladorAdministrador() {
+    	
+    }
 	 
 	 public ControladorAdministrador(String usuario) {
 		 if (usuario == "vacio") {
@@ -214,4 +216,3 @@ public class ControladorAdministrador {
 	}
 
 }
-

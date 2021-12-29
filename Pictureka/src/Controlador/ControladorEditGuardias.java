@@ -1,15 +1,13 @@
 package Controlador;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Vector;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
-
 import Modelo.Datos;
 import Modelo.Guardia;
+import Modelo.Staff;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -94,25 +92,26 @@ public class ControladorEditGuardias {
     private JFXButton btnCancelar;
 
     @FXML
-    private JFXButton btnGuardar;
+    private JFXButton btnAniadirAdmin;
+       
     
     @FXML
     public void initialize() {
     	
+    	Datos datos = new Datos();
+    	Vector <Staff> staff = datos.desserializarJsonStaff();
     	
-    	/*
-    	for (int i=0; i<guardias.size(); i++) {
-    		
-    		if (guardias.get(i).getIdentificadorUser()==2) {
+    	//Se leen los datos del Json del staff
+    	for (int i=0; i<staff.size(); i++) {
+    		//Obtiene solo el personal con numero de identificacion 2
+    		if (staff.get(i).getIdentificadorUser()==2) {
     			
-    			tableView.getItems().add(new Guardia(guardias.get(i).getUsuario(), guardias.get(i).getDni(), guardias.get(i).getEmail(),
-    			guardias.get(i).getContrasenia(), guardias.get(i).getFechaNacimiento(), guardias.get(i).getNombre(), 
-    			guardias.get(i).getApellido1(), guardias.get(i).getApellido2()));
+    			//Se muestran los guardias obtenidos en la tabla
+    			tableView.getItems().add(new Guardia(staff.get(i).getUsuario(), staff.get(i).getDni(), staff.get(i).getEmail(),
+    			staff.get(i).getContrasenia(), staff.get(i).getFechaNacimiento(), staff.get(i).getNombre(), 
+    			staff.get(i).getApellido1(), staff.get(i).getApellido2()));
     		}
-    		
-	
     	}
-    	*/
     		
 		//Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al tipo de dato que queremos guardar
     	Usuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
@@ -123,8 +122,6 @@ public class ControladorEditGuardias {
     	DNI.setCellValueFactory(new PropertyValueFactory<>("dni"));
     	FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
     	Contrasenia.setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
-    	
-    	tableView.getItems().add(new Guardia("1003", "5545989K", "raul@gmail.com", "raul321", LocalDate.of(2002, 8, 12), "Raul", "Jimenez", "Ochoa"));
 		
     }
     
@@ -151,10 +148,11 @@ public class ControladorEditGuardias {
 		}
     }
 
-    @FXML
+
+
+
+	@FXML
     void AniadirGuardia(Event event) {
-    	
-    	
     	
 		//Se carga la segunda ventana del TabPane
         FXMLLoader loaderTabAniadir = new FXMLLoader(getClass().getResource("/application/TabAniadirGuardia.fxml"));
@@ -207,9 +205,45 @@ public class ControladorEditGuardias {
     void verPerfil(MouseEvent event) {
 
     }
+    
+    @FXML
+    void AniadirAdmin(ActionEvent event) {
+    	
+    }
+    
+    @FXML
+    void CancelarEdiccion(ActionEvent event) {
+    	
+    	FXMLLoader loaderAdmin = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
+        ControladorAdministrador controlerAdmin = new ControladorAdministrador();
+        loaderAdmin.setController(controlerAdmin);
+        
+        try {
+        	AnchorPane PaneAdmin = (AnchorPane) loaderAdmin.load();
+        	anchorPaneEditGuardia.getChildren().clear();
+            AnchorPane.setTopAnchor(PaneAdmin, 0.0);
+            AnchorPane.setRightAnchor(PaneAdmin, 0.0);
+            AnchorPane.setLeftAnchor(PaneAdmin, 0.0);
+            AnchorPane.setBottomAnchor(PaneAdmin, 0.0);
+            anchorPaneEditGuardia.getChildren().setAll(PaneAdmin);
+            
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    }
 
     
-    
+    public AnchorPane getAnchorPaneEditGuardia() {
+		return anchorPaneEditGuardia;
+	}
+
+
+	public void setAnchorPaneEditGuardia(AnchorPane anchorPaneEditGuardia) {
+		this.anchorPaneEditGuardia = anchorPaneEditGuardia;
+	}
     
 	public TableView<Guardia> getTableView() {
 		return tableView;

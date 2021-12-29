@@ -43,12 +43,12 @@
             <Label fx:id="lblFechaGuardia" text="Fecha de nacimiento" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <Label fx:id="lblContraseniaGuardia" text="Contraseña" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <TextField fx:id="textContraseniaGuardia" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <JFXButton fx:id="btnGuardarGuardia" onAction="#guardarGuardia" prefHeight="54.0" prefWidth="163.0" style="-fx-background-color: #29F49D;" text="Guardar cambios" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <DatePicker fx:id="DateFechaGuardia" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <JFXButton fx:id="btnGuardar" onAction="#GuardarGuardiaEdit" prefHeight="59.0" prefWidth="166.0" style="-fx-background-color: FF8000;" text="Guardar cambios" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="16.0" />
+                  <Font name="System Bold" size="17.0" />
                </font>
             </JFXButton>
-            <DatePicker fx:id="DateFechaGuardia" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>

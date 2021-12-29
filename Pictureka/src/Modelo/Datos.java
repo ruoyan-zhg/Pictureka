@@ -73,21 +73,7 @@ public class Datos {
         }
 		
 	}
-	/*
-	public void serializarArrayAJson() {
-		
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-		String representacionBonita = prettyGson.toJson(empleados);
-		System.out.println(representacionBonita);
-		
-		try(FileWriter writer = new FileWriter("empleados.json")){
-			prettyGson.toJson(empleados, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		
-	}
-	*/
+	
 	
 	public Vector<Cliente> desserializarJsonAusuarios() {
 		Vector<Cliente> usuarios = new Vector<Cliente>();
@@ -134,5 +120,6 @@ public class Datos {
 		
 		return staff;
 	}
+	
 }
 

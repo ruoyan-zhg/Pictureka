@@ -1,5 +1,6 @@
 package Modelo;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -112,26 +113,33 @@ public class Registro {
 		recuperarUsuarios();
 		recuperarStaff();
 		String estado = "Validacion incompleta";
-		if (validarEmail(email)) {		//devuelve true si el email es valido
-			if (emailRepetido(email) && emailRepetidoStaff(email)){		//devuelve true si el email no ha sido registrado
-				if (usuarioRepetido(usuario) && staffRepetido(usuario)) {
-					staff.addElement(new Guardia(usuario, dni, email, contrasenia, fechaNacimiento, nombre, apellido1,
-							 apellido2));
-					escribirStaff();
-					estado = "Validacion completada con exito";
+		LocalDate fecha = LocalDate.now();
+		Period periodo = Period.between(fechaNacimiento, fecha);
+
+		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
+
+			if (validarEmail(email)) { // devuelve true si el email es valido
+				if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido
+																			// registrado
+					if (staffRepetido(usuario)) {
+						staff.addElement(new Guardia(usuario, dni, email, contrasenia, fechaNacimiento, nombre,
+								apellido1, apellido2));
+						escribirStaff();
+						estado = "Validacion completada con exito";
+					} else {
+						estado = "Usuario ya registrado";
+					}
+				} else {
+					estado = "El email introducido ya ha sido registrado";
 				}
-				else {
-					estado = "Usuario ya registrado";
-				}	
-			}else {
-				estado = "El email introducido ya ha sido registrado";
+			} else {
+				estado = "El email introducido no es valido";
 			}
+		} else {
+			estado = "Rango de edad no aceptable";
 		}
-		else{
-			estado = "El email introducido no es valido";
-		}
-		return estado;	
-		
+		return estado;
+
 	}
 
 
@@ -224,7 +232,7 @@ public class Registro {
 		boolean noRepetido = true;
 		int contador = 0;
 		while (noRepetido != false && contador < usuarios.size()) {
-			if (usuarios.elementAt(contador).getEmail().equals(usuario)) {
+			if (usuarios.elementAt(contador).getUsuario().equals(usuario)) {
 				noRepetido = false;	
 			}
 			contador++;
@@ -236,7 +244,7 @@ public class Registro {
 		boolean noRepetido = true;
 		int contador = 0;
 		while (noRepetido != false && contador < staff.size()) {
-			if (staff.elementAt(contador).getEmail().equals(staffs)) {
+			if (staff.elementAt(contador).getUsuario().equals(staffs)) {
 				noRepetido = false;	
 			}
 			contador++;
@@ -307,6 +315,16 @@ public class Registro {
 		}
 		datos.serializarStaffAJson(staff);
 	}
+	
+	public void escribirStaffNuevo(Vector<Staff> staffNuevo) {
+		Datos datos = new Datos();
+		//Try catch quizas el archivo no abre
+		for (int i = 0; i< staffNuevo.size(); i++) {
+			System.out.println(staffNuevo.elementAt(i).getUsuario());
+		}
+		datos.serializarStaffAJson(staffNuevo);
+	}
+	
 	
 	public void recuperarStaff() {
 		Datos datos = new Datos();

@@ -21,9 +21,9 @@
    <children>
       <VBox fx:id="VBoxEditGuardia" prefHeight="834.0" prefWidth="1028.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXToolbar fx:id="ToolBarAdmin" style="-fx-background-color: #A40DFF;">
+            <JFXToolbar fx:id="ToolBarAdmin" prefHeight="83.0" prefWidth="1156.0" style="-fx-background-color: #FF8000;">
                <right>
-                  <ImageView fx:id="imgAdministrador" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#verPerfil" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="imgAdministrador" fitHeight="63.0" fitWidth="61.0" onMouseClicked="#verPerfil" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/administradorAvatar.png" />
                      </image>
@@ -33,7 +33,7 @@
                   </ImageView>
                </right>
                <left>
-                  <ImageView fx:id="imgCerrarSesion" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="imgCerrarSesion" fitHeight="67.0" fitWidth="84.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/cerrarSesion.png" />
                      </image>
@@ -92,14 +92,14 @@
                 <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="btnCancelar" prefHeight="76.0" prefWidth="172.0" style="-fx-background-color: #C581FB; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Cancelar" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                  <JFXButton fx:id="btnCancelar" onAction="#CancelarEdiccion" prefHeight="76.0" prefWidth="172.0" style="-fx-background-color: #C581FB; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Cancelar" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="btnGuardar" prefHeight="76.0" prefWidth="172.0" style="-fx-background-color: #C581FB; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Guardar cambios" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                  <JFXButton fx:id="btnAniadirAdmin" onAction="#AniadirAdmin" prefHeight="76.0" prefWidth="178.0" style="-fx-background-color: #C581FB; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Añadir Administrador" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="16.0" />
                      </font>
                   </JFXButton>
                </children>

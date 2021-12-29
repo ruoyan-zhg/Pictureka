@@ -1,13 +1,32 @@
 package Controlador;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
+import java.util.Vector;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.jfoenix.controls.JFXButton;
 
+import Modelo.Datos;
 import Modelo.Guardia;
+import Modelo.Registro;
+import Modelo.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,7 +36,7 @@ import javafx.scene.layout.GridPane;
 public class ControladorTabEditarGuardia {
 
 	ControladorEditGuardias controlerEditGuardia = new ControladorEditGuardias();
-    @FXML
+	@FXML
     private AnchorPane AnchorTabEditarGuardia;
 
     @FXML
@@ -62,9 +81,6 @@ public class ControladorTabEditarGuardia {
     @FXML
     private Label lblFechaGuardia;
 
-	@FXML
-    private DatePicker DateFechaGuardia;
-
     @FXML
     private Label lblContraseniaGuardia;
 
@@ -72,7 +88,10 @@ public class ControladorTabEditarGuardia {
     private TextField textContraseniaGuardia;
 
     @FXML
-    private JFXButton btnGuardarGuardia;
+    private DatePicker DateFechaGuardia;
+
+    @FXML
+    private JFXButton btnGuardar;
 
     
     public ControladorTabEditarGuardia(ControladorEditGuardias controlerEdit) {
@@ -83,7 +102,7 @@ public class ControladorTabEditarGuardia {
     
     @FXML
     public void initialize() {
-	   
+
     	//Se comprueba que el administrador ha seleccionado a un guardia de la tabla
         if (!controlerEditGuardia.getTableView().getSelectionModel().isEmpty()) {
         	
@@ -96,14 +115,26 @@ public class ControladorTabEditarGuardia {
         	textEmailGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getEmail());
         	DateFechaGuardia.setValue(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getFechaNacimiento());
         	textContraseniaGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getContrasenia());
+    	
         	
         }
+        
     }
-
-	@FXML
-    void guardarGuardia(ActionEvent event) {
+    
+    @FXML
+    void GuardarGuardiaEdit(ActionEvent event) {
     	
-		String UsuarioNuevo;
+    	Alert error = new Alert(Alert.AlertType.ERROR);
+    	Alert informacion = new Alert(Alert.AlertType.INFORMATION);
+    	Registro registro = new Registro();
+    	Datos datos = new Datos();
+    	Gson gson = new Gson();
+
+
+    	Vector <Staff> staff = datos.desserializarJsonStaff();
+    	int i = 0;
+    	
+    	String UsuarioNuevo;
 		String nombreNuevo;
 		String apellido1Nuevo;
 		String apellido2Nuevo;
@@ -118,11 +149,114 @@ public class ControladorTabEditarGuardia {
 		apellido2Nuevo = textApellido2Guardia.getText();
 		dniNuevo = textDniGuardia.getText();
 		emailNuevo = textEmailGuardia.getText();
-		fechaNuevo = LocalDate.of(DateFechaGuardia.getValue().getYear(), DateFechaGuardia.getValue().getMonthValue(), DateFechaGuardia.getValue().getDayOfMonth());
+		fechaNuevo = DateFechaGuardia.getValue();
 		contraseniaNuevo = textContraseniaGuardia.getText();
+		
+
+		if (!UsuarioNuevo.isEmpty() || !nombreNuevo.isEmpty() || !apellido1Nuevo.isEmpty() || !apellido2Nuevo.isEmpty() || !dniNuevo.isEmpty()
+				|| !emailNuevo.isEmpty() || !(fechaNuevo==null) || !contraseniaNuevo.isEmpty()) {
+			
+			registro.recuperarStaff();
+			registro.recuperarUsuarios();
+			if (registro.validarEmail(emailNuevo) && registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo) && registro.staffRepetido(UsuarioNuevo)) {
+		    	LocalDate fecha = LocalDate.now();
+		    	Period periodo = Period.between(fechaNuevo, fecha);
+		    	
+		    	if (periodo.getYears() > 18 && periodo.getYears() < 100) {
+		    		
+					
+					
+					for (i=0; i<staff.size(); i++) {
+						
+						
+						if (staff.get(i).getUsuario().equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getUsuario())
+								&& staff.get(i).getNombre().equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getNombre())
+								&& staff.get(i).getApellido1().equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getApellido1())
+								&& staff.get(i).getApellido2().equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getApellido2())
+								&& staff.get(i).getEmail().equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getEmail())
+								&& staff.get(i).getDni().equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getDni())
+								&& staff.get(i).getFechaNacimiento().equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getFechaNacimiento())
+								&& staff.get(i).getContrasenia().equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getContrasenia())) {
+	
+							staff.get(i).setUsuario(UsuarioNuevo);
+							staff.get(i).setNombre(nombreNuevo);
+							staff.get(i).setApellido1(apellido1Nuevo);
+							staff.get(i).setApellido2(apellido2Nuevo);
+							staff.get(i).setEmail(emailNuevo);
+							staff.get(i).setDni(dniNuevo);
+							staff.get(i).setFechaNacimiento(fechaNuevo);
+							staff.get(i).setContrasenia(contraseniaNuevo);
+							
+							registro.escribirStaffNuevo(staff);
+							
+							//TODO Actualizar los datos de inmediato
+							informacion.setHeaderText("Los datos se actualizarán para la próxima entrada");
+							informacion.showAndWait();
+							
+							/*
+							FXMLLoader loaderAdmin = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
+					        ControladorEditGuardias controlerAdmin = new ControladorEditGuardias();
+					        loaderAdmin.setController(controlerAdmin);
+					        
+					        try {
+					        	AnchorPane registerPane = (AnchorPane) loaderAdmin.load();
+					        	controlerAdmin.getAnchorEditGuardia().getChildren().clear();
+					            AnchorPane.setTopAnchor(registerPane, 0.0);
+					            AnchorPane.setRightAnchor(registerPane, 0.0);
+					            AnchorPane.setLeftAnchor(registerPane, 0.0);
+					            AnchorPane.setBottomAnchor(registerPane, 0.0);
+					            controlerAdmin.getAnchorEditGuardia().getChildren().setAll(registerPane);
+					            
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							*/
+							
+							
+							
+							/*
+							controlerEditGuardia.getTableView().getItems().clear();
+							
+							for (int j=0; j<staff.size();j++) {
+								
+								if (staff.get(j).getIdentificadorUser()==2) {
+									// Se muestran los guardias obtenidos en la tabla
+									controlerEditGuardia.getTableView().getItems().add(new Guardia(staff.get(j).getUsuario(), staff.get(j).getDni(),
+									staff.get(j).getEmail(), staff.get(j).getContrasenia(),
+									staff.get(j).getFechaNacimiento(), staff.get(j).getNombre(),
+									staff.get(j).getApellido1(), staff.get(j).getApellido2()));
+									
+								}
+							}
+							*/
+							
+					    
+							
+						}
+						
+					}
+
+		    		
+		    		
+		    		
+		    	}
+
+			}
+			else {
+				error.setHeaderText("Revise la información introducida en los campos.");
+				error.showAndWait();
+			}
+			
+		}
+		else {
+			error.setHeaderText("No se ha seleccionado ningún guardia a modificar.");
+			error.showAndWait();
+		}
     	
     }
-	
+
+
 	
 	
 	 public AnchorPane getAnchorTabEditarGuardia() {
@@ -135,6 +269,14 @@ public class ControladorTabEditarGuardia {
 
 		public TextField getTextUsuarioGuardia() {
 			return textUsuarioGuardia;
+		}
+
+		public JFXButton getBtnGuardar() {
+			return btnGuardar;
+		}
+
+		public void setBtnGuardar(JFXButton btnGuardar) {
+			this.btnGuardar = btnGuardar;
 		}
 
 		public void setTextUsuarioGuardia(TextField textUsuarioGuardia) {
@@ -196,14 +338,6 @@ public class ControladorTabEditarGuardia {
 
 		public void setTextContraseniaGuardia(TextField textContraseniaGuardia) {
 			this.textContraseniaGuardia = textContraseniaGuardia;
-		}
-
-		public JFXButton getBtnGuardarGuardia() {
-			return btnGuardarGuardia;
-		}
-
-		public void setBtnGuardarGuardia(JFXButton btnGuardarGuardia) {
-			this.btnGuardarGuardia = btnGuardarGuardia;
 		}
 
 }

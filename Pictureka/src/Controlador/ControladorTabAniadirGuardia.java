@@ -1,6 +1,7 @@
 package Controlador;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
 import javax.management.modelmbean.ModelMBeanOperationInfo;
@@ -14,6 +15,7 @@ import Modelo.Registro;
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -79,7 +81,7 @@ public class ControladorTabAniadirGuardia {
     @FXML
     private JFXDatePicker DateGuardiaNacimiento;
 
-    
+    //Constructor al que se le pasa el Controlador de ediccion de guardias
     public ControladorTabAniadirGuardia(ControladorEditGuardias controladorEdit) {
 
     	controlerEdit = controladorEdit;
@@ -90,6 +92,8 @@ public class ControladorTabAniadirGuardia {
     void GuardarNuevoGuardia(ActionEvent event) {
     	
     	modelo_Museo modelo = new modelo_Museo();
+    	Alert error = new Alert(Alert.AlertType.ERROR);
+    	Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
     	
     	String usuarioNuevo;
     	String nombreNuevo;
@@ -110,14 +114,57 @@ public class ControladorTabAniadirGuardia {
     	contraseniaNuevo = textContrasenia.getText();
     	fechaNacimientoNuevo = DateGuardiaNacimiento.getValue();
     	
-    	//Se escribe en el json de usuarios
-    	modelo.registrarGuardias(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo);
-    	//Se supone que se tiene que añadir a la tabla pero saca un null pointer
-    	this.controlerEdit.getTableView().getItems().add(new Guardia(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
-    	
-    	
-    	
-    }
+    	//Comprueba que los diferentes campos no esten vacios
+    	if (usuarioNuevo.isEmpty() || nombreNuevo.isEmpty() || apellido1Nuevo.isEmpty() || apellido2Nuevo.isEmpty() || emailNuevo.isEmpty() ||
+    			dniNuevo.isEmpty() || contraseniaNuevo.isEmpty() || fechaNacimientoNuevo==null) {
+    			
+    		error.setHeaderText("Error");
+    		error.setContentText("Compruebe los campos a rellenar para añadir un guardia");
+    		error.showAndWait();
+    	}
+    	else {
+			// Se escribe en el json de usuarios
+
+			String emailRepetido = "El email introducido ya ha sido registrado";
+			String usuarioRepetido = "Usuario ya registrado";
+			String validacion = "Validacion completada con exito";
+			String emailIncorrecto = "El email introducido no es valido";
+			String edadAceptable = "Rango de edad no aceptable";
+			
+			//Dependiendo del estado que devuelva el metodo registrarGuardias, se realizara una accion u otra
+			if (modelo.registrarGuardias(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
+					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(validacion)) {
+				//se muestra en la tabla al nuevo guardia
+				this.controlerEdit.getTableView().getItems().add(new Guardia(usuarioNuevo, dniNuevo, emailNuevo,
+						contraseniaNuevo, fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
+				confirmacion.setHeaderText(validacion);
+				confirmacion.showAndWait();
+			}
+
+			else if (modelo.registrarGuardias(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
+					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(emailRepetido)) {
+
+				error.setHeaderText(emailRepetido);
+				error.showAndWait();
+			} else if (modelo.registrarGuardias(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
+					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(emailIncorrecto)) {
+
+				error.setHeaderText(emailIncorrecto);
+				error.showAndWait();
+			} else if (modelo.registrarGuardias(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
+					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(usuarioRepetido)) {
+
+				error.setHeaderText(usuarioRepetido);
+				error.showAndWait();
+			} else if (modelo.registrarGuardias(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
+					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(edadAceptable)) {
+
+				error.setHeaderText(edadAceptable);
+				error.showAndWait();
+
+			}
+		}
+	}
 
 	public AnchorPane getAnchorPaneTab1() {
 		return anchorPaneTab1;

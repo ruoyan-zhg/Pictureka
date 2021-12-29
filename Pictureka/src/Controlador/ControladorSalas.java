@@ -59,6 +59,21 @@ public class ControladorSalas {
 
     @FXML
     private JFXButton btnD;
+    
+    private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
+	
+    boolean logged; //Este nos dira si la parsona esta logueada o no
+	 
+	 public ControladorSalas(String usuario) {
+		 if (usuario == "vacio") {
+			 logged = false;
+		 }
+		 else {
+			 this.usuario = usuario;
+			 logged = true;
+		 }
+		 
+	}
 
     @FXML
     void cerrarSesion(MouseEvent event) {

@@ -133,7 +133,7 @@ public class ControladorEditGuardias {
     void cerrarSesion(MouseEvent event) {
     	
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal("vacio");
         loaderApp.setController(controlerPrincipal);
         
         try {

@@ -64,7 +64,23 @@ import javafx.stage.FileChooser;
 	    
 	    @FXML
 	    private TextField txtFieldTitulo;
-
+	    
+	    private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
+		
+	    boolean logged; //Este nos dira si la parsona esta logueada o no
+	    
+	    
+		 
+		 public controladorEditarEventos(String usuario) {
+			 if (usuario == "vacio") {
+				 logged = false;
+			 }
+			 else {
+				 this.usuario = usuario;
+				 logged = true;
+			 }
+			 
+		}
 	    
 	    
 	    
@@ -195,7 +211,7 @@ import javafx.stage.FileChooser;
 	    
 	    void abrirAdmin() {
 	    	FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
-	        ControladorAdministrador controlerAdmin = new ControladorAdministrador();
+	        ControladorAdministrador controlerAdmin = new ControladorAdministrador(usuario);
 	        loaderEdit.setController(controlerAdmin);
 	        
 	        try {

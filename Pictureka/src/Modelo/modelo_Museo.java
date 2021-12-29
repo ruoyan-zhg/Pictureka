@@ -29,4 +29,15 @@ public class modelo_Museo {
 	public int loginUsuario(String emailOUsuario, String contrasenia) {
 		return registro.loginDeUsuarios(emailOUsuario, contrasenia);
 	}
+	public int devolverIdentificador(String usuario) {
+		return registro.rDevolderIdentificador(usuario);
+	}
+	public Cliente devolverCliente(String usuario) {
+		return registro.rDevolverCliente(usuario);
+	}
+	public Staff devolverStaff(String usuario) {
+		
+		return registro.rDevolderStaff(usuario);
+	}
+	
 }

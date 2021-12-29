@@ -103,9 +103,24 @@ public class ControladorVPrincipal {
     @FXML
     private Region regionMuseo;
     
+    private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
+	
+    boolean logged; //Este nos dira si la parsona esta logueada o no
+    
     
 	 
-	 //ArrayList que guardara las imagenes que se mostraran en la ventana principal
+	 public ControladorVPrincipal(String usuario) {
+		 if (usuario == "vacio") {
+			 logged = false;
+		 }
+		 else {
+			 this.usuario = usuario;
+			 logged = true;
+		 }
+		 
+	}
+
+	//ArrayList que guardara las imagenes que se mostraran en la ventana principal
 	 ArrayList<Image> imagenes = new ArrayList<Image>();
  	
 	@FXML
@@ -129,7 +144,7 @@ public class ControladorVPrincipal {
 	 	regionImg.setBackground(new Background(new BackgroundFill(new ImagePattern(horario), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	regionMuseo.setBackground(new Background(new BackgroundFill(new ImagePattern(museo), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	
-	 	lblBienvenido.setVisible(false);
+	 	lblBienvenido.setVisible(true);
 	 	
 	 	
 	}
@@ -138,7 +153,7 @@ public class ControladorVPrincipal {
 	int count = 0;
 	int countDos = 1;
 	int countTres = 2;
-	boolean logged = false; //Este nos dira si la parsona esta logueada o no
+
 	
 	public void setLogged(boolean log) {
 		
@@ -249,7 +264,36 @@ public class ControladorVPrincipal {
         	
         }
         else {
-        	System.out.println("Ventana info");
+        	//Se carga el contenido de la ventana
+        	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
+        	//Se le asigna el controlador de la ventana para editar información de los guardias
+            ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
+            loaderPrincipala.setController(controlerPrincipal);
+            AnchorPane PaneVentanaPrincipal;
+
+    		try {
+    			//Se carga en un AnchorPane la ventana
+    			PaneVentanaPrincipal = (AnchorPane) loaderPrincipala.load();
+    			
+    			//Se elimina el contenido de la ventana padre
+    			anchorPanePrincipal.getChildren().clear();
+            	
+            	//Se ajusta el AnchorPane para que sea escalable
+                AnchorPane.setTopAnchor(PaneVentanaPrincipal, 0.0);
+                AnchorPane.setRightAnchor(PaneVentanaPrincipal, 0.0);
+                AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
+                AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
+                
+
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+                anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
+                
+               
+                
+    		} catch (IOException e1) {
+    			e1.printStackTrace();
+    		}
+
         }
     	
     }
@@ -267,7 +311,7 @@ public class ControladorVPrincipal {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderTickets = new FXMLLoader(getClass().getResource("/application/VentanaTickets.fxml"));
     	//Se le asigna el controlador de la ventana para editar informacion de los guardias
-        ControladorTickets controlerTickets = new ControladorTickets();
+        ControladorTickets controlerTickets = new ControladorTickets(usuario);
         loaderTickets.setController(controlerTickets);
         AnchorPane PaneTickets;
         System.out.println(logged);

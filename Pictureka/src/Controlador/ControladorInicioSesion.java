@@ -64,13 +64,17 @@ public class ControladorInicioSesion {
 
     @FXML
     private ImageView btnVolver;
+    
+    
+    
+    
 
     @FXML
     void volverAtras(MouseEvent event) {
     	
     	//Cargamos la ventana principal 
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal("vacio");
         loaderPrincipal.setController(controlerPrincipal);
         
         try {
@@ -112,7 +116,7 @@ public class ControladorInicioSesion {
     			
     			//Llamamos al codigo hecho en fxml
     			FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-    			ControladorVPrincipal controlVPrincipal = new ControladorVPrincipal();
+    			ControladorVPrincipal controlVPrincipal = new ControladorVPrincipal(textUsuario.getText());
     			//Asociamos la vista con el controlador
     			loaderApp.setController(controlVPrincipal);
     			//Llamar a la funcion load de loader
@@ -152,7 +156,7 @@ public class ControladorInicioSesion {
     		//Se carga el contenido de la ventana
         	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
         	//Se le asigna el controlador de la ventana para editar información de los guardias
-            ControladorGuardia controlerGuardia= new ControladorGuardia();
+            ControladorGuardia controlerGuardia= new ControladorGuardia(textUsuario.getText());
             loaderApp.setController(controlerGuardia);
             Parent root;
 			try {
@@ -187,7 +191,7 @@ public class ControladorInicioSesion {
     		//Se carga el contenido de la ventana
         	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
         	//Se le asigna el controlador de la ventana para editar información de los guardias
-            ControladorAdministrador controlerAdmin = new ControladorAdministrador();
+            ControladorAdministrador controlerAdmin = new ControladorAdministrador(textUsuario.getText());
             loaderApp.setController(controlerAdmin);
             Parent root;
 			try {

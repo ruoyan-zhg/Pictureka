@@ -62,14 +62,29 @@ public class ControladorTickets {
 
     @FXML
     private ImageView imgTickets;
-
+    private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
+	
+    boolean logged; //Este nos dira si la parsona esta logueada o no
+    
+    
+	 
+	 public ControladorTickets(String usuario) {
+		 if (usuario == "vacio") {
+			 logged = false;
+		 }
+		 else {
+			 this.usuario = usuario;
+			 logged = true;
+		 }
+		 
+	}
     @FXML
     void CancelarReserva(ActionEvent event) {
     	
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
     	//Se le asigna el controlador de la ventana para editar información de los guardias
-        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
         loaderPrincipal.setController(controlerPrincipal);
         AnchorPane PaneVentanaPrincipal;
 

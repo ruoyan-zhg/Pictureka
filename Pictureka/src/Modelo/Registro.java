@@ -244,8 +244,35 @@ public class Registro {
 		return noRepetido;
 	}
 	
+	public int rDevolderIdentificador(String usuario) {
+		recuperarUsuarios();
+		recuperarStaff();
+		int identificador = 0;
+		if (usuarios!=null) {
+			identificador = identificadorCLiente(usuario);
+			if (identificador == -1 && staff != null) {
+				identificador = identificadorStaff(usuario);
+			}
+		}
+		else {
+			if (staff != null) {
+				identificador = identificadorStaff(usuario);
+			}
+		}
+		return identificador;
+	}
 	
-	
+	public Cliente rDevolverCliente(String usuario) {
+		recuperarUsuarios();
+		Cliente cli = recuperar1Cliente(usuario);
+		return cli;
+	}
+
+	public Staff rDevolderStaff(String usuario) {
+		recuperarStaff();
+		Staff sta = recuperar1Staff(usuario);
+		return sta;
+	}
 	
 	
 	
@@ -289,6 +316,65 @@ public class Registro {
 			this.staff = _staff;
 		}
 	}
+	
+	public int identificadorCLiente(String usuario) {
+		boolean encontrado = false;
+		int identificador = -1;
+		int contador = 0;
+		while (encontrado != true && contador < usuarios.size()) {
+			if (usuarios.elementAt(contador).getEmail().equals(usuario)||usuarios.elementAt(contador).getUsuario().equals(usuario)) {
+				encontrado = true;	
+				identificador = usuarios.elementAt(contador).getIdentificadorCliente();
+			}
+			contador++;
+		}
+		return identificador;
+	}
+	
+	public int identificadorStaff(String usuario) {
+		boolean encontrado = false;
+		int identificador = -1;
+		int contador = 0;
+		while (encontrado != true && contador < staff.size()) {
+			if (staff.elementAt(contador).getEmail().equals(usuario)||staff.elementAt(contador).getUsuario().equals(usuario)) {
+				encontrado = true;	
+				identificador = staff.elementAt(contador).getIdentificadorUser();
+			}
+			contador++;
+		}
+		return identificador;
+	}
+	
+	public Cliente recuperar1Cliente(String usuario) {
+		boolean encontrado = false;
+		Cliente cli = new Cliente(usuario, usuario, usuario, usuario, null);
+		int contador = 0;
+		while (encontrado != true && contador < usuarios.size()) {
+			if (usuarios.elementAt(contador).getEmail().equals(usuario)||usuarios.elementAt(contador).getUsuario().equals(usuario)) {
+				encontrado = true;	
+				cli = usuarios.elementAt(contador);
+			}
+			contador++;
+		}
+		return cli;
+	}
+	
+	public Staff recuperar1Staff(String usuario) {
+		boolean encontrado = false;
+		Staff sta = new Staff(0, usuario, usuario, usuario, usuario, usuario, usuario, usuario, null);
+		int contador = 0;
+		while (encontrado != true && contador < this.staff.size()) {
+			if (staff.elementAt(contador).getEmail().equals(usuario) ||staff.elementAt(contador).getUsuario().equals(usuario)) {
+				encontrado = true;	
+				sta = staff.elementAt(contador);
+			}
+			contador++;
+		}
+		return sta;
+	}
+	
+
+	
 	
 
 }

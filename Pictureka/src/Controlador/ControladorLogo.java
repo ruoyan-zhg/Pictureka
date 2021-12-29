@@ -46,7 +46,7 @@ public class ControladorLogo {
     	//Se carga el contenido de la ventana principal
         FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
         //Se le asigna el controlador de la ventana principal
-        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal("vacio");
         loaderApp.setController(controlerPrincipal);
         
         //Sacamos una ventana nueva

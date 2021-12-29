@@ -124,6 +124,11 @@ public class ControladorGuardia {
         }
     	
     }
+    
+    @FXML
+    void enviar(MouseEvent event) {
+
+    }
 
     @FXML
     void cerrarSesion(MouseEvent event) {

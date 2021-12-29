@@ -40,7 +40,7 @@
                <children>
                   <ImageView fx:id="imgUsuario1" fitHeight="474.0" fitWidth="930.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="3">
                      <image>
-                        <Image url="@../../Imagenes_Multimedia/administradorAvatar.png" />
+                        <Image url="@../avatarCliente.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />

@@ -92,7 +92,7 @@ public class ControladorEditGuardias {
     private JFXButton btnCancelar;
 
     @FXML
-    private JFXButton btnAniadirAdmin;
+    private JFXButton btnGuardarCambios;
        
     
     @FXML
@@ -207,7 +207,33 @@ public class ControladorEditGuardias {
     }
     
     @FXML
-    void AniadirAdmin(ActionEvent event) {
+    void GuardarTodosCambios(ActionEvent event) {
+    	
+    	Datos datos = new Datos();
+    	Vector <Staff> staff = datos.desserializarJsonStaff();
+    	tableView.getItems().clear();
+    	//Se leen los datos del Json del staff
+    	for (int i=0; i<staff.size(); i++) {
+    		//Obtiene solo el personal con numero de identificacion 2
+    		if (staff.get(i).getIdentificadorUser()==2) {
+    			
+    			//Se muestran los guardias obtenidos en la tabla
+    			tableView.getItems().add(new Guardia(staff.get(i).getUsuario(), staff.get(i).getDni(), staff.get(i).getEmail(),
+    			staff.get(i).getContrasenia(), staff.get(i).getFechaNacimiento(), staff.get(i).getNombre(), 
+    			staff.get(i).getApellido1(), staff.get(i).getApellido2()));
+    		}
+    	}
+    		
+		//Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al tipo de dato que queremos guardar
+    	Usuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+    	Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+    	PrimerApellido.setCellValueFactory(new PropertyValueFactory<>("apellido1"));
+    	SegundoApellido.setCellValueFactory(new PropertyValueFactory<>("apellido2"));
+    	Email.setCellValueFactory(new PropertyValueFactory<>("email"));
+    	DNI.setCellValueFactory(new PropertyValueFactory<>("dni"));
+    	FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+    	Contrasenia.setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
+    	
     	
     }
     

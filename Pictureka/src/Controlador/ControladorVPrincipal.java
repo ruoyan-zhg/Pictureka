@@ -107,7 +107,9 @@ public class ControladorVPrincipal {
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
-    
+    public ControladorVPrincipal() {
+    	
+    }
 	 
 	 public ControladorVPrincipal(String usuario) {
 		 if (usuario == "vacio") {

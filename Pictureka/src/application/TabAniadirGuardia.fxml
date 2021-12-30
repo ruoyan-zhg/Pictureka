@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,8 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="anchorPaneTab1" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane fx:id="anchorPaneTab1" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane fx:id="gridTab1" layoutX="57.0" layoutY="95.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -71,10 +71,13 @@
                   <Font name="Franklin Gothic Heavy" size="23.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnGuardar" contentDisplay="CENTER" onAction="#GuardarNuevoGuardia" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: #A829F4; -fx-border-radius: 15;" text="Añadir" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+            <JFXButton fx:id="btnGuardar" contentDisplay="CENTER" onAction="#GuardarNuevoGuardia" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: FF8000; -fx-border-radius: 15;" text="Añadir" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                <font>
                   <Font name="Rockwell" size="26.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <JFXTextField fx:id="textUsuario" GridPane.columnIndex="1">
                <GridPane.margin>

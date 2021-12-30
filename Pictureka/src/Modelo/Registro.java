@@ -315,6 +315,7 @@ public class Registro {
 		}
 		datos.serializarStaffAJson(staff);
 	}
+		
 	
 	public void escribirStaffNuevo(Vector<Staff> staffNuevo) {
 		Datos datos = new Datos();

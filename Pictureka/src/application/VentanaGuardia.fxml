@@ -89,7 +89,10 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </ImageView>
-                  <ButtonBar fx:id="imgValidar" onMouseClicked="#validarTicket" prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="3" />
+                  <ButtonBar fx:id="imgValidar" onMouseClicked="#validarTicket" prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="3">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ButtonBar>
                   <ImageView fx:id="imgEnviarInforme" fitHeight="172.0" fitWidth="174.0" onMouseClicked="#enviar" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/Enviar.png" />

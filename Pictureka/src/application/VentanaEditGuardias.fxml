@@ -71,7 +71,7 @@
                      <tabs>
                         <Tab fx:id="TabAniadirGuardia" onSelectionChanged="#AniadirGuardia" text="Añadir Guardia">
                           <content>
-                            <AnchorPane fx:id="AnchorTabAniadir" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;"/>
+                            <AnchorPane fx:id="AnchorTabAniadir" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;" />
                           </content>
                         </Tab>
                         <Tab fx:id="TabEditGuardia" onSelectionChanged="#EditarGuardia" text="Editar Guardia">
@@ -92,15 +92,21 @@
                 <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="btnCancelar" onAction="#CancelarEdiccion" prefHeight="76.0" prefWidth="172.0" style="-fx-background-color: #C581FB; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Cancelar" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                  <JFXButton fx:id="btnCancelar" onAction="#CancelarEdiccion" prefHeight="76.0" prefWidth="172.0" style="-fx-background-color: FF8000; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Cancelar" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="btnAniadirAdmin" onAction="#AniadirAdmin" prefHeight="76.0" prefWidth="178.0" style="-fx-background-color: #C581FB; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Añadir Administrador" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                  <JFXButton fx:id="btnGuardarCambios" onAction="#GuardarTodosCambios" prefHeight="76.0" prefWidth="178.0" style="-fx-background-color: FF8000; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Actualizar cambios" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
                </children>
             </GridPane>

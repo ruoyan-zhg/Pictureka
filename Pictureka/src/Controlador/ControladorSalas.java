@@ -29,7 +29,7 @@ public class ControladorSalas {
     private ImageView imgGuardia;
 
     @FXML
-    private ImageView imgCerrarSesion;
+    private ImageView imgVolverGuardia;
 
     @FXML
     private GridPane GridPaneSala;
@@ -79,10 +79,41 @@ public class ControladorSalas {
 		 
 	}
 
-    @FXML
-    void cerrarSesion(MouseEvent event) {
+	@FXML
+	void volverAtrasGuardia(MouseEvent event) {
 
-    }
+		//Se carga el contenido de la ventana
+    	FXMLLoader loaderGuardia = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
+    	//Se le asigna el controlador de la ventana para editar información de los guardias
+        ControladorGuardia controlerGuardia = new ControladorGuardia(usuario);
+        loaderGuardia.setController(controlerGuardia);
+        AnchorPane PaneGuardia;
+
+		try {
+			//Se carga en un AnchorPane la ventana
+			PaneGuardia = (AnchorPane) loaderGuardia.load();
+			
+			//Se elimina el contenido de la ventana padre
+			anchorPaneSala.getChildren().clear();
+        	
+        	//Se ajusta el AnchorPane para que sea escalable
+            AnchorPane.setTopAnchor(PaneGuardia, 0.0);
+            AnchorPane.setRightAnchor(PaneGuardia, 0.0);
+            AnchorPane.setLeftAnchor(PaneGuardia, 0.0);
+            AnchorPane.setBottomAnchor(PaneGuardia, 0.0);
+            
+
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            anchorPaneSala.getChildren().setAll(PaneGuardia);
+            
+           
+            
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+	}
 
     @FXML
     void verPerfil(MouseEvent event) {

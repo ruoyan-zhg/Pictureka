@@ -141,7 +141,7 @@ public class ControladorAdministrador {
     void cerrarSesion(MouseEvent event) {
     	
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
         loaderPrincipal.setController(controlerPrincipal);
         
         try {

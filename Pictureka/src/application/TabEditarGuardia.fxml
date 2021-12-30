@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -28,26 +30,74 @@
             <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="lblUsuarioGuardia" text="Usuario" GridPane.halignment="CENTER" />
-            <TextField fx:id="textUsuarioGuardia" GridPane.columnIndex="1" />
-            <Label fx:id="lblNombreGuardia" text="Nombre" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-            <TextField fx:id="textNombreGuardia" GridPane.columnIndex="3" />
-            <Label fx:id="lblApellido1Guardia" text="Primer apellido" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Label fx:id="lblApellido2Guardia" text="Segundo apellido" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <TextField fx:id="textApellido1Guardia" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="textApellido2Guardia" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label fx:id="lblEmailGuardia" text="Email" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <TextField fx:id="textEmailGuardia" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="lblDniGuardia" text="DNI" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <TextField fx:id="textDniGuardia" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="lblUsuarioGuardia" text="Usuario" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TextField fx:id="textUsuarioGuardia" GridPane.columnIndex="1">
+               <effect>
+                  <DropShadow color="#ff8000" />
+               </effect></TextField>
+            <Label fx:id="lblNombreGuardia" text="Nombre" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TextField fx:id="textNombreGuardia" GridPane.columnIndex="3">
+               <effect>
+                  <DropShadow color="#ff8000" />
+               </effect></TextField>
+            <Label fx:id="lblApellido1Guardia" text="Primer apellido" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label fx:id="lblApellido2Guardia" text="Segundo apellido" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <TextField fx:id="textApellido1Guardia" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <effect>
+                  <DropShadow color="#ff8000" />
+               </effect></TextField>
+            <TextField fx:id="textApellido2Guardia" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <effect>
+                  <DropShadow color="#ff8000" />
+               </effect></TextField>
+            <Label fx:id="lblEmailGuardia" text="Email" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TextField fx:id="textEmailGuardia" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <effect>
+                  <DropShadow color="#ff8000" />
+               </effect></TextField>
+            <Label fx:id="lblDniGuardia" text="DNI" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TextField fx:id="textDniGuardia" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <effect>
+                  <DropShadow color="#ff8000" />
+               </effect></TextField>
             <Label fx:id="lblFechaGuardia" text="Fecha de nacimiento" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Label fx:id="lblContraseniaGuardia" text="Contraseña" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <TextField fx:id="textContraseniaGuardia" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <DatePicker fx:id="DateFechaGuardia" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <JFXButton fx:id="btnGuardar" onAction="#GuardarGuardiaEdit" prefHeight="59.0" prefWidth="166.0" style="-fx-background-color: FF8000;" text="Guardar cambios" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <Label fx:id="lblContraseniaGuardia" text="Contraseña" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TextField fx:id="textContraseniaGuardia" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <effect>
+                  <DropShadow color="#ff8000" />
+               </effect></TextField>
+            <DatePicker fx:id="DateFechaGuardia" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <effect>
+                  <DropShadow color="#ff8000" />
+               </effect></DatePicker>
+            <JFXButton fx:id="btnGuardar" onAction="#GuardarGuardiaEdit" prefHeight="59.0" prefWidth="166.0" style="-fx-background-color: FF8000; -fx-border-radius: 15;" text="Guardar cambios" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
          </children>
       </GridPane>

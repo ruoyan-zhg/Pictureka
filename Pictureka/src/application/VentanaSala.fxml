@@ -30,9 +30,9 @@
                   </ImageView>
                </right>
                <left>
-                  <ImageView fx:id="imgCerrarSesion" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="imgVolverGuardia" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#volverAtrasGuardia" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../../Imagenes_Multimedia/cerrarSesion.png" />
+                        <Image url="@../../Imagenes_Multimedia/volverAtras.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />

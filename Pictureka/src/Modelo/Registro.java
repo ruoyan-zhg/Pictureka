@@ -149,8 +149,8 @@ public class Registro {
 		boolean login = false;
 		boolean esCliente = false;
 		int contador = 0;
-		int contadorStaff = 0
-				;
+		int contadorStaff = 0;
+		
 		recuperarUsuarios();
 		recuperarStaff();
 		

@@ -129,36 +129,43 @@ public class ControladorRegistro {
     	String estado;
     	String contrasenia = txtFieldPassword.getText();
     	String repetirContrasenia = textFieldRepeatPassword.getText();
-    	
-    	if(chooserCalendario.getValue() != null) {
-    		LocalDate fecha = LocalDate.now();
-        	Period periodo = Period.between(chooserCalendario.getValue(), fecha);
-    		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
-        		if(contrasenia.equals(repetirContrasenia)&&!(contrasenia.equals(""))&&!(contrasenia.equals(" "))) {
-            		estado = museo.registrarClientes(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), txtFieldPassword.getText(), chooserCalendario.getValue());
-            		
-            		if (estado.equals("Validacion completada con exito")) {
-            			confirmacion.setHeaderText(estado);
-            			confirmacion.show();
-            		}
-            		else {
-            			error.setHeaderText(estado);
-            			error.show();
-            		}
+    	LocalDate fechaNuevo = chooserCalendario.getValue(); 
+    	if(!(textUsuarioRegistro.getText().isEmpty() | textDni.getText().isEmpty() | textCorreoElectronico.getText().isEmpty() | contrasenia.isEmpty()
+				| repetirContrasenia.isEmpty() |(fechaNuevo == null) )) {
+    		
+        		LocalDate fecha = LocalDate.now();
+            	Period periodo = Period.between(chooserCalendario.getValue(), fecha);
+        		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
+            		if(contrasenia.equals(repetirContrasenia)&&!(contrasenia.equals(""))&&!(contrasenia.equals(" "))) {
+                		estado = museo.registrarClientes(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), txtFieldPassword.getText(), chooserCalendario.getValue());
+                		
+                		if (estado.equals("Validacion completada con exito")) {
+                			confirmacion.setHeaderText(estado);
+                			confirmacion.show();
+                		}
+                		else {
+                			error.setHeaderText(estado);
+                			error.show();
+                		}
+                	}
+                	else {
+                		 error.setHeaderText("Error: las contraseñas no coinciden");
+                		 error.show();
+                	}
             	}
-            	else {
-            		 error.setHeaderText("Error: las contraseñas no coinciden");
-            		 error.show();
-            	}
-        	}
-    		else {
-    			error.setHeaderText("Error: Rango de edad no aceptable");
-       		 	error.show();
-    		}
+        		else {
+        			error.setHeaderText("Error: Rango de edad no aceptable");
+           		 	error.show();
+        		}
+        	
+    		
     	}
-    	else
-    		error.setHeaderText("Error: Introduzca su fecha de nacimiento por favor");
-		 	error.show();
+    	else {
+    		error.setHeaderText("Porfavor rellene todos los campos!");
+    		error.show();
+    		
+    	}
+    	
     }
 
 }

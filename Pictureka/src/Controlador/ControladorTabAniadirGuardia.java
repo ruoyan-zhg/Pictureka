@@ -22,7 +22,7 @@ import javafx.scene.layout.GridPane;
 
 public class ControladorTabAniadirGuardia {
 
-	ControladorEditGuardias controlerEdit = new ControladorEditGuardias();
+	ControladorEditGuardias controlerEdit;
 	
     @FXML
     private AnchorPane anchorPaneTab1;
@@ -80,11 +80,16 @@ public class ControladorTabAniadirGuardia {
 
     @FXML
     private JFXDatePicker DateGuardiaNacimiento;
-
+    
+    private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
+	
+    boolean logged; //Este nos dira si la parsona esta logueada o no
+     
+	
     //Constructor al que se le pasa el Controlador de ediccion de guardias
     public ControladorTabAniadirGuardia(ControladorEditGuardias controladorEdit) {
-
     	controlerEdit = controladorEdit;
+    	
 	}
     
     

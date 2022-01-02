@@ -24,7 +24,7 @@
          <children>
             <JFXToolbar style="-fx-background-color: #FF8000;">
                <right>
-                  <ImageView fx:id="imgCliente" fitHeight="53.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="imgCliente" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/avatarCliente.png" />
                      </image>

@@ -19,7 +19,7 @@ import javafx.scene.layout.GridPane;
 
 public class ControladorTabEditarGuardia {
 
-	ControladorEditGuardias controlerEditGuardia = new ControladorEditGuardias();
+	ControladorEditGuardias controlerEditGuardia;
 	@FXML
     private AnchorPane AnchorTabEditarGuardia;
 

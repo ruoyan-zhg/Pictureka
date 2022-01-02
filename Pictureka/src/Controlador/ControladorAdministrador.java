@@ -59,9 +59,6 @@ public class ControladorAdministrador {
 		
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
-    public ControladorAdministrador() {
-    	
-    }
 	 
 	 public ControladorAdministrador(String usuario) {
 		 if (usuario == "vacio") {
@@ -141,7 +138,9 @@ public class ControladorAdministrador {
     void cerrarSesion(MouseEvent event) {
     	
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
+    	this.usuario = "vacio";
+    	this.logged = false;
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
         loaderPrincipal.setController(controlerPrincipal);
         
         try {
@@ -188,7 +187,7 @@ public class ControladorAdministrador {
     void editarGuardias(MouseEvent event) {
     	
     	FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaEditGuardias.fxml"));
-        ControladorEditGuardias controlerEdit = new ControladorEditGuardias();
+        ControladorEditGuardias controlerEdit = new ControladorEditGuardias(usuario);
         loaderEdit.setController(controlerEdit);
         
         try {

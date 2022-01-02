@@ -136,7 +136,9 @@ public class ControladorGuardia {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
     	//Se le asigna el controlador de la ventana para editar información de los guardias
-        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal();
+    	this.usuario = "vacio";
+    	this.logged = false;
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
         loaderPrincipal.setController(controlerPrincipal);
         AnchorPane PaneVentanaPrincipal;
 

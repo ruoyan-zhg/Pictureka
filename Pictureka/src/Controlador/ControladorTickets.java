@@ -102,7 +102,7 @@ public class ControladorTickets {
             AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
             controlerPrincipal.setLogged(true);
             controlerPrincipal.getLblBienvenido().setVisible(false);
-            controlerPrincipal.getBtnBarArriba().setStyle("-fx-background-color: #00aae4");
+            controlerPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
 	        controlerPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
             
 

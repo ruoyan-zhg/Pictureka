@@ -1,21 +1,16 @@
 package Controlador;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-
-import com.jfoenix.controls.JFXTextField;
-
-import Modelo.Guardia;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -26,8 +21,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
-import javafx.stage.Stage;
 
 /**
  * 
@@ -43,41 +38,20 @@ import javafx.stage.Stage;
 
 public class ControladorVPrincipal {
 
-    @FXML
+	@FXML
     private AnchorPane anchorPanePrincipal;
 
     @FXML
     private BorderPane BordPanePrincipal;
-    
-    @FXML
-    private ButtonBar btnBarArriba;
 
     @FXML
-    private ImageView btnContacto;
+    private Button btnContacto;
 
     @FXML
-    private ImageView btnCorreo;
+    private Button btnCorreo;
 
     @FXML
-    private ImageView btnMensaje;
-
-    @FXML
-    private ImageView imgViewLupa;
-
-    @FXML
-    private JFXTextField txtField_busqueda;
-    
-    @FXML
-    private Label lblBienvenido;
-
-    @FXML
-    private ImageView imgCalendar;
-
-    @FXML
-    private ImageView imgTickets;
-
-    @FXML
-    private ImageView imgUsuario;
+    private Button btnMensaje;
 
     @FXML
     private ImageView imgView_BtnFlecha1;
@@ -102,12 +76,34 @@ public class ControladorVPrincipal {
 
     @FXML
     private Region regionMuseo;
+
+    @FXML
+    private GridPane gridPaneButton;
+
+    @FXML
+    private ButtonBar ButtonBarPrincipal;
+
+    @FXML
+    private ImageView imgCalendar;
+
+    @FXML
+    private ImageView imgTickets;
+
+    @FXML
+    private ImageView imgUsuario;
+
+    @FXML
+    private ImageView imgCerrarSesionCliente;
+
+    @FXML
+    private Label lblBienvenido;
     
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
 	 
+    
 	 public ControladorVPrincipal(String usuario) {
 		 if (usuario == "vacio") {
 			 logged = false;
@@ -145,6 +141,19 @@ public class ControladorVPrincipal {
 	 	
 	 	lblBienvenido.setVisible(true);
 	 	
+	 	Tooltip correo = new Tooltip("Correo");
+	 	btnCorreo.setTooltip(correo);
+	 	
+	 	Tooltip mensaje = new Tooltip("Mensaje");
+	 	btnMensaje.setTooltip(mensaje);
+	 	
+	 	Tooltip contacto = new Tooltip("Contacto");
+	 	btnContacto.setTooltip(contacto);
+	 	
+	 	
+	 	if (logged==false) {
+	 		imgCerrarSesionCliente.setVisible(false);
+	 	}
 	 	
 	}
 	
@@ -162,10 +171,11 @@ public class ControladorVPrincipal {
 		
 		return logged;
 	}
-	public ButtonBar getBtnBarArriba() {
-		return btnBarArriba;
-	}
 	
+	public GridPane getGridPaneButton() {
+		return gridPaneButton;
+	}
+
 	public ImageView getAvatarUsuario() {
 		return imgUsuario;
 	}
@@ -282,7 +292,6 @@ public class ControladorVPrincipal {
                 AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 
-
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
                 
@@ -349,27 +358,65 @@ public class ControladorVPrincipal {
     }
 
     @FXML
-    void mandarCorreo(MouseEvent event) {
-
+    void mandarCorreo(ActionEvent event) {
+    	
+    	
     }
 
     @FXML
-    void mandarMensaje(MouseEvent event) {
-
+    void mandarMensaje(ActionEvent event) {
+    	
+    	
     }
 
     @FXML
-    void mostrarContacto(MouseEvent event) {
-
+    void mostrarContacto(ActionEvent event) {
+    	
+	 	
     }
 
-    @FXML
-    void tocarLupa(MouseEvent event) {
-
-    }
 
     @FXML
     void verEventos(MouseEvent event) {
+    	
+    	if (logged==false) {
+    		String usuario = "vacio";
+    		this.logged = false;
+    		
+    		
+    		// carga el contenido de la ventana
+        	FXMLLoader loaderEventos = new FXMLLoader(getClass().getResource("/application/VentanaEventos.fxml"));
+        	//Se le asigna el controlador de la ventana para editar informacion de los guardias
+            ControladorEventos controlerEventos = new ControladorEventos(usuario);
+            loaderEventos.setController(controlerEventos);
+            AnchorPane PaneCalendar;
+
+            
+            try {
+    			//Se carga en un AnchorPane la ventana
+                PaneCalendar = (AnchorPane) loaderEventos.load();
+    			
+    			//Se elimina el contenido de la ventana padre
+            	anchorPanePrincipal.getChildren().clear();
+            	
+            	//Se ajusta el AnchorPane para que sea escalable
+                AnchorPane.setTopAnchor(PaneCalendar, 0.0);
+                AnchorPane.setRightAnchor(PaneCalendar, 0.0);
+                AnchorPane.setLeftAnchor(PaneCalendar, 0.0);
+                AnchorPane.setBottomAnchor(PaneCalendar, 0.0);
+                
+
+                
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+                anchorPanePrincipal.getChildren().setAll(PaneCalendar);
+                
+            } catch (IOException e1) {
+    			e1.printStackTrace();
+    		}
+    		
+    	}
+    	else {
+    	
     	// carga el contenido de la ventana
     	FXMLLoader loaderEventos = new FXMLLoader(getClass().getResource("/application/VentanaEventos.fxml"));
     	//Se le asigna el controlador de la ventana para editar informacion de los guardias
@@ -392,17 +439,68 @@ public class ControladorVPrincipal {
             AnchorPane.setBottomAnchor(PaneCalendar, 0.0);
             
 
+            
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneCalendar);
+            
+            controlerEventos.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
+            controlerEventos.getGridPaneEventos().setStyle("-fx-background-color: #00aae4");
+           
+            
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+    	}
+    }
+
+    
+    @FXML
+    void cerrarSesionCliente(MouseEvent event) {
+    	
+    	if (logged == false) {
+    		
+    	}
+    	else {
+    	
+    	
+    	//Se carga el contenido de la ventana
+    	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
+    	
+    	this.usuario = "vacio";
+    	this.logged = false;
+    	
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
+        ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
+        loaderPrincipal.setController(controlerPrincipal);
+        AnchorPane PanePrincipal;
+
+		try {
+			//Se carga en un AnchorPane la ventana
+			PanePrincipal = (AnchorPane) loaderPrincipal.load();
+			
+			//Se elimina el contenido de la ventana padre
+        	anchorPanePrincipal.getChildren().clear();
+        	
+        	//Se ajusta el AnchorPane para que sea escalable
+            AnchorPane.setTopAnchor(PanePrincipal, 0.0);
+            AnchorPane.setRightAnchor(PanePrincipal, 0.0);
+            AnchorPane.setLeftAnchor(PanePrincipal, 0.0);
+            AnchorPane.setBottomAnchor(PanePrincipal, 0.0);
+            
+
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            anchorPanePrincipal.getChildren().setAll(PanePrincipal);
             
            
             
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+    	}
+    	
+    	
+    	
     }
-
-
     
     
     void abrirLogin() {
@@ -438,5 +536,8 @@ public class ControladorVPrincipal {
     	
     	
     }
+    
+    
+    
 
 }

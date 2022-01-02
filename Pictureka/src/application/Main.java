@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import java.util.Vector;
@@ -76,8 +77,9 @@ public class Main extends Application {
 			fill.play();
 			scale.play();
 			
-			
+			primaryStage.getIcons().add(new Image("Pictureka2.png"));
 			primaryStage.show();
+			
 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -86,6 +88,8 @@ public class Main extends Application {
 	
 
 	public static void main(String[] args) {
+		
+
 		launch(args);
 	}
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ButtonBar?>
@@ -42,48 +41,6 @@
                </items>
             </ToolBar>
          </bottom>
-         <top>
-            <ButtonBar fx:id="btnBarArriba" prefHeight="79.0" prefWidth="1156.0" style="-fx-background-color: #FAFAAF;" BorderPane.alignment="CENTER">
-              <buttons>
-                  <ImageView fx:id="imgViewLupa" fitHeight="43.0" fitWidth="69.0" onMouseClicked="#tocarLupa" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../Imagenes_Multimedia/lupa2.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <JFXTextField fx:id="txtField_busqueda" />
-                  <ImageView fx:id="imgCalendar" fitHeight="45.0" fitWidth="50.0" onMouseClicked="#verEventos" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../Imagenes_Multimedia/calendar-icon.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fx:id="imgTickets" fitHeight="53.0" fitWidth="64.0" onMouseClicked="#reservarTickets" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../Imagenes_Multimedia/Ticket-icon.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fx:id="imgUsuario" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../Imagenes_Multimedia/avatarNoRegistrado.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-              </buttons>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ButtonBar>
-         </top>
          <center>
             <ScrollPane fitToWidth="true" prefWidth="1191.0" BorderPane.alignment="CENTER">
                <content>
@@ -241,6 +198,56 @@
                </content>
             </ScrollPane>
          </center>
+         <top>
+            <GridPane fx:id="gridPaneEventos" prefHeight="80.0" style="-fx-background-color: FAFAAF;" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ButtonBar fx:id="btnBarArriba" prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="2">
+                     <buttons>
+                        <ImageView fx:id="imgCalendar" fitHeight="45.0" fitWidth="50.0" onMouseClicked="#verEventos" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/calendar-icon.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="imgTickets" fitHeight="53.0" fitWidth="64.0" onMouseClicked="#reservarTickets" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/Ticket-icon.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="imgUsuario" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/avatarNoRegistrado3.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </buttons>
+                  </ButtonBar>
+                  <ImageView fx:id="imgVolverAtrasEventos" fitHeight="55.0" fitWidth="55.0" onMouseClicked="#volverAtrasEventos" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Imagenes_Multimedia/volverAtras.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>

@@ -183,7 +183,7 @@ public class ControladorPerfil {
                 AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 controlerPrincipal.getLblBienvenido().setVisible(false);
-                controlerPrincipal.getBtnBarArriba().setStyle("-fx-background-color: #00aae4");
+                controlerPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
     	        controlerPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
 
 

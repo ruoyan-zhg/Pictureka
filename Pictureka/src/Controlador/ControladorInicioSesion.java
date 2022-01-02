@@ -135,7 +135,7 @@ public class ControladorInicioSesion {
     		        //Escondemos la ventana
     		        primaryStage.hide();
     		        controlVPrincipal.setLogged(true);
-    		        controlVPrincipal.getBtnBarArriba().setStyle("-fx-background-color: #00aae4");
+    		        controlVPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
     		        controlVPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
     		        controlVPrincipal.getLblBienvenido().setText("¡Bienvenido "+(textUsuario.getText())+"!");
     		        controlVPrincipal.getLblBienvenido().setStyle("-fx-background-color: #00aae4");

@@ -4,11 +4,13 @@ import java.time.LocalDate;
 
 public class modelo_Museo {
 	private Registro registro;
+	private Museo museo;
 	
 	
 	public modelo_Museo() {
 		Registro _registro = new Registro();
 		registro = _registro;
+		museo = new Museo();
 	}
 	public String registrarClientes(String usuario, String dni, String email, String Contrasenia,LocalDate fechaNacimiento) {
 		String estado = this.registro.registrarCliente(usuario, dni, email, Contrasenia, fechaNacimiento);
@@ -39,5 +41,29 @@ public class modelo_Museo {
 		
 		return registro.rDevolderStaff(usuario);
 	}
+	public void nuevaSala(int identificador) {
+		museo.MNuevaSala(identificador);
+	}
+	
+	
+	public Registro getRegistro() {
+		return registro;
+	}
+	public void setRegistro(Registro registro) {
+		this.registro = registro;
+	}
+	public Museo getMuseo() {
+		return museo;
+	}
+	public void setMuseo(Museo museo) {
+		this.museo = museo;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -73,6 +73,18 @@ public class Datos {
         }
 		
 	}
+	public void serializarVectorSalasAJson(Vector<Sala> salas) {
+		
+		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+		String representacionVisible = prettyGson.toJson(salas);
+		
+		try(FileWriter writer = new FileWriter("Salas.json")){
+			prettyGson.toJson(salas, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+	}
 	
 	
 	public Vector<Cliente> desserializarJsonAusuarios() {
@@ -119,6 +131,21 @@ public class Datos {
         }
 		
 		return staff;
+	}
+	
+	public Vector<Sala> desserializarJsonSalas() {
+		Vector<Sala> salas = new Vector<Sala>();
+		
+		try (Reader reader = new FileReader("Salas.json")) {
+			Gson gson = new Gson();
+			Type tipoListaSalas = new TypeToken<Vector<Sala>>(){}.getType();
+			salas = gson.fromJson(reader, tipoListaSalas);
+        } catch (IOException e) {
+            e.printStackTrace();
+            
+        }
+		
+		return salas;
 	}
 	
 }

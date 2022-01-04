@@ -1,0 +1,30 @@
+[
+  {
+    "identificador": 1,
+    "sensoresLuz": [],
+    "sensoresTemperatura": [],
+    "sensoresDistancia": [],
+    "eventos": []
+  },
+  {
+    "identificador": 2,
+    "sensoresLuz": [],
+    "sensoresTemperatura": [],
+    "sensoresDistancia": [],
+    "eventos": []
+  },
+  {
+    "identificador": 3,
+    "sensoresLuz": [],
+    "sensoresTemperatura": [],
+    "sensoresDistancia": [],
+    "eventos": []
+  },
+  {
+    "identificador": 4,
+    "sensoresLuz": [],
+    "sensoresTemperatura": [],
+    "sensoresDistancia": [],
+    "eventos": []
+  }
+]

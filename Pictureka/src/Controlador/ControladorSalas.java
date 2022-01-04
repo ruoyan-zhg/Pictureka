@@ -4,6 +4,9 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToolbar;
+
+import Modelo.Museo;
+import Modelo.Sala;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -67,18 +70,27 @@ public class ControladorSalas {
     private String usuario;
     
     boolean logged; //Este nos dira si la parsona esta logueada o no
+    
+    private Sala sala;
 	 
-	 public ControladorSalas(String usuario) {
+	 public ControladorSalas(String usuario, Sala _sala) {
 		 if (usuario == "vacio") {
 			 logged = false;
 		 }
 		 else {
 			 this.usuario = usuario;
 			 logged = true;
+			 this.sala = _sala;
 		 }
 		 
 	}
+	@FXML
+	public void initialize() {
+		Museo museo = new Museo();
+		textLuz.setText("Actualmente esta cargada la sala "+sala.getIdentificador());
+	}
 
+	 	
 	@FXML
 	void volverAtrasGuardia(MouseEvent event) {
 
@@ -156,4 +168,5 @@ public class ControladorSalas {
         }
 
     }
+    
 }

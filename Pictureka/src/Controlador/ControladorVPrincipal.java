@@ -2,10 +2,14 @@ package Controlador;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import org.controlsfx.control.PopOver;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -23,6 +27,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
+import javafx.stage.Stage;
 
 /**
  * 
@@ -360,8 +365,43 @@ public class ControladorVPrincipal {
     @FXML
     void mandarCorreo(ActionEvent event) {
     	
+    	//Se carga el contenido de la ventana
+    	FXMLLoader loaderPop = new FXMLLoader(getClass().getResource("/application/PopOverCorreo.fxml"));
+    	//Se le asigna el controlador de la ventana PopOver
+        ControladorPopOverCorreo controlerPop= new ControladorPopOverCorreo(usuario);
+        loaderPop.setController(controlerPop);
+        AnchorPane PopOverCorreo;
     	
-    }
+		if (logged == false) {
+			Alert error = new Alert(Alert.AlertType.ERROR);
+			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+    		error.showAndWait();
+        	abrirLogin();
+			
+		} else {
+
+			try {
+				// Se carga en un AnchorPane la ventana
+				PopOverCorreo = (AnchorPane) loaderPop.load();
+
+				// Se ajusta el AnchorPane para que sea escalable
+				AnchorPane.setTopAnchor(PopOverCorreo, 0.0);
+				AnchorPane.setRightAnchor(PopOverCorreo, 0.0);
+				AnchorPane.setLeftAnchor(PopOverCorreo, 0.0);
+				AnchorPane.setBottomAnchor(PopOverCorreo, 0.0);
+
+				// Se crea un PopOver al que se le asigna el anchorPane en el que hemos cargado
+				// nuestra ventana
+				PopOver popOver = new PopOver(PopOverCorreo);
+				// Se le dice que se muestre tal PopOver al pulsar el boton pasado por parametro
+				popOver.show(btnCorreo);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
 
     @FXML
     void mandarMensaje(ActionEvent event) {

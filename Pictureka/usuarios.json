@@ -22,5 +22,17 @@
       "month": 9,
       "day": 11
     }
+  },
+  {
+    "identificadorCliente": 1,
+    "usuario": "Lian",
+    "dni": "765403485Z",
+    "email": "lembaajosa@gmail.com",
+    "contrasenia": "lian123",
+    "fechaNacimiento": {
+      "year": 2002,
+      "month": 9,
+      "day": 30
+    }
   }
 ]

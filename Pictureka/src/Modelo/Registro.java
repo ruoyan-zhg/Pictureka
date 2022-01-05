@@ -37,30 +37,33 @@ public class Registro {
 		recuperarStaff();
 		String estado = "Validacion incompleta";
 		System.out.println("antes");
-		if (validarEmail(email)) {		//devuelve true si el email es valido
+		if (validarEmail(email)) { // devuelve true si el email es valido
 			System.out.println("email");
-			//Comprobamos si el email esta registrado en clientes y el staff
-			if (emailRepetido(email) && emailRepetidoStaff(email)){		//devuelve true si el email no ha sido registrado
+			// Comprobamos si el email esta registrado en clientes y el staff
+			if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido registrado
 				System.out.println("repemail");
-				if (usuarioRepetido(usuario)) {
-					System.out.println("add");
-					usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia, fechaNacimiento));
-					escribirUsuarios();
-					System.out.println(usuarios.size());
-					estado = "Validacion completada con exito";
+				if (dniRepetido(dni) && dniStaffRepetido(dni)) {
+					System.out.println("repedni");
+					if (usuarioRepetido(usuario)) {
+						System.out.println("add");
+						usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia, fechaNacimiento));
+						escribirUsuarios();
+						System.out.println(usuarios.size());
+						estado = "Validacion completada con exito";
+					} else {
+						estado = "Usuario ya registrado";
+					}
+				} else {
+					estado = "El dni introducido ya ha sido registrado";
 				}
-				else {
-					estado = "Usuario ya registrado";
-				}
-					
-			}else {
+
+			} else {
 				estado = "El email introducido ya ha sido registrado";
 			}
-		}
-		else{
+		} else {
 			estado = "El email introducido no es valido";
 		}
-		return estado;	
+		return estado;
 	}
 	public String registrarAdministrador(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
 			String apellido2, LocalDate fechaNacimiento) {
@@ -75,28 +78,31 @@ public class Registro {
 		 * 
 		 */
 		recuperarUsuarios();
-		recuperarStaff();;
+		recuperarStaff();
+
 		String estado = "Validacion incompleta";
-		if (validarEmail(email)) {		//devuelve true si el email es valido
-			if (emailRepetido(email) && emailRepetidoStaff(email)){		//devuelve true si el email no ha sido registrado
-				if (staffRepetido(usuario)) {
-					staff.addElement(new Administrador(usuario, dni, email, contrasenia, fechaNacimiento, nombre, apellido1,
-							 apellido2));
-					escribirStaff();
-					estado = "Validacion completada con exito";
+		if (validarEmail(email)) { // devuelve true si el email es valido
+			if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido registrado
+				if (dniRepetido(dni) && dniStaffRepetido(dni)) {
+					if (staffRepetido(usuario)) {
+						staff.addElement(new Administrador(usuario, dni, email, contrasenia, fechaNacimiento, nombre,
+								apellido1, apellido2));
+						escribirStaff();
+						estado = "Validacion completada con exito";
+					} else {
+						estado = "Usuario ya registrado";
+					}
+				} else {
+					estado = "El dni introducido ya ha sido registrado";
 				}
-				else {
-					estado = "Usuario ya registrado";
-				}	
-			}else {
+			} else {
 				estado = "El email introducido ya ha sido registrado";
 			}
-		}
-		else{
+		} else {
 			estado = "El email introducido no es valido";
 		}
-		return estado;	
-		
+		return estado;
+
 	}
 	public String registrarGuardia(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
 			String apellido2, LocalDate fechaNacimiento) {
@@ -120,14 +126,18 @@ public class Registro {
 
 			if (validarEmail(email)) { // devuelve true si el email es valido
 				if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido
-																			// registrado
-					if (staffRepetido(usuario)) {
-						staff.addElement(new Guardia(usuario, dni, email, contrasenia, fechaNacimiento, nombre,
-								apellido1, apellido2));
-						escribirStaff();
-						estado = "Validacion completada con exito";
+					if (dniRepetido(dni) && dniStaffRepetido(dni)) {
+
+						if (staffRepetido(usuario)) {
+							staff.addElement(new Guardia(usuario, dni, email, contrasenia, fechaNacimiento, nombre,
+									apellido1, apellido2));
+							escribirStaff();
+							estado = "Validacion completada con exito";
+						} else {
+							estado = "Usuario ya registrado";
+						}
 					} else {
-						estado = "Usuario ya registrado";
+						estado = "El dni introducido ya ha sido registrado";
 					}
 				} else {
 					estado = "El email introducido ya ha sido registrado";
@@ -252,6 +262,37 @@ public class Registro {
 		return noRepetido;
 	}
 	
+	
+	public boolean dniRepetido(String dni) {
+		
+		boolean noRepetido = true;
+		int contador = 0;
+		while (noRepetido != false && contador < usuarios.size()) {
+			if (usuarios.elementAt(contador).getDni().equals(dni)) {
+				noRepetido = false;	
+			}
+			contador++;
+		}
+
+		return noRepetido;
+	}
+	
+	public boolean dniStaffRepetido(String dni) {
+		
+		boolean noRepetido = true;
+		int contador = 0;
+		while (noRepetido != false && contador < staff.size()) {
+			if (staff.elementAt(contador).getDni().equals(dni)) {
+				noRepetido = false;	
+			}
+			contador++;
+		}
+
+		return noRepetido;
+	}
+	
+	
+	
 	public int rDevolderIdentificador(String usuario) {
 		recuperarUsuarios();
 		recuperarStaff();
@@ -282,7 +323,7 @@ public class Registro {
 		return sta;
 	}
 	
-	
+
 	
 	
 	//ESCRITURA Y LECTURA DE LOS CLIENTES

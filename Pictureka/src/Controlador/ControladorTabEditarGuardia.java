@@ -190,84 +190,28 @@ public class ControladorTabEditarGuardia {
 								staff.get(i).setUsuario(UsuarioNuevo);
 								System.out.println("Usuario no repetido");
 
-								// devuelve true si el email no esta repetidp
-								if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
-									System.out.println("Email no repetido");
+								// devuelve true si el dni no esta repetido
+								if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
+									staff.get(i).setDni(dniNuevo);
+									System.out.println("Dni no repetido");
 
-									// Valida el email nuevo
-									if (registro.validarEmail(emailNuevo)) {
-
-										staff.get(i).setEmail(emailNuevo);
-										System.out.println("Formato del email nuevo correcto");
-
-										// Modifica los valores restantes del vector
-										staff.get(i).setNombre(nombreNuevo);
-										staff.get(i).setApellido1(apellido1Nuevo);
-										staff.get(i).setApellido2(apellido2Nuevo);
-										staff.get(i).setDni(dniNuevo);
-										staff.get(i).setContrasenia(contraseniaNuevo);
-
-										// Sobreescribe el contenido del vector
-										registro.escribirStaffNuevo(staff);
-
-										informacion.setHeaderText("Cambios realizados con éxito.");
-										informacion.showAndWait();
-
-									} else {
-										error.setHeaderText("Formato de email incorrecto.");
-										error.showAndWait();
-										System.out.println("Formato del email nuevo incorrecto");
-									}
-
-								} else {
-									// Si el guardia mantiene su mismo email
-									if (staff.get(i).getEmail().equals(emailNuevo)) {
-										staff.get(i).setEmail(emailNuevo);
-										System.out.println("Mismo email del guardia");
-
-										staff.get(i).setNombre(nombreNuevo);
-										staff.get(i).setApellido1(apellido1Nuevo);
-										staff.get(i).setApellido2(apellido2Nuevo);
-										staff.get(i).setDni(dniNuevo);
-										staff.get(i).setContrasenia(contraseniaNuevo);
-
-										registro.escribirStaffNuevo(staff);
-
-										informacion.setHeaderText("Cambios realizados con éxito.");
-										informacion.showAndWait();
-
-									} else {
-										error.setHeaderText("Email ya registrado.");
-										error.showAndWait();
-										System.out.println("Email de otro guardia");
-									}
-
-								}
-
-							}
-
-							else {
-								// Si el guardia mantiene su mismo usuario
-								if (staff.get(i).getUsuario().equals(UsuarioNuevo)) {
-									staff.get(i).setUsuario(UsuarioNuevo);
-									System.out.println("Mismo usuario del guardia");
-
-									// devuelve true si el email del guardia no esta repetido
+									// devuelve true si el email no esta repetidp
 									if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
 										System.out.println("Email no repetido");
 
-										// Se valdida el nuevo email
+										// Valida el email nuevo
 										if (registro.validarEmail(emailNuevo)) {
 
 											staff.get(i).setEmail(emailNuevo);
 											System.out.println("Formato del email nuevo correcto");
 
+											// Modifica los valores restantes del vector
 											staff.get(i).setNombre(nombreNuevo);
 											staff.get(i).setApellido1(apellido1Nuevo);
 											staff.get(i).setApellido2(apellido2Nuevo);
-											staff.get(i).setDni(dniNuevo);
 											staff.get(i).setContrasenia(contraseniaNuevo);
 
+											// Sobreescribe el contenido del vector
 											registro.escribirStaffNuevo(staff);
 
 											informacion.setHeaderText("Cambios realizados con éxito.");
@@ -280,7 +224,7 @@ public class ControladorTabEditarGuardia {
 										}
 
 									} else {
-										// Si el email es el mismo del guardia
+										// Si el guardia mantiene su mismo email
 										if (staff.get(i).getEmail().equals(emailNuevo)) {
 											staff.get(i).setEmail(emailNuevo);
 											System.out.println("Mismo email del guardia");
@@ -296,6 +240,188 @@ public class ControladorTabEditarGuardia {
 											informacion.setHeaderText("Cambios realizados con éxito.");
 											informacion.showAndWait();
 
+										} else {
+											error.setHeaderText("Email ya registrado.");
+											error.showAndWait();
+											System.out.println("Email de otro guardia");
+										}
+
+									}
+								} else { //EL GUARDIA MANTIENE SU MISMO DNI
+									// si el guardia mantiene su mismo dni
+
+									if (staff.get(i).getDni().equals(dniNuevo)) {
+										staff.get(i).setEmail(dniNuevo);
+										System.out.println("Mismo dni del guardia");
+
+										if (registro.emailRepetido(emailNuevo)
+												&& registro.emailRepetidoStaff(emailNuevo)) {
+											System.out.println("Email no repetido");
+
+											if (registro.validarEmail(emailNuevo)) {
+												staff.get(i).setEmail(emailNuevo);
+												System.out.println("Formato del email nuevo correcto");
+
+												staff.get(i).setNombre(nombreNuevo);
+												staff.get(i).setApellido1(apellido1Nuevo);
+												staff.get(i).setApellido2(apellido2Nuevo);
+												staff.get(i).setContrasenia(contraseniaNuevo);
+
+												registro.escribirStaffNuevo(staff);
+
+												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.showAndWait();
+
+											} else {
+												error.setHeaderText("Formato de email incorrecto.");
+												error.showAndWait();
+												System.out.println("Formato del email nuevo incorrecto");
+											}
+
+										} else {
+											if (staff.get(i).getEmail().equals(emailNuevo)) {
+												staff.get(i).setEmail(emailNuevo);
+												System.out.println("Mismo email del guardia");
+												
+												staff.get(i).setNombre(nombreNuevo);
+												staff.get(i).setApellido1(apellido1Nuevo);
+												staff.get(i).setApellido2(apellido2Nuevo);
+												staff.get(i).setContrasenia(contraseniaNuevo);
+
+												registro.escribirStaffNuevo(staff);
+
+												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.showAndWait();
+												
+
+											} else {
+												error.setHeaderText("Email ya registrado.");
+												error.showAndWait();
+												System.out.println("Email de otro guardia");
+											}
+										}
+
+									} else {
+										error.setHeaderText("Dni ya registrado.");
+										error.showAndWait();
+										System.out.println("Dni de otro guardia");
+									}
+
+								}
+
+							}
+							
+							//EL GUARDIA MANTIENE SU MISMO USUARIO
+							else {
+								// Si el guardia mantiene su mismo usuario
+								if (staff.get(i).getUsuario().equals(UsuarioNuevo)) {
+									staff.get(i).setUsuario(UsuarioNuevo);
+									System.out.println("Mismo usuario del guardia");
+
+									// devuelve true si el email del guardia no esta repetido
+									if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
+										System.out.println("Email no repetido");
+
+										if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
+											System.out.println("Dni no repetido");
+											staff.get(i).setDni(dniNuevo);
+
+											// Se valdida el nuevo email
+											if (registro.validarEmail(emailNuevo)) {
+
+												staff.get(i).setEmail(emailNuevo);
+												System.out.println("Formato del email nuevo correcto");
+
+												staff.get(i).setNombre(nombreNuevo);
+												staff.get(i).setApellido1(apellido1Nuevo);
+												staff.get(i).setApellido2(apellido2Nuevo);
+												staff.get(i).setContrasenia(contraseniaNuevo);
+
+												registro.escribirStaffNuevo(staff);
+
+												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.showAndWait();
+
+											} else {
+												error.setHeaderText("Formato de email incorrecto.");
+												error.showAndWait();
+												System.out.println("Formato del email nuevo incorrecto");
+											}
+										} else {
+											// Si el dni es el mismo del guardia
+
+											if (staff.get(i).getDni().equals(dniNuevo)) {
+												staff.get(i).setDni(dniNuevo);
+												System.out.println("Mismo dni del guardia");
+
+												if (registro.validarEmail(emailNuevo)) {
+													staff.get(i).setEmail(emailNuevo);
+													System.out.println("Formato del email nuevo correcto");
+
+													staff.get(i).setNombre(nombreNuevo);
+													staff.get(i).setApellido1(apellido1Nuevo);
+													staff.get(i).setApellido2(apellido2Nuevo);
+													staff.get(i).setContrasenia(contraseniaNuevo);
+
+													registro.escribirStaffNuevo(staff);
+
+													informacion.setHeaderText("Cambios realizados con éxito.");
+													informacion.showAndWait();
+												} else {
+													error.setHeaderText("Formato de email incorrecto.");
+													error.showAndWait();
+													System.out.println("Formato del email nuevo incorrecto");
+												}
+
+											} else {
+												error.setHeaderText("Dni ya registrado.");
+												error.showAndWait();
+												System.out.println("Dni de otro guardia");
+											}
+
+										}
+										
+									} else {
+										// Si el email es el mismo del guardia
+										if (staff.get(i).getEmail().equals(emailNuevo)) {
+											staff.get(i).setEmail(emailNuevo);
+											System.out.println("Mismo email del guardia");
+
+											if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
+												System.out.println("Dni no repetido");
+
+												staff.get(i).setNombre(nombreNuevo);
+												staff.get(i).setApellido1(apellido1Nuevo);
+												staff.get(i).setApellido2(apellido2Nuevo);
+												staff.get(i).setDni(dniNuevo);
+												staff.get(i).setContrasenia(contraseniaNuevo);
+
+												registro.escribirStaffNuevo(staff);
+
+												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.showAndWait();
+
+											} else {
+												// Mismo dni del guardia
+												if (staff.get(i).getEmail().equals(dniNuevo)) {
+													staff.get(i).setDni(dniNuevo);
+
+													staff.get(i).setNombre(nombreNuevo);
+													staff.get(i).setApellido1(apellido1Nuevo);
+													staff.get(i).setApellido2(apellido2Nuevo);
+													staff.get(i).setContrasenia(contraseniaNuevo);
+
+													registro.escribirStaffNuevo(staff);
+
+													informacion.setHeaderText("Cambios realizados con éxito.");
+													informacion.showAndWait();
+
+												} else {
+													error.setHeaderText("Dni ya registrado.");
+													error.showAndWait();
+													System.out.println("Dni de otro guardia");
+												}
+											}
 										} else {
 											error.setHeaderText("Email ya registrado.");
 											error.showAndWait();

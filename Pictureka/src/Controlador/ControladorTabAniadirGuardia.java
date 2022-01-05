@@ -135,11 +135,13 @@ public class ControladorTabAniadirGuardia {
 			String validacion = "Validacion completada con exito";
 			String emailIncorrecto = "El email introducido no es valido";
 			String edadAceptable = "Rango de edad no aceptable";
+			String dniRepetido = "El dni introducido ya ha sido registrado";
 			
-			//Dependiendo del estado que devuelva el metodo registrarGuardias, se realizara una accion u otra
+			// Dependiendo del estado que devuelva el metodo registrarGuardias, se realizara
+			// una accion u otra
 			if (modelo.registrarGuardias(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
 					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(validacion)) {
-				//se muestra en la tabla al nuevo guardia
+				// se muestra en la tabla al nuevo guardia
 				this.controlerEdit.getTableView().getItems().add(new Guardia(usuarioNuevo, dniNuevo, emailNuevo,
 						contraseniaNuevo, fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
 				confirmacion.setHeaderText(validacion);
@@ -165,6 +167,11 @@ public class ControladorTabAniadirGuardia {
 					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(edadAceptable)) {
 
 				error.setHeaderText(edadAceptable);
+				error.showAndWait();
+
+			} else if (modelo.registrarGuardias(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
+					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(dniRepetido)) {
+				error.setHeaderText(dniRepetido);
 				error.showAndWait();
 
 			}

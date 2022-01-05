@@ -36,6 +36,9 @@ public class ControladorAdministrador {
 
 	 @FXML
 	 private LineChart<?, ?> tablaEntradas;
+	 
+	 @FXML
+	 private JFXToolbar ToolBarSensores;
 
 	 @FXML
 	 private ImageView imgEditarGuardias;
@@ -133,6 +136,13 @@ public class ControladorAdministrador {
         }
     	
     }
+    
+    @FXML
+    void mostrarInfoSensores(MouseEvent event) {
+    	
+    	
+    }
+    
 
     @FXML
     void cerrarSesion(MouseEvent event) {

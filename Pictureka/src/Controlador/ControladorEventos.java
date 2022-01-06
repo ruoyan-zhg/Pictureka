@@ -154,10 +154,10 @@ public class ControladorEventos {
   	@FXML
   	public void initialize() {
   		//Se añaden al ArrayList las imagenes que queremos que se muestren
-  		imagenes.add(new Image("/MonaLisa.jpg"));
+  		imagenes.add(new Image("/sorolla.jpg"));
   	 	imagenes.add(new Image("/Dali.jpg"));
-  	 	imagenes.add(new Image("/Sixtina.jpg"));
-  	 	imagenes.add(new Image("/scream.jpg"));
+  	 	imagenes.add(new Image("/monet.jpg"));
+  	 	imagenes.add(new Image("/seurat.jpg"));
   	 	imagenes.add(new Image("/VanGogh.jpg"));
   	 	imagenes.add(new Image("/people.jpg"));
   	 	

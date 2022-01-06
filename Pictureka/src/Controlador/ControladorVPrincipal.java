@@ -57,6 +57,9 @@ public class ControladorVPrincipal {
 
     @FXML
     private Button btnMensaje;
+    
+    @FXML
+    private GridPane gridPaneRegion;
 
     @FXML
     private ImageView imgView_BtnFlecha1;
@@ -137,10 +140,10 @@ public class ControladorVPrincipal {
 	 */
 	public void initialize() {
 		//Se añaden al ArrayList las imagenes que queremos que se muestren
-		imagenes.add(new Image("/MonaLisa.jpg"));
+		imagenes.add(new Image("/sorolla.jpg"));
 	 	imagenes.add(new Image("/Dali.jpg"));
-	 	imagenes.add(new Image("/Sixtina.jpg"));
-	 	imagenes.add(new Image("/scream.jpg"));
+	 	imagenes.add(new Image("/monet.jpg"));
+	 	imagenes.add(new Image("/seurat.jpg"));
 	 	imagenes.add(new Image("/VanGogh.jpg"));
 	 	imagenes.add(new Image("/people.jpg"));
 	 	
@@ -177,6 +180,8 @@ public class ControladorVPrincipal {
 	 	
 	}
 	
+
+
 	//Contadores que indicaran como un puntero las imagenes que se muestran en los imgviews del image slider
 	int count = 0;
 	int countDos = 1;
@@ -202,7 +207,12 @@ public class ControladorVPrincipal {
 	public Label getLblBienvenido() {
 		return lblBienvenido;
 	}
-	
+	public GridPane getGridPaneRegion() {
+		return gridPaneRegion;
+	}
+	public void setGridPaneRegion(GridPane gridPaneRegion) {
+		this.gridPaneRegion = gridPaneRegion;
+	}
 	
     
     

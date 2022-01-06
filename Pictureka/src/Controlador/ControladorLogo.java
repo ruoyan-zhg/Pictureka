@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -61,6 +62,7 @@ public class ControladorLogo {
 	        stage.setMinHeight(900);
 	        stage.setMinWidth(950);
             stage.show();
+            stage.getIcons().add(new Image("Pictureka2.png"));
             
             
             //Obtenemos la ventanaLogo

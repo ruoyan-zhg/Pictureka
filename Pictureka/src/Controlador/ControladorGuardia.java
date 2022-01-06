@@ -73,7 +73,12 @@ public class ControladorGuardia {
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
     
-	 
+	 /**
+	  * 
+	  * Constructor de la calse <b>ControladorGuardia</b> que guarda la información del usuario.
+	  * 
+	  * @param usuario		Información del usuario que se encuentra iniciado sesión.
+	  */
 	 public ControladorGuardia(String usuario) {
 		 if (usuario == "vacio") {
 			 logged = false;
@@ -88,6 +93,12 @@ public class ControladorGuardia {
 	}
 
     @FXML
+    /**
+     * 
+     * Muestra la ventana Perfil, donde el guarda puede visualizar su información personal.
+     * 
+     *@param event		Evento causado cuando el guardia pulsa sobre su avatar.
+     */
     void accederPerfil(MouseEvent event) {
     	if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
@@ -136,6 +147,12 @@ public class ControladorGuardia {
     }
 
     @FXML
+    /**
+     * 
+     * Devuelve al guardia a la ventana principal, cerrando su sesión actual.
+     * 
+     * @param event		Evento causado cuando el guardia pulsa sobre la imagen de cerrar sesión.
+     */
     void cerrarSesion(MouseEvent event) {
     	
     	//Se carga el contenido de la ventana
@@ -174,6 +191,12 @@ public class ControladorGuardia {
     }
 
     @FXML
+    /**
+     * 
+     * Muestra la ventana de la Sala 1, mostrando la información de los diferentes sensores.
+     * 
+     * @param event		Evento causado cuando el guardia pulsa sobre la imagen de la primera sala.
+     */
     void sala1(MouseEvent event) {
     	modelo_Museo museo = new modelo_Museo();
     	Sala temporal = museo.getMuseo().recuperar1Salas(1);
@@ -219,6 +242,12 @@ public class ControladorGuardia {
 
 
 	@FXML
+	/**
+	 * 
+	 * Muestra la ventana de la Sala 2, mostrando la información de los diferentes sensores.
+	 * 
+	 * @param event		Evento causado cuando el guardia pulsa sobre la imagen de la segunda sala.
+	 */
     void sala2(MouseEvent event) {
 		modelo_Museo museo = new modelo_Museo();
     	Sala temporal = museo.getMuseo().recuperar1Salas(2);
@@ -263,6 +292,12 @@ public class ControladorGuardia {
     }
 
     @FXML
+    /**
+     * 
+     * Muestra la ventana de la Sala 3, mostrando la información de los diferentes sensores.
+     * 
+     *@param event		Evento causado cuando el guardia pulsa sobre la imagen de la tercera sala.
+     */
     void sala3(MouseEvent event) {
     	
     	modelo_Museo museo = new modelo_Museo();
@@ -307,6 +342,12 @@ public class ControladorGuardia {
     }
 
     @FXML
+    /**
+     * 
+     * Muestra la ventana de la Sala 4, mostrando la información de los diferentes sensores.
+     * 
+     * @param event		Evento causado cuando el guardia pulsa sobre la imagen de la cuarta sala.
+     */
     void sala4(MouseEvent event) {
     	
     	modelo_Museo museo = new modelo_Museo();
@@ -351,10 +392,22 @@ public class ControladorGuardia {
     }
 
     @FXML
+    /**
+     * 
+     * Método que valida un ticket de un cliente. Se introduce el identificador del ticket y se comprueba que sea válido.
+     * 
+     * @param event		Evento causado cuando el guardia pulsa sobre la imagen para validar el ticket.
+     */
     void validarTicket(MouseEvent event) {
-
+    	
+    	
     }
-
+    
+    /**
+     * 
+     * Método que muestra un error al guardia sobre la sala.
+     * 
+     */
     private void mostrarErrorSala() {
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	error.setHeaderText("La sala no esta disponible");

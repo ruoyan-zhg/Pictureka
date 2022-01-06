@@ -108,7 +108,12 @@ public class ControladorVPrincipal {
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
 	 
-    
+    /**
+     * 
+     * Constructor de la clase <b>ControladorVPrincipal</b> que guarda la información del usuario.
+     * 
+     * @param usuario	El usuario que esté inciado sesión en ese momento.
+     */
 	 public ControladorVPrincipal(String usuario) {
 		 if (usuario == "vacio") {
 			 logged = false;
@@ -125,8 +130,13 @@ public class ControladorVPrincipal {
 	 ArrayList<Image> imagenes = new ArrayList<Image>();
  	
 	@FXML
+	/**
+	 * 
+	 * Método que inicializa ciertos elementos de la ventana cada vez que es desplegada.
+	 * 
+	 */
 	public void initialize() {
-		//Se aï¿½aden al ArrayList las imagenes que queremos que se muestren
+		//Se añaden al ArrayList las imagenes que queremos que se muestren
 		imagenes.add(new Image("/MonaLisa.jpg"));
 	 	imagenes.add(new Image("/Dali.jpg"));
 	 	imagenes.add(new Image("/Sixtina.jpg"));
@@ -145,21 +155,25 @@ public class ControladorVPrincipal {
 	 	regionImg.setBackground(new Background(new BackgroundFill(new ImagePattern(horario), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	regionMuseo.setBackground(new Background(new BackgroundFill(new ImagePattern(museo), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	
+	 	//Label que muestra un mensaje de bienvenida al usuario
 	 	lblBienvenido.setVisible(true);
 	 	
-	 	Tooltip correo = new Tooltip("Correo");
+	 	//Mensajes emergentes con la informacion de contacto del museo
+	 	Tooltip correo = new Tooltip("Dirección de correo: \npicturekasfw@gmail.com");
 	 	btnCorreo.setTooltip(correo);
 	 	
-	 	Tooltip mensaje = new Tooltip("Mensaje");
+	 	Tooltip mensaje = new Tooltip("Número de mensaje: \n2309");
 	 	btnMensaje.setTooltip(mensaje);
 	 	
-	 	Tooltip contacto = new Tooltip("Contacto");
+	 	Tooltip contacto = new Tooltip("Número de contacto: \n608693411");
 	 	btnContacto.setTooltip(contacto);
 	 	
-	 	
+	 	//Comprobacion para mostrar el boton de cierre de sesion, si un usuario se encuentra registrado
 	 	if (logged==false) {
 	 		imgCerrarSesionCliente.setVisible(false);
 	 	}
+	 	
+	 	
 	 	
 	}
 	
@@ -364,6 +378,12 @@ public class ControladorVPrincipal {
     }
 
     @FXML
+    /**
+     * 
+     * Ofrece la posibilidad de mandar emails al email del museo.
+     * 
+     * @param event		Evento causado cuando el usuario pulsa sobre el botón del correo.
+     */
     void mandarCorreo(ActionEvent event) {
     	
     	//Se carga el contenido de la ventana
@@ -418,6 +438,12 @@ public class ControladorVPrincipal {
 
 
     @FXML
+    /**
+     * 
+     * Muestra la ventana de eventos, en la que se puede visualizar la informacion respectiva a cada evento.
+     * 
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen del calendario.
+     */
     void verEventos(MouseEvent event) {
     	
     	if (logged==false) {
@@ -496,6 +522,12 @@ public class ControladorVPrincipal {
 
     
     @FXML
+    /**
+     * 
+     * Devuelve al usuario a la ventana principal habiendo cerrado su sesión.
+     * 
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para cerrar sesión.
+     */
     void cerrarSesionCliente(MouseEvent event) {
     	
     	if (logged == false) {
@@ -543,7 +575,11 @@ public class ControladorVPrincipal {
     	
     }
     
-    
+    /**
+     * 
+     * Muestra la ventana de Login inmediatamente sin que el usuario pulse ningún botón.
+     * 
+     */
     void abrirLogin() {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));

@@ -18,6 +18,7 @@ import Modelo.Cliente;
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 
 public class ControladorPopOverCorreo {
@@ -115,10 +116,12 @@ public class ControladorPopOverCorreo {
             // Now set the actual message
             message.setText(cuerpoEmail);
 
-            System.out.println("sending...");
+            
             // Send message
             Transport.send(message);
-            System.out.println("Sent message successfully....");
+            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmacion.setHeaderText("El email se envió correctamente");
+            confirmacion.showAndWait();
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }

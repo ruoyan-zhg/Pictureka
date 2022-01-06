@@ -17,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -195,6 +196,16 @@ public class ControladorEventos {
   	 	txtAreaDos.setText(eventos.elementAt(1).getInformacion());
   	 	txtAreaTres.setText(eventos.elementAt(2).getInformacion());
   	 	txtAreaCuatro.setText(eventos.elementAt(3).getInformacion());
+  	 	
+  	 	//Mensajes emergentes con la informacion de contacto del museo
+	 	Tooltip correo = new Tooltip("Dirección de correo: \npicturekasfw@gmail.com");
+	 	btnCorreo.setTooltip(correo);
+	 	
+	 	Tooltip mensaje = new Tooltip("Número de mensaje: \n2309");
+	 	btnMensaje.setTooltip(mensaje);
+	 	
+	 	Tooltip contacto = new Tooltip("Número de contacto: \n608693411");
+	 	btnContacto.setTooltip(contacto);
   	 	
   	 	
   	}

@@ -3,10 +3,14 @@ package Controlador;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Vector;
 
 import com.jfoenix.controls.JFXButton;
 
+import Modelo.Cliente;
+import Modelo.Datos;
 import Modelo.Guardia;
+import Modelo.Registro;
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,6 +74,12 @@ public class ControladorInicioSesion {
     
 
     @FXML
+    /**
+     * 
+     * Vuelve a la ventana principal, cancelando el inicio de sesión del usuario.
+     * 
+     * @param event		Evento causado cuando el usaurio pulsa sobre la imagen de vovler atrás.
+     */
     void volverAtras(MouseEvent event) {
     	
     	//Cargamos la ventana principal 
@@ -129,15 +139,29 @@ public class ControladorInicioSesion {
     		        stage.setMinHeight(900);
     		        stage.setMinWidth(950);
     		        stage.show();
+    		        stage.getIcons().add(new Image("Pictureka2.png"));
     		        
     		        //Obtenemos la ventanaLogo
     		        Stage primaryStage = (Stage)btnInicioSesion.getScene().getWindow();
     		        //Escondemos la ventana
     		        primaryStage.hide();
+    		        //Cargamos los datos en un vector de clientes
+    		        Datos datos = new Datos();
+    		        String nombreUsuario = "";
+    		        Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
+    		        //Recorremos el vector para encontrar al usuario que esta iniciando sesion
+    		        for (int i=0; i<clientes.size(); i++) {
+    		        	//Si el usuario introducido por el cliente es igual a un email o un nombre de usuario, se ha encontrado al cliente
+    		        	if (clientes.get(i).getEmail().equals(textUsuario.getText()) | clientes.get(i).getUsuario().equals(textUsuario.getText())) {
+    		        		//Se guarda su nombre para mostrarlo en el Label de bienvenida
+    		        		nombreUsuario = clientes.get(i).getUsuario();
+    		        	}
+    		        }
+    		        
     		        controlVPrincipal.setLogged(true);
     		        controlVPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
     		        controlVPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
-    		        controlVPrincipal.getLblBienvenido().setText("¡Bienvenido "+(textUsuario.getText())+"!");
+    		        controlVPrincipal.getLblBienvenido().setText("¡Bienvenid@ "+(nombreUsuario)+"!");
     		        controlVPrincipal.getLblBienvenido().setStyle("-fx-background-color: #00aae4");
     		        
     		        
@@ -167,6 +191,7 @@ public class ControladorInicioSesion {
 		        stage.setMinHeight(900);
 		        stage.setMinWidth(950);
 		        stage.show();
+		        stage.getIcons().add(new Image("Pictureka2.png"));
 		        
 		        //Obtenemos la ventanaLogo
 		        Stage primaryStage = (Stage)btnInicioSesion.getScene().getWindow();
@@ -202,6 +227,7 @@ public class ControladorInicioSesion {
 		        stage.setMinHeight(900);
 		        stage.setMinWidth(950);
 		        stage.show();
+		        stage.getIcons().add(new Image("Pictureka2.png"));
 		        
 		        //Obtenemos la ventanaLogo
 		        Stage primaryStage = (Stage)btnInicioSesion.getScene().getWindow();
@@ -223,6 +249,12 @@ public class ControladorInicioSesion {
 
 
 	@FXML
+	/**
+	 * 
+	 * Muestra la ventana de Registro donde el usuario debe rellenar los campos necesarios para crearse un usuario en la aplicación.
+	 * 
+	 * @param event		Evento causado cuando el usuario pulsa sobre el botón de Registrarse.
+	 */
     void Registrarse(ActionEvent event) {
     	
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaRegistro.fxml"));

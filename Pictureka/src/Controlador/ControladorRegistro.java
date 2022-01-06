@@ -80,6 +80,12 @@ public class ControladorRegistro {
     private PasswordField textFieldRepeatPassword;
 
     @FXML
+    /**
+     * 
+     * Cancela el registro del usuario y devuelve la ventana de inicio de sesión.
+     * 
+     * @param event		Evento causado cuando el usuario pulsa sobre el botón de Cancelar.
+     */
     void CancelRegistro(ActionEvent event) {
 
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
@@ -99,44 +105,38 @@ public class ControladorRegistro {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-        
-        /*
-        Parent root;
-		try {
-			root = loaderApp.load();
-	        Stage stage = new Stage();
-	        stage.setScene(new Scene(root));
-	        stage.show();
-	        
-	        //Obtenemos la ventanaLogo
-	        Stage primaryStage = (Stage)btnCancelRegistro.getScene().getWindow();
-	        //Escondemos la ventana
-	        primaryStage.hide();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
     }
 
     @FXML
+    /**
+     * 
+     * Método que recoge los datos introducidos por el usuario en los diferentes JTextFields. Se comprueba que la información sea válida,
+     * y una vez lo sea, se registra el usuario, escribiéndose en el Json de "usuarios".
+     * 
+     * @param event		Evento causado cuando el usaurio pulsa sobre el botón de Registrar.
+     */
     void RegistrarUsuario(ActionEvent event) {
 
     	modelo_Museo museo = new modelo_Museo();
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
+    	
     	String estado;
+    	//Se obtienen las contraseñas escritas
     	String contrasenia = txtFieldPassword.getText();
     	String repetirContrasenia = textFieldRepeatPassword.getText();
-    	LocalDate fechaNuevo = chooserCalendario.getValue(); 
+    	LocalDate fechaNuevo = chooserCalendario.getValue();
+    	//Se comprueba que ninguno de los campos este vacio
     	if(!(textUsuarioRegistro.getText().isEmpty() | textDni.getText().isEmpty() | textCorreoElectronico.getText().isEmpty() | contrasenia.isEmpty()
 				| repetirContrasenia.isEmpty() |(fechaNuevo == null) )) {
-    		
+    			
+    			//Se comprueba que la fecha de nacimiento se encuentre entre un rango aceptable
         		LocalDate fecha = LocalDate.now();
             	Period periodo = Period.between(chooserCalendario.getValue(), fecha);
         		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
+        			//Se comrpueba que las contraseñas sean iguales
             		if(contrasenia.equals(repetirContrasenia)&&!(contrasenia.equals(""))&&!(contrasenia.equals(" "))) {
+            			//Se registra el usuario
                 		estado = museo.registrarClientes(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), txtFieldPassword.getText(), chooserCalendario.getValue());
                 		
                 		if (estado.equals("Validacion completada con exito")) {

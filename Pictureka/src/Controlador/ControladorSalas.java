@@ -76,6 +76,7 @@ public class ControladorSalas {
 	 public ControladorSalas(String usuario, Sala _sala) {
 		 if (usuario == "vacio") {
 			 logged = false;
+			 this.usuario = usuario;
 		 }
 		 else {
 			 this.usuario = usuario;

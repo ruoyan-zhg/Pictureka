@@ -103,6 +103,7 @@ public class ControladorEditGuardias {
 	 public ControladorEditGuardias(String usuario) {
 		 if (usuario == "vacio") {
 			 logged = false;
+			 this.usuario = usuario;
 		 }
 		 else {
 			 this.usuario = usuario;

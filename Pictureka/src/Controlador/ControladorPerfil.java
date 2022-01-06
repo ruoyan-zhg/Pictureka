@@ -98,6 +98,7 @@ public class ControladorPerfil {
 	 public ControladorPerfil(String usuario)  {
 		 if (usuario == "vacio") {
 			 logged = false;
+			 this.usuario = usuario;
 			 Alert error = new Alert(Alert.AlertType.ERROR);
 			 error.setHeaderText("Error: PROGRAMADOR UN USUARIO NO DEBERIA VER SUS CREDENCIALES SIN HABER INICIADO SESION");
 			 error.show();

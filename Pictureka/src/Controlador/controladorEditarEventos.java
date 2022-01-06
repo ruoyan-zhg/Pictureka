@@ -74,6 +74,7 @@ import javafx.stage.FileChooser;
 		 public controladorEditarEventos(String usuario) {
 			 if (usuario == "vacio") {
 				 logged = false;
+				 this.usuario = usuario;
 			 }
 			 else {
 				 this.usuario = usuario;

@@ -66,6 +66,7 @@ public class ControladorAdministrador {
 	 public ControladorAdministrador(String usuario) {
 		 if (usuario == "vacio") {
 			 logged = false;
+			 this.usuario = usuario;
 		 }
 		 else {
 			 this.usuario = usuario;

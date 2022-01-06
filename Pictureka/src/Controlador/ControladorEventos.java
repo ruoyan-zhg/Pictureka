@@ -124,6 +124,7 @@ public class ControladorEventos {
 	 public ControladorEventos(String usuario) {
 		 if (usuario == "vacio") {
 			 logged = false;
+			 this.usuario = usuario;
 		 }
 		 else {
 			 this.usuario = usuario;
@@ -358,7 +359,7 @@ public class ControladorEventos {
 		FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
 		// Se le asigna el controlador de la ventana para editar información de los
 		// guardias
-
+		System.out.println(usuario);
 		ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
 		loaderPrincipal.setController(controlerPrincipal);
 		AnchorPane PaneVentanaPrincipal;

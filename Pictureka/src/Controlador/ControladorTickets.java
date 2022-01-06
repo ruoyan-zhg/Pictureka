@@ -70,6 +70,7 @@ public class ControladorTickets {
 	 public ControladorTickets(String usuario) {
 		 if (usuario == "vacio") {
 			 logged = false;
+			 this.usuario = usuario;
 		 }
 		 else {
 			 this.usuario = usuario;

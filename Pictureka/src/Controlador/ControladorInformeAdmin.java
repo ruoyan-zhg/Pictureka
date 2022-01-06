@@ -53,6 +53,7 @@ public class ControladorInformeAdmin {
 	 public ControladorInformeAdmin(String usuario) {
 		 if (usuario == "vacio") {
 			 logged = false;
+			 this.usuario = usuario;
 		 }
 		 else {
 			 this.usuario = usuario;

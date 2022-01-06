@@ -4,12 +4,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import org.controlsfx.control.PopOver;
+
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -34,13 +39,13 @@ public class ControladorEventos {
     private BorderPane BordPanePrincipal;
 
     @FXML
-    private ImageView btnContacto;
+    private Button btnContacto;
 
     @FXML
-    private ImageView btnCorreo;
+    private Button btnCorreo;
 
     @FXML
-    private ImageView btnMensaje;
+    private Button btnMensaje;
 
     @FXML
     private ImageView imgView_BtnFlecha1;
@@ -218,18 +223,22 @@ public class ControladorEventos {
     @FXML
     void accederPerfil(MouseEvent event) {
     	
+    	
     	if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
 			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
     		error.showAndWait();
+    		abrirLogin();
+    		
+    		
         	
         }
         else {
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
         	//Se le asigna el controlador de la ventana para editar información de los guardias
-            ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
-            loaderPrincipala.setController(controlerPrincipal);
+            ControladorPerfil controlerPerfil = new ControladorPerfil(usuario);
+            loaderPrincipala.setController(controlerPerfil);
             AnchorPane PaneVentanaPrincipal;
 
     		try {
@@ -319,32 +328,133 @@ public class ControladorEventos {
     }
 
     @FXML
-    void mandarCorreo1(MouseEvent event) {
+    void mandarCorreo(ActionEvent event) {
+    	
+    	//Se carga el contenido de la ventana
+    	FXMLLoader loaderPop = new FXMLLoader(getClass().getResource("/application/PopOverCorreo.fxml"));
+    	//Se le asigna el controlador de la ventana PopOver
+        ControladorPopOverCorreo controlerPop= new ControladorPopOverCorreo(usuario);
+        loaderPop.setController(controlerPop);
+        AnchorPane PopOverCorreo;
+    	
+		if (logged == false) {
+			Alert error = new Alert(Alert.AlertType.ERROR);
+			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+    		error.showAndWait();
+        	abrirLogin();
+			
+		} else {
+
+			try {
+				// Se carga en un AnchorPane la ventana
+				PopOverCorreo = (AnchorPane) loaderPop.load();
+
+				// Se ajusta el AnchorPane para que sea escalable
+				AnchorPane.setTopAnchor(PopOverCorreo, 0.0);
+				AnchorPane.setRightAnchor(PopOverCorreo, 0.0);
+				AnchorPane.setLeftAnchor(PopOverCorreo, 0.0);
+				AnchorPane.setBottomAnchor(PopOverCorreo, 0.0);
+
+				// Se crea un PopOver al que se le asigna el anchorPane en el que hemos cargado
+				// nuestra ventana
+				PopOver popOver = new PopOver(PopOverCorreo);
+				// Se le dice que se muestre tal PopOver al pulsar el boton pasado por parametro
+				popOver.show(btnCorreo);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+    @FXML
+    void mandarMensaje(ActionEvent event) {
 
     }
 
     @FXML
-    void mandarMensaje1(MouseEvent event) {
-
-    }
-
-    @FXML
-    void mostrarContacto1(MouseEvent event) {
+    void mostrarContacto(ActionEvent event) {
 
     }
 
     @FXML
     void reservarTickets(MouseEvent event) {
     	
-    	if(logged == false) {
+    	//Se carga el contenido de la ventana
+    	FXMLLoader loaderTickets = new FXMLLoader(getClass().getResource("/application/VentanaTickets.fxml"));
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
+        ControladorTickets controlerTickets = new ControladorTickets(usuario);
+        loaderTickets.setController(controlerTickets);
+        AnchorPane PaneTickets;
+        System.out.println(logged);
+        
+        if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
 			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
     		error.showAndWait();
+        	abrirLogin();
         	
         }
         else {
-        	
+        	 try {
+     			//Se carga en un AnchorPane la ventana
+     			PaneTickets = (AnchorPane) loaderTickets.load();
+     			
+     			//Se elimina el contenido de la ventana padre
+             	anchorPanePrincipal.getChildren().clear();
+             	
+             	//Se ajusta el AnchorPane para que sea escalable
+                 AnchorPane.setTopAnchor(PaneTickets, 0.0);
+                 AnchorPane.setRightAnchor(PaneTickets, 0.0);
+                 AnchorPane.setLeftAnchor(PaneTickets, 0.0);
+                 AnchorPane.setBottomAnchor(PaneTickets, 0.0);
+            
+                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+                 anchorPanePrincipal.getChildren().setAll(PaneTickets);
+                 
+                
+                 
+     		} catch (IOException e) {
+     			e.printStackTrace();
+     		}
         }
+       
+
+    	
+    }
+    
+    void abrirLogin() {
+    	//Se carga el contenido de la ventana
+    	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
+        ControladorInicioSesion controlerInicio = new ControladorInicioSesion();
+        loaderApp.setController(controlerInicio);
+        AnchorPane PaneInicioSesion;
+
+		try {
+			//Se carga en un AnchorPane la ventana
+			PaneInicioSesion = (AnchorPane) loaderApp.load();
+			
+			//Se elimina el contenido de la ventana padre
+        	anchorPanePrincipal.getChildren().clear();
+        	
+        	//Se ajusta el AnchorPane para que sea escalable
+            AnchorPane.setTopAnchor(PaneInicioSesion, 0.0);
+            AnchorPane.setRightAnchor(PaneInicioSesion, 0.0);
+            AnchorPane.setLeftAnchor(PaneInicioSesion, 0.0);
+            AnchorPane.setBottomAnchor(PaneInicioSesion, 0.0);
+            
+
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            anchorPanePrincipal.getChildren().setAll(PaneInicioSesion);
+            
+           
+            
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+    	
     	
     }
 

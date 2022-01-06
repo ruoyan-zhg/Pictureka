@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.time.LocalDate;
+import java.util.Vector;
 
 public class Cliente { 
 
@@ -10,6 +11,7 @@ public class Cliente {
 	private String email;
 	private String contrasenia;
 	private LocalDate fechaNacimiento;
+	private Vector<Tickets> tickets;
 	
 	
 	//Constructores
@@ -84,5 +86,14 @@ public class Cliente {
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+
+	public Vector<Tickets> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(Vector<Tickets> tickets) {
+		this.tickets = tickets;
+	}
+	
 	
 }

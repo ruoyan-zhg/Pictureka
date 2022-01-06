@@ -9,7 +9,8 @@
       "year": 1998,
       "month": 5,
       "day": 28
-    }
+    },
+    "tickets": []
   },
   {
     "identificadorCliente": 1,
@@ -21,7 +22,8 @@
       "year": 1985,
       "month": 9,
       "day": 11
-    }
+    },
+    "tickets": []
   },
   {
     "identificadorCliente": 1,
@@ -33,6 +35,21 @@
       "year": 2002,
       "month": 9,
       "day": 30
-    }
+    },
+    "tickets": []
+    
+  },
+  {
+    "identificadorCliente": 1,
+    "usuario": "Lie27",
+    "dni": "vs89571",
+    "email": "jojo@gmail.com",
+    "contrasenia": "25738",
+    "fechaNacimiento": {
+      "year": 2001,
+      "month": 8,
+      "day": 27
+    },
+    "tickets": []
   }
 ]

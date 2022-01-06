@@ -15,13 +15,14 @@ public class Cliente {
 	
 	
 	//Constructores
-	public Cliente(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento) {
+	public Cliente(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento, Vector<Tickets> tiquetes) {
 		this.identificadorCliente = 1;
 		this.usuario = usuario;
 		this.dni = dni;
 		this.email = email;
 		this.contrasenia = contrasenia;
 		this.fechaNacimiento = fechaNacimiento;
+		this.tickets=tiquetes;
 
 	}
 

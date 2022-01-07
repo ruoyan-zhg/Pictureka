@@ -16,5 +16,11 @@
     "titulo": "3ra prueba",
     "cuerpo": "Todo correcto en los informes",
     "fecha": "2022-01-07"
+  },
+  {
+    "autor": "Paula",
+    "titulo": "Prueba desde Guardia",
+    "cuerpo": "Probando que un guardia envie un informe",
+    "fecha": "2022-01-07"
   }
 ]

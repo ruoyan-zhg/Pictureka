@@ -1,14 +1,18 @@
 package Controlador;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Vector;
 
 import com.jfoenix.controls.JFXTextField;
 
+import Modelo.Informe;
 import Modelo.Sala;
 import Modelo.modelo_Museo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -143,7 +147,32 @@ public class ControladorGuardia {
     
     @FXML
     void enviar(MouseEvent event) {
-
+    	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
+		Alert error = new Alert(Alert.AlertType.ERROR);
+    	if(!(tituloInforme.getText().isEmpty() | cuerpoInforme.getText().isEmpty() )) {
+    		if(cuerpoInforme.getText().matches("^.{20,}")) {
+    			modelo_Museo museo = new modelo_Museo();
+    			String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
+    			try {
+    				museo.getRegistro().escribirInforme(nombre, tituloInforme.getText(), cuerpoInforme.getText());
+    				confirmacion.setHeaderText("Informe guardado con exito");
+        			confirmacion.show();
+    			}
+    			catch(FileNotFoundException e){
+    				error.setHeaderText("Archivo no encontrado!");
+            		error.show();
+    			}
+    			
+    		}
+    		else {
+        		error.setHeaderText("Porfavor el cuerpo del informe debe ser mayor a 20 caracteres");
+        		error.show();
+    		}
+    	}
+    	else {
+    		error.setHeaderText("Porfavor rellene los campos del informe!");
+    		error.show();
+    	}
     }
 
     @FXML
@@ -414,5 +443,7 @@ public class ControladorGuardia {
 		error.show();
 		
 	}
-
+    
+  
+	
 }

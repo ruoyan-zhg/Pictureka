@@ -126,47 +126,64 @@
                         </GridPane>
                      </right>
                   </BorderPane>
-                  <JFXToolbar fx:id="ToolBarSensores" onMouseClicked="#mostrarInfoSensores" style="-fx-background-color: #FF8000;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <left>
-                        <ImageView fx:id="imgTemperatura" fitHeight="195.0" fitWidth="310.0" onMouseClicked="#SensorTemperatura" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                           <image>
-                              <Image url="@../../Imagenes_Multimedia/temperatura.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                        </ImageView>
-                     </left>
-                     <right>
-                        <ImageView fx:id="imgDistancia" fitHeight="230.0" fitWidth="253.0" onMouseClicked="#SensorDistancia" pickOnBounds="true" preserveRatio="true" style="-fx-translate-x: -20;" BorderPane.alignment="CENTER">
-                           <image>
-                              <Image url="@../../Imagenes_Multimedia/Alerta.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                        </ImageView>
-                     </right>
-                     <center>
-                        <ImageView fx:id="imgLuz" fitHeight="213.0" fitWidth="250.0" onMouseClicked="#SensorLuz" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                           <image>
-                              <Image url="@../../Imagenes_Multimedia/Foto.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                        </ImageView>
-                     </center>
+                  <JFXToolbar fx:id="ToolBarSensores" onMouseClicked="#mostrarInfoSensores" style="-fx-background-color: #E4E4E4;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <top>
-                        <Text fx:id="textSensores" strokeType="OUTSIDE" strokeWidth="0.0" text="Sensores" wrappingWidth="250.87939453125" BorderPane.alignment="CENTER">
+                        <Text fx:id="textSensores" fill="#ff8000" strokeType="OUTSIDE" strokeWidth="0.0" text="Salas" textAlignment="CENTER" wrappingWidth="250.87939453125" BorderPane.alignment="CENTER">
                            <font>
-                              <Font name="System Bold" size="59.0" />
+                              <Font name="System Bold" size="72.0" />
                            </font>
                         </Text>
                      </top>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <center>
+                        <GridPane prefHeight="175.0" prefWidth="1156.0" BorderPane.alignment="CENTER">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="50.0" prefWidth="0.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="50.0" prefWidth="0.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <ImageView fx:id="imgSala1" fitHeight="161.0" fitWidth="202.0" onMouseClicked="#sala1" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <image>
+                                    <Image url="@../../Imagenes_Multimedia/1.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <ImageView fx:id="imgSala2" fitHeight="161.0" fitWidth="202.0" onMouseClicked="#sala2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <image>
+                                    <Image url="@../../Imagenes_Multimedia/2.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <ImageView fx:id="imgSala4" fitHeight="161.0" fitWidth="202.0" onMouseClicked="#sala4" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <image>
+                                    <Image url="@../../Imagenes_Multimedia/4.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <ImageView fx:id="imgSala3" fitHeight="161.0" fitWidth="202.0" onMouseClicked="#sala3" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <image>
+                                    <Image url="@../../Imagenes_Multimedia/3.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </GridPane>
+                     </center>
                   </JFXToolbar>
                </children>
             </GridPane>

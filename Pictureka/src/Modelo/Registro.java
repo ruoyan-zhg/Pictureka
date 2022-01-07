@@ -1,4 +1,5 @@
 package Modelo;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Vector;
@@ -14,12 +15,15 @@ import java.util.regex.Pattern;
 public class Registro {
 	private Vector <Cliente> usuarios;
 	private Vector<Staff> staff;
+	private Vector<Informe> informes;
 	
 	public Registro () {
 		Vector <Cliente> _usuarios = new Vector<Cliente>();
 		Vector <Staff> _staff = new Vector<Staff>();
+		Vector<Informe> _informes = new Vector<Informe>();
 		this.usuarios = _usuarios;
 		this.staff = _staff;
+		this.informes = _informes;
 	}
 	
 	public String registrarCliente(String usuario, String dni, String email, String Contrasenia, LocalDate fechaNacimiento) {
@@ -323,6 +327,14 @@ public class Registro {
 		return sta;
 	}
 	
+	public String rDevolverNombreStaff(String usuario) {
+		recuperarStaff();
+		Staff sta = recuperar1Staff(usuario);
+		return sta.getNombre();
+	}
+	
+	
+	
 
 	
 	
@@ -432,6 +444,35 @@ public class Registro {
 		}
 		return sta;
 	}
+
+	public Vector<Informe> devolverInforme() {
+		recuperarInformes();
+		return this.informes;
+	}
+	
+	public void escribirInforme(String autor, String titulo, String cuerpo) throws FileNotFoundException {
+		recuperarInformes();
+		Informe informe = new Informe (autor, titulo, cuerpo);
+		informes.addElement(informe);
+		escribirInformes();
+	}
+	
+
+	private void recuperarInformes() {
+		Datos datos = new Datos();
+		//Try catch quizas el archivo no abre
+		Vector<Informe> _informes = datos.desserializarJsonInforme();
+		if(_informes != null){ 
+			this.informes = _informes;
+		}
+	}
+	public void escribirInformes() throws FileNotFoundException {
+		Datos datos = new Datos();
+		//Try catch quizas el archivo no abre
+		datos.serializarVectorInformesAJson(informes);
+	}
+
+	
 	
 
 	

@@ -1,0 +1,20 @@
+[
+  {
+    "autor": "Jorge",
+    "titulo": "Prueba",
+    "cuerpo": "Esta es una prueba y funciono",
+    "fecha": "2022-01-07"
+  },
+  {
+    "autor": "Jorge",
+    "titulo": "2Da Prueba",
+    "cuerpo": "La primera elimino todo lo anterior en el json",
+    "fecha": "2022-01-07"
+  },
+  {
+    "autor": "Jorge",
+    "titulo": "3ra prueba",
+    "cuerpo": "Todo correcto en los informes",
+    "fecha": "2022-01-07"
+  }
+]

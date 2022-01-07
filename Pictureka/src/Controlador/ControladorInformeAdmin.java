@@ -1,12 +1,23 @@
 package Controlador;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Vector;
 
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+
+import Modelo.Datos;
+import Modelo.Guardia;
+import Modelo.Informe;
+import Modelo.Staff;
+import Modelo.modelo_Museo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,10 +38,23 @@ public class ControladorInformeAdmin {
     private ImageView imgCerrarSesion;
 
     @FXML
-    private JFXTextField mostrarInforme;
+    private JFXTextArea mostrarInforme;
 
     @FXML
-    private TableView<?> tablaInformes;
+    private TableView<Informe> tablaInformes;
+    
+    @FXML
+    private TableColumn<Informe, String> Autor;
+    
+    @FXML
+    private TableColumn<Informe, String> Titulo;
+    
+    @FXML
+    private TableColumn<Informe, String> Cuerpo;
+    
+    @FXML
+    private TableColumn<Informe, String> Fecha;
+    
 
     @FXML
     private JFXTextField tituloInforme;
@@ -48,6 +72,10 @@ public class ControladorInformeAdmin {
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
+    private String informe;
+
+	private Vector<Informe> informes;
+    
     
 	 
 	 public ControladorInformeAdmin(String usuario) {
@@ -61,8 +89,20 @@ public class ControladorInformeAdmin {
 		 }
 		 
 	}
+	 
+	public void initialize() {
+		refrescarTabla();
+	}
+	
+	@FXML
+	public void clickItem(MouseEvent event){
+		int posicion = tablaInformes.getSelectionModel().getSelectedIndex();
+		mostrarInforme(-posicion+informes.size()-1);
+	}
 
-    @FXML
+    
+
+	@FXML
     void accederPerfil(MouseEvent event) {
     	if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
@@ -133,9 +173,6 @@ public class ControladorInformeAdmin {
 
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-            
-           
-            
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -144,7 +181,61 @@ public class ControladorInformeAdmin {
 
     @FXML
     void enviarInforme(MouseEvent event) {
-
+    	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
+		Alert error = new Alert(Alert.AlertType.ERROR);
+    	if(!(tituloInforme.getText().isEmpty() | cuerpoInforme.getText().isEmpty() )) {
+    		if(cuerpoInforme.getText().matches("^.{20,}")) {
+    			modelo_Museo museo = new modelo_Museo();
+    			String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
+    			try {
+    				museo.getRegistro().escribirInforme(nombre, tituloInforme.getText(), cuerpoInforme.getText());
+    				refrescarTabla();
+    				confirmacion.setHeaderText("Informe guardado con exito");
+        			confirmacion.show();
+    			}
+    			catch(FileNotFoundException e){
+    				error.setHeaderText("Archivo no encontrado!");
+            		error.show();
+    			}
+    			
+    		}
+    		else {
+        		error.setHeaderText("Porfavor el cuerpo del informe debe ser mayor a 20 caracteres");
+        		error.show();
+    		}
+    	}
+    	else {
+    		error.setHeaderText("Porfavor rellene los campos del informe!");
+    		error.show();
+    	}
     }
+    
+    private void refrescarTabla() {
+    	modelo_Museo museo = new modelo_Museo();
+		Vector <Informe> _informes = museo.getRegistro().devolverInforme();
+		tablaInformes.getItems().clear();
+		if(_informes.size() > 0) {
+			this.informes = _informes;
+			for (int i=(informes.size()-1); i >= 0; i--) {
+				//Se muestran los informes obtenidos en la tabla
+				tablaInformes.getItems().add(informes.elementAt(i));
+			}
+			//Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al tipo de dato que queremos guardar
+			Autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+			Titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+			Cuerpo.setCellValueFactory(new PropertyValueFactory<>("cuerpo"));
+			Fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+			mostrarInforme(0);
+			
+		}
+	}
+
+	private void mostrarInforme(int posicion) {
+    	this.informe = "Autor:  "+informes.elementAt(posicion).getAutor()
+    			+ "\n" + "Fecha:  "+ informes.elementAt(posicion).getFecha()
+    			+ "\n\n" + "Titulo:  "+ informes.elementAt(posicion).getTitulo()
+    			+ "\n\n" +informes.elementAt(posicion).getCuerpo();
+    			mostrarInforme.setText(informe);
+	}
 
 }

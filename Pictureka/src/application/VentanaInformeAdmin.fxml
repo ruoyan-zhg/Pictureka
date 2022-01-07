@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.geometry.Rectangle2D?>
@@ -63,17 +64,19 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <JFXTextField fx:id="mostrarInforme" alignment="TOP_LEFT" editable="false" prefHeight="385.0" prefWidth="578.0" style="-fx-border-color: #4059a9;" GridPane.columnIndex="1">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </JFXTextField>
-                        <TableView fx:id="tablaInformes" prefHeight="200.0" prefWidth="200.0">
+                        <TableView fx:id="tablaInformes" editable="true" onMouseClicked="#clickItem" prefHeight="200.0" prefWidth="200.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn fx:id="Autor" prefWidth="104.0" text="Autor" />
+                            <TableColumn fx:id="Titulo" prefWidth="100.0" text="Titulo" />
+                              <TableColumn fx:id="Cuerpo" prefWidth="280.0" text="Cuerpo" />
+                              <TableColumn fx:id="Fecha" minWidth="0.0" prefWidth="93.0" text="Fecha" />
                           </columns>
                         </TableView>
+                        <JFXTextArea fx:id="mostrarInforme" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </JFXTextArea>
                      </children>
                   </GridPane>
                   <GridPane prefHeight="244.0" prefWidth="1156.0" GridPane.rowIndex="1">

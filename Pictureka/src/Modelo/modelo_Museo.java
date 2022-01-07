@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.time.LocalDate;
+import java.util.Vector;
 
 public class modelo_Museo {
 	private Registro registro;
@@ -44,7 +45,6 @@ public class modelo_Museo {
 	public void nuevaSala(int identificador) {
 		museo.MNuevaSala(identificador);
 	}
-	
 	
 	public Registro getRegistro() {
 		return registro;

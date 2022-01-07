@@ -233,7 +233,7 @@ public class ControladorAdministrador {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar información de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal);
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador");
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -277,7 +277,7 @@ public class ControladorAdministrador {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar información de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal);
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador");
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -320,7 +320,7 @@ public class ControladorAdministrador {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar información de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal);
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador" );
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -363,7 +363,7 @@ public class ControladorAdministrador {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar información de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal);
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador");
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 

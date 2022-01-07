@@ -20,7 +20,7 @@
          <children>
             <JFXToolbar fx:id="ToolBarSala" style="-fx-background-color: #FF8000;">
                <right>
-                  <ImageView fx:id="imgGuardia" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#verPerfil" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="imgAvatar" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#verPerfil" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/guardiaAvatar.png" />
                      </image>
@@ -30,7 +30,7 @@
                   </ImageView>
                </right>
                <left>
-                  <ImageView fx:id="imgVolverGuardia" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#volverAtrasGuardia" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="imgVolverGuardia" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#volverAtrasSalas" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@../../Imagenes_Multimedia/volverAtras.png" />
                      </image>

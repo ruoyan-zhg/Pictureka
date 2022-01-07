@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -29,7 +30,7 @@ public class ControladorSalas {
     private JFXToolbar ToolBarSala;
 
     @FXML
-    private ImageView imgGuardia;
+    private ImageView imgAvatar;
 
     @FXML
     private ImageView imgVolverGuardia;
@@ -72,8 +73,10 @@ public class ControladorSalas {
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
     private Sala sala;
+    
+    private String tipoStaff;
 	 
-	 public ControladorSalas(String usuario, Sala _sala) {
+	 public ControladorSalas(String usuario, Sala _sala, String _tipoStaff) {
 		 if (usuario == "vacio") {
 			 logged = false;
 			 this.usuario = usuario;
@@ -82,6 +85,7 @@ public class ControladorSalas {
 			 this.usuario = usuario;
 			 logged = true;
 			 this.sala = _sala;
+			 tipoStaff =_tipoStaff;
 		 }
 		 
 	}
@@ -89,43 +93,80 @@ public class ControladorSalas {
 	public void initialize() {
 		Museo museo = new Museo();
 		textLuz.setText("Actualmente esta cargada la sala "+sala.getIdentificador());
+		if (tipoStaff.equals("Guardia")) {
+			imgAvatar.setImage(new Image("/guardiaAvatar.png"));
+		}
+		else {
+			imgAvatar.setImage(new Image("/administradorAvatar.png"));
+		}
 	}
 
 	 	
 	@FXML
-	void volverAtrasGuardia(MouseEvent event) {
+	void volverAtrasSalas(MouseEvent event) {
+		if(tipoStaff.equals("Guardia")) {
+			//Se carga el contenido de la ventana
+	    	FXMLLoader loaderGuardia = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
+	    	//Se le asigna el controlador de la ventana para editar información de los guardias
+	        ControladorGuardia controlerGuardia = new ControladorGuardia(usuario);
+	        loaderGuardia.setController(controlerGuardia);
+	        AnchorPane PaneGuardia;
+			try {
+				//Se carga en un AnchorPane la ventana
+				PaneGuardia = (AnchorPane) loaderGuardia.load();
+				
+				//Se elimina el contenido de la ventana padre
+				anchorPaneSala.getChildren().clear();
+	        	
+	        	//Se ajusta el AnchorPane para que sea escalable
+	            AnchorPane.setTopAnchor(PaneGuardia, 0.0);
+	            AnchorPane.setRightAnchor(PaneGuardia, 0.0);
+	            AnchorPane.setLeftAnchor(PaneGuardia, 0.0);
+	            AnchorPane.setBottomAnchor(PaneGuardia, 0.0);
+	            
 
-		//Se carga el contenido de la ventana
-    	FXMLLoader loaderGuardia = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
-    	//Se le asigna el controlador de la ventana para editar información de los guardias
-        ControladorGuardia controlerGuardia = new ControladorGuardia(usuario);
-        loaderGuardia.setController(controlerGuardia);
-        AnchorPane PaneGuardia;
-
-		try {
-			//Se carga en un AnchorPane la ventana
-			PaneGuardia = (AnchorPane) loaderGuardia.load();
+	            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+	            anchorPaneSala.getChildren().setAll(PaneGuardia);
+	            
+	           
+	            
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			
-			//Se elimina el contenido de la ventana padre
-			anchorPaneSala.getChildren().clear();
-        	
-        	//Se ajusta el AnchorPane para que sea escalable
-            AnchorPane.setTopAnchor(PaneGuardia, 0.0);
-            AnchorPane.setRightAnchor(PaneGuardia, 0.0);
-            AnchorPane.setLeftAnchor(PaneGuardia, 0.0);
-            AnchorPane.setBottomAnchor(PaneGuardia, 0.0);
-            
-
-            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
-            anchorPaneSala.getChildren().setAll(PaneGuardia);
-            
-           
-            
-		} catch (IOException e1) {
-			e1.printStackTrace();
 		}
-		
-		
+		else {
+			//Se carga el contenido de la ventana
+	    	FXMLLoader loaderAdministrador = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
+	    	//Se le asigna el controlador de la ventana para editar información de los guardias
+	        ControladorAdministrador controlerAdministrador = new ControladorAdministrador(usuario);
+	        loaderAdministrador.setController(controlerAdministrador);
+	        AnchorPane PaneAdministrador;
+
+			try {
+				//Se carga en un AnchorPane la ventana
+				PaneAdministrador = (AnchorPane) loaderAdministrador.load();
+				
+				//Se elimina el contenido de la ventana padre
+				anchorPaneSala.getChildren().clear();
+	        	
+	        	//Se ajusta el AnchorPane para que sea escalable
+	            AnchorPane.setTopAnchor(PaneAdministrador, 0.0);
+	            AnchorPane.setRightAnchor(PaneAdministrador, 0.0);
+	            AnchorPane.setLeftAnchor(PaneAdministrador, 0.0);
+	            AnchorPane.setBottomAnchor(PaneAdministrador, 0.0);
+	            
+
+	            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+	            anchorPaneSala.getChildren().setAll(PaneAdministrador);
+	            
+	           
+	            
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+		}
 	}
 
     @FXML

@@ -6,6 +6,7 @@ import java.time.Period;
 import java.util.Vector;
 import com.jfoenix.controls.JFXButton;
 import Modelo.Datos;
+import Modelo.Guardia;
 import Modelo.Registro;
 import Modelo.Staff;
 import javafx.event.ActionEvent;
@@ -77,13 +78,14 @@ public class ControladorTabEditarGuardia {
     @FXML
     private JFXButton btnGuardar;
 
+    Guardia guardia;
     
     public ControladorTabEditarGuardia(ControladorEditGuardias controlerEdit) {
     	
     	this.controlerEditGuardia = controlerEdit;
     }
-    
-    
+
+
     @FXML
     public void initialize() {
     	
@@ -102,10 +104,12 @@ public class ControladorTabEditarGuardia {
     	
         	
         }
+        
 
         
     }
     
+
     
     
     @FXML
@@ -455,7 +459,22 @@ public class ControladorTabEditarGuardia {
 		}
 	}
 
-
+    /*
+    public void mostrarGuardia(String usuarioGuardia) {
+    	
+    	Datos datos = new Datos();
+    	Vector<Staff> staff = datos.desserializarJsonStaff();
+    	
+    	for (int i=0; i<staff.size(); i++) {
+    		
+    		if (staff.get(i).getUsuario().equals(usuarioGuardia)) {
+    			
+    			textUsuarioGuardia.setText(staff.get(i).getUsuario());
+    		}
+    	}
+    	
+    }
+    */
 
 	
 	

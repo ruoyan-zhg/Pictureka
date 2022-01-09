@@ -52,7 +52,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="tableView" editable="true" onMouseClicked="#clickGuardia" prefHeight="200.0" prefWidth="200.0">
                     <columns>
                       <TableColumn fx:id="Usuario" prefWidth="75.0" text="Usuario" />
                       <TableColumn fx:id="Nombre" prefWidth="75.0" text="Nombre" />

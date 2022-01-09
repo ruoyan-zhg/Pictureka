@@ -99,6 +99,8 @@ public class ControladorEditGuardias {
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
+    ControladorTabEditarGuardia controlerTabEdit;
+    
 	 
 	 public ControladorEditGuardias(String usuario) {
 		 if (usuario == "vacio") {
@@ -111,6 +113,7 @@ public class ControladorEditGuardias {
 		 }
 		 
 	}
+	 
     
     @FXML
     public void initialize() {
@@ -314,6 +317,22 @@ public class ControladorEditGuardias {
 		}
     	
     	
+    }
+    
+    @FXML
+    void clickGuardia(MouseEvent event) {
+    	/*
+    	if (!tableView.getSelectionModel().isEmpty()) {
+    		
+    		String usuarioSeleccionado = tableView.getSelectionModel().getSelectedItem().getUsuario();
+    		ControladorTabEditarGuardia controlEdit = new ControladorTabEditarGuardia(this);
+    		this.controlerTabEdit = controlEdit;
+    		this.controlerTabEdit.mostrarGuardia(usuarioSeleccionado);
+    	}
+    	else {
+    		System.out.println("Seleccion vacia");
+    	}
+    	*/
     }
 
     

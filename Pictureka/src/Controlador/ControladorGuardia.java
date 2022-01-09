@@ -5,8 +5,11 @@ import java.util.Vector;
 
 import com.jfoenix.controls.JFXTextField;
 
+import Modelo.Cliente;
+import Modelo.Datos;
 import Modelo.Informe;
 import Modelo.Sala;
+import Modelo.Tickets;
 import Modelo.modelo_Museo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -429,7 +432,44 @@ public class ControladorGuardia {
      */
     void validarTicket(MouseEvent event) {
     	
+    	Alert error = new Alert(Alert.AlertType.ERROR);
+    	Alert informative = new Alert(Alert.AlertType.CONFIRMATION);
+    	String ticketAcomprobar = numTicket.getText();
+    	int identificadorTicket = 0;
+    	try {
+    		identificadorTicket = Integer.parseInt(ticketAcomprobar);
+    		if (identificadorTicket >= 100000 && identificadorTicket <= 999999) {
+    			System.out.println("Ticket dentro del rango");
+    			
+    	    	Datos datos = new Datos();
+    	    	Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
+    	    	Vector<Tickets> tickets;
+    	    	
+    	    	for(int i=0; i<clientes.size(); i++) {
+    	    		tickets = clientes.get(i).getTickets();
+    	    		for (int j=0; j<tickets.size(); j++) {
+    	    			if (tickets.get(j).getIdentificador()==identificadorTicket) {
+    	    				
+    	    			}
+    	    		}
+    	    		
+    	    	}
+    			
+    		}
+    		else {
+    			error.setHeaderText("Rango del identificador del ticket no aceptable.");
+    			error.showAndWait();
+    		}
+    		
+    		
+    	}
+    	catch(NumberFormatException ex) {
+    		error.setHeaderText("Formato del identificador no válido.");
+    		error.showAndWait();
+    	}
     	
+    	
+
     }
     
     /**

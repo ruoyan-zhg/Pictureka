@@ -321,7 +321,7 @@ public class ControladorEditGuardias {
     
     @FXML
     void clickGuardia(MouseEvent event) {
-    	/*
+    	
     	if (!tableView.getSelectionModel().isEmpty()) {
     		
     		String usuarioSeleccionado = tableView.getSelectionModel().getSelectedItem().getUsuario();
@@ -332,7 +332,7 @@ public class ControladorEditGuardias {
     	else {
     		System.out.println("Seleccion vacia");
     	}
-    	*/
+    	
     }
 
     

@@ -1,5 +1,7 @@
 package Controlador;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
@@ -119,8 +121,10 @@ public class ControladorTickets {
 
     @FXML
     void ReservarTickets(ActionEvent event) {
+    	
+		
 
-    }
+	}
 
     @FXML
     void accederPerfil(MouseEvent event) {

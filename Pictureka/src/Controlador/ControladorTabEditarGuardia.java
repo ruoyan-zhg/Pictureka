@@ -459,7 +459,7 @@ public class ControladorTabEditarGuardia {
 		}
 	}
 
-    /*
+    
     public void mostrarGuardia(String usuarioGuardia) {
     	
     	Datos datos = new Datos();
@@ -474,7 +474,7 @@ public class ControladorTabEditarGuardia {
     	}
     	
     }
-    */
+    
 
 	
 	

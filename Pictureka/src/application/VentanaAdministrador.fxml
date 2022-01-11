@@ -101,9 +101,9 @@
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="242.0" minHeight="0.0" prefHeight="81.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="242.0" minHeight="0.0" prefHeight="65.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="193.0" minHeight="0.0" prefHeight="130.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="242.0" minHeight="0.0" prefHeight="71.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="242.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="242.0" minHeight="10.0" prefHeight="117.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <ImageView fx:id="imgEditarGuardias" fitHeight="92.0" fitWidth="74.0" onMouseClicked="#editarGuardias" pickOnBounds="true" preserveRatio="true">
@@ -117,6 +117,14 @@
                               <ImageView fx:id="imgEditarEventos" fitHeight="106.0" fitWidth="74.0" onMouseClicked="#editarEventos" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                                  <image>
                                     <Image url="@../../Imagenes_Multimedia/EditarEventos.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <ImageView fx:id="imgEditarAdministrador" fitHeight="76.0" fitWidth="74.0" onMouseClicked="#editarInfoAdministrador" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                                 <image>
+                                    <Image url="@../../Imagenes_Multimedia/editarAdmin.png" />
                                  </image>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />

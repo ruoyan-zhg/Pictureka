@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXToolbar;
 
 import Modelo.Sala;
 import Modelo.modelo_Museo;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.LineChart;
@@ -44,6 +45,9 @@ public class ControladorAdministrador {
 
     @FXML
     private ImageView imgEditarEventos;
+    
+    @FXML
+    private ImageView imgEditarAdministrador;
 
     @FXML
     private JFXToolbar ToolBarSensores;
@@ -395,6 +399,33 @@ public class ControladorAdministrador {
     		mostrarErrorSala();
     	}
     }
+    
+    @FXML
+    void editarInfoAdministrador(MouseEvent event) {
+
+    	//Se carga el contenido de la ventana
+    	FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaEditarAdministrador.fxml"));
+        ControladorEditarAdministrador controlerEdit = new ControladorEditarAdministrador(usuario);
+        loaderEdit.setController(controlerEdit);
+        
+        try {
+        	AnchorPane PaneEdit = (AnchorPane) loaderEdit.load();
+        	anchorPanePrincipal.getChildren().clear();
+            AnchorPane.setTopAnchor(PaneEdit, 0.0);
+            AnchorPane.setRightAnchor(PaneEdit, 0.0);
+            AnchorPane.setLeftAnchor(PaneEdit, 0.0);
+            AnchorPane.setBottomAnchor(PaneEdit, 0.0);
+            anchorPanePrincipal.getChildren().setAll(PaneEdit);
+            
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+    }
+    
 
 	public JFXToolbar getToolBarAdministrador() {
 		return toolBarAdministrador;

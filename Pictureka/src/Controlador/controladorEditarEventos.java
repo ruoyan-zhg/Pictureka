@@ -165,7 +165,7 @@ import javafx.stage.FileChooser;
 								e.printStackTrace();
 							}
 		    				
-	    					//Se guradan los datos en el vector de eventos
+	    					//Se guradan los datos en el vector de eventos ···············
 	    					guardarDatos();
 	    					//y se actualiza el Json con los datos actualizados del vector
 		    				handler.serializarVectorEventosAJson(eventos);
@@ -228,13 +228,18 @@ import javafx.stage.FileChooser;
 	    	        if (imgFile != null) {
 	    	            Image image = new Image("file:" + imgFile.getAbsolutePath());
 	    	            imgAniadirImagen.setBackground(new Background(new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY)));
-	    	            imagen = imgFile.getName();
+	    	            //imagen = imgFile.getName();
 	    	            //para guardar el path de la imagen seleccionada
 	    	            pathImagen = imgFile.toPath();
 	    	            //Se almacena el path al que ira dirigido la imagen con el nombre que ya tenia la imagen seleccionada
-	    	            pathSRC = Paths.get("C:\\Users\\jolie\\OneDrive\\Documentos\\GitHub\\PR_INF_21-22-pictureka\\Pictureka\\src\\" + imgFile.getName());
+	    	            String directoryName = System.getProperty("user.dir");
+	    	            String pathConcatenar = "\\Imagenes_Multimedia\\";
+	    	            pathSRC = Paths.get(directoryName+ pathConcatenar + imgFile.getName());
+	    	            imagen=directoryName+ pathConcatenar + imgFile.getName();
 	    	            
 	    	            
+	    	            
+	    	    		
 	    	        }
 	    	        
 	    	    
@@ -272,23 +277,23 @@ import javafx.stage.FileChooser;
 	    	int seleccion = Integer.parseInt(comboBoxElegirEvento.getValue().toString());
 	    	if(seleccion == 1) {
 	    		eventos.elementAt(0).setNombre(txtFieldTitulo.getText());
-	    		eventos.elementAt(0).setImagen("/"+imagen);
+	    		eventos.elementAt(0).setImagen("file:"+imagen);
 	    		eventos.elementAt(0).setInformacion(txtAreaInfo.getText());
 	    		
 	    	}
 	    	else if(seleccion == 2) {
 	    		eventos.elementAt(1).setNombre(txtFieldTitulo.getText());
-	    		eventos.elementAt(1).setImagen("/"+imagen);
+	    		eventos.elementAt(1).setImagen("file:"+imagen);
 	    		eventos.elementAt(1).setInformacion(txtAreaInfo.getText());
 	    	}
 	    	else if(seleccion == 3) {
 	    		eventos.elementAt(2).setNombre(txtFieldTitulo.getText());
-	    		eventos.elementAt(2).setImagen("/"+imagen);
+	    		eventos.elementAt(2).setImagen("file:"+imagen);
 	    		eventos.elementAt(2).setInformacion(txtAreaInfo.getText());
 	    	}
 	    	else{
 	    		eventos.elementAt(3).setNombre(txtFieldTitulo.getText());
-	    		eventos.elementAt(3).setImagen("/"+imagen);
+	    		eventos.elementAt(3).setImagen("file:"+imagen);
 	    		eventos.elementAt(3).setInformacion(txtAreaInfo.getText());
 	    	}
 	    	

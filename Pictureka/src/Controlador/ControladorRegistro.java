@@ -88,23 +88,7 @@ public class ControladorRegistro {
      */
     void CancelRegistro(ActionEvent event) {
 
-    	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
-        ControladorInicioSesion controlerInicioSesion = new ControladorInicioSesion();
-        loaderApp.setController(controlerInicioSesion);
-        
-        AnchorPane registerPane;
-		try {
-			registerPane = (AnchorPane) loaderApp.load();
-	        anchorPaneRegistro.getChildren().clear();
-	        AnchorPane.setTopAnchor(registerPane, 0.0);
-	        AnchorPane.setRightAnchor(registerPane, 0.0);
-	        AnchorPane.setLeftAnchor(registerPane, 0.0);
-	        AnchorPane.setBottomAnchor(registerPane, 0.0);
-	        anchorPaneRegistro.getChildren().setAll(registerPane);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	abrirLogin();
     }
 
     @FXML
@@ -141,7 +125,9 @@ public class ControladorRegistro {
                 		
                 		if (estado.equals("Validacion completada con exito")) {
                 			confirmacion.setHeaderText(estado);
-                			confirmacion.show();
+                			confirmacion.showAndWait();
+                			abrirLogin();
+                			
                 		}
                 		else {
                 			error.setHeaderText(estado);
@@ -166,6 +152,26 @@ public class ControladorRegistro {
     		
     	}
     	
+    }
+    
+    void abrirLogin() {
+    	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
+        ControladorInicioSesion controlerInicioSesion = new ControladorInicioSesion();
+        loaderApp.setController(controlerInicioSesion);
+        
+        AnchorPane registerPane;
+		try {
+			registerPane = (AnchorPane) loaderApp.load();
+	        anchorPaneRegistro.getChildren().clear();
+	        AnchorPane.setTopAnchor(registerPane, 0.0);
+	        AnchorPane.setRightAnchor(registerPane, 0.0);
+	        AnchorPane.setLeftAnchor(registerPane, 0.0);
+	        AnchorPane.setBottomAnchor(registerPane, 0.0);
+	        anchorPaneRegistro.getChildren().setAll(registerPane);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }

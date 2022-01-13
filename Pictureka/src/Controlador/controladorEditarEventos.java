@@ -235,7 +235,7 @@ import javafx.stage.FileChooser;
 	    	            String directoryName = System.getProperty("user.dir");
 	    	            String pathConcatenar = "\\Imagenes_Multimedia\\";
 	    	            pathSRC = Paths.get(directoryName+ pathConcatenar + imgFile.getName());
-	    	            imagen=directoryName+ pathConcatenar + imgFile.getName();
+	    	            imagen=imgFile.getName();
 	    	            
 	    	            
 	    	            
@@ -277,23 +277,23 @@ import javafx.stage.FileChooser;
 	    	int seleccion = Integer.parseInt(comboBoxElegirEvento.getValue().toString());
 	    	if(seleccion == 1) {
 	    		eventos.elementAt(0).setNombre(txtFieldTitulo.getText());
-	    		eventos.elementAt(0).setImagen("file:"+imagen);
+	    		eventos.elementAt(0).setImagen(imagen);
 	    		eventos.elementAt(0).setInformacion(txtAreaInfo.getText());
 	    		
 	    	}
 	    	else if(seleccion == 2) {
 	    		eventos.elementAt(1).setNombre(txtFieldTitulo.getText());
-	    		eventos.elementAt(1).setImagen("file:"+imagen);
+	    		eventos.elementAt(1).setImagen(imagen);
 	    		eventos.elementAt(1).setInformacion(txtAreaInfo.getText());
 	    	}
 	    	else if(seleccion == 3) {
 	    		eventos.elementAt(2).setNombre(txtFieldTitulo.getText());
-	    		eventos.elementAt(2).setImagen("file:"+imagen);
+	    		eventos.elementAt(2).setImagen(imagen);
 	    		eventos.elementAt(2).setInformacion(txtAreaInfo.getText());
 	    	}
 	    	else{
 	    		eventos.elementAt(3).setNombre(txtFieldTitulo.getText());
-	    		eventos.elementAt(3).setImagen("file:"+imagen);
+	    		eventos.elementAt(3).setImagen(imagen);
 	    		eventos.elementAt(3).setInformacion(txtAreaInfo.getText());
 	    	}
 	    	

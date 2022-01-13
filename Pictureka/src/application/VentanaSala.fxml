@@ -61,8 +61,8 @@
                         <Image url="@../../Imagenes_Multimedia/luz.png" />
                      </image>
                   </ImageView>
-                  <TextArea fx:id="textTemperatura" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                  <TextArea fx:id="textLuz" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
+                  <TextArea fx:id="textTemperatura" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <TextArea fx:id="textLuz" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
                </children>
             </GridPane>
             <GridPane fx:id="GridSensorDistancia" prefHeight="333.0" prefWidth="1156.0">

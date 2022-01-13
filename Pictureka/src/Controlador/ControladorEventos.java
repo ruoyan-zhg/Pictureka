@@ -151,6 +151,8 @@ public class ControladorEventos {
    	int countDos = 1;
    	int countTres = 2;
    	
+    String directoryName = System.getProperty("user.dir");
+   	
   	@FXML
   	public void initialize() {
   		//Se añaden al ArrayList las imagenes que queremos que se muestren
@@ -170,10 +172,10 @@ public class ControladorEventos {
   	 	
   	 	
   	 	//Cosas de la Informacion
-  	 	Image arribaIzq = new Image(eventos.elementAt(0).getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
-  	 	Image arribaDer = new Image(eventos.elementAt(1).getImagen());
-  	 	Image abajoIzq = new Image(eventos.elementAt(2).getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
-  	 	Image abajoDer = new Image(eventos.elementAt(3).getImagen());
+  	 	Image arribaIzq = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventos.elementAt(0).getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
+  	 	Image arribaDer = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventos.elementAt(1).getImagen());
+  	 	Image abajoIzq = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventos.elementAt(2).getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
+  	 	Image abajoDer = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventos.elementAt(3).getImagen());
   	 	
   	 	
   	 	//asignamos imagenes a la region

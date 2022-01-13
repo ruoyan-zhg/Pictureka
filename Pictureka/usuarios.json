@@ -50,5 +50,18 @@
       "day": 27
     },
     "tickets": []
+  },
+  {
+    "identificadorCliente": 1,
+    "usuario": "Alfonso567",
+    "dni": "NT5475242",
+    "email": "alfon56@gmail.com",
+    "contrasenia": "12345",
+    "fechaNacimiento": {
+      "year": 2001,
+      "month": 1,
+      "day": 20
+    },
+    "tickets": []
   }
 ]

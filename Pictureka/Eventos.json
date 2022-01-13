@@ -2,25 +2,25 @@
   {
     "identificador": 1,
     "nombre": "El quitasol",
-    "imagen": "/Quitasol.png",
+    "imagen": "Quitasol.png",
     "informacion": "Puede clasificarse tanto dentro del estilo neoclásico como dentro del rococó, ya que cuenta con características tanto de un estilo como de otro. Las características principales del neoclasicismo, y que podemos ver reflejadas en el quitasol son: perfección formal, serenidad, predominio del dibujo, modelos de la escultura clásica, temática moralizante y ejemplarizante, uso de colores primarios. Los rasgos principales del rococó son: una elección de colores claros (en especial el blanco), colores luminosos y suaves, intenta reflejar el aspecto agradable, exótico, sensual y refinado de las cosas y casi no utiliza los contrastes."
   },
   {
     "identificador": 2,
     "nombre": "Las Meninas",
-    "imagen": "/LasMeninas.png",
+    "imagen": "LasMeninas.png",
     "informacion": "Pintado por Velázquez en 1656. Durante la que fue la última década de su existencia, cinco años después de regresar de su segundo viaje italiano y del nacimiento de la infanta Margarita la luminosamente palmaria protagonista del cuadro, aunque haya otros mimbres soterrados en la penumbra- y a tan solo cuatro de la muerte del artista, acaecida en 1660 tras regresar del solemne acto que se celebró en la isla de los Faisanes por el que se entregaba en matrimonio a la infanta María Teresa al rey Luis XIV de Francia, este retrato de la familia real"
   },
   {
     "identificador": 3,
     "nombre": "Exposicion 3",
-    "imagen": "/MonaLisa.jpg",
+    "imagen": "MonaLisa.jpg",
     "informacion": "Este es el evento tres"
   },
   {
     "identificador": 4,
-    "nombre": "Evento numero 4",
-    "imagen": "file:C:\\Users\\jolie\\OneDrive\\Documentos\\GitHub\\PR_INF_21-22-pictureka\\Pictureka\\Imagenes_Multimedia\\IMG_20201212_172407.jpg",
-    "informacion": "LSAMSCSDMSLEDMainkcdasnja sefsdx"
+    "nombre": "Lisboa visita",
+    "imagen": "Lisboa.jpg",
+    "informacion": "asbjadua ansocna euna"
   }
 ]

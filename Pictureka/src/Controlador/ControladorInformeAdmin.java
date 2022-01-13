@@ -178,6 +178,28 @@ public class ControladorInformeAdmin {
 		}
 
     }
+    
+    @FXML
+    void volverAtras(MouseEvent event) {
+    	FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
+        ControladorAdministrador controlerAdmin = new ControladorAdministrador(usuario);
+        loaderEdit.setController(controlerAdmin);
+        
+        try {
+        	AnchorPane PaneEdit = (AnchorPane) loaderEdit.load();
+        	anchorPanePrincipal.getChildren().clear();
+            AnchorPane.setTopAnchor(PaneEdit, 0.0);
+            AnchorPane.setRightAnchor(PaneEdit, 0.0);
+            AnchorPane.setLeftAnchor(PaneEdit, 0.0);
+            AnchorPane.setBottomAnchor(PaneEdit, 0.0);
+            anchorPanePrincipal.getChildren().setAll(PaneEdit);
+            
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
 
     @FXML
     void enviarInforme(MouseEvent event) {

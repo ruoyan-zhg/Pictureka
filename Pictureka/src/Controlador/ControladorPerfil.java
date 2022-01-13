@@ -82,6 +82,10 @@ public class ControladorPerfil {
 
     @FXML
     private Label RNombre;
+    
+    @FXML
+    private ImageView imgReserva;
+
 
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 
@@ -155,6 +159,11 @@ public class ControladorPerfil {
 		 	}
 
 	  	}
+	 
+	 @FXML
+	 void abrirReserva(MouseEvent event) {
+
+	 }
 
     @FXML
     void volver(MouseEvent event) {
@@ -266,7 +275,6 @@ public class ControladorPerfil {
 
     }
     private void staffConfiguracion() {
-
     	RUsuario.setText(staff.getUsuario());
 		RDNI.setText(staff.getDni());
 		REmail.setText(staff.getEmail());

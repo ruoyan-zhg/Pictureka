@@ -158,6 +158,11 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
+                        <ImageView fx:id="imgReserva" fitHeight="268.0" fitWidth="309.0" onMouseClicked="#abrirReserva" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/CambiarTicket.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </GridPane>
                </children>

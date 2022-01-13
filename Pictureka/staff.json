@@ -7,7 +7,7 @@
     "apellido2": "Morales",
     "dni": "43578445K",
     "email": "paula@gmail.com",
-    "contrasenia": "paula123",
+    "contrasenia": "paulaMorales",
     "fechaNacimiento": {
       "year": 2001,
       "month": 12,
@@ -42,6 +42,21 @@
       "year": 1998,
       "month": 6,
       "day": 8
+    }
+  },
+  {
+    "identificadorUser": 3,
+    "usuario": "1180",
+    "nombre": "Alvaro",
+    "apellido1": "Gomez",
+    "apellido2": "Barro",
+    "dni": "48295802D",
+    "email": "alvaro.barro@gmail.com",
+    "contrasenia": "alvaro123",
+    "fechaNacimiento": {
+      "year": 1956,
+      "month": 1,
+      "day": 12
     }
   }
 ]

@@ -85,25 +85,34 @@ public class Registro {
 		recuperarStaff();
 
 		String estado = "Validacion incompleta";
-		if (validarEmail(email)) { // devuelve true si el email es valido
-			if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido registrado
-				if (dniRepetido(dni) && dniStaffRepetido(dni)) {
-					if (staffRepetido(usuario)) {
-						staff.addElement(new Administrador(usuario, dni, email, contrasenia, fechaNacimiento, nombre,
-								apellido1, apellido2));
-						escribirStaff();
-						estado = "Validacion completada con exito";
+		LocalDate fecha = LocalDate.now();
+		Period periodo = Period.between(fechaNacimiento, fecha);
+
+		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
+
+			if (validarEmail(email)) { // devuelve true si el email es valido
+				if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido
+																			// registrado
+					if (dniRepetido(dni) && dniStaffRepetido(dni)) {
+						if (staffRepetido(usuario)) {
+							staff.addElement(new Administrador(usuario, dni, email, contrasenia, fechaNacimiento,
+									nombre, apellido1, apellido2));
+							escribirStaff();
+							estado = "Validacion completada con exito";
+						} else {
+							estado = "Usuario ya registrado";
+						}
 					} else {
-						estado = "Usuario ya registrado";
+						estado = "El dni introducido ya ha sido registrado";
 					}
 				} else {
-					estado = "El dni introducido ya ha sido registrado";
+					estado = "El email introducido ya ha sido registrado";
 				}
 			} else {
-				estado = "El email introducido ya ha sido registrado";
+				estado = "El email introducido no es valido";
 			}
 		} else {
-			estado = "El email introducido no es valido";
+			estado = "Rango de edad no aceptable";
 		}
 		return estado;
 

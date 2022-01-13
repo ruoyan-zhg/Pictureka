@@ -202,16 +202,17 @@ public class ControladorEditGuardias {
 		FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/TabEditarGuardia.fxml"));
         ControladorTabEditarGuardia controlerPrincipal = new ControladorTabEditarGuardia(this);
         loaderApp.setController(controlerPrincipal);
+        AnchorPane registerPane;
         
         try {
-        	AnchorPane registerPane = (AnchorPane) loaderApp.load();
+        	registerPane = (AnchorPane) loaderApp.load();
         	AnchorEditGuardia.getChildren().clear();
             AnchorPane.setTopAnchor(registerPane, 0.0);
             AnchorPane.setRightAnchor(registerPane, 0.0);
             AnchorPane.setLeftAnchor(registerPane, 0.0);
             AnchorPane.setBottomAnchor(registerPane, 0.0);
             AnchorEditGuardia.getChildren().setAll(registerPane);
-            
+    		this.controlerTabEdit = controlerPrincipal;          
             
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -322,18 +323,13 @@ public class ControladorEditGuardias {
     @FXML
     void clickGuardia(MouseEvent event) {
     	
-    	if (!tableView.getSelectionModel().isEmpty()) {
-    		
-    		String usuarioSeleccionado = tableView.getSelectionModel().getSelectedItem().getUsuario();
-    		ControladorTabEditarGuardia controlEdit = new ControladorTabEditarGuardia(this);
-    		this.controlerTabEdit = controlEdit;
-    		this.controlerTabEdit.mostrarGuardia(usuarioSeleccionado);
-    	}
-    	else {
-    		System.out.println("Seleccion vacia");
-    	}
     	
+    	if (!tableView.getSelectionModel().isEmpty()) {
+    		EditarGuardia(null);
+
+    	} 	
     }
+    
 
     
     public AnchorPane getAnchorPaneEditGuardia() {

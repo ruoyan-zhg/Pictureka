@@ -1,12 +1,12 @@
 package Controlador;
 
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Vector;
+
 import com.jfoenix.controls.JFXButton;
+
 import Modelo.Datos;
-import Modelo.Guardia;
 import Modelo.Registro;
 import Modelo.Staff;
 import javafx.event.ActionEvent;
@@ -18,113 +18,115 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-public class ControladorTabEditarGuardia {
+public class ControladorTabEditarAdmin {
 
-	ControladorEditGuardias controlerEditGuardia;
-	@FXML
-    private AnchorPane AnchorTabEditarGuardia;
+	ControladorEditarAdministrador controlerEditAdmin;
+    @FXML
+    private AnchorPane AnchorTabEditarAdmin;
 
     @FXML
-    private GridPane gridPaneEditarGuardia;
+    private GridPane gridPaneEditarAdmin;
 
     @FXML
-    private Label lblUsuarioGuardia;
+    private Label lblUsuarioAdmin;
 
     @FXML
-    private TextField textUsuarioGuardia;
+    private TextField textUsuarioAdmin;
 
     @FXML
-    private Label lblNombreGuardia;
+    private Label lblNombreAdmin;
 
     @FXML
-    private TextField textNombreGuardia;
+    private TextField textNombreAdmin;
 
     @FXML
-    private Label lblApellido1Guardia;
+    private Label lblApellido1Admin;
 
     @FXML
-    private Label lblApellido2Guardia;
+    private Label lblApellido2Admin;
 
     @FXML
-    private TextField textApellido1Guardia;
+    private TextField textApellido1Admin;
 
     @FXML
-    private TextField textApellido2Guardia;
+    private TextField textApellido2Admin;
 
     @FXML
-    private Label lblEmailGuardia;
+    private Label lblEmailAdmin;
 
     @FXML
-    private TextField textEmailGuardia;
+    private TextField textEmailAdmin;
 
     @FXML
-    private Label lblDniGuardia;
+    private Label lblDniAdmin;
 
     @FXML
-    private TextField textDniGuardia;
+    private TextField textDniAdmin;
 
     @FXML
-    private Label lblFechaGuardia;
+    private Label lblFechaAdmin;
 
     @FXML
-    private Label lblContraseniaGuardia;
+    private Label lblContraseniaAdmin;
 
     @FXML
-    private TextField textContraseniaGuardia;
+    private TextField textContraseniaAdmin;
 
     @FXML
-    private DatePicker DateFechaGuardia;
+    private DatePicker DateFechaAdmin;
 
     @FXML
     private JFXButton btnGuardar;
 
-    Guardia guardia;
-    
-    public ControladorTabEditarGuardia(ControladorEditGuardias controlerEdit) {
+    public ControladorTabEditarAdmin(ControladorEditarAdministrador controlerEdit) {
     	
-    	this.controlerEditGuardia = controlerEdit;
-    }
-
-
-    @FXML
-    public void initialize() {
-    	
-    	//Se comprueba que el administrador ha seleccionado a un guardia de la tabla
-        if (!controlerEditGuardia.getTableView().getSelectionModel().isEmpty()) {
-        	
-        	//Se recoge la informacion del guardia que el administrador ha seleccionado y se muestra en los diferentes campos
-        	textUsuarioGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getUsuario());
-        	textNombreGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getNombre());
-        	textApellido1Guardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getApellido1());
-        	textApellido2Guardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getApellido2());
-        	textDniGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getDni());
-        	textEmailGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getEmail());
-        	DateFechaGuardia.setValue(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getFechaNacimiento());
-        	textContraseniaGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getContrasenia());
-    	
-        	
-        }
-        
-
-        
+    	this.controlerEditAdmin = controlerEdit;
     }
     
+    
+	@FXML
+	public void initialize() {
 
+		// Se comprueba que el administrador ha seleccionado a un administrador de la tabla
+		if (!controlerEditAdmin.getTableViewAdministrador().getSelectionModel().isEmpty()) {
+
+			// Se recoge la informacion del administrador que se ha seleccionado y
+			// se muestra en los diferentes campos
+			textUsuarioAdmin
+					.setText(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getUsuario());
+			textNombreAdmin
+					.setText(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getNombre());
+			textApellido1Admin
+					.setText(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getApellido1());
+			textApellido2Admin
+					.setText(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getApellido2());
+			textDniAdmin.setText(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getDni());
+			textEmailAdmin
+					.setText(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getEmail());
+			DateFechaAdmin.setValue(
+					controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getFechaNacimiento());
+			textContraseniaAdmin.setText(
+					controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getContrasenia());
+
+		}
+
+	}
     
     
-    @FXML
-    void GuardarGuardiaEdit(ActionEvent event) {
-    	
-    	Alert error = new Alert(Alert.AlertType.ERROR);
-    	Alert informacion = new Alert(Alert.AlertType.INFORMATION);
-    	Registro registro = new Registro();
-    	Datos datos = new Datos();
 
-    	//Se guarda en un vector la informacion del json del personal de staff
-    	Vector <Staff> staff = datos.desserializarJsonStaff();
-    	int i = 0;
-    	
-    	String UsuarioNuevo;
+	@FXML
+    void GuardarAdminEdit(ActionEvent event) {
+
+		Alert error = new Alert(Alert.AlertType.ERROR);
+		Alert informacion = new Alert(Alert.AlertType.INFORMATION);
+		Registro registro = new Registro();
+		Datos datos = new Datos();
+
+		// Se guarda en un vector la informacion del json del personal de staff
+		Vector<Staff> staff = datos.desserializarJsonStaff();
+		int i = 0;
+
+		String UsuarioNuevo;
 		String nombreNuevo;
 		String apellido1Nuevo;
 		String apellido2Nuevo;
@@ -132,19 +134,19 @@ public class ControladorTabEditarGuardia {
 		String emailNuevo;
 		LocalDate fechaNuevo;
 		String contraseniaNuevo;
-		
-		//Obtenemos los datos de los diferentes jtextfield
-		UsuarioNuevo = textUsuarioGuardia.getText();
-		nombreNuevo = textNombreGuardia.getText();
-		apellido1Nuevo = textApellido1Guardia.getText();
-		apellido2Nuevo = textApellido2Guardia.getText();
-		dniNuevo = textDniGuardia.getText();
-		emailNuevo = textEmailGuardia.getText();
-		fechaNuevo = DateFechaGuardia.getValue();
-		contraseniaNuevo = textContraseniaGuardia.getText();
-		
-		// Comprobamos que haya seleccionado un guardia
-		if (!controlerEditGuardia.getTableView().getSelectionModel().isEmpty()) {
+
+		// Obtenemos los datos de los diferentes jtextfield
+		UsuarioNuevo = textUsuarioAdmin.getText();
+		nombreNuevo = textNombreAdmin.getText();
+		apellido1Nuevo = textApellido1Admin.getText();
+		apellido2Nuevo = textApellido2Admin.getText();
+		dniNuevo = textDniAdmin.getText();
+		emailNuevo = textEmailAdmin.getText();
+		fechaNuevo = DateFechaAdmin.getValue();
+		contraseniaNuevo = textContraseniaAdmin.getText();
+
+		// Comprobamos que haya seleccionado un administrador
+		if (!controlerEditAdmin.getTableViewAdministrador().getSelectionModel().isEmpty()) {
 
 			// Comprobamos que el contenido no esté vacío
 			if (!(UsuarioNuevo.isEmpty() | nombreNuevo.isEmpty() | apellido1Nuevo.isEmpty() | apellido2Nuevo.isEmpty()
@@ -156,28 +158,28 @@ public class ControladorTabEditarGuardia {
 				// Recorremos el json staff
 				for (i = 0; i < staff.size(); i++) {
 
-					// Comrpobamos que el guardia a modificar que ha seleccionado el administrador
+					// Comrpobamos que el administrador a modificar que se ha seleccionado
 					// se encuentra en el json
 					if (staff.get(i).getUsuario().equals(
-							controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getUsuario())
+							controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getUsuario())
 							&& staff.get(i).getNombre()
-									.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
+									.equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
 											.getNombre())
 							&& staff.get(i).getApellido1()
-									.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
+									.equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
 											.getApellido1())
 							&& staff.get(i).getApellido2()
-									.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
+									.equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
 											.getApellido2())
 							&& staff.get(i).getEmail()
-									.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
+									.equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
 											.getEmail())
 							&& staff.get(i).getDni().equals(
-									controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getDni())
+									controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getDni())
 							&& staff.get(i).getFechaNacimiento()
-									.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
+									.equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
 											.getFechaNacimiento())
-							&& staff.get(i).getContrasenia().equals(controlerEditGuardia.getTableView()
+							&& staff.get(i).getContrasenia().equals(controlerEditAdmin.getTableViewAdministrador()
 									.getSelectionModel().getSelectedItem().getContrasenia())) {
 
 						LocalDate fecha = LocalDate.now();
@@ -228,10 +230,10 @@ public class ControladorTabEditarGuardia {
 										}
 
 									} else {
-										// Si el guardia mantiene su mismo email
+										// Si el administrador mantiene su mismo email
 										if (staff.get(i).getEmail().equals(emailNuevo)) {
 											staff.get(i).setEmail(emailNuevo);
-											System.out.println("Mismo email del guardia");
+											System.out.println("Mismo email del administrador");
 
 											staff.get(i).setNombre(nombreNuevo);
 											staff.get(i).setApellido1(apellido1Nuevo);
@@ -247,16 +249,16 @@ public class ControladorTabEditarGuardia {
 										} else {
 											error.setHeaderText("Email ya registrado.");
 											error.showAndWait();
-											System.out.println("Email de otro guardia");
+											System.out.println("Email de otro administrador");
 										}
 
 									}
-								} else { //EL GUARDIA MANTIENE SU MISMO DNI
-									// si el guardia mantiene su mismo dni
+								} else { // EL ADMIN MANTIENE SU MISMO DNI
+									// si el administrador mantiene su mismo dni
 
 									if (staff.get(i).getDni().equals(dniNuevo)) {
 										staff.get(i).setDni(dniNuevo);
-										System.out.println("Mismo dni del guardia");
+										System.out.println("Mismo dni del administrador");
 
 										if (registro.emailRepetido(emailNuevo)
 												&& registro.emailRepetidoStaff(emailNuevo)) {
@@ -285,8 +287,8 @@ public class ControladorTabEditarGuardia {
 										} else {
 											if (staff.get(i).getEmail().equals(emailNuevo)) {
 												staff.get(i).setEmail(emailNuevo);
-												System.out.println("Mismo email del guardia");
-												
+												System.out.println("Mismo email del administrador");
+
 												staff.get(i).setNombre(nombreNuevo);
 												staff.get(i).setApellido1(apellido1Nuevo);
 												staff.get(i).setApellido2(apellido2Nuevo);
@@ -296,33 +298,32 @@ public class ControladorTabEditarGuardia {
 
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
-												
 
 											} else {
 												error.setHeaderText("Email ya registrado.");
 												error.showAndWait();
-												System.out.println("Email de otro guardia");
+												System.out.println("Email de otro administrador");
 											}
 										}
 
 									} else {
 										error.setHeaderText("Dni ya registrado.");
 										error.showAndWait();
-										System.out.println("Dni de otro guardia");
+										System.out.println("Dni de otro administrador");
 									}
 
 								}
 
 							}
-							
-							//EL GUARDIA MANTIENE SU MISMO USUARIO
+
+							// EL ADMIN MANTIENE SU MISMO USUARIO
 							else {
 								// Si el guardia mantiene su mismo usuario
 								if (staff.get(i).getUsuario().equals(UsuarioNuevo)) {
 									staff.get(i).setUsuario(UsuarioNuevo);
-									System.out.println("Mismo usuario del guardia");
+									System.out.println("Mismo usuario del administrador");
 
-									// devuelve true si el email del guardia no esta repetido
+									// devuelve true si el email del admin no esta repetido
 									if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
 										System.out.println("Email no repetido");
 
@@ -352,11 +353,11 @@ public class ControladorTabEditarGuardia {
 												System.out.println("Formato del email nuevo incorrecto");
 											}
 										} else {
-											// Si el dni es el mismo del guardia
+											// Si el dni es el mismo del admin
 
 											if (staff.get(i).getDni().equals(dniNuevo)) {
 												staff.get(i).setDni(dniNuevo);
-												System.out.println("Mismo dni del guardia");
+												System.out.println("Mismo dni del administrador");
 
 												if (registro.validarEmail(emailNuevo)) {
 													staff.get(i).setEmail(emailNuevo);
@@ -380,16 +381,16 @@ public class ControladorTabEditarGuardia {
 											} else {
 												error.setHeaderText("Dni ya registrado.");
 												error.showAndWait();
-												System.out.println("Dni de otro guardia");
+												System.out.println("Dni de otro administrador");
 											}
 
 										}
-										
+
 									} else {
-										// Si el email es el mismo del guardia
+										// Si el email es el mismo del admin
 										if (staff.get(i).getEmail().equals(emailNuevo)) {
 											staff.get(i).setEmail(emailNuevo);
-											System.out.println("Mismo email del guardia");
+											System.out.println("Mismo email del administrador");
 
 											if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
 												System.out.println("Dni no repetido");
@@ -406,7 +407,7 @@ public class ControladorTabEditarGuardia {
 												informacion.showAndWait();
 
 											} else {
-												// Mismo dni del guardia
+												// Mismo dni del admin
 												if (staff.get(i).getDni().equals(dniNuevo)) {
 													staff.get(i).setDni(dniNuevo);
 
@@ -423,20 +424,20 @@ public class ControladorTabEditarGuardia {
 												} else {
 													error.setHeaderText("Dni ya registrado.");
 													error.showAndWait();
-													System.out.println("Dni de otro guardia");
+													System.out.println("Dni de otro administrador");
 												}
 											}
 										} else {
 											error.setHeaderText("Email ya registrado.");
 											error.showAndWait();
-											System.out.println("Email de otro guardia");
+											System.out.println("Email de otro administrador");
 										}
 									}
 
 								} else {
 									error.setHeaderText("Usuario ya registrado.");
 									error.showAndWait();
-									System.out.println("Usuario de otro guardia");
+									System.out.println("Usuario de otro administrador");
 								}
 
 							}
@@ -454,91 +455,108 @@ public class ControladorTabEditarGuardia {
 				error.showAndWait();
 			}
 		} else {
-			error.setHeaderText("No se ha seleccionado ningún guardia a modificar.");
+			error.setHeaderText("No se ha seleccionado ningún administrador a modificar.");
 			error.showAndWait();
 		}
+
 	}
 	
-	
-	 public AnchorPane getAnchorTabEditarGuardia() {
-			return AnchorTabEditarGuardia;
-		}
 
-		public void setAnchorTabEditarGuardia(AnchorPane anchorTabEditarGuardia) {
-			AnchorTabEditarGuardia = anchorTabEditarGuardia;
-		}
+	public ControladorEditarAdministrador getControlerEditAdmin() {
+		return controlerEditAdmin;
+	}
 
-		public TextField getTextUsuarioGuardia() {
-			return textUsuarioGuardia;
-		}
+	public void setControlerEditAdmin(ControladorEditarAdministrador controlerEditAdmin) {
+		this.controlerEditAdmin = controlerEditAdmin;
+	}
 
-		public JFXButton getBtnGuardar() {
-			return btnGuardar;
-		}
+	public AnchorPane getAnchorTabEditarAdmin() {
+		return AnchorTabEditarAdmin;
+	}
 
-		public void setBtnGuardar(JFXButton btnGuardar) {
-			this.btnGuardar = btnGuardar;
-		}
+	public void setAnchorTabEditarAdmin(AnchorPane anchorTabEditarAdmin) {
+		AnchorTabEditarAdmin = anchorTabEditarAdmin;
+	}
 
-		public void setTextUsuarioGuardia(TextField textUsuarioGuardia) {
-			this.textUsuarioGuardia = textUsuarioGuardia;
-		}
+	public GridPane getGridPaneEditarAdmin() {
+		return gridPaneEditarAdmin;
+	}
 
-		public TextField getTextNombreGuardia() {
-			return textNombreGuardia;
-		}
+	public void setGridPaneEditarAdmin(GridPane gridPaneEditarAdmin) {
+		this.gridPaneEditarAdmin = gridPaneEditarAdmin;
+	}
 
-		public void setTextNombreGuardia(TextField textNombreGuardia) {
-			this.textNombreGuardia = textNombreGuardia;
-		}
+	public TextField getTextUsuarioAdmin() {
+		return textUsuarioAdmin;
+	}
 
-		public TextField getTextApellido1Guardia() {
-			return textApellido1Guardia;
-		}
+	public void setTextUsuarioAdmin(TextField textUsuarioAdmin) {
+		this.textUsuarioAdmin = textUsuarioAdmin;
+	}
 
-		public void setTextApellido1Guardia(TextField textApellido1Guardia) {
-			this.textApellido1Guardia = textApellido1Guardia;
-		}
+	public TextField getTextNombreAdmin() {
+		return textNombreAdmin;
+	}
 
-	    public DatePicker getDateFechaGuardia() {
-			return DateFechaGuardia;
-		}
+	public void setTextNombreAdmin(TextField textNombreAdmin) {
+		this.textNombreAdmin = textNombreAdmin;
+	}
 
-		public void setDateFechaGuardia(DatePicker dateFechaGuardia) {
-			DateFechaGuardia = dateFechaGuardia;
-		}
-		
-		public TextField getTextApellido2Guardia() {
-			return textApellido2Guardia;
-		}
+	public TextField getTextApellido1Admin() {
+		return textApellido1Admin;
+	}
 
-		public void setTextApellido2Guardia(TextField textApellido2Guardia) {
-			this.textApellido2Guardia = textApellido2Guardia;
-		}
+	public void setTextApellido1Admin(TextField textApellido1Admin) {
+		this.textApellido1Admin = textApellido1Admin;
+	}
 
-		public TextField getTextEmailGuardia() {
-			return textEmailGuardia;
-		}
+	public TextField getTextApellido2Admin() {
+		return textApellido2Admin;
+	}
 
-		public void setTextEmailGuardia(TextField textEmailGuardia) {
-			this.textEmailGuardia = textEmailGuardia;
-		}
+	public void setTextApellido2Admin(TextField textApellido2Admin) {
+		this.textApellido2Admin = textApellido2Admin;
+	}
 
-		public TextField getTextDniGuardia() {
-			return textDniGuardia;
-		}
+	public TextField getTextEmailAdmin() {
+		return textEmailAdmin;
+	}
 
-		public void setTextDniGuardia(TextField textDniGuardia) {
-			this.textDniGuardia = textDniGuardia;
-		}
+	public void setTextEmailAdmin(TextField textEmailAdmin) {
+		this.textEmailAdmin = textEmailAdmin;
+	}
 
+	public TextField getTextDniAdmin() {
+		return textDniAdmin;
+	}
 
-		public TextField getTextContraseniaGuardia() {
-			return textContraseniaGuardia;
-		}
+	public void setTextDniAdmin(TextField textDniAdmin) {
+		this.textDniAdmin = textDniAdmin;
+	}
 
-		public void setTextContraseniaGuardia(TextField textContraseniaGuardia) {
-			this.textContraseniaGuardia = textContraseniaGuardia;
-		}
+	public TextField getTextContraseniaAdmin() {
+		return textContraseniaAdmin;
+	}
+
+	public void setTextContraseniaAdmin(TextField textContraseniaAdmin) {
+		this.textContraseniaAdmin = textContraseniaAdmin;
+	}
+
+	public DatePicker getDateFechaAdmin() {
+		return DateFechaAdmin;
+	}
+
+	public void setDateFechaAdmin(DatePicker dateFechaAdmin) {
+		DateFechaAdmin = dateFechaAdmin;
+	}
+
+	public JFXButton getBtnGuardar() {
+		return btnGuardar;
+	}
+
+	public void setBtnGuardar(JFXButton btnGuardar) {
+		this.btnGuardar = btnGuardar;
+	}
 
 }
+

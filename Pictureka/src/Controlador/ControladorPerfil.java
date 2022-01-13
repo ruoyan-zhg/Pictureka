@@ -63,13 +63,7 @@ public class ControladorPerfil {
     private Label LabelNombre;
 
     @FXML
-    private Label LabelReserva;
-
-    @FXML
     private Label LabelApellido2;
-
-    @FXML
-    private Label RReserva;
 
     @FXML
     private Label RApellido2;
@@ -144,8 +138,6 @@ public class ControladorPerfil {
 		 			RApellido1.setVisible(false);
 		 			RApellido2.setVisible(false);
 		 			RNombre.setVisible(false);
-		 			LabelReserva.setVisible(false);
-		 			RReserva.setVisible(false);
 
 		 			break;
 		 		case 2:
@@ -282,8 +274,7 @@ public class ControladorPerfil {
 		RApellido1.setText(staff.getApellido1());
 		RApellido2.setText(staff.getApellido2());
 		RNombre.setText(staff.getNombre());
-		LabelReserva.setVisible(false);
-		RReserva.setVisible(false);
+		imgReserva.setVisible(false);
     }
     
     

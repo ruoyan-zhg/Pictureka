@@ -123,17 +123,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="LabelReserva" text="Reserva ID:" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
                         <Label fx:id="LabelApellido2" text="Apellido segundo:" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="RReserva" text="Reserva" GridPane.columnIndex="7" GridPane.rowIndex="1">
                            <font>
                               <Font size="24.0" />
                            </font>

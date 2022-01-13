@@ -2,20 +2,16 @@ package Controlador;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Vector;
-
 import com.jfoenix.controls.JFXTextField;
-
 import Modelo.Cliente;
 import Modelo.Datos;
-import Modelo.Informe;
+import Modelo.Reserva;
 import Modelo.Sala;
-import Modelo.Tickets;
 import Modelo.modelo_Museo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -443,10 +439,10 @@ public class ControladorGuardia {
     			
     	    	Datos datos = new Datos();
     	    	Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
-    	    	Vector<Tickets> tickets;
+    	    	Vector<Reserva> tickets;
     	    	
     	    	for(int i=0; i<clientes.size(); i++) {
-    	    		tickets = clientes.get(i).getTickets();
+    	    		tickets = clientes.get(i).getReservas();
     	    		for (int j=0; j<tickets.size(); j++) {
     	    			if (tickets.get(j).getIdentificador()==identificadorTicket) {
     	    				

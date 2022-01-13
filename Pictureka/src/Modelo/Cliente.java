@@ -11,18 +11,18 @@ public class Cliente {
 	private String email;
 	private String contrasenia;
 	private LocalDate fechaNacimiento;
-	private Vector<Tickets> tickets;
+	private Vector<Reserva> reservas;
 	
 	
 	//Constructores
-	public Cliente(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento, Vector<Tickets> tiquetes) {
+	public Cliente(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento, Vector<Reserva> reservas) {
 		this.identificadorCliente = 1;
 		this.usuario = usuario;
 		this.dni = dni;
 		this.email = email;
 		this.contrasenia = contrasenia;
 		this.fechaNacimiento = fechaNacimiento;
-		this.tickets=tiquetes;
+		this.reservas = reservas;
 
 	}
 
@@ -88,13 +88,14 @@ public class Cliente {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Vector<Tickets> getTickets() {
-		return tickets;
+	public Vector<Reserva> getReservas() {
+		return reservas;
 	}
 
-	public void setTickets(Vector<Tickets> tickets) {
-		this.tickets = tickets;
+	public void setReservas(Vector<Reserva> reservas) {
+		this.reservas = reservas;
 	}
+
 	
 	
 }

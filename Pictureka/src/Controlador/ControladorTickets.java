@@ -122,9 +122,10 @@ public class ControladorTickets {
     @FXML
     void ReservarTickets(ActionEvent event) {
     	
-		
-
-	}
+    	
+    	
+    	
+    }
 
     @FXML
     void accederPerfil(MouseEvent event) {

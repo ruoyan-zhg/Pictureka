@@ -429,25 +429,27 @@ public class ControladorGuardia {
      */
     void validarTicket(MouseEvent event) {
     	
+    	
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert informative = new Alert(Alert.AlertType.CONFIRMATION);
     	String ticketAcomprobar = numTicket.getText();
-    	int identificadorTicket = 0;
+    	int identificadorReserva = 0;
     	try {
-    		identificadorTicket = Integer.parseInt(ticketAcomprobar);
-    		if (identificadorTicket >= 100000 && identificadorTicket <= 999999) {
-    			System.out.println("Ticket dentro del rango");
+    		identificadorReserva = Integer.parseInt(ticketAcomprobar);
+    		if (identificadorReserva >= 100000 && identificadorReserva <= 999999) {
+    			System.out.println("Reserva dentro del rango");
     			
     	    	Datos datos = new Datos();
     	    	Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
     	    	Vector<Reserva> tickets;
     	    	
     	    	for(int i=0; i<clientes.size(); i++) {
-    	    		tickets = clientes.get(i).getReservas();
-    	    		for (int j=0; j<tickets.size(); j++) {
-    	    			if (tickets.get(j).getIdentificador()==identificadorTicket) {
-    	    				
+    	    		for (int j=0; j<clientes.get(i).getReservas().size(); j++) {
+    	    			if (clientes.get(i).getReservas().get(j)==identificadorReserva) {
+    	    				informative.setHeaderText("Reserva válida");
+    	    				informative.showAndWait();
     	    			}
+    	    			
     	    		}
     	    		
     	    	}

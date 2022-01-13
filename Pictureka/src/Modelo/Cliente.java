@@ -11,11 +11,11 @@ public class Cliente {
 	private String email;
 	private String contrasenia;
 	private LocalDate fechaNacimiento;
-	private Vector<Reserva> reservas;
+	private Vector<Integer> reservas;
 	
 	
 	//Constructores
-	public Cliente(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento, Vector<Reserva> reservas) {
+	public Cliente(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento, Vector<Integer> reservas) {
 		this.identificadorCliente = 1;
 		this.usuario = usuario;
 		this.dni = dni;
@@ -88,11 +88,11 @@ public class Cliente {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Vector<Reserva> getReservas() {
+	public Vector<Integer> getReservas() {
 		return reservas;
 	}
 
-	public void setReservas(Vector<Reserva> reservas) {
+	public void setReservas(Vector<Integer> reservas) {
 		this.reservas = reservas;
 	}
 

@@ -50,7 +50,7 @@ public class Registro {
 					System.out.println("repedni");
 					if (usuarioRepetido(usuario)) {
 						System.out.println("add");
-						usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia, fechaNacimiento, new Vector<Reserva>()));
+						usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia, fechaNacimiento, new Vector<Integer>()));
 						escribirUsuarios();
 						System.out.println(usuarios.size());
 						estado = "Validacion completada con exito";

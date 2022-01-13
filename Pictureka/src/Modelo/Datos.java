@@ -103,7 +103,7 @@ public class Datos {
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 		String representacionVisible = prettyGson.toJson(reservas);
 		
-		try(FileWriter writer = new FileWriter("Informes.json")){
+		try(FileWriter writer = new FileWriter("Reservas.json")){
 			prettyGson.toJson(reservas, writer);
         } catch (IOException e) {
             e.printStackTrace();

@@ -10,7 +10,10 @@
       "month": 5,
       "day": 28
     },
-    "reservas": []
+    "reservas": [
+      117012,
+      784425
+    ]
   },
   {
     "identificadorCliente": 1,

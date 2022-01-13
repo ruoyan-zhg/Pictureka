@@ -4,34 +4,33 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXToolbar;
 
-import Modelo.modelo_Museo;
 import Modelo.Cliente;
 import Modelo.Staff;
+import Modelo.modelo_Museo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.ImagePattern;
-import javafx.stage.Stage;
 
 public class ControladorPerfil {
+
 
     @FXML
     private AnchorPane anchorPanePrincipal;
 
     @FXML
     private BorderPane BordPanePrincipal;
+
+    @FXML
+    private JFXToolbar barra;
+
+    @FXML
+    private ImageView imgRegresar;
 
     @FXML
     private ImageView imgUsuario1;
@@ -83,12 +82,6 @@ public class ControladorPerfil {
 
     @FXML
     private Label RNombre;
-   
-	@FXML
-    private JFXToolbar barra;
-
-    @FXML
-    private ImageView imgRegresar;
 
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 
@@ -153,9 +146,11 @@ public class ControladorPerfil {
 		 			break;
 		 		case 2:
 		 			staffConfiguracion();
+		 			imgUsuario1.setImage(new Image("/guardiaAvatar.png"));
 		 			break;
 		 		case 3:
 		 			staffConfiguracion();
+		 			imgUsuario1.setImage(new Image("/administradorAvatar.png"));
 		 			break;
 		 	}
 
@@ -279,7 +274,6 @@ public class ControladorPerfil {
 		RApellido1.setText(staff.getApellido1());
 		RApellido2.setText(staff.getApellido2());
 		RNombre.setText(staff.getNombre());
-		imgUsuario1.setVisible(false);
 		LabelReserva.setVisible(false);
 		RReserva.setVisible(false);
     }
@@ -296,4 +290,5 @@ public class ControladorPerfil {
 	public void setBarra(JFXToolbar barra) {
 		this.barra = barra;
 	}
+
 }

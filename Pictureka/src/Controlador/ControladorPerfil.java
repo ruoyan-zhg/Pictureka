@@ -154,7 +154,36 @@ public class ControladorPerfil {
 	 
 	 @FXML
 	 void abrirReserva(MouseEvent event) {
+		//Se carga el contenido de la ventana
+     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaEditarTickets.fxml"));
+     	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+         ControladorEditarReserva controlerEditRese = new ControladorEditarReserva(usuario);
+         loaderPrincipal.setController(controlerEditRese);
+         AnchorPane PaneVentanaPrincipal;
 
+ 		try {
+ 			//Se carga en un AnchorPane la ventana
+ 			PaneVentanaPrincipal = (AnchorPane) loaderPrincipal.load();
+
+ 			//Se elimina el contenido de la ventana padre
+ 			anchorPanePrincipal.getChildren().clear();
+
+         	//Se ajusta el AnchorPane para que sea escalable
+             AnchorPane.setTopAnchor(PaneVentanaPrincipal, 0.0);
+             AnchorPane.setRightAnchor(PaneVentanaPrincipal, 0.0);
+             AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
+             AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
+             
+
+
+             //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+ 	        anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
+
+
+
+ 		} catch (IOException e1) {
+ 			e1.printStackTrace();
+ 		}
 	 }
 
     @FXML

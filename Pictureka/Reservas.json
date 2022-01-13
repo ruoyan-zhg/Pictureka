@@ -1,20 +1,5 @@
 [
   {
-    "identificador": 117012,
-    "numTickets": 4,
-    "fecha": {
-      "year": 2022,
-      "month": 1,
-      "day": 23
-    },
-    "hora": {
-      "hour": 18,
-      "minute": 55,
-      "second": 0,
-      "nano": 0
-    }
-  },
-  {
     "identificador": 784425,
     "numTickets": 2,
     "fecha": {
@@ -25,6 +10,21 @@
     "hora": {
       "hour": 19,
       "minute": 7,
+      "second": 0,
+      "nano": 0
+    }
+  },
+  {
+    "identificador": 558878,
+    "numTickets": 7,
+    "fecha": {
+      "year": 2022,
+      "month": 2,
+      "day": 17
+    },
+    "hora": {
+      "hour": 14,
+      "minute": 52,
       "second": 0,
       "nano": 0
     }

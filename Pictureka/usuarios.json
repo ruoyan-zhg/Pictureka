@@ -12,7 +12,8 @@
     },
     "reservas": [
       117012,
-      784425
+      784425,
+      558878
     ]
   },
   {
@@ -26,7 +27,9 @@
       "month": 9,
       "day": 11
     },
-    "reservas": []
+    "reservas": [
+      445334
+    ]
   },
   {
     "identificadorCliente": 1,

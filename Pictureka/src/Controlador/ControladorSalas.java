@@ -201,7 +201,7 @@ public class ControladorSalas {
 
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPaneSala.getChildren().setAll(PaneVentanaPrincipal);
-                
+                controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FF8000");
                
                 
     		} catch (IOException e1) {

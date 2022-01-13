@@ -90,6 +90,7 @@ public class ControladorVPrincipal {
 
     @FXML
     private ButtonBar ButtonBarPrincipal;
+    //#FAFAAF
 
     @FXML
     private ImageView imgCalendar;
@@ -296,9 +297,6 @@ public class ControladorVPrincipal {
     void accederPerfil(MouseEvent event) {
 		
     	if(logged == false) {
-        	Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
-    		error.showAndWait();
         	abrirLogin();
         }
         else {

@@ -130,7 +130,7 @@
             </GridPane>
          </center>
          <top>
-            <JFXToolbar prefHeight="67.0" prefWidth="1156.0" style="-fx-background-color: #FAFAAF;" BorderPane.alignment="CENTER">
+            <JFXToolbar fx:id="barra" prefHeight="67.0" prefWidth="1156.0" style="-fx-background-color: #FAFAAF;" BorderPane.alignment="CENTER">
                <left>
                   <ImageView fx:id="imgRegresar" fitHeight="45.0" fitWidth="50.0" onMouseClicked="#volver" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>

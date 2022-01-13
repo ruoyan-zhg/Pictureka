@@ -96,8 +96,11 @@ public class ControladorInformeAdmin {
 	
 	@FXML
 	public void clickItem(MouseEvent event){
-		int posicion = tablaInformes.getSelectionModel().getSelectedIndex();
-		mostrarInforme(-posicion+informes.size()-1);
+		if (!tablaInformes.getSelectionModel().isEmpty()) {
+			int posicion = tablaInformes.getSelectionModel().getSelectedIndex();
+			mostrarInforme(-posicion+informes.size()-1);
+		}
+		
 	}
 
     

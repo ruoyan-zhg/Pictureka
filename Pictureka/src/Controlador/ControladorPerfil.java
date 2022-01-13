@@ -2,6 +2,8 @@ package Controlador;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXToolbar;
+
 import Modelo.modelo_Museo;
 import Modelo.Cliente;
 import Modelo.Staff;
@@ -81,6 +83,9 @@ public class ControladorPerfil {
 
     @FXML
     private Label RNombre;
+   
+	@FXML
+    private JFXToolbar barra;
 
     @FXML
     private ImageView imgRegresar;
@@ -278,4 +283,17 @@ public class ControladorPerfil {
 		LabelReserva.setVisible(false);
 		RReserva.setVisible(false);
     }
+    
+    
+    
+    
+    
+    
+    public JFXToolbar getBarra() {
+		return barra;
+	}
+
+	public void setBarra(JFXToolbar barra) {
+		this.barra = barra;
+	}
 }

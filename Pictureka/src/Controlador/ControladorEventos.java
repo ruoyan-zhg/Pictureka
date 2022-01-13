@@ -238,9 +238,6 @@ public class ControladorEventos {
     	
     	
     	if(logged == false) {
-        	Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
-    		error.showAndWait();
     		abrirLogin();
     		
     		

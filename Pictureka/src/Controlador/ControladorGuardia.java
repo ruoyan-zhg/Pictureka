@@ -130,6 +130,7 @@ public class ControladorGuardia {
                 AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 
+                controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FF8000");
 
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);

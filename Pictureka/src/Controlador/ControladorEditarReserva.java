@@ -140,6 +140,7 @@ public class ControladorEditarReserva {
         	
         	refrescarTabla();
         	datos.serializarVectorReservasAJson(reservas);
+        	datos.serializarArrayAJson(usuarios);
         	alerta.setHeaderText("La reserva se ha eliminado con exito!");
     		alerta.showAndWait();
     	}

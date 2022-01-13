@@ -28,5 +28,20 @@
       "second": 0,
       "nano": 0
     }
+  },
+  {
+    "identificador": 185063,
+    "numTickets": 4,
+    "fecha": {
+      "year": 2022,
+      "month": 1,
+      "day": 26
+    },
+    "hora": {
+      "hour": 15,
+      "minute": 15,
+      "second": 0,
+      "nano": 0
+    }
   }
 ]

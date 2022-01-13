@@ -80,13 +80,15 @@ public class ControladorTickets {
 		 }
 		 
 	}
+	 
+	 
 
     @FXML
     void CancelarReserva(ActionEvent event) {
 
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-    	//Se le asigna el controlador de la ventana para editar información de los guardias
+    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
         ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
         loaderPrincipal.setController(controlerPrincipal);
         AnchorPane PaneVentanaPrincipal;
@@ -109,7 +111,7 @@ public class ControladorTickets {
 	        controlerPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
             
 
-            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
             
            
@@ -122,23 +124,152 @@ public class ControladorTickets {
     @FXML
     void ReservarTickets(ActionEvent event) {
     	
+    	Alert error = new Alert(Alert.AlertType.ERROR);
     	
+    	String validarNumero = textTickets.getText();
     	
+    	//LocalDate fechaTickets = dateTickets.getValue();
     	
+    	int validar = 0;
+    	
+    	int ticketAleatorio = 0;
+    	 
+    	
+    	try {
+    		
+    		validar = Integer.parseInt(validarNumero);
+    		ticketAleatorio = (int) (Math.random()* 1000000); // ticket aleatorio
+    		int value = Math.abs(validar);
+    		if(value > 0 && value <=12);
+    		// comprobamos fechas
+    		LocalDate fechaTickets = dateTickets.getValue();
+    		LocalDate fecha_Actual = LocalDate.now();
+    		
+    		// comprobamos hora
+    		LocalTime horaTickets = hourTickets.getValue();
+    		LocalTime hora_Actual = LocalTime.now();
+    		int hora = hora_Actual.getHour();
+    		int minutos = hora_Actual.getMinute();
+    		
+    		LocalTime horaMinutoTickets = LocalTime.of(hora, minutos);
+    		
+			if (fechaTickets.isAfter(fecha_Actual)) {
+				if (fechaTickets.getDayOfWeek().toString().equals("MONDAY")
+						| fechaTickets.getDayOfWeek().toString().equals("TUESDAY")
+						| fechaTickets.getDayOfWeek().toString().equals("WEDNESDAY")
+						| fechaTickets.getDayOfWeek().toString().equals("THURSDAY")) {
+					
+					if (horaTickets.isBefore(LocalTime.of(10, 00)) & horaTickets.isAfter(LocalTime.of(20, 00))) {
+					
+						
+					}
+					else {
+						error.setHeaderText("La hora introducida no es vÃ¡lida.");
+						error.setContentText("Revise los horarios.");
+						error.showAndWait();
+					}
+					
+				}
+
+				else if (fechaTickets.getDayOfWeek().toString().equals("FRIDAY")
+						| fechaTickets.getDayOfWeek().toString().equals("SATURDAY")) {
+
+					if (horaTickets.isBefore(LocalTime.of(10, 00)) & horaTickets.isAfter(LocalTime.of(21, 00))) {
+
+					}
+					else {
+						error.setHeaderText("La hora introducida no es vÃ¡lida.");
+						error.setContentText("Revise los horarios.");
+						error.showAndWait();
+					}
+				}
+				else { 
+					if (horaTickets.isBefore(LocalTime.of(11, 00)) & horaTickets.isAfter(LocalTime.of(19, 00))) {
+				}
+					else {
+						error.setHeaderText("La hora introducida no es vÃ¡lida.");
+						error.setContentText("Revise los horarios.");
+						error.showAndWait();
+					}
+
+			}
+			}
+			
+
+			else if (fechaTickets.isEqual(fecha_Actual)) {
+				if (fechaTickets.isAfter(fecha_Actual)) {
+					if (fechaTickets.getDayOfWeek().toString().equals("MONDAY")
+							| fechaTickets.getDayOfWeek().toString().equals("TUESDAY")
+							| fechaTickets.getDayOfWeek().toString().equals("WEDNESDAY")
+							| fechaTickets.getDayOfWeek().toString().equals("THURSDAY")) {
+						
+						if (horaTickets.isBefore(LocalTime.of(10, 00)) & horaTickets.isAfter(LocalTime.of(20, 00))) {
+						
+							
+						}
+						else {
+							error.setHeaderText("La hora introducida no es vÃ¡lida.");
+							error.setContentText("Revise los horarios.");
+							error.showAndWait();
+						}
+						
+					}
+
+					else if (fechaTickets.getDayOfWeek().toString().equals("FRIDAY")
+							| fechaTickets.getDayOfWeek().toString().equals("SATURDAY")) {
+
+						if (horaTickets.isBefore(LocalTime.of(10, 00)) & horaTickets.isAfter(LocalTime.of(21, 00))) {
+						}
+						
+						else {
+							error.setHeaderText("La hora introducida no es vÃ¡lida.");
+							error.setContentText("Revise los horarios.");
+							error.showAndWait();						
+					}
+					}
+					else { 
+						if (horaTickets.isBefore(LocalTime.of(11, 00)) & horaTickets.isAfter(LocalTime.of(19, 00))) {
+					}
+						else {
+							error.setHeaderText("La hora introducida no es vÃ¡lida.");
+							error.setContentText("Revise los horarios.");
+							error.showAndWait();
+						}
+
+				}
+				}
+				
+
+			} else {
+				error.setHeaderText("La hora introducida no es vÃ¡lida.");
+				error.setContentText("Revise los horarios.");
+				error.showAndWait();
+			}	
+    		
+    	}
+        	
+   
+    	catch(NumberFormatException ex) {
+    		error.setHeaderText("El numero de tickets introducido es invalido");
+    		error.showAndWait();
+    		
+    	}
     }
+    	
+    
 
     @FXML
     void accederPerfil(MouseEvent event) {
     	if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+			error.setHeaderText("Oh no! Para acceder a esta funciï¿½n debes estar iniciado sesiï¿½n.");
     		error.showAndWait();
         	
         }
         else {
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-        	//Se le asigna el controlador de la ventana para editar información de los guardias
+        	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
             ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
             loaderPrincipala.setController(controlerPrincipal);
             AnchorPane PaneVentanaPrincipal;
@@ -156,10 +287,10 @@ public class ControladorTickets {
                 AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 
-                
-                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+
+                //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-                controlerPrincipal.getBarra().setStyle("-fx-background-color: #00aae4");
+                
                
                 
     		} catch (IOException e1) {
@@ -174,7 +305,7 @@ public class ControladorTickets {
 
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-    	//Se le asigna el controlador de la ventana para editar información de los guardias
+    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
     	this.usuario = "vacio";
     	this.logged = false;
         ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
@@ -195,7 +326,7 @@ public class ControladorTickets {
             AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
             
 
-            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
             
            

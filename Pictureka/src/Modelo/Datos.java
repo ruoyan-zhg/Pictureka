@@ -117,7 +117,7 @@ public class Datos {
 		try (Reader reader = new FileReader("Reservas.json")) {
 			Gson gson = new Gson();
 			Type tipoListausuarios = new TypeToken<Vector<Reserva>>(){}.getType();
-			usuarios = gson.fromJson(reader, tipoListausuarios);
+			reservas = gson.fromJson(reader, tipoListausuarios);
         } catch (IOException e) {
             e.printStackTrace();
             

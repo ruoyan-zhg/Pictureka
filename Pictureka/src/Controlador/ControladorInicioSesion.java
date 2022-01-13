@@ -1,41 +1,38 @@
 package Controlador;
 
-
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Vector;
-
 import com.jfoenix.controls.JFXButton;
-
 import Modelo.Cliente;
 import Modelo.Datos;
-import Modelo.Guardia;
-import Modelo.Registro;
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
-import javafx.scene.control.cell.PropertyValueFactory;
-
 import javafx.scene.image.Image;
-
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
+
+/**
+ * 
+ * En esta clase se maneja el inicio de sesión de cada usuario en la vista <b>InterfazLogin</b>, mostrando la respectiva ventana a cada
+ * usuarip.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 
 public class ControladorInicioSesion {
 
@@ -69,10 +66,6 @@ public class ControladorInicioSesion {
     @FXML
     private ImageView btnVolver;
     
-    
-    
-    
-
     @FXML
     /**
      * 

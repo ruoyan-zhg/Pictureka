@@ -188,37 +188,6 @@ public class ControladorVPrincipal {
 	int countDos = 1;
 	int countTres = 2;
 
-	
-	public void setLogged(boolean log) {
-		
-		logged = log;
-	}
-	public boolean getLogged() {
-		
-		return logged;
-	}
-	
-	public GridPane getGridPaneButton() {
-		return gridPaneButton;
-	}
-
-	public ImageView getAvatarUsuario() {
-		return imgUsuario;
-	}
-	public Label getLblBienvenido() {
-		return lblBienvenido;
-	}
-	public GridPane getGridPaneRegion() {
-		return gridPaneRegion;
-	}
-	public void setGridPaneRegion(GridPane gridPaneRegion) {
-		this.gridPaneRegion = gridPaneRegion;
-	}
-	
-    
-    
-	
-
     @FXML
     /**
      * 
@@ -264,8 +233,6 @@ public class ControladorVPrincipal {
      */
     void cambioImgAtras(MouseEvent event) {
     	
-    	
-    	
     	count--;
     	countDos--;
     	countTres--;
@@ -290,7 +257,7 @@ public class ControladorVPrincipal {
     @FXML
     /**
      * 
-     * Dirige al usuario a la ventana para inicar sesion, ya que se puede acceder al programa sin la necesidad de estar registrado.
+     * Dirige al usuario a la ventana para visualizar su información.
      * 
      * @param event   Evento causado cuando el usuario pulsa sobre la imagen del avatar.
      */
@@ -587,6 +554,34 @@ public class ControladorVPrincipal {
     	
     }
     
+    
+    
+    
+	public void setLogged(boolean log) {
+		
+		this.logged = log;
+	}
+	public boolean getLogged() {
+		
+		return logged;
+	}
+	
+	public GridPane getGridPaneButton() {
+		return gridPaneButton;
+	}
+
+	public ImageView getAvatarUsuario() {
+		return imgUsuario;
+	}
+	public Label getLblBienvenido() {
+		return lblBienvenido;
+	}
+	public GridPane getGridPaneRegion() {
+		return gridPaneRegion;
+	}
+	public void setGridPaneRegion(GridPane gridPaneRegion) {
+		this.gridPaneRegion = gridPaneRegion;
+	}
     
     
 

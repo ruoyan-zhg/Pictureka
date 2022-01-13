@@ -1,17 +1,10 @@
 package Controlador;
 
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.Date;
-
-import javax.management.modelmbean.ModelMBeanOperationInfo;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
-
 import Modelo.Guardia;
-import Modelo.Registro;
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +12,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+
+/**
+ * 
+ * En esta clase se maneja el registro de un guardia, en la vista <b>TabAniadirGuardia</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 
 public class ControladorTabAniadirGuardia {
 
@@ -82,7 +86,12 @@ public class ControladorTabAniadirGuardia {
     private JFXDatePicker DateGuardiaNacimiento;
      
 	
-    //Constructor al que se le pasa el Controlador de ediccion de guardias
+    /**
+     * 
+     * Constructor de la clase <b>ControladorTabAdniadirGuardia</b> al que se le pasa el Controlador de ediccion de guardias.
+     * 
+     * @param controladorEdit	Controlador de la clase <b>ControladorEditGuardias</b> con su respectivos atributos y métodos. 
+     */
     public ControladorTabAniadirGuardia(ControladorEditGuardias controladorEdit) {
     	controlerEdit = controladorEdit;
     	
@@ -90,6 +99,13 @@ public class ControladorTabAniadirGuardia {
     
     
     @FXML
+    /**
+     * 
+     * Registra un nuevo guardia con la información introducida por el administrador. Se escribe en el Json de Staff y se muestra
+     * en la tabla de guardias.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre el botón "Añadir".
+     */
     void GuardarNuevoGuardia(ActionEvent event) {
     	
     	modelo_Museo modelo = new modelo_Museo();

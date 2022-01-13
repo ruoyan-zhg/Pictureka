@@ -18,6 +18,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
+/**
+ * 
+ * En esta clase se maneja la edicción de información de un administrador, en la vista <b>TabEditarAdministrador</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ * 
+ */
 public class ControladorTabEditarAdmin {
 
 	ControladorEditarAdministrador controlerEditAdmin;
@@ -78,6 +88,14 @@ public class ControladorTabEditarAdmin {
     @FXML
     private JFXButton btnGuardar;
 
+    /**
+     * 
+     * Constructor de la clase <b>ControladorTabEditarAdmin</b> al que se le pasa
+	 * el Controlador de edicciones de administradores.
+     * 
+     * @param controlerEdit		Controlador de la clase <b>ControladorEditarAdministrador</b>
+	 *                      	con sus respecitvos atributos y métodos.
+     */
     public ControladorTabEditarAdmin(ControladorEditarAdministrador controlerEdit) {
     	
     	this.controlerEditAdmin = controlerEdit;
@@ -85,6 +103,11 @@ public class ControladorTabEditarAdmin {
     
     
 	@FXML
+	/**
+	 * 
+	 * Inicializa la ventana, comprobando la selección del administrador y mostrando su información en los campos.
+	 * 
+	 */
 	public void initialize() {
 
 		// Se comprueba que el administrador ha seleccionado a un administrador de la tabla
@@ -115,6 +138,12 @@ public class ControladorTabEditarAdmin {
     
 
 	@FXML
+	/**
+	 * 
+	 * Guarda los cambios realizados en uno o más de los campos de información del administrador, cambiando el contenido del Json de Staff.
+	 * 
+	 * @param event		Evento causado cuando el administrador pulsa sobre el botón "Guardar Cambios".
+	 */
     void GuardarAdminEdit(ActionEvent event) {
 
 		Alert error = new Alert(Alert.AlertType.ERROR);

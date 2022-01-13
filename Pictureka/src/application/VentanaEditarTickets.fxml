@@ -92,7 +92,10 @@
                         <RowConstraints percentHeight="100.0" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarReserva" text="Eliminar" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarReserva" prefHeight="74.0" prefWidth="187.0" text="Eliminar" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                      </children>
                   </GridPane>
                </children>

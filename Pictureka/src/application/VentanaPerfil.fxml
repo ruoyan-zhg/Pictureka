@@ -152,6 +152,9 @@
                            <image>
                               <Image url="@../../Imagenes_Multimedia/CambiarTicket.png" />
                            </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ImageView>
                      </children>
                   </GridPane>

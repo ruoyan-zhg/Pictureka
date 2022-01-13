@@ -1,14 +1,13 @@
 package Controlador;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Vector;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
-
 import Modelo.Cliente;
 import Modelo.Datos;
 import Modelo.Reserva;
@@ -24,6 +23,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
+/**
+ * 
+ * En esta clase se maneja la funcionalidad para reservar tickets de la vista <b>VentanaTickets</b>
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 
 public class ControladorTickets {
 
@@ -73,6 +83,12 @@ public class ControladorTickets {
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
+    /**
+     * 
+     * Constructor de la clase <b>ControladorTickets</b> que guarda información del usuario.
+     * 
+     * @param usuario		El usuario que esté inciado sesión en ese momento.
+     */
 	 public ControladorTickets(String usuario) {
 		 if (usuario == "vacio") {
 			 logged = false;
@@ -88,6 +104,12 @@ public class ControladorTickets {
 	 
 
     @FXML
+    /**
+     * 
+     * Devuelve al usuario a la ventana principal, cancelando la reserva que se estuviera realizando.
+     * 
+     * @param event		Evento causado cuando el usuario pulsa sobre el botón "Cancelar".
+     */
     void CancelarReserva(ActionEvent event) {
 
     	//Se carga el contenido de la ventana
@@ -126,21 +148,30 @@ public class ControladorTickets {
     }
 
     @FXML
+    /**
+     * 
+     * Método que realiza la reserva de tickets de un cliente. Creando un identificador para cada una de las reservas, junto con
+     * la información introducida: número de tickets, fecha y hora de reserva.
+     * 
+     * @param event		Evento causado cuando el usuario confirma su reserva cuando pulsa sobre el botón de "Continuar".
+     */
     void ReservarTickets(ActionEvent event) {
     	
+    	//Creacion de las diferentes alertas
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+    	
 		int numTickets = 0;
-		
+		//Se cargan los datos de los Json en los vectores
 		Datos datos = new Datos();
     	Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
     	Vector<Reserva> reservas = datos.desserializarJsonAReservas();
     	
     	int idReserva = 0;
+    	//Se genera un numero de 6 digitos entre (100000-999999) como identificador
     	idReserva = (int) ((Math.random()*(999999-100000) + 100000));
 		
-		
-
+    	//Se comprueba que ninguno de los campos se encuentre vacio
 		if (!(textTickets.getText().isEmpty() | hourTickets.getValue() == null | dateTickets.getValue() == null)) {
 
 			try {
@@ -187,13 +218,15 @@ public class ControladorTickets {
 							// Comrpobar con el horario de lunes a jueves
 							
 							if (horaSeleccionada.isAfter(LocalTime.of(10, 00)) && horaSeleccionada.isBefore(LocalTime.of(20, 00))) {
-								//Se realiza la reserva
 								
+								//Se recorre el vector de clientes
 								for (int i=0; i<clientes.size(); i++) {
 						    		if (clientes.get(i).getUsuario().equals(usuario)) {
+						    			//Se introduce el identificador en el vector de reservas
 						    			clientes.get(i).getReservas().add(idReserva);
 						    		}
 						    	}
+								//En el json de reservas se aniade la reserva con su respectiva informacion
 						    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
 						    	datos.serializarVectorReservasAJson(reservas);
 						    	datos.serializarArrayAJson(clientes);
@@ -225,6 +258,7 @@ public class ControladorTickets {
 						    			clientes.get(i).getReservas().add(idReserva);
 						    		}
 						    	}
+								//En el json de reservas se aniade la reserva con su respectiva informacion
 						    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
 						    	datos.serializarVectorReservasAJson(reservas);
 						    	datos.serializarArrayAJson(clientes);
@@ -251,6 +285,7 @@ public class ControladorTickets {
 						    			clientes.get(i).getReservas().add(idReserva);
 						    		}
 						    	}
+								//En el json de reservas se aniade la reserva con su respectiva informacion
 						    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
 						    	datos.serializarVectorReservasAJson(reservas);
 						    	datos.serializarArrayAJson(clientes);
@@ -289,6 +324,7 @@ public class ControladorTickets {
 							    			clientes.get(i).getReservas().add(idReserva);
 							    		}
 							    	}
+									//En el json de reservas se aniade la reserva con su respectiva informacion
 							    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
 							    	datos.serializarVectorReservasAJson(reservas);
 							    	datos.serializarArrayAJson(clientes);
@@ -315,6 +351,7 @@ public class ControladorTickets {
 							    			clientes.get(i).getReservas().add(idReserva);
 							    		}
 							    	}
+									//En el json de reservas se aniade la reserva con su respectiva informacion
 							    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
 							    	datos.serializarVectorReservasAJson(reservas);
 							    	datos.serializarArrayAJson(clientes);
@@ -340,6 +377,7 @@ public class ControladorTickets {
 							    			clientes.get(i).getReservas().add(idReserva);
 							    		}
 							    	}
+									//En el json de reservas se aniade la reserva con su respectiva informacion
 							    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
 							    	datos.serializarVectorReservasAJson(reservas);
 							    	datos.serializarArrayAJson(clientes);
@@ -383,6 +421,12 @@ public class ControladorTickets {
     
 
     @FXML
+    /**
+     * 
+     * Dirige al usuario a la ventana para visualizar su información.
+     * 
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen de su avatar.
+     */
     void accederPerfil(MouseEvent event) {
     	if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
@@ -425,6 +469,12 @@ public class ControladorTickets {
     }
 
     @FXML
+    /**
+     * 
+     *  Devuelve al usuario a la ventana principal habiendo cerrado su sesión.
+     * 
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para cerrar sesión.
+     */
     void cerrarSesion(MouseEvent event) {
 
     	//Se carga el contenido de la ventana

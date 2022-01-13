@@ -1,9 +1,7 @@
 package Controlador;
 
 import java.io.IOException;
-
 import com.jfoenix.controls.JFXToolbar;
-
 import Modelo.Cliente;
 import Modelo.Staff;
 import Modelo.modelo_Museo;
@@ -16,6 +14,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+
+/**
+ * 
+ * En esta clase se maneja la información de cada usuario y se muestra en la vista <b>VentanaPerfil</b> con la respectiva información
+ * del usuario iniciado en ese momento.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 
 public class ControladorPerfil {
 
@@ -80,7 +90,6 @@ public class ControladorPerfil {
     @FXML
     private ImageView imgReserva;
 
-
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 
     boolean logged; //Este nos dira si la parsona esta logueada o no
@@ -91,6 +100,12 @@ public class ControladorPerfil {
 
     private Staff staff;
 
+    /**
+     * 
+     * Constructor de la clase <b>ControladorPerfil</b> que guarda la información del usaurio iniciado sesión.
+     * 
+     * @param usuario		El usuario que se encuentra iniciado sesión
+     */
 	 public ControladorPerfil(String usuario)  {
 		 if (usuario == "vacio") {
 			 logged = false;
@@ -124,6 +139,11 @@ public class ControladorPerfil {
 	}
 
 	 @FXML
+	 /**
+	  * 
+	  * Inicializa la ventana perfil, mostrando los diferentes campos de información, dependiendo del usuario iniciado sesión.
+	  * 
+	  */
 	  	public void initialize() {
 		 System.out.println(identificador+" "+usuario);
 		 	switch(identificador) {
@@ -153,6 +173,13 @@ public class ControladorPerfil {
 	  	}
 	 
 	 @FXML
+	 /**
+	  * 
+	  * Muestra al cliente su lista de reservas, mostrando la información de éstas, ofreciendo la posibilidad de cancelar la 
+	  * reserva que desee.
+	  * 
+	  * @param event	Evento causado cuando el cliente pulsa sobre la imagen de su reserva.
+	  */
 	 void abrirReserva(MouseEvent event) {
 		//Se carga el contenido de la ventana
      	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaEditarTickets.fxml"));
@@ -187,6 +214,12 @@ public class ControladorPerfil {
 	 }
 
     @FXML
+    /**
+     * 
+     * Devuelve al usuario a su ventana inicial, dependiendo del usuario iniciado sesión
+     * 
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen de volver atrás.
+     */
     void volver(MouseEvent event) {
 
     	modelo_Museo museo = new modelo_Museo();
@@ -295,6 +328,11 @@ public class ControladorPerfil {
     	}
 
     }
+    /**
+     * 
+     * Muestra una información diferente si el usuario iniciado sesión es un guardia o un administrador.
+     * 
+     */
     private void staffConfiguracion() {
     	RUsuario.setText(staff.getUsuario());
 		RDNI.setText(staff.getDni());

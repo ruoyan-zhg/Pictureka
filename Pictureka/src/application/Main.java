@@ -11,13 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-
-import java.util.Vector;
-
 import com.jfoenix.transitions.JFXFillTransition;
-
 import Controlador.ControladorLogo;
-import Modelo.*;
+
 
 /**
  * 
@@ -76,7 +72,7 @@ public class Main extends Application {
 			//Mostramos las animaciones creadas
 			fill.play();
 			scale.play();
-			
+			//Se muestra el icono en todas las ventanas
 			primaryStage.getIcons().add(new Image("Pictureka2.png"));
 			primaryStage.show();
 			

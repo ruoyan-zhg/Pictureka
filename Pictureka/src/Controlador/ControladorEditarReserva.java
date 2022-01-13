@@ -1,16 +1,13 @@
 package Controlador;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Vector;
-
 import com.jfoenix.controls.JFXTextArea;
-
 import Modelo.Cliente;
 import Modelo.Datos;
-import Modelo.Informe;
 import Modelo.Reserva;
-import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,12 +17,21 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * 
+ * En esta clase se maneja la edicción de una reserva, en la vista <b>VentanaEditarTickets</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 public class ControladorEditarReserva {
 
     @FXML
@@ -75,11 +81,22 @@ public class ControladorEditarReserva {
     private Vector<Integer> identificadores = new Vector<Integer>();
     private Vector<Reserva> reservasEspecificas = new Vector<Reserva>();
     
+    /**
+     * 
+     * Inicializa la ventana con la información requerida.
+     * 
+     */
     public void initialize() {
     	getReserUser();
 		refrescarTabla();
 	}
     
+    /**
+     * 
+     * Constructor de la clase <b>ControladorEditarReserva</b> que guarda la información de un cliente.
+     * 
+     * @param usuario		El cliente que se encuentre iniciado sesión.
+     */
     public ControladorEditarReserva(String usuario) {
 		 if (usuario == "vacio") {
 			 logged = false;
@@ -92,11 +109,13 @@ public class ControladorEditarReserva {
 		 
 	}
     
-    
-
-    
-
     @FXML
+    /**
+     * 
+     * Recoge la selección del cliente de su lista de reservas.
+     * 
+     * @param event		Evento causado cuando el cliente pulsa sobre la tabla.
+     */
     void clickItem(MouseEvent event) {
     	if (!tablaReservas.getSelectionModel().isEmpty()) {
 			int posicion = tablaReservas.getSelectionModel().getSelectedIndex();
@@ -105,9 +124,16 @@ public class ControladorEditarReserva {
     }
 
     @FXML
+    /**
+     * 
+     * Elimina la reserva seleccionada por el cliente.
+     * 
+     * @param event		Evento causado cuando el cliente pulsa sobre el botón "Eliminar".
+     */	
     void eliminarReserva(ActionEvent event) {
     	
     	Alert alerta = new Alert(AlertType.INFORMATION);
+    	//Se comrpueba que la seleccion no este vacia
     	if(tablaReservas.getSelectionModel().getSelectedItem()!=null) {
     		int idEliminar = tablaReservas.getSelectionModel().getSelectedItem().getIdentificador();
     		for(int i = 0; i<reservasEspecificas.size(); i++) {
@@ -153,6 +179,12 @@ public class ControladorEditarReserva {
     
     
     @FXML
+    /**
+     * 
+     * Muestra la información de un cliente.
+     * 
+     * @param event		Evento causado cuando el cliente pulsa sobre la imagen de su avatar.
+     */
     void accederPerfil(MouseEvent event) {
     	if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
@@ -194,6 +226,12 @@ public class ControladorEditarReserva {
     }
 
     @FXML
+    /**
+     * 
+     * Devuelve al cliente a la ventana de su perfil.
+     * 
+     * @param event		Evento causado cuando el cliente pulsa sobre la imagen para volver atrás.
+     */
     void volverAtras(MouseEvent event) {
     	
     	//Se carga el contenido de la ventana
@@ -228,6 +266,12 @@ public class ControladorEditarReserva {
 
     }
     
+    /**
+     * 
+     * Muestra la información de la reserva seleccionada por el usuario.
+     * 
+     * @param posicion		Número que guarda la posición de los elementos de la tabla.
+     */
     private void mostrarReservas(int posicion) {
     	
     	this.infoReserva = "\t\t\t\tReserva Seleccionada:"
@@ -238,6 +282,11 @@ public class ControladorEditarReserva {
     			mostrarReservas.setText(infoReserva);
 	}
     
+    /**
+     * 
+     * Obtiene la reserva del cliente.
+     * 
+     */
     private void getReserUser() {
     	//Almacena los identificadores de las reservas del usuario 
     	for(int i=0; i<usuarios.size();i++) {
@@ -257,7 +306,11 @@ public class ControladorEditarReserva {
     	
     }
 
-    
+    /**
+     * 
+     * Refresca la información de la tabla, tras haber realizado cambios.
+     * 
+     */
     private void refrescarTabla() {
     	
 		tablaReservas.getItems().clear();

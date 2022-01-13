@@ -1,10 +1,8 @@
 package Controlador;
 
 import java.io.IOException;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToolbar;
-
 import Modelo.Museo;
 import Modelo.Sala;
 import javafx.fxml.FXML;
@@ -17,6 +15,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
+/**
+ * 
+ * En estaa clase, se maneja la información recogida de todos los sensores y se muestran en la vista <b>VentanaSala</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ */
 
 public class ControladorSalas {
 
@@ -76,6 +84,15 @@ public class ControladorSalas {
     
     private String tipoStaff;
 	 
+    
+    /**
+     * 
+     * Constructor de la clase <b>ControladorSalas</b> que guarda la información del usuario.
+     * 
+     * @param usuario		El usuario que se encuentre iniciado sesión. 
+     * @param _sala			La sala en la que se encuentre el usuario.
+     * @param _tipoStaff	Tipo de Staff que se encuentra iniciado sesión.
+     */
 	 public ControladorSalas(String usuario, Sala _sala, String _tipoStaff) {
 		 if (usuario == "vacio") {
 			 logged = false;
@@ -90,9 +107,15 @@ public class ControladorSalas {
 		 
 	}
 	@FXML
+	/**
+	 * 
+	 * Inicializa la ventana sala, con su respectiva número de sala y con la información del usuario que se encuentra iniciado sesión.
+	 * 
+	 */
 	public void initialize() {
 		Museo museo = new Museo();
 		textLuz.setText("Actualmente esta cargada la sala "+sala.getIdentificador());
+		//Dependiendo del usuario que se encuentre iniciado sesion se muestra una u otro avatar
 		if (tipoStaff.equals("Guardia")) {
 			imgAvatar.setImage(new Image("/guardiaAvatar.png"));
 		}
@@ -103,6 +126,12 @@ public class ControladorSalas {
 
 	 	
 	@FXML
+	/**
+	 * 
+	 * Devuelve al usuario a su ventana inicial, dependiendo del usuario que esté iniciado sesión.
+	 * 
+	 * @param event		Evento causado cuando el guardia pulsa sobre la imagen de vuelta atrás.
+	 */
 	void volverAtrasSalas(MouseEvent event) {
 		if(tipoStaff.equals("Guardia")) {
 			//Se carga el contenido de la ventana
@@ -170,6 +199,12 @@ public class ControladorSalas {
 	}
 
     @FXML
+    /**
+     * 
+     * Muestra la información del usuario que se encuentra iniciado sesión.
+     * 
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen de su avatar.
+     */
     void verPerfil(MouseEvent event) {
     	if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);

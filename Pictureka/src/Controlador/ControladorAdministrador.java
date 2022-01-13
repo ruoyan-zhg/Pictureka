@@ -1,12 +1,9 @@
 package Controlador;
 
 import java.io.IOException;
-
 import com.jfoenix.controls.JFXToolbar;
-
 import Modelo.Sala;
 import Modelo.modelo_Museo;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.LineChart;
@@ -16,6 +13,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+
+/**
+ * 
+ * En esta clase se manejan las funcionalidades del administrador, en la vista <b>VentanaAdministrador</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 
 public class ControladorAdministrador {
 
@@ -71,7 +79,12 @@ public class ControladorAdministrador {
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
-	 
+	 /**
+	  * 
+	  * Constructor de la clase <b>ControladorAdministrador</b> que guarda la información del administrador.
+	  * 
+	  * @param usuario		El administrador que se encuentre iniciado sesión.
+	  */
 	 public ControladorAdministrador(String usuario) {
 		 if (usuario == "vacio") {
 			 logged = false;
@@ -85,6 +98,12 @@ public class ControladorAdministrador {
 	}
 
     @FXML
+    /**
+     * 
+     * Muestra todos los informes enviados, y ofrece la posibilidad de crear nuevos informes.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de los informes.
+     */
     void accederInformes(MouseEvent event) {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaInformeAdmin.fxml"));
@@ -120,6 +139,12 @@ public class ControladorAdministrador {
     }
 
     @FXML
+    /**
+     * 
+     * Muestra la información del administrador que se encuentre iniciado sesión.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de su avatar.
+     */
     void accederPerfil(MouseEvent event) {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
@@ -156,6 +181,12 @@ public class ControladorAdministrador {
     }
 
     @FXML
+    /**
+     * 
+     * Devuelve al administrador a la ventana principal habiendo cerrado su sesión.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de cerrar sesión.
+     */
     void cerrarSesion(MouseEvent event) {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
@@ -181,6 +212,12 @@ public class ControladorAdministrador {
     }
 
     @FXML
+    /**
+     * 
+     * Muestra la ventana para editar eventos, como su título, contenido e imagen.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen para editar eventos.
+     */
     void editarEventos(MouseEvent event) {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaEditarEventos.fxml"));
@@ -203,6 +240,12 @@ public class ControladorAdministrador {
     }
 
     @FXML
+    /**
+     * 
+     * Muestra todos los guardias y ofrece la posibilidad de editar su información o registrar uno nuevo.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen para editar guardias.
+     */
     void editarGuardias(MouseEvent event) {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaEditGuardias.fxml"));
@@ -231,6 +274,13 @@ public class ControladorAdministrador {
     }
 
     @FXML
+    
+    /**
+     * 
+     * Muestra la ventana de la Sala 1, mostrando la información de los diferentes sensores.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de la primera sala.
+     */
     void sala1(MouseEvent event) {
     	modelo_Museo museo = new modelo_Museo();
     	Sala temporal = museo.getMuseo().recuperar1Salas(1);
@@ -274,6 +324,12 @@ public class ControladorAdministrador {
     }
 
     @FXML
+    /**
+     * 
+     * Muestra la ventana de la Sala 2, mostrando la información de los diferentes sensores.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de la segunda sala.
+     */
     void sala2(MouseEvent event) {
 
     	modelo_Museo museo = new modelo_Museo();
@@ -317,6 +373,12 @@ public class ControladorAdministrador {
     }
 
     @FXML
+    /**
+     * 
+     * Muestra la ventana de la Sala 3, mostrando la información de los diferentes sensores.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de la tercera sala.
+     */
     void sala3(MouseEvent event) {
 
     	modelo_Museo museo = new modelo_Museo();
@@ -360,6 +422,12 @@ public class ControladorAdministrador {
     }
 
     @FXML
+    /**
+     * 
+     * Muestra la ventana de la Sala 4, mostrando la información de los diferentes sensores.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de la cuarta sala.
+     */
     void sala4(MouseEvent event) {
 
     	modelo_Museo museo = new modelo_Museo();
@@ -403,6 +471,12 @@ public class ControladorAdministrador {
     }
     
     @FXML
+    /**
+     * 
+     * Muestra una lista de los administradores, ofreciendo la posibilidad de editar su información o de registrar uno nuevo.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de edicción de un administrador.
+     */
     void editarInfoAdministrador(MouseEvent event) {
 
     	//Se carga el contenido de la ventana
@@ -428,7 +502,21 @@ public class ControladorAdministrador {
     	
     }
     
+    /**
+     * 
+     * Método que muestra un error al administrador sobre la sala.
+     * 
+     */
+    private void mostrarErrorSala() {
+    	Alert error = new Alert(Alert.AlertType.ERROR);
+    	error.setHeaderText("La sala no esta disponible");
+		error.show();
+		
+	}
+    
 
+    
+    
 	public JFXToolbar getToolBarAdministrador() {
 		return toolBarAdministrador;
 	}
@@ -436,11 +524,6 @@ public class ControladorAdministrador {
 	public void setToolBarAdministrador(JFXToolbar toolBarAdministrador) {
 		this.toolBarAdministrador = toolBarAdministrador;
 	}
-	private void mostrarErrorSala() {
-    	Alert error = new Alert(Alert.AlertType.ERROR);
-    	error.setHeaderText("La sala no esta disponible");
-		error.show();
-		
-	}
+	
 
 }

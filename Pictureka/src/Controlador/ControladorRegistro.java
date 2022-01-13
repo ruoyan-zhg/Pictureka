@@ -3,9 +3,7 @@ package Controlador;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
-
 import com.jfoenix.controls.JFXButton;
-
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +17,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+
+/**
+ * 
+ * En esta clase, se maneja la funcionalidad de registro de un usuario, en la vista <b>VentanaRegistro</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 
 public class ControladorRegistro {
 
@@ -153,7 +162,11 @@ public class ControladorRegistro {
     	}
     	
     }
-    
+    /**
+     * 
+     * Método que muestra la ventana de Login.
+     * 
+     */
     void abrirLogin() {
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
         ControladorInicioSesion controlerInicioSesion = new ControladorInicioSesion();

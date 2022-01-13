@@ -1,4 +1,5 @@
 package Controlador;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Vector;
@@ -17,6 +18,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+
+/**
+ * 
+ * En esta clase se manejan varias de las funcionalidades que tiene un guardia, en la vista <b>VentanaGuardia</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ */
 
 public class ControladorGuardia {
 
@@ -146,14 +157,23 @@ public class ControladorGuardia {
     }
     
     @FXML
+    /**
+     * 
+     * Envía el correspondiente informe a todos los administradores, con su respectivo título y cuerpo.
+     * 
+     * @param event		Evento causado cuando el guardia pulsa sobre la imagen de envío del informe.
+     */
     void enviar(MouseEvent event) {
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
 		Alert error = new Alert(Alert.AlertType.ERROR);
+		//Se comprueba que el titulo y cuerpo del informe no se encuentren vacios
     	if(!(tituloInforme.getText().isEmpty() | cuerpoInforme.getText().isEmpty() )) {
+    		//Se comprueba que el cuerpo del informe tenga al menos 20 caracteres
     		if(cuerpoInforme.getText().matches("^.{20,}")) {
     			modelo_Museo museo = new modelo_Museo();
     			String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
     			try {
+    				//se escribe el informe en le Json
     				museo.getRegistro().escribirInforme(nombre, tituloInforme.getText(), cuerpoInforme.getText());
     				confirmacion.setHeaderText("Informe guardado con exito");
         			confirmacion.show();
@@ -423,53 +443,52 @@ public class ControladorGuardia {
     @FXML
     /**
      * 
-     * Método que valida un ticket de un cliente. Se introduce el identificador del ticket y se comprueba que sea válido.
+     * Método que valida una reserva de un cliente. Se introduce el identificador de la reserva y se comprueba que sea válida.
      * 
-     * @param event		Evento causado cuando el guardia pulsa sobre la imagen para validar el ticket.
+     * @param event		Evento causado cuando el guardia pulsa sobre la imagen para validar la reserva.
      */
     void validarTicket(MouseEvent event) {
     	
     	
-    	Alert error = new Alert(Alert.AlertType.ERROR);
-    	Alert informative = new Alert(Alert.AlertType.CONFIRMATION);
-    	String ticketAcomprobar = numTicket.getText();
-    	int identificadorReserva = 0;
-    	try {
-    		identificadorReserva = Integer.parseInt(ticketAcomprobar);
-    		if (identificadorReserva >= 100000 && identificadorReserva <= 999999) {
-    			System.out.println("Reserva dentro del rango");
-    			
-    	    	Datos datos = new Datos();
-    	    	Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
-    	    	Vector<Reserva> tickets;
-    	    	
-    	    	for(int i=0; i<clientes.size(); i++) {
-    	    		for (int j=0; j<clientes.get(i).getReservas().size(); j++) {
-    	    			if (clientes.get(i).getReservas().get(j)==identificadorReserva) {
-    	    				informative.setHeaderText("Reserva válida");
-    	    				informative.showAndWait();
-    	    			}
-    	    			
-    	    		}
-    	    		
-    	    	}
-    			
-    		}
-    		else {
-    			error.setHeaderText("Rango del identificador del ticket no aceptable.");
-    			error.showAndWait();
-    		}
-    		
-    		
-    	}
-    	catch(NumberFormatException ex) {
-    		error.setHeaderText("Formato del identificador no válido.");
-    		error.showAndWait();
-    	}
-    	
-    	
+		Alert error = new Alert(Alert.AlertType.ERROR);
+		Alert informative = new Alert(Alert.AlertType.CONFIRMATION);
+		// Se obtiene el texto del JtextField
+		String ticketAcomprobar = numTicket.getText();
+		int identificadorReserva = 0;
+		try {
+			// Se comprueba que lo introducida por el guardia sea un numero
+			identificadorReserva = Integer.parseInt(ticketAcomprobar);
+			// Se comrpueba que el numero introducido se encuentre dentro del rango
+			if (identificadorReserva >= 100000 && identificadorReserva <= 999999) {
 
-    }
+				Datos datos = new Datos();
+				Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
+				Vector<Reserva> tickets;
+				// Se recorre el vector de clientes
+				for (int i = 0; i < clientes.size(); i++) {
+					// Se recorre el vector de reservas de cada cliente para comprobar que tal
+					// identificador exista
+					for (int j = 0; j < clientes.get(i).getReservas().size(); j++) {
+						if (clientes.get(i).getReservas().get(j) == identificadorReserva) {
+							informative.setHeaderText("Reserva válida");
+							informative.showAndWait();
+						}
+
+					}
+
+				}
+
+			} else {
+				error.setHeaderText("Rango del identificador del ticket no aceptable.");
+				error.showAndWait();
+			}
+
+		} catch (NumberFormatException ex) {
+			error.setHeaderText("Formato del identificador no válido.");
+			error.showAndWait();
+		}
+
+	}
     
     /**
      * 

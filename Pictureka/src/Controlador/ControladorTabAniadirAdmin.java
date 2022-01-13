@@ -1,13 +1,10 @@
 package Controlador;
 
 import java.time.LocalDate;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
-
 import Modelo.Administrador;
-import Modelo.Guardia;
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +13,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
+/**
+ * 
+ * En esta clase se maneja el registro de un administrador, en la vista <b>TabAniadirAdministrador</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 public class ControladorTabAniadirAdmin {
 
 	ControladorEditarAdministrador controlerEdit;
@@ -76,14 +83,25 @@ public class ControladorTabAniadirAdmin {
     @FXML
     private JFXDatePicker DateAdminNacimiento;
      
-	
-    //Constructor al que se le pasa el Controlador de ediccion de guardias
+    /**
+     * 
+     * Constructor de la clase <b>ControladorTabAniadirAdmin</b> al que se le pasa el Controlador de ediccion de administradores.
+     * 
+     * @param controladorEdit	Controlador de la clase <b>ControladorEditAdministrador</b> con su respectivos atributos y métodos.
+     */
     public ControladorTabAniadirAdmin(ControladorEditarAdministrador controladorEdit) {
     	controlerEdit = controladorEdit;
     	
 	}
     
     @FXML
+    /**
+     * 
+     * Registra un nuevo administrador con la información introducida por el administrador. Se escribe en el Json de Staff y se muestra
+     * en la tabla de administradores.
+     * 
+     * @param event		Evento causado cuando el administrador pulsa sobre el botón "Añadir".
+     */
     void GuardarNuevoAdmin(ActionEvent event) {
     	
     	modelo_Museo modelo = new modelo_Museo();

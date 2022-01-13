@@ -3,12 +3,8 @@ package Controlador;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
-
 import org.controlsfx.control.PopOver;
-
 import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +26,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
 import Modelo.*;
+
+/**
+ * 
+ * En este clase se maneja la información de los eventos, junto con sus respectivos sucesos en la vista <b>VentanaEventos</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 
 public class ControladorEventos {
 
@@ -154,6 +161,11 @@ public class ControladorEventos {
     String directoryName = System.getProperty("user.dir");
    	
   	@FXML
+  	/**
+  	 * 
+  	 * Método que inicializa ciertos elementos de la ventana de eventos cada vez que es desplegada.
+  	 * 
+  	 */
   	public void initialize() {
   		//Se añaden al ArrayList las imagenes que queremos que se muestren
   		imagenes.add(new Image("/sorolla.jpg"));
@@ -165,7 +177,7 @@ public class ControladorEventos {
   	 	
   	 	eventos = handler.desserializarJsonAEventos();
   	 	
-  	 	
+  	 	//Se colocan las imagenes en las regiones
   	 	region1.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(0)), CornerRadii.EMPTY, Insets.EMPTY)));
   	 	region2.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(1)), CornerRadii.EMPTY, Insets.EMPTY)));
   	 	region3.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(2)), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -212,27 +224,7 @@ public class ControladorEventos {
   	 	
   	}
   	
-  	
-  	
-  	public GridPane getGridPaneEventos() {
-		return gridPaneEventos;
-	}
-	
-	public void setLogged(boolean log) {
-  		
-  		logged = log;
-  	}
-  	public boolean getLogged() {
-  		
-  		return logged;
-  	}
-  	public ButtonBar getBtnBarArriba() {
-  		return btnBarArriba;
-  	}
-  	
-  	public ImageView getAvatarUsuario() {
-  		return imgUsuario;
-  	}
+
     @FXML
     void accederPerfil(MouseEvent event) {
     	
@@ -340,6 +332,13 @@ public class ControladorEventos {
     }
 
     @FXML
+    /**
+     * 
+     * Ofrece la posibilidad de mandar emails al email del museo.
+     * 
+     * 
+     * @param event		Evento causado cuando el usuario pulsa sobre el botón del correo.
+     */
     void mandarCorreo(ActionEvent event) {
     	
     	//Se carga el contenido de la ventana
@@ -391,6 +390,12 @@ public class ControladorEventos {
     }
 
     @FXML
+    /**
+     * 
+     * Muestra la ventana de reserva de tickets.
+     * 
+     * @param event		Evento causado cuando el usuario pulsa la imagen de los tickets.
+     */
     void reservarTickets(MouseEvent event) {
     	
     	//Se carga el contenido de la ventana
@@ -436,6 +441,11 @@ public class ControladorEventos {
     	
     }
     
+    /**
+     * 
+     * Muestra la ventana de Login inmediatamente sin que el usuario pulse ningún botón.
+     * 
+     */
     void abrirLogin() {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/InterfazLogin.fxml"));
@@ -476,6 +486,12 @@ public class ControladorEventos {
     }
     
     @FXML
+    /**
+     * 
+     * Devuelve al usuario a la ventana principal.
+     * 
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para volver atrás.
+     */
     void volverAtrasEventos(MouseEvent event) {
 		// Se carga el contenido de la ventana
 		FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
@@ -510,5 +526,30 @@ public class ControladorEventos {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-    }		
+    }
+    
+    
+  	
+  	
+  	public GridPane getGridPaneEventos() {
+		return gridPaneEventos;
+	}
+	
+	public void setLogged(boolean log) {
+  		
+  		logged = log;
+  	}
+  	public boolean getLogged() {
+  		
+  		return logged;
+  	}
+  	public ButtonBar getBtnBarArriba() {
+  		return btnBarArriba;
+  	}
+  	
+  	public ImageView getAvatarUsuario() {
+  		return imgUsuario;
+  	}
+    
+    
 }

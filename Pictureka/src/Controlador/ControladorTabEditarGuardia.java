@@ -1,6 +1,5 @@
 package Controlador;
 
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Vector;
@@ -18,113 +17,143 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
+/**
+ * 
+ * En esta clase se maneja la edicción de la información de un guardia en
+ * específico, en la vista de <b>TabEditarGuardia</b>.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 public class ControladorTabEditarGuardia {
 
 	ControladorEditGuardias controlerEditGuardia;
 	@FXML
-    private AnchorPane AnchorTabEditarGuardia;
+	private AnchorPane AnchorTabEditarGuardia;
 
-    @FXML
-    private GridPane gridPaneEditarGuardia;
+	@FXML
+	private GridPane gridPaneEditarGuardia;
 
-    @FXML
-    private Label lblUsuarioGuardia;
+	@FXML
+	private Label lblUsuarioGuardia;
 
-    @FXML
-    private TextField textUsuarioGuardia;
+	@FXML
+	private TextField textUsuarioGuardia;
 
-    @FXML
-    private Label lblNombreGuardia;
+	@FXML
+	private Label lblNombreGuardia;
 
-    @FXML
-    private TextField textNombreGuardia;
+	@FXML
+	private TextField textNombreGuardia;
 
-    @FXML
-    private Label lblApellido1Guardia;
+	@FXML
+	private Label lblApellido1Guardia;
 
-    @FXML
-    private Label lblApellido2Guardia;
+	@FXML
+	private Label lblApellido2Guardia;
 
-    @FXML
-    private TextField textApellido1Guardia;
+	@FXML
+	private TextField textApellido1Guardia;
 
-    @FXML
-    private TextField textApellido2Guardia;
+	@FXML
+	private TextField textApellido2Guardia;
 
-    @FXML
-    private Label lblEmailGuardia;
+	@FXML
+	private Label lblEmailGuardia;
 
-    @FXML
-    private TextField textEmailGuardia;
+	@FXML
+	private TextField textEmailGuardia;
 
-    @FXML
-    private Label lblDniGuardia;
+	@FXML
+	private Label lblDniGuardia;
 
-    @FXML
-    private TextField textDniGuardia;
+	@FXML
+	private TextField textDniGuardia;
 
-    @FXML
-    private Label lblFechaGuardia;
+	@FXML
+	private Label lblFechaGuardia;
 
-    @FXML
-    private Label lblContraseniaGuardia;
+	@FXML
+	private Label lblContraseniaGuardia;
 
-    @FXML
-    private TextField textContraseniaGuardia;
+	@FXML
+	private TextField textContraseniaGuardia;
 
-    @FXML
-    private DatePicker DateFechaGuardia;
+	@FXML
+	private DatePicker DateFechaGuardia;
 
-    @FXML
-    private JFXButton btnGuardar;
+	@FXML
+	private JFXButton btnGuardar;
 
-    Guardia guardia;
-    
-    public ControladorTabEditarGuardia(ControladorEditGuardias controlerEdit) {
-    	
-    	this.controlerEditGuardia = controlerEdit;
-    }
+	Guardia guardia;
 
+	/**
+	 * 
+	 * Constructor de la clase <b>ControladorTabEditarGuardia</b> al que se le pasa
+	 * el Controlador de edicciones de guardias.
+	 * 
+	 * @param controlerEdit Controlador de la clase <b>ControladorEditGuardias</b>
+	 *                      con sus respecitvos atributos y métodos.
+	 */
+	public ControladorTabEditarGuardia(ControladorEditGuardias controlerEdit) {
 
-    @FXML
-    public void initialize() {
-    	
-    	//Se comprueba que el administrador ha seleccionado a un guardia de la tabla
-        if (!controlerEditGuardia.getTableView().getSelectionModel().isEmpty()) {
-        	
-        	//Se recoge la informacion del guardia que el administrador ha seleccionado y se muestra en los diferentes campos
-        	textUsuarioGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getUsuario());
-        	textNombreGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getNombre());
-        	textApellido1Guardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getApellido1());
-        	textApellido2Guardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getApellido2());
-        	textDniGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getDni());
-        	textEmailGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getEmail());
-        	DateFechaGuardia.setValue(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getFechaNacimiento());
-        	textContraseniaGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getContrasenia());
-    	
-        	
-        }
-        
+		this.controlerEditGuardia = controlerEdit;
+	}
 
-        
-    }
-    
+	@FXML
+	/**
+	 * 
+	 * Inicializa el Tab, comrobando si el administrador ha seleccionado un guardia
+	 * a editar.
+	 * 
+	 */
+	public void initialize() {
 
-    
-    
-    @FXML
-    void GuardarGuardiaEdit(ActionEvent event) {
-    	
-    	Alert error = new Alert(Alert.AlertType.ERROR);
-    	Alert informacion = new Alert(Alert.AlertType.INFORMATION);
-    	Registro registro = new Registro();
-    	Datos datos = new Datos();
+		// Se comprueba que el administrador ha seleccionado a un guardia de la tabla
+		if (!controlerEditGuardia.getTableView().getSelectionModel().isEmpty()) {
 
-    	//Se guarda en un vector la informacion del json del personal de staff
-    	Vector <Staff> staff = datos.desserializarJsonStaff();
-    	int i = 0;
-    	
-    	String UsuarioNuevo;
+			// Se recoge la informacion del guardia que el administrador ha seleccionado y
+			// se muestra en los diferentes campos
+			textUsuarioGuardia
+					.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getUsuario());
+			textNombreGuardia
+					.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getNombre());
+			textApellido1Guardia
+					.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getApellido1());
+			textApellido2Guardia
+					.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getApellido2());
+			textDniGuardia.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getDni());
+			textEmailGuardia
+					.setText(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getEmail());
+			DateFechaGuardia.setValue(
+					controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getFechaNacimiento());
+			textContraseniaGuardia.setText(
+					controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getContrasenia());
+		}
+	}
+
+	@FXML
+	/**
+	 * 
+	 * Guarda los cambios realizados en uno o más de los campos de información del guardia, cambiando el contenido del Json de Staff.
+	 * 
+	 * @param event		Evento causado cuando el administrador pulsa sobre el botón "Guardar Cambios".
+	 */
+	void GuardarGuardiaEdit(ActionEvent event) {
+
+		Alert error = new Alert(Alert.AlertType.ERROR);
+		Alert informacion = new Alert(Alert.AlertType.INFORMATION);
+		Registro registro = new Registro();
+		Datos datos = new Datos();
+
+		// Se guarda en un vector la informacion del json del personal de staff
+		Vector<Staff> staff = datos.desserializarJsonStaff();
+		int i = 0;
+
+		String UsuarioNuevo;
 		String nombreNuevo;
 		String apellido1Nuevo;
 		String apellido2Nuevo;
@@ -132,8 +161,8 @@ public class ControladorTabEditarGuardia {
 		String emailNuevo;
 		LocalDate fechaNuevo;
 		String contraseniaNuevo;
-		
-		//Obtenemos los datos de los diferentes jtextfield
+
+		// Obtenemos los datos de los diferentes jtextfield
 		UsuarioNuevo = textUsuarioGuardia.getText();
 		nombreNuevo = textNombreGuardia.getText();
 		apellido1Nuevo = textApellido1Guardia.getText();
@@ -142,7 +171,7 @@ public class ControladorTabEditarGuardia {
 		emailNuevo = textEmailGuardia.getText();
 		fechaNuevo = DateFechaGuardia.getValue();
 		contraseniaNuevo = textContraseniaGuardia.getText();
-		
+
 		// Comprobamos que haya seleccionado un guardia
 		if (!controlerEditGuardia.getTableView().getSelectionModel().isEmpty()) {
 
@@ -251,7 +280,7 @@ public class ControladorTabEditarGuardia {
 										}
 
 									}
-								} else { //EL GUARDIA MANTIENE SU MISMO DNI
+								} else { // EL GUARDIA MANTIENE SU MISMO DNI
 									// si el guardia mantiene su mismo dni
 
 									if (staff.get(i).getDni().equals(dniNuevo)) {
@@ -286,7 +315,7 @@ public class ControladorTabEditarGuardia {
 											if (staff.get(i).getEmail().equals(emailNuevo)) {
 												staff.get(i).setEmail(emailNuevo);
 												System.out.println("Mismo email del guardia");
-												
+
 												staff.get(i).setNombre(nombreNuevo);
 												staff.get(i).setApellido1(apellido1Nuevo);
 												staff.get(i).setApellido2(apellido2Nuevo);
@@ -296,7 +325,6 @@ public class ControladorTabEditarGuardia {
 
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
-												
 
 											} else {
 												error.setHeaderText("Email ya registrado.");
@@ -314,8 +342,8 @@ public class ControladorTabEditarGuardia {
 								}
 
 							}
-							
-							//EL GUARDIA MANTIENE SU MISMO USUARIO
+
+							// EL GUARDIA MANTIENE SU MISMO USUARIO
 							else {
 								// Si el guardia mantiene su mismo usuario
 								if (staff.get(i).getUsuario().equals(UsuarioNuevo)) {
@@ -384,7 +412,7 @@ public class ControladorTabEditarGuardia {
 											}
 
 										}
-										
+
 									} else {
 										// Si el email es el mismo del guardia
 										if (staff.get(i).getEmail().equals(emailNuevo)) {
@@ -458,87 +486,85 @@ public class ControladorTabEditarGuardia {
 			error.showAndWait();
 		}
 	}
-	
-	
-	 public AnchorPane getAnchorTabEditarGuardia() {
-			return AnchorTabEditarGuardia;
-		}
 
-		public void setAnchorTabEditarGuardia(AnchorPane anchorTabEditarGuardia) {
-			AnchorTabEditarGuardia = anchorTabEditarGuardia;
-		}
+	public AnchorPane getAnchorTabEditarGuardia() {
+		return AnchorTabEditarGuardia;
+	}
 
-		public TextField getTextUsuarioGuardia() {
-			return textUsuarioGuardia;
-		}
+	public void setAnchorTabEditarGuardia(AnchorPane anchorTabEditarGuardia) {
+		AnchorTabEditarGuardia = anchorTabEditarGuardia;
+	}
 
-		public JFXButton getBtnGuardar() {
-			return btnGuardar;
-		}
+	public TextField getTextUsuarioGuardia() {
+		return textUsuarioGuardia;
+	}
 
-		public void setBtnGuardar(JFXButton btnGuardar) {
-			this.btnGuardar = btnGuardar;
-		}
+	public JFXButton getBtnGuardar() {
+		return btnGuardar;
+	}
 
-		public void setTextUsuarioGuardia(TextField textUsuarioGuardia) {
-			this.textUsuarioGuardia = textUsuarioGuardia;
-		}
+	public void setBtnGuardar(JFXButton btnGuardar) {
+		this.btnGuardar = btnGuardar;
+	}
 
-		public TextField getTextNombreGuardia() {
-			return textNombreGuardia;
-		}
+	public void setTextUsuarioGuardia(TextField textUsuarioGuardia) {
+		this.textUsuarioGuardia = textUsuarioGuardia;
+	}
 
-		public void setTextNombreGuardia(TextField textNombreGuardia) {
-			this.textNombreGuardia = textNombreGuardia;
-		}
+	public TextField getTextNombreGuardia() {
+		return textNombreGuardia;
+	}
 
-		public TextField getTextApellido1Guardia() {
-			return textApellido1Guardia;
-		}
+	public void setTextNombreGuardia(TextField textNombreGuardia) {
+		this.textNombreGuardia = textNombreGuardia;
+	}
 
-		public void setTextApellido1Guardia(TextField textApellido1Guardia) {
-			this.textApellido1Guardia = textApellido1Guardia;
-		}
+	public TextField getTextApellido1Guardia() {
+		return textApellido1Guardia;
+	}
 
-	    public DatePicker getDateFechaGuardia() {
-			return DateFechaGuardia;
-		}
+	public void setTextApellido1Guardia(TextField textApellido1Guardia) {
+		this.textApellido1Guardia = textApellido1Guardia;
+	}
 
-		public void setDateFechaGuardia(DatePicker dateFechaGuardia) {
-			DateFechaGuardia = dateFechaGuardia;
-		}
-		
-		public TextField getTextApellido2Guardia() {
-			return textApellido2Guardia;
-		}
+	public DatePicker getDateFechaGuardia() {
+		return DateFechaGuardia;
+	}
 
-		public void setTextApellido2Guardia(TextField textApellido2Guardia) {
-			this.textApellido2Guardia = textApellido2Guardia;
-		}
+	public void setDateFechaGuardia(DatePicker dateFechaGuardia) {
+		DateFechaGuardia = dateFechaGuardia;
+	}
 
-		public TextField getTextEmailGuardia() {
-			return textEmailGuardia;
-		}
+	public TextField getTextApellido2Guardia() {
+		return textApellido2Guardia;
+	}
 
-		public void setTextEmailGuardia(TextField textEmailGuardia) {
-			this.textEmailGuardia = textEmailGuardia;
-		}
+	public void setTextApellido2Guardia(TextField textApellido2Guardia) {
+		this.textApellido2Guardia = textApellido2Guardia;
+	}
 
-		public TextField getTextDniGuardia() {
-			return textDniGuardia;
-		}
+	public TextField getTextEmailGuardia() {
+		return textEmailGuardia;
+	}
 
-		public void setTextDniGuardia(TextField textDniGuardia) {
-			this.textDniGuardia = textDniGuardia;
-		}
+	public void setTextEmailGuardia(TextField textEmailGuardia) {
+		this.textEmailGuardia = textEmailGuardia;
+	}
 
+	public TextField getTextDniGuardia() {
+		return textDniGuardia;
+	}
 
-		public TextField getTextContraseniaGuardia() {
-			return textContraseniaGuardia;
-		}
+	public void setTextDniGuardia(TextField textDniGuardia) {
+		this.textDniGuardia = textDniGuardia;
+	}
 
-		public void setTextContraseniaGuardia(TextField textContraseniaGuardia) {
-			this.textContraseniaGuardia = textContraseniaGuardia;
-		}
+	public TextField getTextContraseniaGuardia() {
+		return textContraseniaGuardia;
+	}
+
+	public void setTextContraseniaGuardia(TextField textContraseniaGuardia) {
+		this.textContraseniaGuardia = textContraseniaGuardia;
+	}
 
 }

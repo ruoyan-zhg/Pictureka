@@ -319,7 +319,7 @@ public class ControladorEditarAdministrador {
 
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPaneEditAdmin.getChildren().setAll(PaneVentanaPrincipal);
-                
+                controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FFD700");
                
                 
     		} catch (IOException e1) {

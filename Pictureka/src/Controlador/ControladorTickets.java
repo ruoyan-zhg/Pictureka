@@ -159,7 +159,7 @@ public class ControladorTickets {
                 
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-                
+                controlerPrincipal.getBarra().setStyle("-fx-background-color: #00aae4");
                
                 
     		} catch (IOException e1) {

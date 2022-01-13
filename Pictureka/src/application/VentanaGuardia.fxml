@@ -19,7 +19,7 @@
    <children>
       <VBox fx:id="VBoxPrincipal" prefHeight="834.0" prefWidth="1028.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXToolbar style="-fx-background-color: #FF8000;">
+            <JFXToolbar prefHeight="73.0" prefWidth="1156.0" style="-fx-background-color: #FF8000;">
                <right>
                   <ImageView fx:id="imgUsuario" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>

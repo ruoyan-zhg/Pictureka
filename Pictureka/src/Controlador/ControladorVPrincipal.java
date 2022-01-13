@@ -322,7 +322,7 @@ public class ControladorVPrincipal {
                 
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-                
+                controlerPrincipal.getBarra().setStyle("-fx-background-color: #00aae4");
                
                 
     		} catch (IOException e1) {
@@ -374,7 +374,9 @@ public class ControladorVPrincipal {
             
                  //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                  anchorPanePrincipal.getChildren().setAll(PaneTickets);
-                 
+               //Cambia el color de la barra de la ventana perfil
+                
+                
                 
                  
      		} catch (IOException e) {
@@ -453,46 +455,7 @@ public class ControladorVPrincipal {
      * @param event		Evento causado cuando el usuario pulsa sobre la imagen del calendario.
      */
     void verEventos(MouseEvent event) {
-    	
-    	if (logged==false) {
-    		String usuario = "vacio";
-    		this.logged = false;
-    		
-    		
-    		// carga el contenido de la ventana
-        	FXMLLoader loaderEventos = new FXMLLoader(getClass().getResource("/application/VentanaEventos.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informacion de los guardias
-            ControladorEventos controlerEventos = new ControladorEventos(usuario);
-            loaderEventos.setController(controlerEventos);
-            AnchorPane PaneCalendar;
-
-            
-            try {
-    			//Se carga en un AnchorPane la ventana
-                PaneCalendar = (AnchorPane) loaderEventos.load();
-    			
-    			//Se elimina el contenido de la ventana padre
-            	anchorPanePrincipal.getChildren().clear();
-            	
-            	//Se ajusta el AnchorPane para que sea escalable
-                AnchorPane.setTopAnchor(PaneCalendar, 0.0);
-                AnchorPane.setRightAnchor(PaneCalendar, 0.0);
-                AnchorPane.setLeftAnchor(PaneCalendar, 0.0);
-                AnchorPane.setBottomAnchor(PaneCalendar, 0.0);
-                
-
-                
-                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
-                anchorPanePrincipal.getChildren().setAll(PaneCalendar);
-                
-            } catch (IOException e1) {
-    			e1.printStackTrace();
-    		}
-    		
-    	}
-    	else {
-    	
-    	// carga el contenido de la ventana
+		// carga el contenido de la ventana
     	FXMLLoader loaderEventos = new FXMLLoader(getClass().getResource("/application/VentanaEventos.fxml"));
     	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         ControladorEventos controlerEventos = new ControladorEventos(usuario);
@@ -513,19 +476,21 @@ public class ControladorVPrincipal {
             AnchorPane.setLeftAnchor(PaneCalendar, 0.0);
             AnchorPane.setBottomAnchor(PaneCalendar, 0.0);
             
-
-            
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneCalendar);
-            
-            controlerEventos.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
-            controlerEventos.getGridPaneEventos().setStyle("-fx-background-color: #00aae4");
-           
-            
-		} catch (IOException e1) {
+    	
+            if (logged==false) {
+            	this.usuario = "vacio";
+	    		this.logged = false;
+	    		
+            }
+	    	else {
+	    		controlerEventos.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
+	            controlerEventos.getGridPaneEventos().setStyle("-fx-background-color: #00aae4");
+            } 
+        }catch (IOException e1) {
 			e1.printStackTrace();
 		}
-    	}
     }
 
     

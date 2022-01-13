@@ -135,7 +135,9 @@ import javafx.stage.FileChooser;
 
 	                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
 	                anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-	                
+	                //Cambia el color de la barra de la ventana perfil
+	                controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FF8000");
+	               
 	               
 	                
 	    		} catch (IOException e1) {

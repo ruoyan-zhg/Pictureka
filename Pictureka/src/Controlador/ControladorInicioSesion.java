@@ -1,8 +1,13 @@
 package Controlador;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Vector;
+
+import com.google.common.hash.Hashing;
 import com.jfoenix.controls.JFXButton;
+
+import Modelo.Cifrado;
 import Modelo.Cliente;
 import Modelo.Datos;
 import Modelo.modelo_Museo;
@@ -110,8 +115,11 @@ public class ControladorInicioSesion {
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
     	
+    	Cifrado cifrar = new Cifrado();
+    	
+    	System.out.println(cifrar.hashing(textContrasenia.getText()));
     	//Comprueba que lo devuelto por el m�todo loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
-    	if (museo.loginUsuario(textUsuario.getText(), textContrasenia.getText())==1) {
+    	if (museo.loginUsuario(textUsuario.getText(), cifrar.hashing(textContrasenia.getText()))==1) {
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
     		confirmacion.showAndWait();
@@ -142,6 +150,7 @@ public class ControladorInicioSesion {
     		        Datos datos = new Datos();
     		        String nombreUsuario = "";
     		        Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
+    		        
     		        //Recorremos el vector para encontrar al usuario que esta iniciando sesion
     		        for (int i=0; i<clientes.size(); i++) {
     		        	//Si el usuario introducido por el cliente es igual a un email o un nombre de usuario, se ha encontrado al cliente
@@ -165,7 +174,7 @@ public class ControladorInicioSesion {
   
     
     	}
-    	else if (museo.loginUsuario(textUsuario.getText(), textContrasenia.getText())==2) {
+    	else if (museo.loginUsuario(textUsuario.getText(), cifrar.hashing(textContrasenia.getText()))==2) {
     		
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
@@ -198,7 +207,7 @@ public class ControladorInicioSesion {
 			}
 
     	}
-    	else if (museo.loginUsuario(textUsuario.getText(), textContrasenia.getText())==3) {
+    	else if (museo.loginUsuario(textUsuario.getText(), cifrar.hashing(textContrasenia.getText()))==3) {
     		
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
@@ -269,6 +278,8 @@ public class ControladorInicioSesion {
 		}
     	
     }
+	
+	
 
 }
 

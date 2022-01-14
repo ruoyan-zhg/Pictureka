@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 import com.jfoenix.controls.JFXButton;
+
+import Modelo.Cifrado;
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -113,6 +115,7 @@ public class ControladorRegistro {
     	modelo_Museo museo = new modelo_Museo();
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
+    	Cifrado cifrar = new Cifrado();
     	
     	String estado;
     	//Se obtienen las contrase�as escritas
@@ -130,7 +133,7 @@ public class ControladorRegistro {
         			//Se comrpueba que las contrase�as sean iguales
             		if(contrasenia.equals(repetirContrasenia)&&!(contrasenia.equals(""))&&!(contrasenia.equals(" "))) {
             			//Se registra el usuario
-                		estado = museo.registrarClientes(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), txtFieldPassword.getText(), chooserCalendario.getValue());
+                		estado = museo.registrarClientes(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), cifrar.hashing(txtFieldPassword.getText()), chooserCalendario.getValue());
                 		
                 		if (estado.equals("Validacion completada con exito")) {
                 			confirmacion.setHeaderText(estado);

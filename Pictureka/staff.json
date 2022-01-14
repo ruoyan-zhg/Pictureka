@@ -7,7 +7,7 @@
     "apellido2": "Morales",
     "dni": "43578445K",
     "email": "paula@gmail.com",
-    "contrasenia": "paulaMorales",
+    "contrasenia": "119c2e7934f6f2f18cc2c2dcc403731c67726386e7c8a705a8bdcab36cd1e57a",
     "fechaNacimiento": {
       "year": 2001,
       "month": 12,
@@ -22,7 +22,7 @@
     "apellido2": "Fernandez",
     "dni": "54820482J",
     "email": "jorge@gmail.com",
-    "contrasenia": "jorge567",
+    "contrasenia": "f27d0f76caf99e9451067cd444fc99ee2d4d392fdaf0ffb11a0087cc75fa270c",
     "fechaNacimiento": {
       "year": 1997,
       "month": 11,
@@ -37,7 +37,7 @@
     "apellido2": "Canalejas",
     "dni": "6999058P",
     "email": "rodrigo@gmail.com",
-    "contrasenia": "rodri123",
+    "contrasenia": "f95f93393d4538005b734f8d55673f8e0bdc39b3907ede416b93b81c1a6396c4",
     "fechaNacimiento": {
       "year": 1998,
       "month": 6,
@@ -52,11 +52,26 @@
     "apellido2": "Barro",
     "dni": "48295802D",
     "email": "alvaro.barro@gmail.com",
-    "contrasenia": "alvaro123",
+    "contrasenia": "316ba210a936152681eeea68198c68fbec1efc7f065668d983e5c0d8b7a6a755",
     "fechaNacimiento": {
       "year": 1956,
       "month": 1,
       "day": 12
+    }
+  },
+  {
+    "identificadorUser": 2,
+    "usuario": "5003",
+    "nombre": "Juan",
+    "apellido1": "Camero",
+    "apellido2": "Infante",
+    "dni": "67668344A",
+    "email": "juan@gmail.com",
+    "contrasenia": "a376aedda75ae9b9708c2bc200e99dc80a7c23da29104ab3f127c089c42fe212",
+    "fechaNacimiento": {
+      "year": 1996,
+      "month": 7,
+      "day": 16
     }
   }
 ]

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import Modelo.Administrador;
+import Modelo.Cifrado;
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -107,6 +108,7 @@ public class ControladorTabAniadirAdmin {
     	modelo_Museo modelo = new modelo_Museo();
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+    	Cifrado cifrar = new Cifrado();
     	
     	String usuarioNuevo;
     	String nombreNuevo;
@@ -147,7 +149,7 @@ public class ControladorTabAniadirAdmin {
 			
 			// Dependiendo del estado que devuelva el metodo registrarGuardias, se realizara
 			// una accion u otra
-			if (modelo.registrarAdministradores(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
+			if (modelo.registrarAdministradores(usuarioNuevo, dniNuevo, emailNuevo, cifrar.hashing(contraseniaNuevo), nombreNuevo,
 					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(validacion)) {
 				// se muestra en la tabla al nuevo guardia
 				this.controlerEdit.getTableViewAdministrador().getItems().add(new Administrador(usuarioNuevo, dniNuevo, emailNuevo,

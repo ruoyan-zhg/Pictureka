@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import com.jfoenix.controls.JFXButton;
 
+import Modelo.Cifrado;
 import Modelo.Datos;
 import Modelo.Registro;
 import Modelo.Staff;
@@ -150,6 +151,7 @@ public class ControladorTabEditarAdmin {
 		Alert informacion = new Alert(Alert.AlertType.INFORMATION);
 		Registro registro = new Registro();
 		Datos datos = new Datos();
+		Cifrado cifrar = new Cifrado();
 
 		// Se guarda en un vector la informacion del json del personal de staff
 		Vector<Staff> staff = datos.desserializarJsonStaff();
@@ -244,7 +246,7 @@ public class ControladorTabEditarAdmin {
 											staff.get(i).setNombre(nombreNuevo);
 											staff.get(i).setApellido1(apellido1Nuevo);
 											staff.get(i).setApellido2(apellido2Nuevo);
-											staff.get(i).setContrasenia(contraseniaNuevo);
+											staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
 
 											// Sobreescribe el contenido del vector
 											registro.escribirStaffNuevo(staff);
@@ -268,7 +270,7 @@ public class ControladorTabEditarAdmin {
 											staff.get(i).setApellido1(apellido1Nuevo);
 											staff.get(i).setApellido2(apellido2Nuevo);
 											staff.get(i).setDni(dniNuevo);
-											staff.get(i).setContrasenia(contraseniaNuevo);
+											staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
 
 											registro.escribirStaffNuevo(staff);
 
@@ -300,7 +302,7 @@ public class ControladorTabEditarAdmin {
 												staff.get(i).setNombre(nombreNuevo);
 												staff.get(i).setApellido1(apellido1Nuevo);
 												staff.get(i).setApellido2(apellido2Nuevo);
-												staff.get(i).setContrasenia(contraseniaNuevo);
+												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
 
 												registro.escribirStaffNuevo(staff);
 
@@ -321,7 +323,7 @@ public class ControladorTabEditarAdmin {
 												staff.get(i).setNombre(nombreNuevo);
 												staff.get(i).setApellido1(apellido1Nuevo);
 												staff.get(i).setApellido2(apellido2Nuevo);
-												staff.get(i).setContrasenia(contraseniaNuevo);
+												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
 
 												registro.escribirStaffNuevo(staff);
 
@@ -369,7 +371,7 @@ public class ControladorTabEditarAdmin {
 												staff.get(i).setNombre(nombreNuevo);
 												staff.get(i).setApellido1(apellido1Nuevo);
 												staff.get(i).setApellido2(apellido2Nuevo);
-												staff.get(i).setContrasenia(contraseniaNuevo);
+												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
 
 												registro.escribirStaffNuevo(staff);
 
@@ -395,7 +397,7 @@ public class ControladorTabEditarAdmin {
 													staff.get(i).setNombre(nombreNuevo);
 													staff.get(i).setApellido1(apellido1Nuevo);
 													staff.get(i).setApellido2(apellido2Nuevo);
-													staff.get(i).setContrasenia(contraseniaNuevo);
+													staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
 
 													registro.escribirStaffNuevo(staff);
 
@@ -428,7 +430,7 @@ public class ControladorTabEditarAdmin {
 												staff.get(i).setApellido1(apellido1Nuevo);
 												staff.get(i).setApellido2(apellido2Nuevo);
 												staff.get(i).setDni(dniNuevo);
-												staff.get(i).setContrasenia(contraseniaNuevo);
+												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
 
 												registro.escribirStaffNuevo(staff);
 
@@ -443,7 +445,7 @@ public class ControladorTabEditarAdmin {
 													staff.get(i).setNombre(nombreNuevo);
 													staff.get(i).setApellido1(apellido1Nuevo);
 													staff.get(i).setApellido2(apellido2Nuevo);
-													staff.get(i).setContrasenia(contraseniaNuevo);
+													staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
 
 													registro.escribirStaffNuevo(staff);
 

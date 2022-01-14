@@ -3,24 +3,24 @@
     "identificador": 1,
     "nombre": "El quitasol",
     "imagen": "Quitasol.png",
-    "informacion": "Puede clasificarse tanto dentro del estilo neocl�sico como dentro del rococ�, ya que cuenta con caracter�sticas tanto de un estilo como de otro. Las caracter�sticas principales del neoclasicismo, y que podemos ver reflejadas en el quitasol son: perfecci�n formal, serenidad, predominio del dibujo, modelos de la escultura cl�sica, tem�tica moralizante y ejemplarizante, uso de colores primarios. Los rasgos principales del rococ� son: una elecci�n de colores claros (en especial el blanco), colores luminosos y suaves, intenta reflejar el aspecto agradable, ex�tico, sensual y refinado de las cosas y casi no utiliza los contrastes."
+    "informacion": "Este es el evento nº1"
   },
   {
     "identificador": 2,
     "nombre": "Las Meninas",
     "imagen": "LasMeninas.png",
-    "informacion": "Pintado por Vel�zquez en 1656. Durante la que fue la �ltima d�cada de su existencia, cinco a�os despu�s de regresar de su segundo viaje italiano y del nacimiento de la infanta Margarita la luminosamente palmaria protagonista del cuadro, aunque haya otros mimbres soterrados en la penumbra- y a tan solo cuatro de la muerte del artista, acaecida en 1660 tras regresar del solemne acto que se celebr� en la isla de los Faisanes por el que se entregaba en matrimonio a la infanta Mar�a Teresa al rey Luis XIV de Francia, este retrato de la familia real"
+    "informacion": "Este es el evento nº2"
   },
   {
     "identificador": 3,
-    "nombre": "Evento n�3",
+    "nombre": "Evento nº3",
     "imagen": "Sixtina.jpg",
-    "informacion": "fgrthyj\nthytjuyku,\nrgthyjhkj"
+    "informacion": "Este es el evento nº3"
   },
   {
     "identificador": 4,
     "nombre": "Lisboa visita",
     "imagen": "Lisboa.jpg",
-    "informacion": "asbjadua ansocna euna"
+    "informacion": "Este el evento nº4"
   }
 ]

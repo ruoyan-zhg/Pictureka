@@ -18,12 +18,12 @@ import javafx.scene.layout.VBox;
 
 /**
  * 
- * En estaa clase, se maneja la información recogida de todos los sensores y se muestran en la vista <b>VentanaSala</b>.
+ * En estaa clase, se maneja la informaciï¿½n recogida de todos los sensores y se muestran en la vista <b>VentanaSala</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  */
 
 public class ControladorSalas {
@@ -87,11 +87,11 @@ public class ControladorSalas {
     
     /**
      * 
-     * Constructor de la clase <b>ControladorSalas</b> que guarda la información del usuario.
+     * Constructor de la clase <b>ControladorSalas</b> que guarda la informaciï¿½n del usuario.
      * 
-     * @param usuario		El usuario que se encuentre iniciado sesión. 
+     * @param usuario		El usuario que se encuentre iniciado sesiï¿½n. 
      * @param _sala			La sala en la que se encuentre el usuario.
-     * @param _tipoStaff	Tipo de Staff que se encuentra iniciado sesión.
+     * @param _tipoStaff	Tipo de Staff que se encuentra iniciado sesiï¿½n.
      */
 	 public ControladorSalas(String usuario, Sala _sala, String _tipoStaff) {
 		 if (usuario == "vacio") {
@@ -109,7 +109,7 @@ public class ControladorSalas {
 	@FXML
 	/**
 	 * 
-	 * Inicializa la ventana sala, con su respectiva número de sala y con la información del usuario que se encuentra iniciado sesión.
+	 * Inicializa la ventana sala, con su respectiva nï¿½mero de sala y con la informaciï¿½n del usuario que se encuentra iniciado sesiï¿½n.
 	 * 
 	 */
 	public void initialize() {
@@ -128,15 +128,15 @@ public class ControladorSalas {
 	@FXML
 	/**
 	 * 
-	 * Devuelve al usuario a su ventana inicial, dependiendo del usuario que esté iniciado sesión.
+	 * Devuelve al usuario a su ventana inicial, dependiendo del usuario que estï¿½ iniciado sesiï¿½n.
 	 * 
-	 * @param event		Evento causado cuando el guardia pulsa sobre la imagen de vuelta atrás.
+	 * @param event		Evento causado cuando el guardia pulsa sobre la imagen de vuelta atrï¿½s.
 	 */
 	void volverAtrasSalas(MouseEvent event) {
 		if(tipoStaff.equals("Guardia")) {
 			//Se carga el contenido de la ventana
 	    	FXMLLoader loaderGuardia = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
-	    	//Se le asigna el controlador de la ventana para editar información de los guardias
+	    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
 	        ControladorGuardia controlerGuardia = new ControladorGuardia(usuario);
 	        loaderGuardia.setController(controlerGuardia);
 	        AnchorPane PaneGuardia;
@@ -154,7 +154,7 @@ public class ControladorSalas {
 	            AnchorPane.setBottomAnchor(PaneGuardia, 0.0);
 	            
 
-	            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+	            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
 	            anchorPaneSala.getChildren().setAll(PaneGuardia);
 	            
 	           
@@ -167,7 +167,7 @@ public class ControladorSalas {
 		else {
 			//Se carga el contenido de la ventana
 	    	FXMLLoader loaderAdministrador = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
-	    	//Se le asigna el controlador de la ventana para editar información de los guardias
+	    	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
 	        ControladorAdministrador controlerAdministrador = new ControladorAdministrador(usuario);
 	        loaderAdministrador.setController(controlerAdministrador);
 	        AnchorPane PaneAdministrador;
@@ -186,7 +186,7 @@ public class ControladorSalas {
 	            AnchorPane.setBottomAnchor(PaneAdministrador, 0.0);
 	            
 
-	            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+	            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
 	            anchorPaneSala.getChildren().setAll(PaneAdministrador);
 	            
 	           
@@ -201,21 +201,21 @@ public class ControladorSalas {
     @FXML
     /**
      * 
-     * Muestra la información del usuario que se encuentra iniciado sesión.
+     * Muestra la informaciï¿½n del usuario que se encuentra iniciado sesiï¿½n.
      * 
      * @param event		Evento causado cuando el usuario pulsa sobre la imagen de su avatar.
      */
     void verPerfil(MouseEvent event) {
     	if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+			error.setHeaderText("Oh no! Para acceder a esta funciÃ³n debes estar iniciado sesiÃ³n.");
     		error.showAndWait();
         	
         }
         else {
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-        	//Se le asigna el controlador de la ventana para editar información de los guardias
+        	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
             ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
             loaderPrincipala.setController(controlerPrincipal);
             AnchorPane PaneVentanaPrincipal;
@@ -234,7 +234,7 @@ public class ControladorSalas {
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 
 
-                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPaneSala.getChildren().setAll(PaneVentanaPrincipal);
                 controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FF8000");
                

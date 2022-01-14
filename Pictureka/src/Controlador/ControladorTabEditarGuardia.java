@@ -19,13 +19,13 @@ import javafx.scene.layout.GridPane;
 
 /**
  * 
- * En esta clase se maneja la edicción de la información de un guardia en
- * específico, en la vista de <b>TabEditarGuardia</b>.
+ * En esta clase se maneja la edicciï¿½n de la informaciï¿½n de un guardia en
+ * especï¿½fico, en la vista de <b>TabEditarGuardia</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  *
  */
 public class ControladorTabEditarGuardia {
@@ -96,7 +96,7 @@ public class ControladorTabEditarGuardia {
 	 * el Controlador de edicciones de guardias.
 	 * 
 	 * @param controlerEdit Controlador de la clase <b>ControladorEditGuardias</b>
-	 *                      con sus respecitvos atributos y métodos.
+	 *                      con sus respecitvos atributos y mï¿½todos.
 	 */
 	public ControladorTabEditarGuardia(ControladorEditGuardias controlerEdit) {
 
@@ -138,9 +138,9 @@ public class ControladorTabEditarGuardia {
 	@FXML
 	/**
 	 * 
-	 * Guarda los cambios realizados en uno o más de los campos de información del guardia, cambiando el contenido del Json de Staff.
+	 * Guarda los cambios realizados en uno o mï¿½s de los campos de informaciï¿½n del guardia, cambiando el contenido del Json de Staff.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre el botón "Guardar Cambios".
+	 * @param event		Evento causado cuando el administrador pulsa sobre el botï¿½n "Guardar Cambios".
 	 */
 	void GuardarGuardiaEdit(ActionEvent event) {
 
@@ -175,7 +175,7 @@ public class ControladorTabEditarGuardia {
 		// Comprobamos que haya seleccionado un guardia
 		if (!controlerEditGuardia.getTableView().getSelectionModel().isEmpty()) {
 
-			// Comprobamos que el contenido no esté vacío
+			// Comprobamos que el contenido no estï¿½ vacï¿½o
 			if (!(UsuarioNuevo.isEmpty() | nombreNuevo.isEmpty() | apellido1Nuevo.isEmpty() | apellido2Nuevo.isEmpty()
 					| dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null) | contraseniaNuevo.isEmpty())) {
 
@@ -247,7 +247,7 @@ public class ControladorTabEditarGuardia {
 											// Sobreescribe el contenido del vector
 											registro.escribirStaffNuevo(staff);
 
-											informacion.setHeaderText("Cambios realizados con éxito.");
+											informacion.setHeaderText("Cambios realizados con Ã©xito.");
 											informacion.showAndWait();
 
 										} else {
@@ -270,7 +270,7 @@ public class ControladorTabEditarGuardia {
 
 											registro.escribirStaffNuevo(staff);
 
-											informacion.setHeaderText("Cambios realizados con éxito.");
+											informacion.setHeaderText("Cambios realizados con Ã©xito.");
 											informacion.showAndWait();
 
 										} else {
@@ -302,7 +302,7 @@ public class ControladorTabEditarGuardia {
 
 												registro.escribirStaffNuevo(staff);
 
-												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.setHeaderText("Cambios realizados con Ã©xito.");
 												informacion.showAndWait();
 
 											} else {
@@ -323,7 +323,7 @@ public class ControladorTabEditarGuardia {
 
 												registro.escribirStaffNuevo(staff);
 
-												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.setHeaderText("Cambios realizados con Ã©xito.");
 												informacion.showAndWait();
 
 											} else {
@@ -371,7 +371,7 @@ public class ControladorTabEditarGuardia {
 
 												registro.escribirStaffNuevo(staff);
 
-												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.setHeaderText("Cambios realizados con Ã©xito.");
 												informacion.showAndWait();
 
 											} else {
@@ -397,7 +397,7 @@ public class ControladorTabEditarGuardia {
 
 													registro.escribirStaffNuevo(staff);
 
-													informacion.setHeaderText("Cambios realizados con éxito.");
+													informacion.setHeaderText("Cambios realizados con Ã©xito.");
 													informacion.showAndWait();
 												} else {
 													error.setHeaderText("Formato de email incorrecto.");
@@ -430,7 +430,7 @@ public class ControladorTabEditarGuardia {
 
 												registro.escribirStaffNuevo(staff);
 
-												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.setHeaderText("Cambios realizados con Ã©xito.");
 												informacion.showAndWait();
 
 											} else {
@@ -445,7 +445,7 @@ public class ControladorTabEditarGuardia {
 
 													registro.escribirStaffNuevo(staff);
 
-													informacion.setHeaderText("Cambios realizados con éxito.");
+													informacion.setHeaderText("Cambios realizados con Ã©xito.");
 													informacion.showAndWait();
 
 												} else {
@@ -478,11 +478,11 @@ public class ControladorTabEditarGuardia {
 
 				}
 			} else {
-				error.setHeaderText("Revise que todos losc campos estén completos.");
+				error.setHeaderText("Revise que todos losc campos estÃ¡n completos.");
 				error.showAndWait();
 			}
 		} else {
-			error.setHeaderText("No se ha seleccionado ningún guardia a modificar.");
+			error.setHeaderText("No se ha seleccionado ningÃºn guardia a modificar.");
 			error.showAndWait();
 		}
 	}

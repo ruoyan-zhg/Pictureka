@@ -23,10 +23,10 @@ import javafx.scene.layout.VBox;
  * En esta clase se maneja la lectura y escritura de informes de parte del
  * admiistrador, en la vista <b>VentanaInformeAdmin</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  *
  */
 public class ControladorInformeAdmin {
@@ -84,9 +84,9 @@ public class ControladorInformeAdmin {
 	/**
 	 * 
 	 * Constructor de la clase <b>ControladorInformeAdmin</b> que guarda la
-	 * información del administrador.
+	 * informaciï¿½n del administrador.
 	 * 
-	 * @param usuario El administrador que está iniciado sesión.
+	 * @param usuario El administrador que estï¿½ iniciado sesiï¿½n.
 	 */
 	public ControladorInformeAdmin(String usuario) {
 		if (usuario == "vacio") {
@@ -101,7 +101,7 @@ public class ControladorInformeAdmin {
 	
 	/**
 	 * 
-	 * Inicializa la ventana con un método que refresca el contenido de la tabla.
+	 * Inicializa la ventana con un mï¿½todo que refresca el contenido de la tabla.
 	 * 
 	 */
 	public void initialize() {
@@ -111,7 +111,7 @@ public class ControladorInformeAdmin {
 	@FXML
 	/**
 	 * 
-	 * Obtiene la posición del elemento que se ha seleccionado en la tabla de informes.
+	 * Obtiene la posiciï¿½n del elemento que se ha seleccionado en la tabla de informes.
 	 * 
 	 * @param event		Evento causado cuando el administrador pulsa sobre la tabla.
 	 */
@@ -127,20 +127,20 @@ public class ControladorInformeAdmin {
 	@FXML
 	/**
 	 * 
-	 * Muestra la información del administrador que se encuentre iniciado sesión.
+	 * Muestra la informaciï¿½n del administrador que se encuentre iniciado sesiï¿½n.
 	 * 
 	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de su avatar.
 	 */
 	void accederPerfil(MouseEvent event) {
 		if (logged == false) {
 			Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+			error.setHeaderText("Oh no! Para acceder a esta funciÃ³n debes estar iniciado sesiÃ³n.");
 			error.showAndWait();
 
 		} else {
 			// Se carga el contenido de la ventana
 			FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-			// Se le asigna el controlador de la ventana para editar información de los
+			// Se le asigna el controlador de la ventana para editar informaciï¿½n de los
 			// guardias
 			ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
 			loaderPrincipala.setController(controlerPrincipal);
@@ -159,7 +159,7 @@ public class ControladorInformeAdmin {
 				AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
 				AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
 
-				// Se añade el contenido de la ventana cargada en el AnchorPane del padre
+				// Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
 				anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
 				controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FF8000");
 
@@ -176,7 +176,7 @@ public class ControladorInformeAdmin {
 	 * 
 	 * Dirige al administrador a su ventana inicial.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atrás.
+	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atrï¿½s.
 	 */
 	void volverAtras(MouseEvent event) {
 		FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
@@ -201,7 +201,7 @@ public class ControladorInformeAdmin {
 	@FXML
 	/**
 	 * 
-	 * Envia el informe escrito por el administrador, con su respectivo título y cuerpo.
+	 * Envia el informe escrito por el administrador, con su respectivo tï¿½tulo y cuerpo.
 	 * 
 	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen para enviar el informe.
 	 */
@@ -218,10 +218,10 @@ public class ControladorInformeAdmin {
 					//Se escribe el nuevo informe y se refresca la tabla
 					museo.getRegistro().escribirInforme(nombre, tituloInforme.getText(), cuerpoInforme.getText());
 					refrescarTabla();
-					confirmacion.setHeaderText("Informe guardado con exito");
+					confirmacion.setHeaderText("Informe guardado con Ã©xito");
 					confirmacion.show();
 				} catch (FileNotFoundException e) {
-					error.setHeaderText("Archivo no encontrado!");
+					error.setHeaderText("Â¡Archivo no encontrado!");
 					error.show();
 				}
 
@@ -237,7 +237,7 @@ public class ControladorInformeAdmin {
 
 	/**
 	 * 
-	 * Refresca la información de la tabla, mostrando el contenido del Json.
+	 * Refresca la informaciï¿½n de la tabla, mostrando el contenido del Json.
 	 * 
 	 */
 	private void refrescarTabla() {
@@ -265,7 +265,7 @@ public class ControladorInformeAdmin {
 	
 	/**
 	 * 
-	 * Muestra la información del informe seleccionado en la tabla.
+	 * Muestra la informaciï¿½n del informe seleccionado en la tabla.
 	 * 
 	 * @param posicion
 	 */

@@ -24,12 +24,12 @@ import javafx.scene.layout.VBox;
 
 /**
  * 
- * En esta clase se maneja la edicción de una reserva, en la vista <b>VentanaEditarTickets</b>.
+ * En esta clase se maneja la edicciï¿½n de una reserva, en la vista <b>VentanaEditarTickets</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  *
  */
 public class ControladorEditarReserva {
@@ -83,7 +83,7 @@ public class ControladorEditarReserva {
     
     /**
      * 
-     * Inicializa la ventana con la información requerida.
+     * Inicializa la ventana con la informaciï¿½n requerida.
      * 
      */
     public void initialize() {
@@ -93,9 +93,9 @@ public class ControladorEditarReserva {
     
     /**
      * 
-     * Constructor de la clase <b>ControladorEditarReserva</b> que guarda la información de un cliente.
+     * Constructor de la clase <b>ControladorEditarReserva</b> que guarda la informaciï¿½n de un cliente.
      * 
-     * @param usuario		El cliente que se encuentre iniciado sesión.
+     * @param usuario		El cliente que se encuentre iniciado sesiï¿½n.
      */
     public ControladorEditarReserva(String usuario) {
 		 if (usuario == "vacio") {
@@ -112,7 +112,7 @@ public class ControladorEditarReserva {
     @FXML
     /**
      * 
-     * Recoge la selección del cliente de su lista de reservas.
+     * Recoge la selecciï¿½n del cliente de su lista de reservas.
      * 
      * @param event		Evento causado cuando el cliente pulsa sobre la tabla.
      */
@@ -128,7 +128,7 @@ public class ControladorEditarReserva {
      * 
      * Elimina la reserva seleccionada por el cliente.
      * 
-     * @param event		Evento causado cuando el cliente pulsa sobre el botón "Eliminar".
+     * @param event		Evento causado cuando el cliente pulsa sobre el botï¿½n "Eliminar".
      */	
     void eliminarReserva(ActionEvent event) {
     	
@@ -167,11 +167,11 @@ public class ControladorEditarReserva {
         	refrescarTabla();
         	datos.serializarVectorReservasAJson(reservas);
         	datos.serializarArrayAJson(usuarios);
-        	alerta.setHeaderText("La reserva se ha eliminado con exito!");
+        	alerta.setHeaderText("La reserva se ha eliminado con Ã©xito!");
     		alerta.showAndWait();
     	}
     	else {
-    		alerta.setHeaderText("Porfavor seleccione alguna reserva para eliminar!");
+    		alerta.setHeaderText("Â¡Porfavor seleccione alguna reserva para eliminar!");
     		alerta.showAndWait();
     	}
     	
@@ -181,21 +181,21 @@ public class ControladorEditarReserva {
     @FXML
     /**
      * 
-     * Muestra la información de un cliente.
+     * Muestra la informaciï¿½n de un cliente.
      * 
      * @param event		Evento causado cuando el cliente pulsa sobre la imagen de su avatar.
      */
     void accederPerfil(MouseEvent event) {
     	if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+			error.setHeaderText("Oh no! Para acceder a esta funciÃ³n debes estar iniciado sesiÃ³n.");
     		error.showAndWait();
         	
         }
         else {
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-        	//Se le asigna el controlador de la ventana para editar información de los guardias
+        	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
             ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
             loaderPrincipala.setController(controlerPrincipal);
             AnchorPane PaneVentanaPrincipal;
@@ -214,7 +214,7 @@ public class ControladorEditarReserva {
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 
 
-                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
                 controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FF8000");
                
@@ -230,7 +230,7 @@ public class ControladorEditarReserva {
      * 
      * Devuelve al cliente a la ventana de su perfil.
      * 
-     * @param event		Evento causado cuando el cliente pulsa sobre la imagen para volver atrás.
+     * @param event		Evento causado cuando el cliente pulsa sobre la imagen para volver atrï¿½s.
      */
     void volverAtras(MouseEvent event) {
     	
@@ -268,9 +268,9 @@ public class ControladorEditarReserva {
     
     /**
      * 
-     * Muestra la información de la reserva seleccionada por el usuario.
+     * Muestra la informaciï¿½n de la reserva seleccionada por el usuario.
      * 
-     * @param posicion		Número que guarda la posición de los elementos de la tabla.
+     * @param posicion		Nï¿½mero que guarda la posiciï¿½n de los elementos de la tabla.
      */
     private void mostrarReservas(int posicion) {
     	
@@ -308,7 +308,7 @@ public class ControladorEditarReserva {
 
     /**
      * 
-     * Refresca la información de la tabla, tras haber realizado cambios.
+     * Refresca la informaciï¿½n de la tabla, tras haber realizado cambios.
      * 
      */
     private void refrescarTabla() {

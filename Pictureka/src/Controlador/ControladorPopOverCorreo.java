@@ -22,10 +22,10 @@ import javafx.scene.layout.AnchorPane;
  * 
  * En esta clase se maneja el Pop Up donde se muestra la posibilidad de enviar emails al museo, en el pop up de <b>PopOverCorreo<b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  *
  */
 
@@ -53,9 +53,9 @@ public class ControladorPopOverCorreo {
 	 
     /**
      * 
-     * Constructor de la clase <b>ControladorPopOverCorreo</b> que guarda la información del cliente.
+     * Constructor de la clase <b>ControladorPopOverCorreo</b> que guarda la informaciï¿½n del cliente.
      * 
-     * @param usuario	Cliente que se encuentre iniciado sesión en ese momento.
+     * @param usuario	Cliente que se encuentre iniciado sesiï¿½n en ese momento.
      */
 	 public ControladorPopOverCorreo(String usuario) {
 		 if (usuario == "vacio") {
@@ -73,9 +73,9 @@ public class ControladorPopOverCorreo {
     @FXML
     /**
      * 
-     * Envía un email al email del museo <i>Pictureka</i> con su respectivo título y cuerpo.
+     * Envï¿½a un email al email del museo <i>Pictureka</i> con su respectivo tï¿½tulo y cuerpo.
      * 
-     * @param event		Evento causado cuando el cliente pulsa sobre el botón "Enviar".
+     * @param event		Evento causado cuando el cliente pulsa sobre el botï¿½n "Enviar".
      */
     void EnviarEmail(ActionEvent event) {
     	
@@ -135,7 +135,7 @@ public class ControladorPopOverCorreo {
             //Envio del mensaje
             Transport.send(message);
             Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmacion.setHeaderText("El email se envió correctamente");
+            confirmacion.setHeaderText("El email se enviÃ³ correctamente");
             confirmacion.showAndWait();
         } catch (MessagingException mex) {
             mex.printStackTrace();

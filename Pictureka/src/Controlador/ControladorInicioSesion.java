@@ -24,13 +24,13 @@ import javafx.stage.Stage;
 
 /**
  * 
- * En esta clase se maneja el inicio de sesión de cada usuario en la vista <b>InterfazLogin</b>, mostrando la respectiva ventana a cada
+ * En esta clase se maneja el inicio de sesiÃ³n de cada usuario en la vista <b>InterfazLogin</b>, mostrando la respectiva ventana a cada
  * usuarip.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain Vï¿½squez
+ * @author Oscar Gonzï¿½lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian Salmerï¿½n Lï¿½pez
  *
  */
 
@@ -69,9 +69,9 @@ public class ControladorInicioSesion {
     @FXML
     /**
      * 
-     * Vuelve a la ventana principal, cancelando el inicio de sesión del usuario.
+     * Vuelve a la ventana principal, cancelando el inicio de sesiï¿½n del usuario.
      * 
-     * @param event		Evento causado cuando el usaurio pulsa sobre la imagen de vovler atrás.
+     * @param event		Evento causado cuando el usaurio pulsa sobre la imagen de vovler atrï¿½s.
      */
     void volverAtras(MouseEvent event) {
     	
@@ -100,9 +100,9 @@ public class ControladorInicioSesion {
     @FXML
     /**
      * 
-     * Recoge el nombre de usuario o email y la contraseña para comprobar que tal usuario existe, y de esa manera mostrar la vista correspondiente
+     * Recoge el nombre de usuario o email y la contraseï¿½a para comprobar que tal usuario existe, y de esa manera mostrar la vista correspondiente
      * 
-     * @param event   Evento causado cuando el usuario pulsa sobre el botón de <b>Inicar sesión</b> para poder acceder a la aplicación
+     * @param event   Evento causado cuando el usuario pulsa sobre el botï¿½n de <b>Inicar sesiï¿½n</b> para poder acceder a la aplicaciï¿½n
      */
     void InicarSesion(ActionEvent event) {
     	
@@ -110,7 +110,7 @@ public class ControladorInicioSesion {
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
     	
-    	//Comprueba que lo devuelto por el método loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
+    	//Comprueba que lo devuelto por el mï¿½todo loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
     	if (museo.loginUsuario(textUsuario.getText(), textContrasenia.getText())==1) {
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
@@ -154,7 +154,7 @@ public class ControladorInicioSesion {
     		        controlVPrincipal.setLogged(true);
     		        controlVPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
     		        controlVPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
-    		        controlVPrincipal.getLblBienvenido().setText("¡Bienvenid@ "+(nombreUsuario)+"!");
+    		        controlVPrincipal.getLblBienvenido().setText("Â¡Bienvenid@ "+(nombreUsuario)+"!");
     		        controlVPrincipal.getLblBienvenido().setStyle("-fx-background-color: #00aae4");
     		        
     		        
@@ -172,7 +172,7 @@ public class ControladorInicioSesion {
     		confirmacion.showAndWait();
     		//Se carga el contenido de la ventana
         	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
-        	//Se le asigna el controlador de la ventana para editar información de los guardias
+        	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
             ControladorGuardia controlerGuardia= new ControladorGuardia(textUsuario.getText());
             loaderApp.setController(controlerGuardia);
             Parent root;
@@ -208,7 +208,7 @@ public class ControladorInicioSesion {
     		
     		//Se carga el contenido de la ventana
         	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
-        	//Se le asigna el controlador de la ventana para editar información de los guardias
+        	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
             ControladorAdministrador controlerAdmin = new ControladorAdministrador(textUsuario.getText());
             loaderApp.setController(controlerAdmin);
             Parent root;
@@ -233,7 +233,7 @@ public class ControladorInicioSesion {
     		
     	}
     	else {
-    		error.setHeaderText("Error: El usuario/email o contraseña introducida son incorrectas");
+    		error.setHeaderText("Error: El usuario/email o contraseÃ±a introducida son incorrectas");
     		error.show();
     	}
 
@@ -244,9 +244,9 @@ public class ControladorInicioSesion {
 	@FXML
 	/**
 	 * 
-	 * Muestra la ventana de Registro donde el usuario debe rellenar los campos necesarios para crearse un usuario en la aplicación.
+	 * Muestra la ventana de Registro donde el usuario debe rellenar los campos necesarios para crearse un usuario en la aplicaciï¿½n.
 	 * 
-	 * @param event		Evento causado cuando el usuario pulsa sobre el botón de Registrarse.
+	 * @param event		Evento causado cuando el usuario pulsa sobre el botï¿½n de Registrarse.
 	 */
     void Registrarse(ActionEvent event) {
     	

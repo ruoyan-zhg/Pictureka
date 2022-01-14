@@ -16,10 +16,10 @@ import javafx.stage.Stage;
  * 
  * En la clase ControladorLogo, manejamos los eventos que ocurran en la vista <b>VentanaLogo</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ¡n LÃ³pez
  *
  */
 
@@ -38,9 +38,9 @@ public class ControladorLogo {
     @FXML
     /**
      * 
-     * El usuario pulsa el botón <b>Entrar</b> y se muestra la ventana principal del programa.
+     * El usuario pulsa el botï¿½n <b>Entrar</b> y se muestra la ventana principal del programa.
      * 
-     * @param event    Momento en el que el usuario pulsa el botón.
+     * @param event    Momento en el que el usuario pulsa el botï¿½n.
      */
     void entrarApp(ActionEvent event) {
 

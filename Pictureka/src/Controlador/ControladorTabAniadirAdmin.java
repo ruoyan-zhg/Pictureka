@@ -17,10 +17,10 @@ import javafx.scene.layout.GridPane;
  * 
  * En esta clase se maneja el registro de un administrador, en la vista <b>TabAniadirAdministrador</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  *
  */
 public class ControladorTabAniadirAdmin {
@@ -87,7 +87,7 @@ public class ControladorTabAniadirAdmin {
      * 
      * Constructor de la clase <b>ControladorTabAniadirAdmin</b> al que se le pasa el Controlador de ediccion de administradores.
      * 
-     * @param controladorEdit	Controlador de la clase <b>ControladorEditAdministrador</b> con su respectivos atributos y métodos.
+     * @param controladorEdit	Controlador de la clase <b>ControladorEditAdministrador</b> con su respectivos atributos y mï¿½todos.
      */
     public ControladorTabAniadirAdmin(ControladorEditarAdministrador controladorEdit) {
     	controlerEdit = controladorEdit;
@@ -97,10 +97,10 @@ public class ControladorTabAniadirAdmin {
     @FXML
     /**
      * 
-     * Registra un nuevo administrador con la información introducida por el administrador. Se escribe en el Json de Staff y se muestra
+     * Registra un nuevo administrador con la informaciï¿½n introducida por el administrador. Se escribe en el Json de Staff y se muestra
      * en la tabla de administradores.
      * 
-     * @param event		Evento causado cuando el administrador pulsa sobre el botón "Añadir".
+     * @param event		Evento causado cuando el administrador pulsa sobre el botï¿½n "Aï¿½adir".
      */
     void GuardarNuevoAdmin(ActionEvent event) {
     	
@@ -132,7 +132,7 @@ public class ControladorTabAniadirAdmin {
     			dniNuevo.isEmpty() || contraseniaNuevo.isEmpty() || fechaNacimientoNuevo==null) {
     			
     		error.setHeaderText("Error");
-    		error.setContentText("Compruebe los campos a rellenar para añadir un guardia");
+    		error.setContentText("Compruebe los campos a rellenar para aÃ±adir un guardia");
     		error.showAndWait();
     	}
     	else {

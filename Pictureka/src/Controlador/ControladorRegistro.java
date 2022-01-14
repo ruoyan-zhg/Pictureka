@@ -22,10 +22,10 @@ import javafx.scene.layout.Region;
  * 
  * En esta clase, se maneja la funcionalidad de registro de un usuario, en la vista <b>VentanaRegistro</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  *
  */
 
@@ -91,9 +91,9 @@ public class ControladorRegistro {
     @FXML
     /**
      * 
-     * Cancela el registro del usuario y devuelve la ventana de inicio de sesión.
+     * Cancela el registro del usuario y devuelve la ventana de inicio de sesiï¿½n.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre el botón de Cancelar.
+     * @param event		Evento causado cuando el usuario pulsa sobre el botï¿½n de Cancelar.
      */
     void CancelRegistro(ActionEvent event) {
 
@@ -103,10 +103,10 @@ public class ControladorRegistro {
     @FXML
     /**
      * 
-     * Método que recoge los datos introducidos por el usuario en los diferentes JTextFields. Se comprueba que la información sea válida,
-     * y una vez lo sea, se registra el usuario, escribiéndose en el Json de "usuarios".
+     * Mï¿½todo que recoge los datos introducidos por el usuario en los diferentes JTextFields. Se comprueba que la informaciï¿½n sea vï¿½lida,
+     * y una vez lo sea, se registra el usuario, escribiï¿½ndose en el Json de "usuarios".
      * 
-     * @param event		Evento causado cuando el usaurio pulsa sobre el botón de Registrar.
+     * @param event		Evento causado cuando el usaurio pulsa sobre el botï¿½n de Registrar.
      */
     void RegistrarUsuario(ActionEvent event) {
 
@@ -115,7 +115,7 @@ public class ControladorRegistro {
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
     	
     	String estado;
-    	//Se obtienen las contraseñas escritas
+    	//Se obtienen las contraseï¿½as escritas
     	String contrasenia = txtFieldPassword.getText();
     	String repetirContrasenia = textFieldRepeatPassword.getText();
     	LocalDate fechaNuevo = chooserCalendario.getValue();
@@ -127,7 +127,7 @@ public class ControladorRegistro {
         		LocalDate fecha = LocalDate.now();
             	Period periodo = Period.between(chooserCalendario.getValue(), fecha);
         		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
-        			//Se comrpueba que las contraseñas sean iguales
+        			//Se comrpueba que las contraseï¿½as sean iguales
             		if(contrasenia.equals(repetirContrasenia)&&!(contrasenia.equals(""))&&!(contrasenia.equals(" "))) {
             			//Se registra el usuario
                 		estado = museo.registrarClientes(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), txtFieldPassword.getText(), chooserCalendario.getValue());
@@ -144,7 +144,7 @@ public class ControladorRegistro {
                 		}
                 	}
                 	else {
-                		 error.setHeaderText("Error: las contraseñas no coinciden");
+                		 error.setHeaderText("Error: las contraseÃ±as no coinciden");
                 		 error.show();
                 	}
             	}
@@ -156,7 +156,7 @@ public class ControladorRegistro {
     		
     	}
     	else {
-    		error.setHeaderText("Porfavor rellene todos los campos!");
+    		error.setHeaderText("Â¡Porfavor rellene todos los campos!");
     		error.show();
     		
     	}
@@ -164,7 +164,7 @@ public class ControladorRegistro {
     }
     /**
      * 
-     * Método que muestra la ventana de Login.
+     * Mï¿½todo que muestra la ventana de Login.
      * 
      */
     void abrirLogin() {

@@ -35,10 +35,10 @@ import javafx.stage.FileChooser;
  * 
  * En esta clase se maneja los cambios que se realizan a la hora de editar un evento, en la vista <b>VentanaEditarEventos</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  *
  */
 
@@ -80,9 +80,9 @@ public class controladorEditarEventos {
 	    
 	/**
 	 * 
-	 *  Constructor de la clase <b>controladorEditarEventos</b>, que guarda la información de un adminsitrador.
+	 *  Constructor de la clase <b>controladorEditarEventos</b>, que guarda la informaciï¿½n de un adminsitrador.
 	 *  
-	 * @param usuario	El administrador que se encuentre iniciado sesión.
+	 * @param usuario	El administrador que se encuentre iniciado sesiï¿½n.
 	 */
 	public controladorEditarEventos(String usuario) {
 		if (usuario == "vacio") {
@@ -107,7 +107,7 @@ public class controladorEditarEventos {
 	
 	/**
 	 * 
-	 * Inicializa la ventana de ediatar eventos con su respectiva información.
+	 * Inicializa la ventana de ediatar eventos con su respectiva informaciï¿½n.
 	 * 
 	 */
 	public void initialize() {
@@ -117,25 +117,25 @@ public class controladorEditarEventos {
 		eventos = handler.desserializarJsonAEventos();// Ingresamos los datos del Json al vector de eventos
 	}
 
-	String imagen; // Almacena el nombre (ubicacion de la imagen) que se añadirá al evento
+	String imagen; // Almacena el nombre (ubicacion de la imagen) que se aï¿½adirï¿½ al evento
 
 	@FXML
 	/**
 	 * 
-	 * Dirige al administrador a la ventana perfil para visualizar su información.
+	 * Dirige al administrador a la ventana perfil para visualizar su informaciï¿½n.
 	 * 
 	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de su avatar.
 	 */
 	void accederPerfilAdmin(MouseEvent event) {
 		if (logged == false) {
 			Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+			error.setHeaderText("Oh no! Para acceder a esta funciÃ³n debes estar iniciado sesiÃ³n.");
 			error.showAndWait();
 
 		} else {
 			// Se carga el contenido de la ventana
 			FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-			// Se le asigna el controlador de la ventana para editar información de los
+			// Se le asigna el controlador de la ventana para editar informaciï¿½n de los
 			// guardias
 			ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
 			loaderPrincipala.setController(controlerPrincipal);
@@ -154,7 +154,7 @@ public class controladorEditarEventos {
 				AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
 				AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
 
-				// Se añade el contenido de la ventana cargada en el AnchorPane del padre
+				// Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
 				anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
 				// Cambia el color de la barra de la ventana perfil
 				controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FF8000");
@@ -170,9 +170,9 @@ public class controladorEditarEventos {
 	@FXML
 	/**
 	 * 
-	 * Añade los cambios realizados por el administrador a la ventana de eventos.
+	 * Aï¿½ade los cambios realizados por el administrador a la ventana de eventos.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre el botón "Añadir Cambios".
+	 * @param event		Evento causado cuando el administrador pulsa sobre el botï¿½n "Aï¿½adir Cambios".
 	 */
 	void aniadirCambios(MouseEvent event) {
 		Alert error = new Alert(Alert.AlertType.ERROR);
@@ -193,7 +193,7 @@ public class controladorEditarEventos {
 							e.printStackTrace();
 						}
 
-						// Se guradan los datos en el vector de eventos ···············
+						// Se guradan los datos en el vector de eventos ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						guardarDatos();
 						// y se actualiza el Json con los datos actualizados del vector
 						handler.serializarVectorEventosAJson(eventos);
@@ -209,7 +209,7 @@ public class controladorEditarEventos {
 
 				} else {
 					error.setTitle("Datos incompletos.");
-					error.setHeaderText("Porfavor ingrese una Imagen para añadir al evento.");
+					error.setHeaderText("Porfavor ingrese una Imagen para aÃ±adir al evento.");
 					error.show();
 				}
 
@@ -221,7 +221,7 @@ public class controladorEditarEventos {
 
 		} else {
 			error.setTitle("Datos incompletos.");
-			error.setHeaderText("Porfavor ingrese el evento que se reemplazará.");
+			error.setHeaderText("Porfavor ingrese el evento que se reemplazarÃ¡.");
 			error.show();
 		}
 
@@ -230,9 +230,9 @@ public class controladorEditarEventos {
 	@FXML
 	/**
 	 * 
-	 * Abre el explorador de archivos del administrador, para poder elegir la imagen que desea añadir a la ventana de eventos.
+	 * Abre el explorador de archivos del administrador, para poder elegir la imagen que desea aï¿½adir a la ventana de eventos.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre la región.
+	 * @param event		Evento causado cuando el administrador pulsa sobre la regiï¿½n.
 	 */
 	void aniadirImagen(MouseEvent event) {
 		
@@ -270,7 +270,7 @@ public class controladorEditarEventos {
 	 * 
 	 * Devuelve al administrador a su ventana inciial.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atrás.
+	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atrï¿½s.
 	 */
 	void regresarPrincipalAdmin(MouseEvent event) {
 		abrirAdmin();
@@ -304,7 +304,7 @@ public class controladorEditarEventos {
 	
 	/**
 	 * 
-	 * Guarda los cambios en el Json de eventos con la información que haya solicitado.
+	 * Guarda los cambios en el Json de eventos con la informaciï¿½n que haya solicitado.
 	 * 
 	 */
 	public void guardarDatos() {// Este metodo guardara los cambios en el Json de eventos con la informacion que

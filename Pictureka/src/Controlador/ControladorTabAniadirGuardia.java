@@ -17,10 +17,10 @@ import javafx.scene.layout.GridPane;
  * 
  * En esta clase se maneja el registro de un guardia, en la vista <b>TabAniadirGuardia</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  *
  */
 
@@ -90,7 +90,7 @@ public class ControladorTabAniadirGuardia {
      * 
      * Constructor de la clase <b>ControladorTabAdniadirGuardia</b> al que se le pasa el Controlador de ediccion de guardias.
      * 
-     * @param controladorEdit	Controlador de la clase <b>ControladorEditGuardias</b> con su respectivos atributos y métodos. 
+     * @param controladorEdit	Controlador de la clase <b>ControladorEditGuardias</b> con su respectivos atributos y mï¿½todos. 
      */
     public ControladorTabAniadirGuardia(ControladorEditGuardias controladorEdit) {
     	controlerEdit = controladorEdit;
@@ -101,10 +101,10 @@ public class ControladorTabAniadirGuardia {
     @FXML
     /**
      * 
-     * Registra un nuevo guardia con la información introducida por el administrador. Se escribe en el Json de Staff y se muestra
+     * Registra un nuevo guardia con la informaciï¿½n introducida por el administrador. Se escribe en el Json de Staff y se muestra
      * en la tabla de guardias.
      * 
-     * @param event		Evento causado cuando el administrador pulsa sobre el botón "Añadir".
+     * @param event		Evento causado cuando el administrador pulsa sobre el botï¿½n "Aï¿½adir".
      */
     void GuardarNuevoGuardia(ActionEvent event) {
     	
@@ -136,7 +136,7 @@ public class ControladorTabAniadirGuardia {
     			dniNuevo.isEmpty() || contraseniaNuevo.isEmpty() || fechaNacimientoNuevo==null) {
     			
     		error.setHeaderText("Error");
-    		error.setContentText("Compruebe los campos a rellenar para añadir un guardia");
+    		error.setContentText("Compruebe los campos a rellenar para aÃ±adir un guardia");
     		error.showAndWait();
     	}
     	else {

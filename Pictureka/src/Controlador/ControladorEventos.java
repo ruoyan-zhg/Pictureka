@@ -29,12 +29,12 @@ import Modelo.*;
 
 /**
  * 
- * En este clase se maneja la información de los eventos, junto con sus respectivos sucesos en la vista <b>VentanaEventos</b>.
+ * En este clase se maneja la informaciÃ³n de los eventos, junto con sus respectivos sucesos en la vista <b>VentanaEventos</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  *
  */
 
@@ -163,11 +163,11 @@ public class ControladorEventos {
   	@FXML
   	/**
   	 * 
-  	 * Método que inicializa ciertos elementos de la ventana de eventos cada vez que es desplegada.
+  	 * Mï¿½todo que inicializa ciertos elementos de la ventana de eventos cada vez que es desplegada.
   	 * 
   	 */
   	public void initialize() {
-  		//Se añaden al ArrayList las imagenes que queremos que se muestren
+  		//Se aï¿½aden al ArrayList las imagenes que queremos que se muestren
   		imagenes.add(new Image("/sorolla.jpg"));
   	 	imagenes.add(new Image("/Dali.jpg"));
   	 	imagenes.add(new Image("/monet.jpg"));
@@ -212,13 +212,13 @@ public class ControladorEventos {
   	 	txtAreaCuatro.setText(eventos.elementAt(3).getInformacion());
   	 	
   	 	//Mensajes emergentes con la informacion de contacto del museo
-	 	Tooltip correo = new Tooltip("Dirección de correo: \npicturekasfw@gmail.com");
+	 	Tooltip correo = new Tooltip("DirecciÃ³n de correo: \npicturekasfw@gmail.com");
 	 	btnCorreo.setTooltip(correo);
 	 	
-	 	Tooltip mensaje = new Tooltip("Número de mensaje: \n2309");
+	 	Tooltip mensaje = new Tooltip("NÃºmero de mensaje: \n2309");
 	 	btnMensaje.setTooltip(mensaje);
 	 	
-	 	Tooltip contacto = new Tooltip("Número de contacto: \n608693411");
+	 	Tooltip contacto = new Tooltip("NÃºmero de contacto: \n608693411");
 	 	btnContacto.setTooltip(contacto);
   	 	
   	 	
@@ -238,7 +238,7 @@ public class ControladorEventos {
         else {
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-        	//Se le asigna el controlador de la ventana para editar información de los guardias
+        	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
             ControladorPerfil controlerPerfil = new ControladorPerfil(usuario);
             loaderPrincipala.setController(controlerPerfil);
             AnchorPane PaneVentanaPrincipal;
@@ -257,7 +257,7 @@ public class ControladorEventos {
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 
 
-                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
                 //Cambia el color de la barra de la ventana perfil
                 controlerPerfil.getBarra().setStyle("-fx-background-color: #00aae4");
@@ -276,9 +276,9 @@ public class ControladorEventos {
     @FXML
     /**
      * 
-     * Mueve las imágenes a la derecha, tantas veces como el usuario pulse el botón.
+     * Mueve las imï¿½genes a la derecha, tantas veces como el usuario pulse el botï¿½n.
      * 
-     * @param event   Evento causado por el usuario al pulsar el botón de slide derecho.
+     * @param event   Evento causado por el usuario al pulsar el botï¿½n de slide derecho.
      */
     void cambioImg(MouseEvent event) {
     	count++;
@@ -306,9 +306,9 @@ public class ControladorEventos {
     
     /**
      * 
-     * Mueve las imágenes a la izquierda, tantas veces como el usuario pulse el botón.
+     * Mueve las imï¿½genes a la izquierda, tantas veces como el usuario pulse el botï¿½n.
      * 
-     * @param event   Evento causado por el usuario al pulsar el botón de slide izquierdo.
+     * @param event   Evento causado por el usuario al pulsar el botï¿½n de slide izquierdo.
      */
     void cambioImgAtras(MouseEvent event) {
     	
@@ -337,7 +337,7 @@ public class ControladorEventos {
      * Ofrece la posibilidad de mandar emails al email del museo.
      * 
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre el botón del correo.
+     * @param event		Evento causado cuando el usuario pulsa sobre el botï¿½n del correo.
      */
     void mandarCorreo(ActionEvent event) {
     	
@@ -350,7 +350,7 @@ public class ControladorEventos {
     	
 		if (logged == false) {
 			Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+			error.setHeaderText("Oh no! Para acceder a esta funciÃ³n debes estar iniciado sesiÃ³n.");
     		error.showAndWait();
         	abrirLogin();
 			
@@ -408,7 +408,7 @@ public class ControladorEventos {
         
         if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+			error.setHeaderText("Oh no! Para acceder a esta funciÃ³n debes estar iniciado sesiÃ³n.");
     		error.showAndWait();
         	abrirLogin();
         	
@@ -427,7 +427,7 @@ public class ControladorEventos {
                  AnchorPane.setLeftAnchor(PaneTickets, 0.0);
                  AnchorPane.setBottomAnchor(PaneTickets, 0.0);
             
-                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+                 //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
                  anchorPanePrincipal.getChildren().setAll(PaneTickets);
                  
                 
@@ -443,7 +443,7 @@ public class ControladorEventos {
     
     /**
      * 
-     * Muestra la ventana de Login inmediatamente sin que el usuario pulse ningún botón.
+     * Muestra la ventana de Login inmediatamente sin que el usuario pulse ningï¿½n botï¿½n.
      * 
      */
     void abrirLogin() {
@@ -468,7 +468,7 @@ public class ControladorEventos {
             AnchorPane.setBottomAnchor(PaneInicioSesion, 0.0);
             
 
-            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneInicioSesion);
             
            
@@ -490,12 +490,12 @@ public class ControladorEventos {
      * 
      * Devuelve al usuario a la ventana principal.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para volver atrás.
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para volver atrï¿½s.
      */
     void volverAtrasEventos(MouseEvent event) {
 		// Se carga el contenido de la ventana
 		FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-		// Se le asigna el controlador de la ventana para editar información de los
+		// Se le asigna el controlador de la ventana para editar informaciï¿½n de los
 		// guardias
 		System.out.println(usuario);
 		ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
@@ -515,7 +515,7 @@ public class ControladorEventos {
 			AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
 			AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
 
-			// Se añade el contenido de la ventana cargada en el AnchorPane del padre
+			// Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
 			anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
 			
 			if(logged!=false) {

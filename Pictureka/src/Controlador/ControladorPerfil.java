@@ -17,13 +17,13 @@ import javafx.scene.layout.BorderPane;
 
 /**
  * 
- * En esta clase se maneja la información de cada usuario y se muestra en la vista <b>VentanaPerfil</b> con la respectiva información
+ * En esta clase se maneja la informaciï¿½n de cada usuario y se muestra en la vista <b>VentanaPerfil</b> con la respectiva informaciï¿½n
  * del usuario iniciado en ese momento.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  *
  */
 
@@ -102,9 +102,9 @@ public class ControladorPerfil {
 
     /**
      * 
-     * Constructor de la clase <b>ControladorPerfil</b> que guarda la información del usaurio iniciado sesión.
+     * Constructor de la clase <b>ControladorPerfil</b> que guarda la informaciï¿½n del usaurio iniciado sesiï¿½n.
      * 
-     * @param usuario		El usuario que se encuentra iniciado sesión
+     * @param usuario		El usuario que se encuentra iniciado sesiï¿½n
      */
 	 public ControladorPerfil(String usuario)  {
 		 if (usuario == "vacio") {
@@ -141,7 +141,7 @@ public class ControladorPerfil {
 	 @FXML
 	 /**
 	  * 
-	  * Inicializa la ventana perfil, mostrando los diferentes campos de información, dependiendo del usuario iniciado sesión.
+	  * Inicializa la ventana perfil, mostrando los diferentes campos de informaciï¿½n, dependiendo del usuario iniciado sesiï¿½n.
 	  * 
 	  */
 	  	public void initialize() {
@@ -175,7 +175,7 @@ public class ControladorPerfil {
 	 @FXML
 	 /**
 	  * 
-	  * Muestra al cliente su lista de reservas, mostrando la información de éstas, ofreciendo la posibilidad de cancelar la 
+	  * Muestra al cliente su lista de reservas, mostrando la informaciï¿½n de ï¿½stas, ofreciendo la posibilidad de cancelar la 
 	  * reserva que desee.
 	  * 
 	  * @param event	Evento causado cuando el cliente pulsa sobre la imagen de su reserva.
@@ -216,9 +216,9 @@ public class ControladorPerfil {
     @FXML
     /**
      * 
-     * Devuelve al usuario a su ventana inicial, dependiendo del usuario iniciado sesión
+     * Devuelve al usuario a su ventana inicial, dependiendo del usuario iniciado sesiï¿½n
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre la imagen de volver atrás.
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen de volver atrï¿½s.
      */
     void volver(MouseEvent event) {
 
@@ -330,7 +330,7 @@ public class ControladorPerfil {
     }
     /**
      * 
-     * Muestra una información diferente si el usuario iniciado sesión es un guardia o un administrador.
+     * Muestra una informaciï¿½n diferente si el usuario iniciado sesiï¿½n es un guardia o un administrador.
      * 
      */
     private void staffConfiguracion() {

@@ -28,10 +28,10 @@ import javafx.scene.layout.VBox;
  * 
  * En esta clase se maneja la funcionalidad para reservar tickets de la vista <b>VentanaTickets</b>
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain Vï¿½squez
+ * @author Oscar Gonzï¿½lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian Salmerï¿½n Lï¿½pez
  *
  */
 
@@ -85,9 +85,9 @@ public class ControladorTickets {
     
     /**
      * 
-     * Constructor de la clase <b>ControladorTickets</b> que guarda información del usuario.
+     * Constructor de la clase <b>ControladorTickets</b> que guarda informaciï¿½n del usuario.
      * 
-     * @param usuario		El usuario que esté inciado sesión en ese momento.
+     * @param usuario		El usuario que estï¿½ inciado sesiï¿½n en ese momento.
      */
 	 public ControladorTickets(String usuario) {
 		 if (usuario == "vacio") {
@@ -108,7 +108,7 @@ public class ControladorTickets {
      * 
      * Devuelve al usuario a la ventana principal, cancelando la reserva que se estuviera realizando.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre el botón "Cancelar".
+     * @param event		Evento causado cuando el usuario pulsa sobre el botï¿½n "Cancelar".
      */
     void CancelarReserva(ActionEvent event) {
 
@@ -150,10 +150,10 @@ public class ControladorTickets {
     @FXML
     /**
      * 
-     * Método que realiza la reserva de tickets de un cliente. Creando un identificador para cada una de las reservas, junto con
-     * la información introducida: número de tickets, fecha y hora de reserva.
+     * Mï¿½todo que realiza la reserva de tickets de un cliente. Creando un identificador para cada una de las reservas, junto con
+     * la informaciï¿½n introducida: nï¿½mero de tickets, fecha y hora de reserva.
      * 
-     * @param event		Evento causado cuando el usuario confirma su reserva cuando pulsa sobre el botón de "Continuar".
+     * @param event		Evento causado cuando el usuario confirma su reserva cuando pulsa sobre el botï¿½n de "Continuar".
      */
     void ReservarTickets(ActionEvent event) {
     	
@@ -200,7 +200,7 @@ public class ControladorTickets {
 
 					// la fecha seleccionada es menor que la actual
 					if (dateSeleccionada.isBefore(fechaHoy)) {
-						error.setHeaderText("La fecha seleccionada es inválida.");
+						error.setHeaderText("La fecha seleccionada es invÃ¡lida.");
 						error.showAndWait();
 
 					}
@@ -231,7 +231,7 @@ public class ControladorTickets {
 						    	datos.serializarVectorReservasAJson(reservas);
 						    	datos.serializarArrayAJson(clientes);
 						    	
-						    	confirmation.setHeaderText("Reserva realizada con éxito.");
+						    	confirmation.setHeaderText("Reserva realizada con Ã©xito.");
 						    	confirmation.showAndWait();
 								
 								 
@@ -239,7 +239,7 @@ public class ControladorTickets {
 								
 							}
 							else {
-								error.setHeaderText("La hora seleccionada es inválida.");
+								error.setHeaderText("La hora seleccionada es invÃ¡lida.");
 								error.setContentText("Revise nuestros horarios de apertura.");
 								error.showAndWait();
 							}
@@ -263,12 +263,12 @@ public class ControladorTickets {
 						    	datos.serializarVectorReservasAJson(reservas);
 						    	datos.serializarArrayAJson(clientes);
 						    	
-						    	confirmation.setHeaderText("Reserva realizada con éxito.");
+						    	confirmation.setHeaderText("Reserva realizada con Ã©xito.");
 						    	confirmation.showAndWait();
 								
 							}
 							else {
-								error.setHeaderText("La hora seleccionada es inválida.");
+								error.setHeaderText("La hora seleccionada es invÃ¡lida.");
 								error.setContentText("Revise nuestros horarios de apertura.");
 								error.showAndWait();
 							}
@@ -290,12 +290,12 @@ public class ControladorTickets {
 						    	datos.serializarVectorReservasAJson(reservas);
 						    	datos.serializarArrayAJson(clientes);
 						    	
-						    	confirmation.setHeaderText("Reserva realizada con éxito.");
+						    	confirmation.setHeaderText("Reserva realizada con Ã©xito.");
 						    	confirmation.showAndWait();
 								
 							}
 							else {
-								error.setHeaderText("La hora seleccionada es inválida.");
+								error.setHeaderText("La hora seleccionada es invÃ¡lida.");
 								error.setContentText("Revise nuestros horarios de apertura.");
 								error.showAndWait();
 							}
@@ -329,12 +329,12 @@ public class ControladorTickets {
 							    	datos.serializarVectorReservasAJson(reservas);
 							    	datos.serializarArrayAJson(clientes);
 							    	
-							    	confirmation.setHeaderText("Reserva realizada con éxito.");
+							    	confirmation.setHeaderText("Reserva realizada con Ã©xito.");
 							    	confirmation.showAndWait();
 									
 								}
 								else {
-									error.setHeaderText("La hora seleccionada es inválida.");
+									error.setHeaderText("La hora seleccionada es invÃ¡lida.");
 									error.setContentText("Revise nuestros horarios de apertura.");
 									error.showAndWait();
 								}
@@ -356,12 +356,12 @@ public class ControladorTickets {
 							    	datos.serializarVectorReservasAJson(reservas);
 							    	datos.serializarArrayAJson(clientes);
 							    	
-							    	confirmation.setHeaderText("Reserva realizada con éxito.");
+							    	confirmation.setHeaderText("Reserva realizada con Ã©xito.");
 							    	confirmation.showAndWait();
 									
 								}
 								else {
-									error.setHeaderText("La hora seleccionada es inválida.");
+									error.setHeaderText("La hora seleccionada es invÃ¡lida.");
 									error.setContentText("Revise nuestros horarios de apertura.");
 									error.showAndWait();
 								}
@@ -382,12 +382,12 @@ public class ControladorTickets {
 							    	datos.serializarVectorReservasAJson(reservas);
 							    	datos.serializarArrayAJson(clientes);
 							    	
-							    	confirmation.setHeaderText("Reserva realizada con éxito.");
+							    	confirmation.setHeaderText("Reserva realizada con Ã©xito.");
 							    	confirmation.showAndWait();
 									
 								}
 								else {
-									error.setHeaderText("La hora seleccionada es inválida.");
+									error.setHeaderText("La hora seleccionada es invÃ¡lida.");
 									error.setContentText("Revise nuestros horarios de apertura.");
 									error.showAndWait();
 								}
@@ -395,19 +395,19 @@ public class ControladorTickets {
 							}
 
 						} else {
-							error.setHeaderText("La hora seleccionada para reservar es inválida.");
+							error.setHeaderText("La hora seleccionada para reservar es invÃ¡lida.");
 							error.showAndWait();
 						}
 
 					}
 
 				} else {
-					error.setHeaderText("Número de tickets inválido.");
+					error.setHeaderText("NÃºmero de tickets invÃ¡lido.");
 					error.showAndWait();
 				}
 
 			} catch (NumberFormatException ex) {
-				error.setHeaderText("Formato del número de tickets incorrecto.");
+				error.setHeaderText("Formato del nÃºmero de tickets incorrecto.");
 				error.showAndWait();
 			}
 		} else {
@@ -423,14 +423,14 @@ public class ControladorTickets {
     @FXML
     /**
      * 
-     * Dirige al usuario a la ventana para visualizar su información.
+     * Dirige al usuario a la ventana para visualizar su informaciï¿½n.
      * 
      * @param event		Evento causado cuando el usuario pulsa sobre la imagen de su avatar.
      */
     void accederPerfil(MouseEvent event) {
     	if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta funciï¿½n debes estar iniciado sesiï¿½n.");
+			error.setHeaderText("Oh no! Para acceder a esta funciÃ³n debes estar iniciado sesiÃ³n.");
     		error.showAndWait();
         	
         }
@@ -471,9 +471,9 @@ public class ControladorTickets {
     @FXML
     /**
      * 
-     *  Devuelve al usuario a la ventana principal habiendo cerrado su sesión.
+     *  Devuelve al usuario a la ventana principal habiendo cerrado su sesiï¿½n.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para cerrar sesión.
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para cerrar sesiï¿½n.
      */
     void cerrarSesion(MouseEvent event) {
 

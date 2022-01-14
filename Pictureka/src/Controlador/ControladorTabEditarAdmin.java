@@ -20,12 +20,12 @@ import javafx.scene.layout.GridPane;
 
 /**
  * 
- * En esta clase se maneja la edicción de información de un administrador, en la vista <b>TabEditarAdministrador</b>.
+ * En esta clase se maneja la edicciï¿½n de informaciï¿½n de un administrador, en la vista <b>TabEditarAdministrador</b>.
  * 
- * @author Jolie Alain Vásquez
- * @author Oscar González Guerra
+ * @author Jolie Alain VÃ¡squez
+ * @author Oscar GonzÃ¡lez Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmerón López
+ * @author Lian SalmerÃ³n LÃ³pez
  * 
  */
 public class ControladorTabEditarAdmin {
@@ -94,7 +94,7 @@ public class ControladorTabEditarAdmin {
 	 * el Controlador de edicciones de administradores.
      * 
      * @param controlerEdit		Controlador de la clase <b>ControladorEditarAdministrador</b>
-	 *                      	con sus respecitvos atributos y métodos.
+	 *                      	con sus respecitvos atributos y mï¿½todos.
      */
     public ControladorTabEditarAdmin(ControladorEditarAdministrador controlerEdit) {
     	
@@ -105,7 +105,7 @@ public class ControladorTabEditarAdmin {
 	@FXML
 	/**
 	 * 
-	 * Inicializa la ventana, comprobando la selección del administrador y mostrando su información en los campos.
+	 * Inicializa la ventana, comprobando la selecciï¿½n del administrador y mostrando su informaciï¿½n en los campos.
 	 * 
 	 */
 	public void initialize() {
@@ -140,9 +140,9 @@ public class ControladorTabEditarAdmin {
 	@FXML
 	/**
 	 * 
-	 * Guarda los cambios realizados en uno o más de los campos de información del administrador, cambiando el contenido del Json de Staff.
+	 * Guarda los cambios realizados en uno o mï¿½s de los campos de informaciï¿½n del administrador, cambiando el contenido del Json de Staff.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre el botón "Guardar Cambios".
+	 * @param event		Evento causado cuando el administrador pulsa sobre el botï¿½n "Guardar Cambios".
 	 */
     void GuardarAdminEdit(ActionEvent event) {
 
@@ -177,7 +177,7 @@ public class ControladorTabEditarAdmin {
 		// Comprobamos que haya seleccionado un administrador
 		if (!controlerEditAdmin.getTableViewAdministrador().getSelectionModel().isEmpty()) {
 
-			// Comprobamos que el contenido no esté vacío
+			// Comprobamos que el contenido no estï¿½ vacï¿½o
 			if (!(UsuarioNuevo.isEmpty() | nombreNuevo.isEmpty() | apellido1Nuevo.isEmpty() | apellido2Nuevo.isEmpty()
 					| dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null) | contraseniaNuevo.isEmpty())) {
 
@@ -249,7 +249,7 @@ public class ControladorTabEditarAdmin {
 											// Sobreescribe el contenido del vector
 											registro.escribirStaffNuevo(staff);
 
-											informacion.setHeaderText("Cambios realizados con éxito.");
+											informacion.setHeaderText("Cambios realizados con Ã©xito.");
 											informacion.showAndWait();
 
 										} else {
@@ -272,7 +272,7 @@ public class ControladorTabEditarAdmin {
 
 											registro.escribirStaffNuevo(staff);
 
-											informacion.setHeaderText("Cambios realizados con éxito.");
+											informacion.setHeaderText("Cambios realizados con Ã©xito.");
 											informacion.showAndWait();
 
 										} else {
@@ -304,7 +304,7 @@ public class ControladorTabEditarAdmin {
 
 												registro.escribirStaffNuevo(staff);
 
-												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.setHeaderText("Cambios realizados con Ã©xito.");
 												informacion.showAndWait();
 
 											} else {
@@ -325,7 +325,7 @@ public class ControladorTabEditarAdmin {
 
 												registro.escribirStaffNuevo(staff);
 
-												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.setHeaderText("Cambios realizados con Ã©xito.");
 												informacion.showAndWait();
 
 											} else {
@@ -373,7 +373,7 @@ public class ControladorTabEditarAdmin {
 
 												registro.escribirStaffNuevo(staff);
 
-												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.setHeaderText("Cambios realizados con Ã©xito.");
 												informacion.showAndWait();
 
 											} else {
@@ -399,7 +399,7 @@ public class ControladorTabEditarAdmin {
 
 													registro.escribirStaffNuevo(staff);
 
-													informacion.setHeaderText("Cambios realizados con éxito.");
+													informacion.setHeaderText("Cambios realizados con Ã©xito.");
 													informacion.showAndWait();
 												} else {
 													error.setHeaderText("Formato de email incorrecto.");
@@ -432,7 +432,7 @@ public class ControladorTabEditarAdmin {
 
 												registro.escribirStaffNuevo(staff);
 
-												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.setHeaderText("Cambios realizados con Ã©xito.");
 												informacion.showAndWait();
 
 											} else {
@@ -447,7 +447,7 @@ public class ControladorTabEditarAdmin {
 
 													registro.escribirStaffNuevo(staff);
 
-													informacion.setHeaderText("Cambios realizados con éxito.");
+													informacion.setHeaderText("Cambios realizados con Ã©xito.");
 													informacion.showAndWait();
 
 												} else {
@@ -480,11 +480,11 @@ public class ControladorTabEditarAdmin {
 
 				}
 			} else {
-				error.setHeaderText("Revise que todos losc campos estén completos.");
+				error.setHeaderText("Revise que todos losc campos estÃ¡n completos.");
 				error.showAndWait();
 			}
 		} else {
-			error.setHeaderText("No se ha seleccionado ningún administrador a modificar.");
+			error.setHeaderText("No se ha seleccionado ningï¿½n administrador a modificar.");
 			error.showAndWait();
 		}
 

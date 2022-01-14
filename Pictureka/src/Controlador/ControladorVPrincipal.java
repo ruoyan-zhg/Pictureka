@@ -114,9 +114,9 @@ public class ControladorVPrincipal {
 	 
     /**
      * 
-     * Constructor de la clase <b>ControladorVPrincipal</b> que guarda la información del usuario.
+     * Constructor de la clase <b>ControladorVPrincipal</b> que guarda la informaciÃ³n del usuario.
      * 
-     * @param usuario	El usuario que esté inciado sesión en ese momento.
+     * @param usuario	El usuario que estÃ¡ inciado sesiÃ³n en ese momento.
      */
 	 public ControladorVPrincipal(String usuario) {
 		 if (usuario == "vacio") {
@@ -136,11 +136,11 @@ public class ControladorVPrincipal {
 	@FXML
 	/**
 	 * 
-	 * Método que inicializa ciertos elementos de la ventana cada vez que es desplegada.
+	 * Mï¿½todo que inicializa ciertos elementos de la ventana cada vez que es desplegada.
 	 * 
 	 */
 	public void initialize() {
-		//Se añaden al ArrayList las imagenes que queremos que se muestren
+		//Se aï¿½aden al ArrayList las imagenes que queremos que se muestren
 		imagenes.add(new Image("/sorolla.jpg"));
 	 	imagenes.add(new Image("/Dali.jpg"));
 	 	imagenes.add(new Image("/monet.jpg"));
@@ -163,13 +163,13 @@ public class ControladorVPrincipal {
 	 	lblBienvenido.setVisible(true);
 	 	
 	 	//Mensajes emergentes con la informacion de contacto del museo
-	 	Tooltip correo = new Tooltip("Dirección de correo: \npicturekasfw@gmail.com");
+	 	Tooltip correo = new Tooltip("DirecciÃ³n de correo: \npicturekasfw@gmail.com");
 	 	btnCorreo.setTooltip(correo);
 	 	
-	 	Tooltip mensaje = new Tooltip("Número de mensaje: \n2309");
+	 	Tooltip mensaje = new Tooltip("NÃºmero de mensaje: \n2309");
 	 	btnMensaje.setTooltip(mensaje);
 	 	
-	 	Tooltip contacto = new Tooltip("Número de contacto: \n608693411");
+	 	Tooltip contacto = new Tooltip("NÃºmero de contacto: \n608693411");
 	 	btnContacto.setTooltip(contacto);
 	 	
 	 	//Comprobacion para mostrar el boton de cierre de sesion, si un usuario se encuentra registrado
@@ -257,7 +257,7 @@ public class ControladorVPrincipal {
     @FXML
     /**
      * 
-     * Dirige al usuario a la ventana para visualizar su información.
+     * Dirige al usuario a la ventana para visualizar su informaciÃ³n.
      * 
      * @param event   Evento causado cuando el usuario pulsa sobre la imagen del avatar.
      */
@@ -269,7 +269,7 @@ public class ControladorVPrincipal {
         else {
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-        	//Se le asigna el controlador de la ventana para editar información de los guardias
+        	//Se le asigna el controlador de la ventana para editar informaciï¿½n de los guardias
             ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
             loaderPrincipala.setController(controlerPrincipal);
             AnchorPane PaneVentanaPrincipal;
@@ -287,7 +287,7 @@ public class ControladorVPrincipal {
                 AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 
-                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
                 controlerPrincipal.getBarra().setStyle("-fx-background-color: #00aae4");
                
@@ -320,7 +320,7 @@ public class ControladorVPrincipal {
         
         if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+			error.setHeaderText("Oh no! Para acceder a esta funciÃ³n debes estar iniciado sesiÃ³n.");
     		error.showAndWait();
         	abrirLogin();
         	
@@ -339,7 +339,7 @@ public class ControladorVPrincipal {
                  AnchorPane.setLeftAnchor(PaneTickets, 0.0);
                  AnchorPane.setBottomAnchor(PaneTickets, 0.0);
             
-                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+                 //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
                  anchorPanePrincipal.getChildren().setAll(PaneTickets);
                //Cambia el color de la barra de la ventana perfil
                 
@@ -359,7 +359,7 @@ public class ControladorVPrincipal {
      * 
      * Ofrece la posibilidad de mandar emails al email del museo.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre el botón del correo.
+     * @param event		Evento causado cuando el usuario pulsa sobre el botï¿½n del correo.
      */
     void mandarCorreo(ActionEvent event) {
     	
@@ -372,7 +372,7 @@ public class ControladorVPrincipal {
     	
 		if (logged == false) {
 			Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
+			error.setHeaderText("Oh no! Para acceder a esta funciÃ³n debes estar iniciado sesiÃ³n.");
     		error.showAndWait();
         	abrirLogin();
 			
@@ -443,7 +443,7 @@ public class ControladorVPrincipal {
             AnchorPane.setLeftAnchor(PaneCalendar, 0.0);
             AnchorPane.setBottomAnchor(PaneCalendar, 0.0);
             
-            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneCalendar);
     	
             if (logged==false) {
@@ -464,9 +464,9 @@ public class ControladorVPrincipal {
     @FXML
     /**
      * 
-     * Devuelve al usuario a la ventana principal habiendo cerrado su sesión.
+     * Devuelve al usuario a la ventana principal habiendo cerrado su sesiï¿½n.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para cerrar sesión.
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para cerrar sesiï¿½n.
      */
     void cerrarSesionCliente(MouseEvent event) {
     	
@@ -501,7 +501,7 @@ public class ControladorVPrincipal {
             AnchorPane.setBottomAnchor(PanePrincipal, 0.0);
             
 
-            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PanePrincipal);
             
            
@@ -517,7 +517,7 @@ public class ControladorVPrincipal {
     
     /**
      * 
-     * Muestra la ventana de Login inmediatamente sin que el usuario pulse ningún botón.
+     * Muestra la ventana de Login inmediatamente sin que el usuario pulse ningï¿½n botï¿½n.
      * 
      */
     void abrirLogin() {
@@ -542,7 +542,7 @@ public class ControladorVPrincipal {
             AnchorPane.setBottomAnchor(PaneInicioSesion, 0.0);
             
 
-            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se aï¿½ade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneInicioSesion);
             
            

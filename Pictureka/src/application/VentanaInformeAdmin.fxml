@@ -75,7 +75,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <JFXTextArea fx:id="mostrarInforme" GridPane.columnIndex="1">
+                        <JFXTextArea fx:id="mostrarInforme" editable="false" GridPane.columnIndex="1">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -93,11 +93,6 @@
                         <JFXTextField fx:id="tituloInforme" prefHeight="93.0" prefWidth="308.0" promptText="Titulo del Informe..." style="-fx-border-color: #4059A9;" GridPane.columnIndex="1">
                            <font>
                               <Font size="20.0" />
-                           </font>
-                        </JFXTextField>
-                        <JFXTextField fx:id="cuerpoInforme" alignment="TOP_LEFT" prefHeight="268.0" prefWidth="374.0" promptText="Cuerpo del Informe..." style="-fx-border-color: #4059a9;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="18.0" />
                            </font>
                         </JFXTextField>
                         <ImageView fx:id="imgFormulario" fitHeight="183.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
@@ -119,6 +114,11 @@
                               <Rectangle2D />
                            </viewport>
                         </ImageView>
+                        <JFXTextArea fx:id="cuerpoInforme" promptText="Cuerpo del informe..." style="-fx-border-color: #4059a9;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </JFXTextArea>
                      </children>
                      <rowConstraints>
                         <RowConstraints percentHeight="30.0" />

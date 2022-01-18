@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.image.Image?>
@@ -56,17 +58,13 @@
                   <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="numTicket" prefHeight="43.0" prefWidth="374.0" promptText="Validar Ticket..." style="-fx-border-color: #4059a9;" GridPane.columnIndex="2">
+                  <JFXTextField fx:id="numTicket" prefHeight="43.0" prefWidth="374.0" promptText="Validar Reserva..." style="-fx-border-color: #4059a9;" GridPane.columnIndex="2">
                      <font>
                         <Font size="24.0" />
                      </font></JFXTextField>
                   <JFXTextField fx:id="tituloInforme" prefHeight="93.0" prefWidth="308.0" promptText="Titulo del Informe..." style="-fx-border-color: #4059A9;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font size="20.0" />
-                     </font></JFXTextField>
-                  <JFXTextField fx:id="cuerpoInforme" alignment="TOP_LEFT" prefHeight="268.0" prefWidth="374.0" promptText="Cuerpo del Informe..." style="-fx-border-color: #4059a9;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                     <font>
-                        <Font size="18.0" />
                      </font></JFXTextField>
                   <Text fx:id="SalaText" fill="#ff8000" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Salas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <font>
@@ -109,6 +107,14 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
+                  <JFXTextArea fx:id="cuerpoInforme" prefHeight="196.0" prefWidth="374.0" promptText="Cuerpo del informe..." style="-fx-border-color: #4059a9;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="50.0" />
+                     </GridPane.margin>
+                  </JFXTextArea>
                </children>
             </GridPane>
             <GridPane prefHeight="175.0" prefWidth="1156.0">

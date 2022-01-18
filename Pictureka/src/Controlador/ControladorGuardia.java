@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Vector;
+
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import Modelo.Cliente;
 import Modelo.Datos;
@@ -51,7 +53,7 @@ public class ControladorGuardia {
     private JFXTextField tituloInforme;
 
     @FXML
-    private JFXTextField cuerpoInforme;
+    private JFXTextArea cuerpoInforme;
 
     @FXML
     private Text SalaText;

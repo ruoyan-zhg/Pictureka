@@ -116,8 +116,7 @@ public class ControladorInicioSesion {
     	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
     	
     	Cifrado cifrar = new Cifrado();
-    	
-    	System.out.println(cifrar.hashing(textContrasenia.getText()));
+
     	//Comprueba que lo devuelto por el m�todo loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
     	if (museo.loginUsuario(textUsuario.getText(), cifrar.hashing(textContrasenia.getText()))==1) {
     		confirmacion.setHeaderText("Login correcto");

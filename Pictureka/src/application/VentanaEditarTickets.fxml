@@ -74,7 +74,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <JFXTextArea fx:id="mostrarReservas" GridPane.columnIndex="1">
+                        <JFXTextArea fx:id="mostrarReservas" editable="false" GridPane.columnIndex="1">
                            <font>
                               <Font size="36.0" />
                            </font>

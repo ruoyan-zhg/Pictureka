@@ -65,7 +65,7 @@ public class ControladorInformeAdmin {
 	private JFXTextField tituloInforme;
 
 	@FXML
-	private JFXTextField cuerpoInforme;
+    private JFXTextArea cuerpoInforme;
 
 	@FXML
 	private ImageView imgFormulario;

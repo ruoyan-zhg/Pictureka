@@ -1,13 +1,24 @@
 package Controlador;
 
 import java.io.IOException;
+import java.util.Vector;
+
 import com.jfoenix.controls.JFXToolbar;
+
+import Modelo.Cliente;
+import Modelo.Datos;
+import Modelo.Guardia;
+import Modelo.Reserva;
 import Modelo.Sala;
+import Modelo.Staff;
 import Modelo.modelo_Museo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -46,7 +57,25 @@ public class ControladorAdministrador {
     private ImageView imgInformes;
 
     @FXML
-    private LineChart<?, ?> tablaEntradas;
+    private TableView<Cliente> tableClientes;
+
+    @FXML
+    private TableColumn<Cliente, String> colUsuario;
+
+    @FXML
+    private TableColumn<Cliente, String> colDni;
+
+    @FXML
+    private TableColumn<Cliente, String> colEmail;
+
+    @FXML
+    private TableColumn<Cliente, String> colContrasenia;
+
+    @FXML
+    private TableColumn<Cliente, String> colFecha;
+
+    @FXML
+    private TableColumn<Cliente, Vector<Reserva>> colReservas;
 
     @FXML
     private ImageView imgEditarGuardias;
@@ -78,6 +107,37 @@ public class ControladorAdministrador {
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
+    
+    
+    public void initialize() {
+
+		Datos datos = new Datos();
+		Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
+
+		// Se leen los datos del Json del staff
+		for (int i = 0; i < clientes.size(); i++) {
+			// Obtiene solo el personal con numero de identificacion 2
+			
+
+				// Se muestran los guardias obtenidos en la tabla
+				tableClientes.getItems()
+						.add(new Cliente (clientes.get(i).getUsuario(), clientes.get(i).getDni(), clientes.get(i).getEmail(),
+								clientes.get(i).getContrasenia(), clientes.get(i).getFechaNacimiento(),
+								clientes.get(i).getReservas()));
+			
+		}
+
+		// Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al
+		// tipo de dato que queremos guardar
+		colUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+		colDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
+		colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		colContrasenia.setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
+		colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+		colReservas.setCellValueFactory(new PropertyValueFactory<>("reservas"));
+		
+
+	}
     
 	 /**
 	  * 

@@ -4,7 +4,7 @@ import java.util.Vector;
 
 /**
  * 
- * Esta clase tiene acceso a las museo fisico
+ * Esta clase tiene acceso a los museo fisico
  * 
  * @author Jolie Alain Vásquez
  * @author Oscar González Guerra

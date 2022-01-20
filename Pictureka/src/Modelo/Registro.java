@@ -26,6 +26,16 @@ public class Registro {
 		this.informes = _informes;
 	}
 	
+	/**
+	 * aqui se maneja el registro del cliente, mediante sus datos 
+	 * @param usuario
+	 * @param dni
+	 * @param email
+	 * @param Contrasenia
+	 * @param fechaNacimiento
+	 * @return String
+	 */
+	
 	public String registrarCliente(String usuario, String dni, String email, String Contrasenia, LocalDate fechaNacimiento) {
 		/*
 		 * VALORES DE ESTADO
@@ -68,7 +78,21 @@ public class Registro {
 			estado = "El email introducido no es valido";
 		}
 		return estado;
+	
 	}
+	
+	/**
+	 * aqui se maneja el registro de los administradores, mediante las siguientes comprobaciones
+	 * @param usuario
+	 * @param dni
+	 * @param email
+	 * @param contrasenia
+	 * @param nombre
+	 * @param apellido1
+	 * @param apellido2
+	 * @param fechaNacimiento
+	 * @return
+	 */
 	public String registrarAdministrador(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
 			String apellido2, LocalDate fechaNacimiento) {
 		/*
@@ -91,8 +115,8 @@ public class Registro {
 		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
 
 			if (validarEmail(email)) { // devuelve true si el email es valido
-				if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido
-																			// registrado
+				if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido registrado
+																			
 					if (dniRepetido(dni) && dniStaffRepetido(dni)) {
 						if (staffRepetido(usuario)) {
 							staff.addElement(new Administrador(usuario, dni, email, contrasenia, fechaNacimiento,
@@ -117,6 +141,19 @@ public class Registro {
 		return estado;
 
 	}
+	
+	/**
+	 * aqui se maneja el registro de los guardias, mediante comprobaciones
+	 * @param usuario
+	 * @param dni
+	 * @param email
+	 * @param contrasenia
+	 * @param nombre
+	 * @param apellido1
+	 * @param apellido2
+	 * @param fechaNacimiento
+	 * @return
+	 */
 	public String registrarGuardia(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
 			String apellido2, LocalDate fechaNacimiento) {
 		/*
@@ -138,7 +175,7 @@ public class Registro {
 		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
 
 			if (validarEmail(email)) { // devuelve true si el email es valido
-				if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido
+				if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido registrado
 					if (dniRepetido(dni) && dniStaffRepetido(dni)) {
 
 						if (staffRepetido(usuario)) {
@@ -165,7 +202,13 @@ public class Registro {
 
 	}
 
-
+    
+	/**
+	 * aqui se maneja el login del usuario 
+	 * @param emailOUsuario
+	 * @param contrasenia
+	 * @return
+	 */
 	public int loginDeUsuarios(String emailOUsuario, String contrasenia) {
 		
 		int tipoUsuario = 0;
@@ -211,7 +254,11 @@ public class Registro {
 		return tipoUsuario;
 	}
 	
-
+  /**
+   * compruebamos el email
+   * @param email
+   * @return boolean
+   */
 	public boolean validarEmail(String email) {
 		// Patr�n para validar el email
 		boolean comprobar = false;
@@ -224,7 +271,12 @@ public class Registro {
         }
         return comprobar;
 	}
-	public boolean emailRepetido(String email) {
+	/**
+	 * en el caso que se repita el email
+	 * @param email
+	 * @return boolean
+	 */
+	public boolean emailRepetido(String email) { 
 		boolean noRepetido = true;
 		int contador = 0;
 		System.out.println(usuarios.size());
@@ -236,7 +288,11 @@ public class Registro {
 		}
 		return noRepetido;
 	}
-	
+	/**
+	 * cuando se repite el email del staff
+	 * @param email
+	 * @return boolean
+	 */
 	public boolean emailRepetidoStaff(String email) {
 		boolean noRepetido = true;
 		int contador = 0;
@@ -250,7 +306,11 @@ public class Registro {
 		return noRepetido;
 	}
 	
-	
+	/**
+	 * cuando se introduce un usuario repetido
+	 * @param usuario
+	 * @return boolean
+	 */
 	public boolean usuarioRepetido(String usuario) {
 		boolean noRepetido = true;
 		int contador = 0;
@@ -262,7 +322,11 @@ public class Registro {
 		}
 		return noRepetido;
 	}
-	
+	/**
+	 * Funcion para cuando se introduzca un staff repetido
+	 * @param staffs
+	 * @return
+	 */
 	public boolean staffRepetido(String staffs) {
 		boolean noRepetido = true;
 		int contador = 0;
@@ -275,7 +339,11 @@ public class Registro {
 		return noRepetido;
 	}
 	
-	
+	/**
+	 * Funcion para evitar que se introduzca un email repetido
+	 * @param dni
+	 * @return
+	 */
 	public boolean dniRepetido(String dni) {
 		
 		boolean noRepetido = true;
@@ -347,7 +415,9 @@ public class Registro {
 
 	
 	
-	//ESCRITURA Y LECTURA DE LOS CLIENTES
+	/**
+	 * ESCRITURA Y LECTURA DE LOS CLIENTES
+	 */
 	public void recuperarUsuarios() {
 		Datos datos = new Datos();
 		//Try catch quizas el archivo no abre
@@ -368,7 +438,9 @@ public class Registro {
 	
 	
 	
-	//ESCRITURA Y LECTURA DE JSON DEL STAFF
+	/**
+	 * ESCRITURA Y LECTURA DE JSON DEL STAFF
+	 */
 	public void escribirStaff() {
 		Datos datos = new Datos();
 		//Try catch quizas el archivo no abre

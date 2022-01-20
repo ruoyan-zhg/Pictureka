@@ -25,13 +25,13 @@ import javafx.scene.layout.VBox;
 
 /**
  * 
- * En esta clase se maneja la edicci�n de un administrador, en la vista
+ * En esta clase se maneja la edicción de un administrador, en la vista
  * <b>VentanaEditarAdministrador</b>.
  * 
- * @author Jolie Alain V�squez
- * @author Oscar Gonz�lez Guerra
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmer�n L�pez
+ * @author Lian Salmerón López
  *
  */
 public class ControladorEditarAdministrador {
@@ -116,7 +116,7 @@ public class ControladorEditarAdministrador {
 	 * Constructor de la clase <b>ControladorEditarAdministrador</b> que guarda la
 	 * informacion de un administrador.
 	 * 
-	 * @param usuario El administrador que se encuentra iniciado sesi�n.
+	 * @param usuario El administrador que se encuentra iniciado sesión.
 	 */
 	public ControladorEditarAdministrador(String usuario) {
 		if (usuario == "vacio") {
@@ -132,7 +132,7 @@ public class ControladorEditarAdministrador {
 	@FXML
 	/**
 	 * 
-	 * Inicializa el contenido de la tabla con la informaci�n de los
+	 * Inicializa el contenido de la tabla con la información de los
 	 * administradores.
 	 * 
 	 */
@@ -174,14 +174,14 @@ public class ControladorEditarAdministrador {
 	 * administrador.
 	 * 
 	 * @param event Evento causado cuando el administrador pulsa sobre el Tab
-	 *              "A�adir Admin".
+	 *              "Añadir Admin".
 	 */
 	void AniadirAdministrador(Event event) {
 
 		// Se carga la segunda ventana del TabPane
 		FXMLLoader loaderTabAniadir = new FXMLLoader(
 				getClass().getResource("/application/TabAniadirAdministrador.fxml"));
-		// Se le asigna el controlador de la ventana para editar informaci�n de los
+		// Se le asigna el controlador de la ventana para editar informacion de los
 		// guardias
 		ControladorTabAniadirAdmin controlerTabAniadir = new ControladorTabAniadirAdmin(this);
 		loaderTabAniadir.setController(controlerTabAniadir);
@@ -205,7 +205,7 @@ public class ControladorEditarAdministrador {
 	@FXML
 	/**
 	 * 
-	 * Muestra la informaci�n del administrador seleccionado y permite modificarlos.
+	 * Muestra la información del administrador seleccionado y permite modificarlos.
 	 * 
 	 * @param event Evento causado cuando el administrador pulsa sobre el Tab
 	 *              "Editar Admin".
@@ -239,7 +239,7 @@ public class ControladorEditarAdministrador {
 	 * 
 	 * Dirige al administrador a su ventana inicial.
 	 * 
-	 * @param event Evento causado cuando el administrador pulsa sobre el bot�n de
+	 * @param event Evento causado cuando el administrador pulsa sobre el botón de
 	 *              "Cancelar".
 	 */
 	void CancelarEdiccion(ActionEvent event) {
@@ -269,7 +269,7 @@ public class ControladorEditarAdministrador {
 	 * 
 	 * Refresca la tabla y muestra los datos actualizados del Json en la tabla.
 	 * 
-	 * @param event Evento causado cuando el administrador pulsa el bot�n
+	 * @param event Evento causado cuando el administrador pulsa el botón
 	 *              "Actualizar Cambios".
 	 */
 	void GuardarTodosCambios(ActionEvent event) {
@@ -307,10 +307,10 @@ public class ControladorEditarAdministrador {
 	@FXML
 	/**
 	 * 
-	 * Dirige al administrador a la ventana principal, habiendo cerrado su sesi�n.
+	 * Dirige al administrador a la ventana principal, habiendo cerrado su sesión.
 	 * 
 	 * @param event Evento causado cuando el administrador pulsa sobre la imagen
-	 *              para cerrar sesi�n.
+	 *              para cerrar sesión.
 	 */
 	void cerrarSesion(MouseEvent event) {
 
@@ -336,9 +336,9 @@ public class ControladorEditarAdministrador {
 	@FXML
 	/**
 	 * 
-	 * Comprueba la selecci�n selecccionada por el administrador.
+	 * Comprueba la selección selecccionada por el administrador.
 	 * 
-	 * @param event Evento causado cuando el administrador pulsa sobre alg�n sitio
+	 * @param event Evento causado cuando el administrador pulsa sobre algún sitio
 	 *              de la tabla.
 	 */
 	void clickAdministrador(MouseEvent event) {
@@ -353,7 +353,7 @@ public class ControladorEditarAdministrador {
 	@FXML
 	/**
 	 * 
-	 * Muestra la informaci�n del administrador que est� iniciado sesi�n.
+	 * Muestra la información del administrador que está iniciado sesión.
 	 * 
 	 * @param event Evento causado cunado el administrador pulsa sobre la imagen de
 	 *              su avatar.
@@ -368,7 +368,7 @@ public class ControladorEditarAdministrador {
 		} else {
 			// Se carga el contenido de la ventana
 			FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-			// Se le asigna el controlador de la ventana para editar informaci�n de los
+			// Se le asigna el controlador de la ventana para editar informacion de los
 			// guardias
 			ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
 			loaderPrincipala.setController(controlerPrincipal);
@@ -387,7 +387,7 @@ public class ControladorEditarAdministrador {
 				AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
 				AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
 
-				// Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+				// Se añade el contenido de la ventana cargada en el AnchorPane del padre
 				anchorPaneEditAdmin.getChildren().setAll(PaneVentanaPrincipal);
 				controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FFD700");
 

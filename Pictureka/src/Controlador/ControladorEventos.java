@@ -167,7 +167,7 @@ public class ControladorEventos {
   	 * 
   	 */
   	public void initialize() {
-  		//Se a�aden al ArrayList las imagenes que queremos que se muestren
+  		//Se añaden al ArrayList las imagenes que queremos que se muestren
   		imagenes.add(new Image("/sorolla.jpg"));
   	 	imagenes.add(new Image("/Dali.jpg"));
   	 	imagenes.add(new Image("/monet.jpg"));
@@ -238,7 +238,7 @@ public class ControladorEventos {
         else {
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+        	//Se le asigna el controlador de la ventana para editar informacion de los guardias
             ControladorPerfil controlerPerfil = new ControladorPerfil(usuario);
             loaderPrincipala.setController(controlerPerfil);
             AnchorPane PaneVentanaPrincipal;
@@ -257,7 +257,7 @@ public class ControladorEventos {
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 
 
-                //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
                 //Cambia el color de la barra de la ventana perfil
                 controlerPerfil.getBarra().setStyle("-fx-background-color: #00aae4");
@@ -276,9 +276,9 @@ public class ControladorEventos {
     @FXML
     /**
      * 
-     * Mueve las im�genes a la derecha, tantas veces como el usuario pulse el bot�n.
+     * Mueve las imágenes a la derecha, tantas veces como el usuario pulse el botón.
      * 
-     * @param event   Evento causado por el usuario al pulsar el bot�n de slide derecho.
+     * @param event   Evento causado por el usuario al pulsar el botón de slide derecho.
      */
     void cambioImg(MouseEvent event) {
     	count++;
@@ -306,9 +306,9 @@ public class ControladorEventos {
     
     /**
      * 
-     * Mueve las im�genes a la izquierda, tantas veces como el usuario pulse el bot�n.
+     * Mueve las im�genes a la izquierda, tantas veces como el usuario pulse el botón.
      * 
-     * @param event   Evento causado por el usuario al pulsar el bot�n de slide izquierdo.
+     * @param event   Evento causado por el usuario al pulsar el botón de slide izquierdo.
      */
     void cambioImgAtras(MouseEvent event) {
     	
@@ -337,7 +337,7 @@ public class ControladorEventos {
      * Ofrece la posibilidad de mandar emails al email del museo.
      * 
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre el bot�n del correo.
+     * @param event		Evento causado cuando el usuario pulsa sobre el botón del correo.
      */
     void mandarCorreo(ActionEvent event) {
     	
@@ -427,7 +427,7 @@ public class ControladorEventos {
                  AnchorPane.setLeftAnchor(PaneTickets, 0.0);
                  AnchorPane.setBottomAnchor(PaneTickets, 0.0);
             
-                 //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                  anchorPanePrincipal.getChildren().setAll(PaneTickets);
                  
                 
@@ -443,7 +443,7 @@ public class ControladorEventos {
     
     /**
      * 
-     * Muestra la ventana de Login inmediatamente sin que el usuario pulse ning�n bot�n.
+     * Muestra la ventana de Login inmediatamente sin que el usuario pulse ningún botón.
      * 
      */
     void abrirLogin() {
@@ -468,7 +468,7 @@ public class ControladorEventos {
             AnchorPane.setBottomAnchor(PaneInicioSesion, 0.0);
             
 
-            //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneInicioSesion);
             
            
@@ -490,12 +490,12 @@ public class ControladorEventos {
      * 
      * Devuelve al usuario a la ventana principal.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para volver atr�s.
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para volver atrás.
      */
     void volverAtrasEventos(MouseEvent event) {
 		// Se carga el contenido de la ventana
 		FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-		// Se le asigna el controlador de la ventana para editar informaci�n de los
+		// Se le asigna el controlador de la ventana para editar informacion de los
 		// guardias
 		System.out.println(usuario);
 		ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
@@ -515,7 +515,7 @@ public class ControladorEventos {
 			AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
 			AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
 
-			// Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+			// Se añade el contenido de la ventana cargada en el AnchorPane del padre
 			anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
 			
 			if(logged!=false) {

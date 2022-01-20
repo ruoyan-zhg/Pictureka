@@ -18,10 +18,10 @@ import javafx.scene.text.Text;
  * 
  * En esta clase se manejan las funcionalidades del administrador, en la vista <b>VentanaAdministrador</b>.
  * 
- * @author Jolie Alain V�squez
- * @author Oscar Gonz�lez Guerra
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmer�n L�pez
+ * @author Lian Salmerón López
  *
  */
 
@@ -81,9 +81,9 @@ public class ControladorAdministrador {
     
 	 /**
 	  * 
-	  * Constructor de la clase <b>ControladorAdministrador</b> que guarda la informaci�n del administrador.
+	  * Constructor de la clase <b>ControladorAdministrador</b> que guarda la información del administrador.
 	  * 
-	  * @param usuario		El administrador que se encuentre iniciado sesi�n.
+	  * @param usuario		El administrador que se encuentre iniciado sesión.
 	  */
 	 public ControladorAdministrador(String usuario) {
 		 if (usuario == "vacio") {
@@ -107,7 +107,7 @@ public class ControladorAdministrador {
     void accederInformes(MouseEvent event) {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaInformeAdmin.fxml"));
-    	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
     	
         ControladorInformeAdmin controlerSala1 = new ControladorInformeAdmin(usuario);
         loaderSala1.setController(controlerSala1);
@@ -127,7 +127,7 @@ public class ControladorAdministrador {
             AnchorPane.setBottomAnchor(PaneSala1, 0.0);
             
 
-            //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneSala1);
             
            
@@ -141,14 +141,14 @@ public class ControladorAdministrador {
     @FXML
     /**
      * 
-     * Muestra la informaci�n del administrador que se encuentre iniciado sesi�n.
+     * Muestra la información del administrador que se encuentre iniciado sesión.
      * 
      * @param event		Evento causado cuando el administrador pulsa sobre la imagen de su avatar.
      */
     void accederPerfil(MouseEvent event) {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-    	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
         loaderPrincipala.setController(controlerPrincipal);
         AnchorPane PaneVentanaPrincipal;
@@ -167,7 +167,7 @@ public class ControladorAdministrador {
             AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
             
 
-            //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
             
             //Cambia el color de la barra de la ventana perfil
@@ -183,9 +183,9 @@ public class ControladorAdministrador {
     @FXML
     /**
      * 
-     * Devuelve al administrador a la ventana principal habiendo cerrado su sesi�n.
+     * Devuelve al administrador a la ventana principal habiendo cerrado su sesión.
      * 
-     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de cerrar sesi�n.
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de cerrar sesión.
      */
     void cerrarSesion(MouseEvent event) {
     	//Se carga el contenido de la ventana
@@ -242,7 +242,7 @@ public class ControladorAdministrador {
     @FXML
     /**
      * 
-     * Muestra todos los guardias y ofrece la posibilidad de editar su informaci�n o registrar uno nuevo.
+     * Muestra todos los guardias y ofrece la posibilidad de editar su información o registrar uno nuevo.
      * 
      * @param event		Evento causado cuando el administrador pulsa sobre la imagen para editar guardias.
      */
@@ -277,7 +277,7 @@ public class ControladorAdministrador {
     
     /**
      * 
-     * Muestra la ventana de la Sala 1, mostrando la informaci�n de los diferentes sensores.
+     * Muestra la ventana de la Sala 1, mostrando la información de los diferentes sensores.
      * 
      * @param event		Evento causado cuando el administrador pulsa sobre la imagen de la primera sala.
      */
@@ -287,7 +287,7 @@ public class ControladorAdministrador {
     	if (temporal.getIdentificador() != -1){			//debido a que si tiene un identificador -1 significa que no exite
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+        	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
             ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador");
             loaderSala1.setController(controlerSala1);
@@ -307,7 +307,7 @@ public class ControladorAdministrador {
                 AnchorPane.setBottomAnchor(PaneSala1, 0.0);
                 
 
-                //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneSala1);
                 
                
@@ -326,7 +326,7 @@ public class ControladorAdministrador {
     @FXML
     /**
      * 
-     * Muestra la ventana de la Sala 2, mostrando la informaci�n de los diferentes sensores.
+     * Muestra la ventana de la Sala 2, mostrando la información de los diferentes sensores.
      * 
      * @param event		Evento causado cuando el administrador pulsa sobre la imagen de la segunda sala.
      */
@@ -337,7 +337,7 @@ public class ControladorAdministrador {
     	if (temporal.getIdentificador() != -1){		//debido a que si tiene un identificador -1 significa que no exite
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+        	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
             ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador");
             loaderSala1.setController(controlerSala1);
@@ -357,7 +357,7 @@ public class ControladorAdministrador {
                 AnchorPane.setBottomAnchor(PaneSala1, 0.0);
                 
 
-                //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneSala1);
                 
                
@@ -375,7 +375,7 @@ public class ControladorAdministrador {
     @FXML
     /**
      * 
-     * Muestra la ventana de la Sala 3, mostrando la informaci�n de los diferentes sensores.
+     * Muestra la ventana de la Sala 3, mostrando la información de los diferentes sensores.
      * 
      * @param event		Evento causado cuando el administrador pulsa sobre la imagen de la tercera sala.
      */
@@ -406,7 +406,7 @@ public class ControladorAdministrador {
                 AnchorPane.setBottomAnchor(PaneSala1, 0.0);
                 
 
-                //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneSala1);
                 
                
@@ -424,7 +424,7 @@ public class ControladorAdministrador {
     @FXML
     /**
      * 
-     * Muestra la ventana de la Sala 4, mostrando la informaci�n de los diferentes sensores.
+     * Muestra la ventana de la Sala 4, mostrando la información de los diferentes sensores.
      * 
      * @param event		Evento causado cuando el administrador pulsa sobre la imagen de la cuarta sala.
      */
@@ -435,7 +435,7 @@ public class ControladorAdministrador {
     	if (temporal.getIdentificador() != -1){		//debido a que si tiene un identificador -1 significa que no exite
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+        	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
             ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador");
             loaderSala1.setController(controlerSala1);
@@ -455,7 +455,7 @@ public class ControladorAdministrador {
                 AnchorPane.setBottomAnchor(PaneSala1, 0.0);
                 
 
-                //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneSala1);
                 
                
@@ -473,9 +473,9 @@ public class ControladorAdministrador {
     @FXML
     /**
      * 
-     * Muestra una lista de los administradores, ofreciendo la posibilidad de editar su informaci�n o de registrar uno nuevo.
+     * Muestra una lista de los administradores, ofreciendo la posibilidad de editar su información o de registrar uno nuevo.
      * 
-     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de edicci�n de un administrador.
+     * @param event		Evento causado cuando el administrador pulsa sobre la imagen de edicción de un administrador.
      */
     void editarInfoAdministrador(MouseEvent event) {
 

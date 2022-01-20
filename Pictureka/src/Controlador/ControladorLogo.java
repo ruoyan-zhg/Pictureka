@@ -38,9 +38,9 @@ public class ControladorLogo {
     @FXML
     /**
      * 
-     * El usuario pulsa el bot�n <b>Entrar</b> y se muestra la ventana principal del programa.
+     * El usuario pulsa el botón <b>Entrar</b> y se muestra la ventana principal del programa.
      * 
-     * @param event    Momento en el que el usuario pulsa el bot�n.
+     * @param event    Momento en el que el usuario pulsa el botón.
      */
     void entrarApp(ActionEvent event) {
 

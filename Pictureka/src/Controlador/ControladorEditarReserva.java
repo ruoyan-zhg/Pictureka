@@ -24,7 +24,7 @@ import javafx.scene.layout.VBox;
 
 /**
  * 
- * En esta clase se maneja la edicci�n de una reserva, en la vista <b>VentanaEditarTickets</b>.
+ * En esta clase se maneja la edicción de una reserva, en la vista <b>VentanaEditarTickets</b>.
  * 
  * @author Jolie Alain Vásquez
  * @author Oscar González Guerra
@@ -83,7 +83,7 @@ public class ControladorEditarReserva {
     
     /**
      * 
-     * Inicializa la ventana con la informaci�n requerida.
+     * Inicializa la ventana con la información requerida.
      * 
      */
     public void initialize() {
@@ -93,9 +93,9 @@ public class ControladorEditarReserva {
     
     /**
      * 
-     * Constructor de la clase <b>ControladorEditarReserva</b> que guarda la informaci�n de un cliente.
+     * Constructor de la clase <b>ControladorEditarReserva</b> que guarda la información de un cliente.
      * 
-     * @param usuario		El cliente que se encuentre iniciado sesi�n.
+     * @param usuario		El cliente que se encuentre iniciado sesión.
      */
     public ControladorEditarReserva(String usuario) {
 		 if (usuario == "vacio") {
@@ -112,7 +112,7 @@ public class ControladorEditarReserva {
     @FXML
     /**
      * 
-     * Recoge la selecci�n del cliente de su lista de reservas.
+     * Recoge la selección del cliente de su lista de reservas.
      * 
      * @param event		Evento causado cuando el cliente pulsa sobre la tabla.
      */
@@ -128,7 +128,7 @@ public class ControladorEditarReserva {
      * 
      * Elimina la reserva seleccionada por el cliente.
      * 
-     * @param event		Evento causado cuando el cliente pulsa sobre el bot�n "Eliminar".
+     * @param event		Evento causado cuando el cliente pulsa sobre el botón "Eliminar".
      */	
     void eliminarReserva(ActionEvent event) {
     	
@@ -181,7 +181,7 @@ public class ControladorEditarReserva {
     @FXML
     /**
      * 
-     * Muestra la informaci�n de un cliente.
+     * Muestra la información de un cliente.
      * 
      * @param event		Evento causado cuando el cliente pulsa sobre la imagen de su avatar.
      */
@@ -195,7 +195,7 @@ public class ControladorEditarReserva {
         else {
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+        	//Se le asigna el controlador de la ventana para editar informacion de los guardias
             ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
             loaderPrincipala.setController(controlerPrincipal);
             AnchorPane PaneVentanaPrincipal;
@@ -214,7 +214,7 @@ public class ControladorEditarReserva {
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 
 
-                //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
                 controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FF8000");
                
@@ -230,13 +230,13 @@ public class ControladorEditarReserva {
      * 
      * Devuelve al cliente a la ventana de su perfil.
      * 
-     * @param event		Evento causado cuando el cliente pulsa sobre la imagen para volver atr�s.
+     * @param event		Evento causado cuando el cliente pulsa sobre la imagen para volver atrás.
      */
     void volverAtras(MouseEvent event) {
     	
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-    	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         ControladorPerfil controlerPerfil = new ControladorPerfil(usuario);
         loaderPrincipal.setController(controlerPerfil);
         AnchorPane PaneVentanaPrincipal;
@@ -255,7 +255,7 @@ public class ControladorEditarReserva {
             AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
            
 
-            //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
 	        anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
 
 
@@ -268,9 +268,9 @@ public class ControladorEditarReserva {
     
     /**
      * 
-     * Muestra la informaci�n de la reserva seleccionada por el usuario.
+     * Muestra la información de la reserva seleccionada por el usuario.
      * 
-     * @param posicion		N�mero que guarda la posici�n de los elementos de la tabla.
+     * @param posicion		Número que guarda la posición de los elementos de la tabla.
      */
     private void mostrarReservas(int posicion) {
     	
@@ -308,7 +308,7 @@ public class ControladorEditarReserva {
 
     /**
      * 
-     * Refresca la informaci�n de la tabla, tras haber realizado cambios.
+     * Refresca la información de la tabla, tras haber realizado cambios.
      * 
      */
     private void refrescarTabla() {

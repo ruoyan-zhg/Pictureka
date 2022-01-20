@@ -17,7 +17,7 @@ import javafx.scene.layout.BorderPane;
 
 /**
  * 
- * En esta clase se maneja la informaci�n de cada usuario y se muestra en la vista <b>VentanaPerfil</b> con la respectiva informaci�n
+ * En esta clase se maneja la informaci�n de cada usuario y se muestra en la vista <b>VentanaPerfil</b> con la respectiva información
  * del usuario iniciado en ese momento.
  * 
  * @author Jolie Alain Vásquez
@@ -102,9 +102,9 @@ public class ControladorPerfil {
 
     /**
      * 
-     * Constructor de la clase <b>ControladorPerfil</b> que guarda la informaci�n del usaurio iniciado sesi�n.
+     * Constructor de la clase <b>ControladorPerfil</b> que guarda la información del usaurio iniciado sesión.
      * 
-     * @param usuario		El usuario que se encuentra iniciado sesi�n
+     * @param usuario		El usuario que se encuentra iniciado sesión
      */
 	 public ControladorPerfil(String usuario)  {
 		 if (usuario == "vacio") {
@@ -141,7 +141,7 @@ public class ControladorPerfil {
 	 @FXML
 	 /**
 	  * 
-	  * Inicializa la ventana perfil, mostrando los diferentes campos de informaci�n, dependiendo del usuario iniciado sesi�n.
+	  * Inicializa la ventana perfil, mostrando los diferentes campos de información, dependiendo del usuario iniciado sesión.
 	  * 
 	  */
 	  	public void initialize() {
@@ -175,7 +175,7 @@ public class ControladorPerfil {
 	 @FXML
 	 /**
 	  * 
-	  * Muestra al cliente su lista de reservas, mostrando la informaci�n de �stas, ofreciendo la posibilidad de cancelar la 
+	  * Muestra al cliente su lista de reservas, mostrando la información de éstas, ofreciendo la posibilidad de cancelar la 
 	  * reserva que desee.
 	  * 
 	  * @param event	Evento causado cuando el cliente pulsa sobre la imagen de su reserva.
@@ -183,7 +183,7 @@ public class ControladorPerfil {
 	 void abrirReserva(MouseEvent event) {
 		//Se carga el contenido de la ventana
      	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaEditarTickets.fxml"));
-     	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+     	//Se le asigna el controlador de la ventana para editar informacion de los guardias
          ControladorEditarReserva controlerEditRese = new ControladorEditarReserva(usuario);
          loaderPrincipal.setController(controlerEditRese);
          AnchorPane PaneVentanaPrincipal;
@@ -203,7 +203,7 @@ public class ControladorPerfil {
              
 
 
-             //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
  	        anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
 
 
@@ -216,20 +216,20 @@ public class ControladorPerfil {
     @FXML
     /**
      * 
-     * Devuelve al usuario a su ventana inicial, dependiendo del usuario iniciado sesi�n
+     * Devuelve al usuario a su ventana inicial, dependiendo del usuario iniciado sesión
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre la imagen de volver atr�s.
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen de volver atrás.
      */
     void volver(MouseEvent event) {
 
     	modelo_Museo museo = new modelo_Museo();
 
 
-    	//Comprueba que lo devuelto por el m�todo loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
+    	//Comprueba que lo devuelto por el método loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
     	if (identificador==1) {
     		//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+        	//Se le asigna el controlador de la ventana para editar informacion de los guardias
             ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
             loaderPrincipal.setController(controlerPrincipal);
             AnchorPane PaneVentanaPrincipal;
@@ -251,7 +251,7 @@ public class ControladorPerfil {
     	        controlerPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
 
 
-                //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
     	        anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
 
 
@@ -265,7 +265,7 @@ public class ControladorPerfil {
     	else if (identificador==2) {
     		//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+        	//Se le asigna el controlador de la ventana para editar informacion de los guardias
             ControladorGuardia controlerPrincipal = new ControladorGuardia(usuario);
             loaderPrincipal.setController(controlerPrincipal);
             AnchorPane PaneVentanaPrincipal;
@@ -284,7 +284,7 @@ public class ControladorPerfil {
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
 
 
-                //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
 
 
@@ -297,7 +297,7 @@ public class ControladorPerfil {
     	else if (identificador==3) {
     		//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+        	//Se le asigna el controlador de la ventana para editar informacion de los guardias
             ControladorAdministrador controlerPrincipal = new ControladorAdministrador(usuario);
             loaderPrincipal.setController(controlerPrincipal);
             AnchorPane PaneVentanaPrincipal;
@@ -316,7 +316,7 @@ public class ControladorPerfil {
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
 
 
-                //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
 
 
@@ -330,7 +330,7 @@ public class ControladorPerfil {
     }
     /**
      * 
-     * Muestra una informaci�n diferente si el usuario iniciado sesi�n es un guardia o un administrador.
+     * Muestra una información diferente si el usuario iniciado sesión es un guardia o un administrador.
      * 
      */
     private void staffConfiguracion() {

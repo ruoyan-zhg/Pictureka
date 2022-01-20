@@ -80,9 +80,9 @@ public class controladorEditarEventos {
 	    
 	/**
 	 * 
-	 *  Constructor de la clase <b>controladorEditarEventos</b>, que guarda la informaci�n de un adminsitrador.
+	 *  Constructor de la clase <b>controladorEditarEventos</b>, que guarda la información de un adminsitrador.
 	 *  
-	 * @param usuario	El administrador que se encuentre iniciado sesi�n.
+	 * @param usuario	El administrador que se encuentre iniciado sesión.
 	 */
 	public controladorEditarEventos(String usuario) {
 		if (usuario == "vacio") {
@@ -117,12 +117,12 @@ public class controladorEditarEventos {
 		eventos = handler.desserializarJsonAEventos();// Ingresamos los datos del Json al vector de eventos
 	}
 
-	String imagen; // Almacena el nombre (ubicacion de la imagen) que se a�adir� al evento
+	String imagen; // Almacena el nombre (ubicacion de la imagen) que se añadir al evento
 
 	@FXML
 	/**
 	 * 
-	 * Dirige al administrador a la ventana perfil para visualizar su informaci�n.
+	 * Dirige al administrador a la ventana perfil para visualizar su informacion.
 	 * 
 	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de su avatar.
 	 */
@@ -135,7 +135,7 @@ public class controladorEditarEventos {
 		} else {
 			// Se carga el contenido de la ventana
 			FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-			// Se le asigna el controlador de la ventana para editar informaci�n de los
+			// Se le asigna el controlador de la ventana para editar informacion de los
 			// guardias
 			ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
 			loaderPrincipala.setController(controlerPrincipal);
@@ -154,7 +154,7 @@ public class controladorEditarEventos {
 				AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
 				AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
 
-				// Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+				// Se añade el contenido de la ventana cargada en el AnchorPane del padre
 				anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
 				// Cambia el color de la barra de la ventana perfil
 				controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FF8000");
@@ -172,7 +172,7 @@ public class controladorEditarEventos {
 	 * 
 	 * A�ade los cambios realizados por el administrador a la ventana de eventos.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre el bot�n "A�adir Cambios".
+	 * @param event		Evento causado cuando el administrador pulsa sobre el botón "Añadir Cambios".
 	 */
 	void aniadirCambios(MouseEvent event) {
 		Alert error = new Alert(Alert.AlertType.ERROR);
@@ -193,7 +193,7 @@ public class controladorEditarEventos {
 							e.printStackTrace();
 						}
 
-						// Se guradan los datos en el vector de eventos ���������������
+						// Se guradan los datos en el vector de eventos 
 						guardarDatos();
 						// y se actualiza el Json con los datos actualizados del vector
 						handler.serializarVectorEventosAJson(eventos);
@@ -230,9 +230,9 @@ public class controladorEditarEventos {
 	@FXML
 	/**
 	 * 
-	 * Abre el explorador de archivos del administrador, para poder elegir la imagen que desea a�adir a la ventana de eventos.
+	 * Abre el explorador de archivos del administrador, para poder elegir la imagen que desea añadir a la ventana de eventos.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre la regi�n.
+	 * @param event		Evento causado cuando el administrador pulsa sobre la región.
 	 */
 	void aniadirImagen(MouseEvent event) {
 		
@@ -270,7 +270,7 @@ public class controladorEditarEventos {
 	 * 
 	 * Devuelve al administrador a su ventana inciial.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atr�s.
+	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atrás.
 	 */
 	void regresarPrincipalAdmin(MouseEvent event) {
 		abrirAdmin();
@@ -302,11 +302,7 @@ public class controladorEditarEventos {
 		}
 	}
 	
-	/**
-	 * 
-	 * Guarda los cambios en el Json de eventos con la informaci�n que haya solicitado.
-	 * 
-	 */
+
 	public void guardarDatos() {// Este metodo guardara los cambios en el Json de eventos con la informacion que
 								// haya solicitado
 		int seleccion = Integer.parseInt(comboBoxElegirEvento.getValue().toString());

@@ -25,7 +25,7 @@ import javafx.scene.layout.VBox;
 
 /**
  * 
- * En esta clase se manejan las funciones de edicci�n de los guardias, en la
+ * En esta clase se manejan las funciones de edicción de los guardias, en la
  * vista <b>VentanaEditGuardias</b>.
  * 
  * @author Jolie Alain Vásquez
@@ -114,9 +114,9 @@ public class ControladorEditGuardias {
 	/**
 	 * 
 	 * Constructor de la clase <b>ControladorEditGuardias</b> que guarda la
-	 * informaci�n del administrador.
+	 * información del administrador.
 	 * 
-	 * @param usuario El administrador que se encuentra iniciado sesi�n.
+	 * @param usuario El administrador que se encuentra iniciado sesión.
 	 */
 	public ControladorEditGuardias(String usuario) {
 		if (usuario == "vacio") {
@@ -132,7 +132,7 @@ public class ControladorEditGuardias {
 	@FXML
 	/**
 	 * 
-	 * Inicializa la ventana cargando la informaci�n del Json de staff, en concreto
+	 * Inicializa la ventana cargando la información del Json de staff, en concreto
 	 * los guardias en la tabla.
 	 * 
 	 */
@@ -170,10 +170,10 @@ public class ControladorEditGuardias {
 	@FXML
 	/**
 	 * 
-	 * Dirige al administrador a la ventana principal, habiendo cerrado su sesi�n.
+	 * Dirige al administrador a la ventana principal, habiendo cerrado su sesión.
 	 * 
 	 * @param event Evento causado cuando el administrador pulsa sobre la imagen
-	 *              para cerrar sesi�n.
+	 *              para cerrar sesión.
 	 */
 	void cerrarSesion(MouseEvent event) {
 
@@ -203,13 +203,13 @@ public class ControladorEditGuardias {
 	 * guardia.
 	 * 
 	 * @param event Evento causado cuando el administrador pulsa sobre el Tab
-	 *              "A�adir guardia".
+	 *              "Añadir guardia".
 	 */
 	void AniadirGuardia(Event event) {
 
 		// Se carga la segunda ventana del TabPane
 		FXMLLoader loaderTabAniadir = new FXMLLoader(getClass().getResource("/application/TabAniadirGuardia.fxml"));
-		// Se le asigna el controlador de la ventana para editar informaci�n de los
+		// Se le asigna el controlador de la ventana para editar informacion de los
 		// guardias
 		ControladorTabAniadirGuardia controlerTabAniadir = new ControladorTabAniadirGuardia(this);
 		loaderTabAniadir.setController(controlerTabAniadir);
@@ -232,7 +232,7 @@ public class ControladorEditGuardias {
 	@FXML
 	/**
 	 * 
-	 * Muestra la informaci�n del guardia seleccionado y permite modificarlos.
+	 * Muestra la información del guardia seleccionado y permite modificarlos.
 	 * 
 	 * @param event Evento causado cuando el administrador pulsa sobre el Tab
 	 *              "Editar Guardia".
@@ -264,7 +264,7 @@ public class ControladorEditGuardias {
 	@FXML
 	/**
 	 * 
-	 * Muestra la informaci�n del administrador que est� iniciado sesi�n.
+	 * Muestra la información del administrador que está iniciado sesión.
 	 * 
 	 * @param event Evento causado cunado el administrador pulsa sobre la imagen de
 	 *              su avatar.
@@ -297,7 +297,7 @@ public class ControladorEditGuardias {
 				AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
 				AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
 
-				// Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+				// Se añade el contenido de la ventana cargada en el AnchorPane del padre
 				anchorPaneEditGuardia.getChildren().setAll(PaneVentanaPrincipal);
 				// Cambia el color de la barra de la ventana perfil
 				controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FF8000");
@@ -315,7 +315,7 @@ public class ControladorEditGuardias {
 	 * 
 	 * Refresca la tabla y muestra los datos actualizados del Json en la tabla.
 	 * 
-	 * @param event Evento causado cuando el administrador pulsa el bot�n
+	 * @param event Evento causado cuando el administrador pulsa el botón
 	 *              "Actualizar Cambios".
 	 */
 	void GuardarTodosCambios(ActionEvent event) {
@@ -354,7 +354,7 @@ public class ControladorEditGuardias {
 	 * 
 	 * Dirige al administrador a su ventana inicial.
 	 * 
-	 * @param event Evento causado cuando el administrador pulsa sobre el bot�n de
+	 * @param event Evento causado cuando el administrador pulsa sobre el botón de
 	 *              "Cancelar".
 	 */
 	void CancelarEdiccion(ActionEvent event) {
@@ -382,9 +382,9 @@ public class ControladorEditGuardias {
 	@FXML
 	/**
 	 * 
-	 * Comprueba la selecci�n selecccionada por el administrador.
+	 * Comprueba la selección selecccionada por el administrador.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre alg�n sitio de la tabla.
+	 * @param event		Evento causado cuando el administrador pulsa sobre algún sitio de la tabla.
 	 */
 	void clickGuardia(MouseEvent event) {
 

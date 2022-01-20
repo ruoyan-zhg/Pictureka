@@ -30,12 +30,12 @@ import javafx.stage.Stage;
 /**
  * 
  * En esta clase se maneja el inicio de sesión de cada usuario en la vista <b>InterfazLogin</b>, mostrando la respectiva ventana a cada
- * usuarip.
+ * usuario.
  * 
- * @author Jolie Alain V�squez
- * @author Oscar Gonz�lez Guerra
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmer�n L�pez
+ * @author Lian Salmerón López
  *
  */
 
@@ -74,9 +74,9 @@ public class ControladorInicioSesion {
     @FXML
     /**
      * 
-     * Vuelve a la ventana principal, cancelando el inicio de sesi�n del usuario.
+     * Vuelve a la ventana principal, cancelando el inicio de sesión del usuario.
      * 
-     * @param event		Evento causado cuando el usaurio pulsa sobre la imagen de vovler atr�s.
+     * @param event		Evento causado cuando el usaurio pulsa sobre la imagen de vovler atrás.
      */
     void volverAtras(MouseEvent event) {
     	
@@ -105,9 +105,9 @@ public class ControladorInicioSesion {
     @FXML
     /**
      * 
-     * Recoge el nombre de usuario o email y la contrase�a para comprobar que tal usuario existe, y de esa manera mostrar la vista correspondiente
+     * Recoge el nombre de usuario o email y la contraseña para comprobar que tal usuario existe, y de esa manera mostrar la vista correspondiente
      * 
-     * @param event   Evento causado cuando el usuario pulsa sobre el bot�n de <b>Inicar sesi�n</b> para poder acceder a la aplicaci�n
+     * @param event   Evento causado cuando el usuario pulsa sobre el botón de <b>Inicar sesión</b> para poder acceder a la aplicación
      */
     void InicarSesion(ActionEvent event) {
     	
@@ -117,7 +117,7 @@ public class ControladorInicioSesion {
     	
     	Cifrado cifrar = new Cifrado();
 
-    	//Comprueba que lo devuelto por el m�todo loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
+    	//Comprueba que lo devuelto por el método loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
     	if (museo.loginUsuario(textUsuario.getText(), cifrar.hashing(textContrasenia.getText()))==1) {
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
@@ -216,7 +216,7 @@ public class ControladorInicioSesion {
     		
     		//Se carga el contenido de la ventana
         	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+        	//Se le asigna el controlador de la ventana para editar informacion de los guardias
             ControladorAdministrador controlerAdmin = new ControladorAdministrador(textUsuario.getText());
             loaderApp.setController(controlerAdmin);
             Parent root;
@@ -252,9 +252,9 @@ public class ControladorInicioSesion {
 	@FXML
 	/**
 	 * 
-	 * Muestra la ventana de Registro donde el usuario debe rellenar los campos necesarios para crearse un usuario en la aplicaci�n.
+	 * Muestra la ventana de Registro donde el usuario debe rellenar los campos necesarios para crearse un usuario en la aplicación.
 	 * 
-	 * @param event		Evento causado cuando el usuario pulsa sobre el bot�n de Registrarse.
+	 * @param event		Evento causado cuando el usuario pulsa sobre el botón de Registrarse.
 	 */
     void Registrarse(ActionEvent event) {
     	

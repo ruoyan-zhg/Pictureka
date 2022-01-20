@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 /**
  * 
  * En esta clase se maneja la lectura y escritura de informes de parte del
- * admiistrador, en la vista <b>VentanaInformeAdmin</b>.
+ * administrador, en la vista <b>VentanaInformeAdmin</b>.
  * 
  * @author Jolie Alain Vásquez
  * @author Oscar González Guerra
@@ -84,9 +84,9 @@ public class ControladorInformeAdmin {
 	/**
 	 * 
 	 * Constructor de la clase <b>ControladorInformeAdmin</b> que guarda la
-	 * informaci�n del administrador.
+	 * información del administrador.
 	 * 
-	 * @param usuario El administrador que est� iniciado sesi�n.
+	 * @param usuario El administrador que est� iniciado sesión.
 	 */
 	public ControladorInformeAdmin(String usuario) {
 		if (usuario == "vacio") {
@@ -101,7 +101,7 @@ public class ControladorInformeAdmin {
 	
 	/**
 	 * 
-	 * Inicializa la ventana con un m�todo que refresca el contenido de la tabla.
+	 * Inicializa la ventana con un método que refresca el contenido de la tabla.
 	 * 
 	 */
 	public void initialize() {
@@ -111,7 +111,7 @@ public class ControladorInformeAdmin {
 	@FXML
 	/**
 	 * 
-	 * Obtiene la posici�n del elemento que se ha seleccionado en la tabla de informes.
+	 * Obtiene la posición del elemento que se ha seleccionado en la tabla de informes.
 	 * 
 	 * @param event		Evento causado cuando el administrador pulsa sobre la tabla.
 	 */
@@ -127,7 +127,7 @@ public class ControladorInformeAdmin {
 	@FXML
 	/**
 	 * 
-	 * Muestra la informaci�n del administrador que se encuentre iniciado sesi�n.
+	 * Muestra la información del administrador que se encuentre iniciado sesión.
 	 * 
 	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de su avatar.
 	 */
@@ -140,7 +140,7 @@ public class ControladorInformeAdmin {
 		} else {
 			// Se carga el contenido de la ventana
 			FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-			// Se le asigna el controlador de la ventana para editar informaci�n de los
+			// Se le asigna el controlador de la ventana para editar informacion de los
 			// guardias
 			ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
 			loaderPrincipala.setController(controlerPrincipal);
@@ -176,7 +176,7 @@ public class ControladorInformeAdmin {
 	 * 
 	 * Dirige al administrador a su ventana inicial.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atr�s.
+	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atrás.
 	 */
 	void volverAtras(MouseEvent event) {
 		FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
@@ -201,7 +201,7 @@ public class ControladorInformeAdmin {
 	@FXML
 	/**
 	 * 
-	 * Envia el informe escrito por el administrador, con su respectivo t�tulo y cuerpo.
+	 * Envia el informe escrito por el administrador, con su respectivo título y cuerpo.
 	 * 
 	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen para enviar el informe.
 	 */
@@ -237,7 +237,7 @@ public class ControladorInformeAdmin {
 
 	/**
 	 * 
-	 * Refresca la informaci�n de la tabla, mostrando el contenido del Json.
+	 * Refresca la información de la tabla, mostrando el contenido del Json.
 	 * 
 	 */
 	private void refrescarTabla() {
@@ -265,7 +265,7 @@ public class ControladorInformeAdmin {
 	
 	/**
 	 * 
-	 * Muestra la informaci�n del informe seleccionado en la tabla.
+	 * Muestra la información del informe seleccionado en la tabla.
 	 * 
 	 * @param posicion
 	 */

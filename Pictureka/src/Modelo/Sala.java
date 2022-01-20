@@ -1,6 +1,16 @@
 package Modelo;
 
 import java.util.Vector;
+/**
+ * 
+ * En esta clase se almacena la informacion de la sala en la que se encuentran los sensores
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 
 public class Sala {
 	private int identificador;
@@ -12,6 +22,9 @@ public class Sala {
 	
 	
 	//proximamente se necesitan los sensores que tendran cada sala
+	/**
+	 * @param identificador: almacena el numero de la sala que se quiere gestionar
+	 */
 	public Sala(int identificador) {
 		this.identificador = identificador;
 		this.sensoresDistancia = new Vector<SensorDistancia>();

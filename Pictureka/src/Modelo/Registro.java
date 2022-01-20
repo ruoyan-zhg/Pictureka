@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 /*
  * 
- * Esta clase maneja el inicio de sesión o registro de usuarios, edicción de datos
+ * Esta clase maneja el inicio de sesiï¿½n o registro de usuarios, edicciï¿½n de datos
  * 
  */
 
@@ -40,19 +40,19 @@ public class Registro {
 		recuperarUsuarios();
 		recuperarStaff();
 		String estado = "Validacion incompleta";
-		System.out.println("antes");
+		
 		if (validarEmail(email)) { // devuelve true si el email es valido
-			System.out.println("email");
+			
 			// Comprobamos si el email esta registrado en clientes y el staff
 			if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido registrado
-				System.out.println("repemail");
+				
 				if (dniRepetido(dni) && dniStaffRepetido(dni)) {
-					System.out.println("repedni");
+					
 					if (usuarioRepetido(usuario)) {
-						System.out.println("add");
+						
 						usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia, fechaNacimiento, new Vector<Integer>()));
 						escribirUsuarios();
-						System.out.println(usuarios.size());
+						
 						estado = "Validacion completada con exito";
 					} else {
 						estado = "Usuario ya registrado";
@@ -213,7 +213,7 @@ public class Registro {
 	
 
 	public boolean validarEmail(String email) {
-		// Patrón para validar el email
+		// Patrï¿½n para validar el email
 		boolean comprobar = false;
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
@@ -361,7 +361,7 @@ public class Registro {
 		Datos datos = new Datos();
 		//Try catch quizas el archivo no abre
 		for (int i = 0; i< usuarios.size(); i++) {
-			System.out.println(usuarios.elementAt(i).getUsuario());
+			
 		}
 		datos.serializarArrayAJson(usuarios);
 	}
@@ -373,7 +373,7 @@ public class Registro {
 		Datos datos = new Datos();
 		//Try catch quizas el archivo no abre
 		for (int i = 0; i< staff.size(); i++) {
-			System.out.println(staff.elementAt(i).getUsuario());
+			
 		}
 		datos.serializarStaffAJson(staff);
 	}
@@ -383,7 +383,7 @@ public class Registro {
 		Datos datos = new Datos();
 		//Try catch quizas el archivo no abre
 		for (int i = 0; i< staffNuevo.size(); i++) {
-			System.out.println(staffNuevo.elementAt(i).getUsuario());
+			
 		}
 		datos.serializarStaffAJson(staffNuevo);
 	}

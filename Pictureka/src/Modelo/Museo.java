@@ -10,10 +10,6 @@ public class Museo {
 	}
 	
 	
-	
-	
-	
-	
 	public void recuperarSalas() {
 		Datos datos = new Datos();
 		Vector<Sala> _salas = datos.desserializarJsonSalas();
@@ -34,13 +30,10 @@ public class Museo {
 			escribirSalas();
 		}
 		else {
-			System.out.println("Este identificador ya esta en uso");
+			
 		}
 	}
 	
-	
-	
-
 	private boolean comprobarIdentificadorSala(int identificador) {
 		boolean noRepetido = true;
 		int contador = 0;

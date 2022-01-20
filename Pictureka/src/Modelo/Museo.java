@@ -2,22 +2,43 @@ package Modelo;
 
 import java.util.Vector;
 
+/**
+ * 
+ * Esta clase tiene acceso a las museo fisico
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 public class Museo {
 	private Vector<Sala> salas;
 	
+	/**
+	 * Constructor de un museo que solo iniciala el vector de salas
+	 */
 	public Museo() {
 		this.salas = new Vector<Sala>();
 	}
 	
 	
+	/**
+	 * Recoge las salas desde un json y la asigna al museo
+	 * 
+	 */
 	public void recuperarSalas() {
 		Datos datos = new Datos();
-		Vector<Sala> _salas = datos.desserializarJsonSalas();
+		Vector<Sala> _salas = datos.desserializarJsonSalas();	//
 		if (_salas != null) {
 			this.salas = _salas;
 		}
 	}
 	
+	/**
+	 * 
+	 * 
+	 */
 	public void escribirSalas() {
 		Datos datos = new Datos();
 		datos.serializarVectorSalasAJson(salas);

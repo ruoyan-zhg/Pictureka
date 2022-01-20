@@ -3,6 +3,17 @@ package Modelo;
 import java.time.LocalDate;
 import java.util.Vector;
 
+/**
+ * 
+ * En esta clase se almacena la informacion de un Cliente
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
+
 public class Cliente { 
 
 	private int identificadorCliente;
@@ -15,6 +26,16 @@ public class Cliente {
 	
 	
 	//Constructores
+	/**
+	 * Constructor de Cliente
+	 * 
+	 * @param usuario Usuario que decide el usuario
+	 * @param dni Dni del usuario
+	 * @param email Email del usuario
+	 * @param contrasenia constrasenia del usuario
+	 * @param fechaNacimiento fecha de nacimiento del usuario
+	 * @param reservas Reservas realizadas por el usuario
+	 */
 	public Cliente(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento, Vector<Integer> reservas) {
 		this.identificadorCliente = 1;
 		this.usuario = usuario;

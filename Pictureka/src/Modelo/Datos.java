@@ -15,26 +15,24 @@ import java.util.Vector;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * 
+ * 
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 
 public class Datos {
-	/*
-	public static void main(String[] args) {
-		Datos miManejadorJson = new Datos();
-		
-		miManejadorJson.serializarArrayAJson();
-		
-		Vector<Usuario> empl = new Vector<Usuario>();
-		empl = miManejadorJson.desserializarJsonAArray();
-		Usuario Usuario1 = empl.get(0);
-		Usuario Usuario2 = empl.get(1);
-		Usuario Usuario3 = empl.get(2);
-		
-		System.out.println(Usuario1);
-		System.out.println(Usuario2);
-		System.out.println(Usuario3);
-	}
-	*/
 
+	/**
+	 * Convierte el vector de usuarios en json
+	 * 
+	 * @param usuarios El vector con los datos de los usuarios 
+	 */
 	public void serializarArrayAJson(Vector<Cliente> usuarios) {
 		
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
@@ -47,7 +45,11 @@ public class Datos {
         }
 		
 	}
-	
+	/**
+	 * Convierte el vector de Eventos en json
+	 * 
+	 * @param eventos El vector con los datos de los eventos 
+	 */
 	public void serializarVectorEventosAJson(Vector<Evento> eventos) {
 		
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
@@ -61,6 +63,11 @@ public class Datos {
 		
 	}
 	
+	/**
+	 * Convierte el vector de staff en json
+	 * 
+	 * @param usuarios El vector con los datos de los staff 
+	 */
 	public void serializarStaffAJson(Vector<Staff> staff) {
 		
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
@@ -73,6 +80,11 @@ public class Datos {
         }
 		
 	}
+	/**
+	 * Convierte el vector de salas en json
+	 * 
+	 * @param salas El vector con los datos de las salas 
+	 */
 	public void serializarVectorSalasAJson(Vector<Sala> salas) {
 		
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
@@ -85,6 +97,12 @@ public class Datos {
         }
 		
 	}
+	
+	/**
+	 * Convierte el vector de informes en json
+	 * 
+	 * @param informes El vector con los datos de los informes 
+	 */
 	public void serializarVectorInformesAJson(Vector<Informe> informes) {
 		
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
@@ -97,7 +115,11 @@ public class Datos {
         }
 		
 	}
-	
+	/**
+	 * Convierte el vector de reservas en json
+	 * 
+	 * @param reservas El vector con los datos de los reservas 
+	 */
 	public void serializarVectorReservasAJson(Vector<Reserva> reservas) {
 		
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
@@ -110,7 +132,11 @@ public class Datos {
         }
 		
 	}
-	
+	/**
+	 * Convierte los datos de un json en un vector de reservas
+	 * 
+	 * @return Devuelve el vector de reservas 
+	 */
 	public Vector<Reserva> desserializarJsonAReservas() {
 		Vector<Reserva> reservas = new Vector<Reserva>();
 		
@@ -127,7 +153,11 @@ public class Datos {
 	}
 	
 	
-	
+	/**
+	 * Convierte los datos de un json en un vector de usuarios
+	 * 
+	 * @return Devuelve el vector de usuarios 
+	 */
 	public Vector<Cliente> desserializarJsonAusuarios() {
 		Vector<Cliente> usuarios = new Vector<Cliente>();
 		
@@ -143,7 +173,11 @@ public class Datos {
 		return usuarios;
 	}
 	
-	
+	/**
+	 * Convierte los datos de un json en un vector de Eventos
+	 * 
+	 * @return Devuelve el vector de Eventos 
+	 */
 	public Vector<Evento> desserializarJsonAEventos() {
 		Vector<Evento> eventos = new Vector<Evento>();
 		
@@ -159,6 +193,11 @@ public class Datos {
 		return eventos;
 	}
 	
+	/**
+	 * Convierte los datos de un json en un vector de staff
+	 * 
+	 * @return Devuelve el vector de staff 
+	 */
 	public Vector<Staff> desserializarJsonStaff() {
 		Vector<Staff> staff = new Vector<Staff>();
 		
@@ -174,6 +213,11 @@ public class Datos {
 		return staff;
 	}
 	
+	/**
+	 * Convierte los datos de un json en un vector de salas
+	 * 
+	 * @return Devuelve el vector de salas 
+	 */
 	public Vector<Sala> desserializarJsonSalas() {
 		Vector<Sala> salas = new Vector<Sala>();
 		
@@ -189,6 +233,11 @@ public class Datos {
 		return salas;
 	}
 
+	/**
+	 * Convierte los datos de un json en un vector de informes
+	 * 
+	 * @return Devuelve el vector de informes 
+	 */
 	public Vector<Informe> desserializarJsonInforme() {
 		Vector<Informe> informes = new Vector<Informe>();
 		

@@ -2,6 +2,16 @@ package Modelo;
 
 import java.time.LocalDate;
 
+/**
+ * 
+ * En esta clase se almacena la informacion de los informes
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 public class Informe {
 	private String autor;
 	private String titulo;
@@ -9,6 +19,13 @@ public class Informe {
 	
 	private String fecha;
 	
+	/**
+	 * Contructor de un informe
+	 * 
+	 * @param autor Autor del informe 
+	 * @param titulo Titulo del informe
+	 * @param cuerpo Cuerpo del informe
+	 */
 	public Informe(String autor, String titulo, String cuerpo) {
 		this.autor = autor;
 		this.titulo = titulo;

@@ -1,5 +1,15 @@
 package Modelo;
 
+/**
+ * 
+ * Almacena la informacion de los eventos y la direccion de la imagen para poner en el evento
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
 public class Evento {
 	//Atributos
 	
@@ -9,6 +19,14 @@ public class Evento {
 	private String informacion;
 	
 	//Constructor
+	/**
+	 * Constructor del evento a mostrar 
+	 * 
+	 * @param identificador para saber la posicion en la que se debe mostrar
+	 * @param nombre nombre del evento
+	 * @param imagen imagen del evento a mostrar
+	 * @param informacion informacion del evento
+	 */
 	public Evento(int identificador, String nombre, String imagen, String informacion) {
 		super();
 		this.identificador = identificador;

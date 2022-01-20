@@ -28,10 +28,10 @@ import javafx.scene.layout.VBox;
  * 
  * En esta clase se maneja la funcionalidad para reservar tickets de la vista <b>VentanaTickets</b>
  * 
- * @author Jolie Alain V�squez
- * @author Oscar Gonz�lez Guerra
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmer�n L�pez
+ * @author Lian Salmerón López
  *
  */
 
@@ -85,9 +85,9 @@ public class ControladorTickets {
     
     /**
      * 
-     * Constructor de la clase <b>ControladorTickets</b> que guarda informaci�n del usuario.
+     * Constructor de la clase <b>ControladorTickets</b> que guarda información del usuario.
      * 
-     * @param usuario		El usuario que est� inciado sesi�n en ese momento.
+     * @param usuario		El usuario que está inciado sesión en ese momento.
      */
 	 public ControladorTickets(String usuario) {
 		 if (usuario == "vacio") {
@@ -108,13 +108,13 @@ public class ControladorTickets {
      * 
      * Devuelve al usuario a la ventana principal, cancelando la reserva que se estuviera realizando.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre el bot�n "Cancelar".
+     * @param event		Evento causado cuando el usuario pulsa sobre el botón "Cancelar".
      */
     void CancelarReserva(ActionEvent event) {
 
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-    	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+    	//Se le asigna el controlador de la ventana para editar información de los guardias
         ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
         loaderPrincipal.setController(controlerPrincipal);
         AnchorPane PaneVentanaPrincipal;
@@ -137,7 +137,7 @@ public class ControladorTickets {
 	        controlerPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
             
 
-            //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
             
            
@@ -150,10 +150,10 @@ public class ControladorTickets {
     @FXML
     /**
      * 
-     * M�todo que realiza la reserva de tickets de un cliente. Creando un identificador para cada una de las reservas, junto con
-     * la informaci�n introducida: n�mero de tickets, fecha y hora de reserva.
+     * Método que realiza la reserva de tickets de un cliente. Creando un identificador para cada una de las reservas, junto con
+     * la información introducida: número de tickets, fecha y hora de reserva.
      * 
-     * @param event		Evento causado cuando el usuario confirma su reserva cuando pulsa sobre el bot�n de "Continuar".
+     * @param event		Evento causado cuando el usuario confirma su reserva cuando pulsa sobre el botón de "Continuar".
      */
     void ReservarTickets(ActionEvent event) {
     	
@@ -285,7 +285,7 @@ public class ControladorTickets {
 						    			clientes.get(i).getReservas().add(idReserva);
 						    		}
 						    	}
-								//En el json de reservas se aniade la reserva con su respectiva informacion
+								//En el json de reservas se aniade la reserva con su respectiva información
 						    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
 						    	datos.serializarVectorReservasAJson(reservas);
 						    	datos.serializarArrayAJson(clientes);
@@ -423,7 +423,7 @@ public class ControladorTickets {
     @FXML
     /**
      * 
-     * Dirige al usuario a la ventana para visualizar su informaci�n.
+     * Dirige al usuario a la ventana para visualizar su información.
      * 
      * @param event		Evento causado cuando el usuario pulsa sobre la imagen de su avatar.
      */
@@ -437,7 +437,7 @@ public class ControladorTickets {
         else {
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+        	//Se le asigna el controlador de la ventana para editar información de los guardias
             ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
             loaderPrincipala.setController(controlerPrincipal);
             AnchorPane PaneVentanaPrincipal;
@@ -456,7 +456,7 @@ public class ControladorTickets {
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 
 
-                //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
                 
                
@@ -471,15 +471,15 @@ public class ControladorTickets {
     @FXML
     /**
      * 
-     *  Devuelve al usuario a la ventana principal habiendo cerrado su sesi�n.
+     *  Devuelve al usuario a la ventana principal habiendo cerrado su sesión.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para cerrar sesi�n.
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para cerrar sesión.
      */
     void cerrarSesion(MouseEvent event) {
 
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
-    	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+    	//Se le asigna el controlador de la ventana para editar información de los guardias
     	this.usuario = "vacio";
     	this.logged = false;
         ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
@@ -500,7 +500,7 @@ public class ControladorTickets {
             AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
             
 
-            //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
             
            

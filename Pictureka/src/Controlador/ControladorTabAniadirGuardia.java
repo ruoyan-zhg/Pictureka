@@ -92,7 +92,7 @@ public class ControladorTabAniadirGuardia {
      * 
      * Constructor de la clase <b>ControladorTabAdniadirGuardia</b> al que se le pasa el Controlador de ediccion de guardias.
      * 
-     * @param controladorEdit	Controlador de la clase <b>ControladorEditGuardias</b> con su respectivos atributos y m�todos. 
+     * @param controladorEdit	Controlador de la clase <b>ControladorEditGuardias</b> con su respectivos atributos y métodos. 
      */
     public ControladorTabAniadirGuardia(ControladorEditGuardias controladorEdit) {
     	controlerEdit = controladorEdit;
@@ -103,10 +103,10 @@ public class ControladorTabAniadirGuardia {
     @FXML
     /**
      * 
-     * Registra un nuevo guardia con la informaci�n introducida por el administrador. Se escribe en el Json de Staff y se muestra
+     * Registra un nuevo guardia con la información introducida por el administrador. Se escribe en el Json de Staff y se muestra
      * en la tabla de guardias.
      * 
-     * @param event		Evento causado cuando el administrador pulsa sobre el bot�n "A�adir".
+     * @param event		Evento causado cuando el administrador pulsa sobre el botón "Añadir".
      */
     void GuardarNuevoGuardia(ActionEvent event) {
     	

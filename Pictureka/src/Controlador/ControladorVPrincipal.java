@@ -33,10 +33,10 @@ import javafx.stage.Stage;
  * 
  * En la clase ControladorVPrincipal, manejamos todos los eventos que ocurren en la vista <b>VentanaPrincipal</b>.
  * 
- * @author Jolie Alain Vasquez
- * @author Oscar Gonzalez Guerra
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
  * @author Ruoyan Zhang
- * @author Lian Salmeron Lopez
+ * @author Lian Salmerón López
  *
  */
 
@@ -136,11 +136,11 @@ public class ControladorVPrincipal {
 	@FXML
 	/**
 	 * 
-	 * M�todo que inicializa ciertos elementos de la ventana cada vez que es desplegada.
+	 * Método que inicializa ciertos elementos de la ventana cada vez que es desplegada.
 	 * 
 	 */
 	public void initialize() {
-		//Se a�aden al ArrayList las imagenes que queremos que se muestren
+		//Se añaden al ArrayList las imagenes que queremos que se muestren
 		imagenes.add(new Image("/sorolla.jpg"));
 	 	imagenes.add(new Image("/Dali.jpg"));
 	 	imagenes.add(new Image("/monet.jpg"));
@@ -269,7 +269,7 @@ public class ControladorVPrincipal {
         else {
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
-        	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
+        	//Se le asigna el controlador de la ventana para editar información de los guardias
             ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
             loaderPrincipala.setController(controlerPrincipal);
             AnchorPane PaneVentanaPrincipal;
@@ -287,7 +287,7 @@ public class ControladorVPrincipal {
                 AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 
-                //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
                 controlerPrincipal.getBarra().setStyle("-fx-background-color: #00aae4");
                
@@ -316,7 +316,6 @@ public class ControladorVPrincipal {
         ControladorTickets controlerTickets = new ControladorTickets(usuario);
         loaderTickets.setController(controlerTickets);
         AnchorPane PaneTickets;
-        System.out.println(logged);
         
         if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
@@ -339,7 +338,7 @@ public class ControladorVPrincipal {
                  AnchorPane.setLeftAnchor(PaneTickets, 0.0);
                  AnchorPane.setBottomAnchor(PaneTickets, 0.0);
             
-                 //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                  anchorPanePrincipal.getChildren().setAll(PaneTickets);
                //Cambia el color de la barra de la ventana perfil
                 
@@ -359,7 +358,7 @@ public class ControladorVPrincipal {
      * 
      * Ofrece la posibilidad de mandar emails al email del museo.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre el bot�n del correo.
+     * @param event		Evento causado cuando el usuario pulsa sobre el botón del correo.
      */
     void mandarCorreo(ActionEvent event) {
     	
@@ -417,7 +416,7 @@ public class ControladorVPrincipal {
     @FXML
     /**
      * 
-     * Muestra la ventana de eventos, en la que se puede visualizar la informacion respectiva a cada evento.
+     * Muestra la ventana de eventos, en la que se puede visualizar la información respectiva a cada evento.
      * 
      * @param event		Evento causado cuando el usuario pulsa sobre la imagen del calendario.
      */
@@ -443,7 +442,7 @@ public class ControladorVPrincipal {
             AnchorPane.setLeftAnchor(PaneCalendar, 0.0);
             AnchorPane.setBottomAnchor(PaneCalendar, 0.0);
             
-            //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneCalendar);
     	
             if (logged==false) {
@@ -464,9 +463,9 @@ public class ControladorVPrincipal {
     @FXML
     /**
      * 
-     * Devuelve al usuario a la ventana principal habiendo cerrado su sesi�n.
+     * Devuelve al usuario a la ventana principal habiendo cerrado su sesión.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para cerrar sesi�n.
+     * @param event		Evento causado cuando el usuario pulsa sobre la imagen para cerrar sesión.
      */
     void cerrarSesionCliente(MouseEvent event) {
     	
@@ -501,7 +500,7 @@ public class ControladorVPrincipal {
             AnchorPane.setBottomAnchor(PanePrincipal, 0.0);
             
 
-            //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PanePrincipal);
             
            
@@ -517,7 +516,7 @@ public class ControladorVPrincipal {
     
     /**
      * 
-     * Muestra la ventana de Login inmediatamente sin que el usuario pulse ning�n bot�n.
+     * Muestra la ventana de Login inmediatamente sin que el usuario pulse ningún botón.
      * 
      */
     void abrirLogin() {
@@ -542,7 +541,7 @@ public class ControladorVPrincipal {
             AnchorPane.setBottomAnchor(PaneInicioSesion, 0.0);
             
 
-            //Se a�ade el contenido de la ventana cargada en el AnchorPane del padre
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneInicioSesion);
             
            

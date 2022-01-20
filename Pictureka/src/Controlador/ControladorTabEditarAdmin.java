@@ -21,7 +21,7 @@ import javafx.scene.layout.GridPane;
 
 /**
  * 
- * En esta clase se maneja la edicci�n de informaci�n de un administrador, en la vista <b>TabEditarAdministrador</b>.
+ * En esta clase se maneja la edición de información de un administrador, en la vista <b>TabEditarAdministrador</b>.
  * 
  * @author Jolie Alain Vásquez
  * @author Oscar González Guerra
@@ -95,7 +95,7 @@ public class ControladorTabEditarAdmin {
 	 * el Controlador de edicciones de administradores.
      * 
      * @param controlerEdit		Controlador de la clase <b>ControladorEditarAdministrador</b>
-	 *                      	con sus respecitvos atributos y m�todos.
+	 *                      	con sus respecitvos atributos y métodos.
      */
     public ControladorTabEditarAdmin(ControladorEditarAdministrador controlerEdit) {
     	
@@ -106,7 +106,7 @@ public class ControladorTabEditarAdmin {
 	@FXML
 	/**
 	 * 
-	 * Inicializa la ventana, comprobando la selecci�n del administrador y mostrando su informaci�n en los campos.
+	 * Inicializa la ventana, comprobando la selección del administrador y mostrando su información en los campos.
 	 * 
 	 */
 	public void initialize() {
@@ -141,9 +141,9 @@ public class ControladorTabEditarAdmin {
 	@FXML
 	/**
 	 * 
-	 * Guarda los cambios realizados en uno o m�s de los campos de informaci�n del administrador, cambiando el contenido del Json de Staff.
+	 * Guarda los cambios realizados en uno o más de los campos de información del administrador, cambiando el contenido del Json de Staff.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre el bot�n "Guardar Cambios".
+	 * @param event		Evento causado cuando el administrador pulsa sobre el botón "Guardar Cambios".
 	 */
     void GuardarAdminEdit(ActionEvent event) {
 
@@ -179,7 +179,7 @@ public class ControladorTabEditarAdmin {
 		// Comprobamos que haya seleccionado un administrador
 		if (!controlerEditAdmin.getTableViewAdministrador().getSelectionModel().isEmpty()) {
 
-			// Comprobamos que el contenido no est� vac�o
+			// Comprobamos que el contenido no está vacío
 			if (!(UsuarioNuevo.isEmpty() | nombreNuevo.isEmpty() | apellido1Nuevo.isEmpty() | apellido2Nuevo.isEmpty()
 					| dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null) | contraseniaNuevo.isEmpty())) {
 
@@ -225,22 +225,22 @@ public class ControladorTabEditarAdmin {
 							// devuelve true si el usuario no esta repetido
 							if (registro.staffRepetido(UsuarioNuevo)) {
 								staff.get(i).setUsuario(UsuarioNuevo);
-								System.out.println("Usuario no repetido");
+								
 
 								// devuelve true si el dni no esta repetido
 								if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
 									staff.get(i).setDni(dniNuevo);
-									System.out.println("Dni no repetido");
+									
 
 									// devuelve true si el email no esta repetidp
 									if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
-										System.out.println("Email no repetido");
+										
 
 										// Valida el email nuevo
 										if (registro.validarEmail(emailNuevo)) {
 
 											staff.get(i).setEmail(emailNuevo);
-											System.out.println("Formato del email nuevo correcto");
+											
 
 											// Modifica los valores restantes del vector
 											staff.get(i).setNombre(nombreNuevo);
@@ -257,14 +257,14 @@ public class ControladorTabEditarAdmin {
 										} else {
 											error.setHeaderText("Formato de email incorrecto.");
 											error.showAndWait();
-											System.out.println("Formato del email nuevo incorrecto");
+											
 										}
 
 									} else {
 										// Si el administrador mantiene su mismo email
 										if (staff.get(i).getEmail().equals(emailNuevo)) {
 											staff.get(i).setEmail(emailNuevo);
-											System.out.println("Mismo email del administrador");
+											
 
 											staff.get(i).setNombre(nombreNuevo);
 											staff.get(i).setApellido1(apellido1Nuevo);
@@ -280,7 +280,7 @@ public class ControladorTabEditarAdmin {
 										} else {
 											error.setHeaderText("Email ya registrado.");
 											error.showAndWait();
-											System.out.println("Email de otro administrador");
+											
 										}
 
 									}
@@ -289,15 +289,15 @@ public class ControladorTabEditarAdmin {
 
 									if (staff.get(i).getDni().equals(dniNuevo)) {
 										staff.get(i).setDni(dniNuevo);
-										System.out.println("Mismo dni del administrador");
+										
 
 										if (registro.emailRepetido(emailNuevo)
 												&& registro.emailRepetidoStaff(emailNuevo)) {
-											System.out.println("Email no repetido");
+											
 
 											if (registro.validarEmail(emailNuevo)) {
 												staff.get(i).setEmail(emailNuevo);
-												System.out.println("Formato del email nuevo correcto");
+												
 
 												staff.get(i).setNombre(nombreNuevo);
 												staff.get(i).setApellido1(apellido1Nuevo);
@@ -312,13 +312,13 @@ public class ControladorTabEditarAdmin {
 											} else {
 												error.setHeaderText("Formato de email incorrecto.");
 												error.showAndWait();
-												System.out.println("Formato del email nuevo incorrecto");
+												
 											}
 
 										} else {
 											if (staff.get(i).getEmail().equals(emailNuevo)) {
 												staff.get(i).setEmail(emailNuevo);
-												System.out.println("Mismo email del administrador");
+												
 
 												staff.get(i).setNombre(nombreNuevo);
 												staff.get(i).setApellido1(apellido1Nuevo);
@@ -333,14 +333,14 @@ public class ControladorTabEditarAdmin {
 											} else {
 												error.setHeaderText("Email ya registrado.");
 												error.showAndWait();
-												System.out.println("Email de otro administrador");
+												
 											}
 										}
 
 									} else {
 										error.setHeaderText("Dni ya registrado.");
 										error.showAndWait();
-										System.out.println("Dni de otro administrador");
+										
 									}
 
 								}
@@ -352,21 +352,21 @@ public class ControladorTabEditarAdmin {
 								// Si el guardia mantiene su mismo usuario
 								if (staff.get(i).getUsuario().equals(UsuarioNuevo)) {
 									staff.get(i).setUsuario(UsuarioNuevo);
-									System.out.println("Mismo usuario del administrador");
+									
 
 									// devuelve true si el email del admin no esta repetido
 									if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
-										System.out.println("Email no repetido");
+										
 
 										if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
-											System.out.println("Dni no repetido");
+											
 											staff.get(i).setDni(dniNuevo);
 
 											// Se valdida el nuevo email
 											if (registro.validarEmail(emailNuevo)) {
 
 												staff.get(i).setEmail(emailNuevo);
-												System.out.println("Formato del email nuevo correcto");
+												
 
 												staff.get(i).setNombre(nombreNuevo);
 												staff.get(i).setApellido1(apellido1Nuevo);
@@ -381,18 +381,18 @@ public class ControladorTabEditarAdmin {
 											} else {
 												error.setHeaderText("Formato de email incorrecto.");
 												error.showAndWait();
-												System.out.println("Formato del email nuevo incorrecto");
+												
 											}
 										} else {
 											// Si el dni es el mismo del admin
 
 											if (staff.get(i).getDni().equals(dniNuevo)) {
 												staff.get(i).setDni(dniNuevo);
-												System.out.println("Mismo dni del administrador");
+												
 
 												if (registro.validarEmail(emailNuevo)) {
 													staff.get(i).setEmail(emailNuevo);
-													System.out.println("Formato del email nuevo correcto");
+													
 
 													staff.get(i).setNombre(nombreNuevo);
 													staff.get(i).setApellido1(apellido1Nuevo);
@@ -406,13 +406,13 @@ public class ControladorTabEditarAdmin {
 												} else {
 													error.setHeaderText("Formato de email incorrecto.");
 													error.showAndWait();
-													System.out.println("Formato del email nuevo incorrecto");
+													
 												}
 
 											} else {
 												error.setHeaderText("Dni ya registrado.");
 												error.showAndWait();
-												System.out.println("Dni de otro administrador");
+												
 											}
 
 										}
@@ -421,10 +421,10 @@ public class ControladorTabEditarAdmin {
 										// Si el email es el mismo del admin
 										if (staff.get(i).getEmail().equals(emailNuevo)) {
 											staff.get(i).setEmail(emailNuevo);
-											System.out.println("Mismo email del administrador");
+											
 
 											if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
-												System.out.println("Dni no repetido");
+												
 
 												staff.get(i).setNombre(nombreNuevo);
 												staff.get(i).setApellido1(apellido1Nuevo);
@@ -455,20 +455,20 @@ public class ControladorTabEditarAdmin {
 												} else {
 													error.setHeaderText("Dni ya registrado.");
 													error.showAndWait();
-													System.out.println("Dni de otro administrador");
+													
 												}
 											}
 										} else {
 											error.setHeaderText("Email ya registrado.");
 											error.showAndWait();
-											System.out.println("Email de otro administrador");
+											
 										}
 									}
 
 								} else {
 									error.setHeaderText("Usuario ya registrado.");
 									error.showAndWait();
-									System.out.println("Usuario de otro administrador");
+									
 								}
 
 							}
@@ -486,7 +486,7 @@ public class ControladorTabEditarAdmin {
 				error.showAndWait();
 			}
 		} else {
-			error.setHeaderText("No se ha seleccionado ning�n administrador a modificar.");
+			error.setHeaderText("No se ha seleccionado ningún administrador a modificar.");
 			error.showAndWait();
 		}
 

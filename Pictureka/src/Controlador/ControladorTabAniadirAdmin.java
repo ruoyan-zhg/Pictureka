@@ -88,7 +88,7 @@ public class ControladorTabAniadirAdmin {
      * 
      * Constructor de la clase <b>ControladorTabAniadirAdmin</b> al que se le pasa el Controlador de ediccion de administradores.
      * 
-     * @param controladorEdit	Controlador de la clase <b>ControladorEditAdministrador</b> con su respectivos atributos y m�todos.
+     * @param controladorEdit	Controlador de la clase <b>ControladorEditAdministrador</b> con su respectivos atributos y métodos.
      */
     public ControladorTabAniadirAdmin(ControladorEditarAdministrador controladorEdit) {
     	controlerEdit = controladorEdit;
@@ -98,10 +98,10 @@ public class ControladorTabAniadirAdmin {
     @FXML
     /**
      * 
-     * Registra un nuevo administrador con la informaci�n introducida por el administrador. Se escribe en el Json de Staff y se muestra
+     * Registra un nuevo administrador con la información introducida por el administrador. Se escribe en el Json de Staff y se muestra
      * en la tabla de administradores.
      * 
-     * @param event		Evento causado cuando el administrador pulsa sobre el bot�n "A�adir".
+     * @param event		Evento causado cuando el administrador pulsa sobre el botón "Añadir".
      */
     void GuardarNuevoAdmin(ActionEvent event) {
     	

@@ -93,9 +93,9 @@ public class ControladorRegistro {
     @FXML
     /**
      * 
-     * Cancela el registro del usuario y devuelve la ventana de inicio de sesi�n.
+     * Cancela el registro del usuario y devuelve la ventana de inicio de sesión.
      * 
-     * @param event		Evento causado cuando el usuario pulsa sobre el bot�n de Cancelar.
+     * @param event		Evento causado cuando el usuario pulsa sobre el boton de Cancelar.
      */
     void CancelRegistro(ActionEvent event) {
 
@@ -105,10 +105,10 @@ public class ControladorRegistro {
     @FXML
     /**
      * 
-     * M�todo que recoge los datos introducidos por el usuario en los diferentes JTextFields. Se comprueba que la informaci�n sea v�lida,
-     * y una vez lo sea, se registra el usuario, escribi�ndose en el Json de "usuarios".
+     * Método que recoge los datos introducidos por el usuario en los diferentes JTextFields. Se comprueba que la información sea válida,
+     * y una vez lo sea, se registra el usuario, escribiéndose en el Json de "usuarios".
      * 
-     * @param event		Evento causado cuando el usaurio pulsa sobre el bot�n de Registrar.
+     * @param event		Evento causado cuando el usaurio pulsa sobre el botón de Registrar.
      */
     void RegistrarUsuario(ActionEvent event) {
 
@@ -118,7 +118,7 @@ public class ControladorRegistro {
     	Cifrado cifrar = new Cifrado();
     	
     	String estado;
-    	//Se obtienen las contrase�as escritas
+    	//Se obtienen las contrasenias escritas
     	String contrasenia = txtFieldPassword.getText();
     	String repetirContrasenia = textFieldRepeatPassword.getText();
     	LocalDate fechaNuevo = chooserCalendario.getValue();
@@ -130,7 +130,7 @@ public class ControladorRegistro {
         		LocalDate fecha = LocalDate.now();
             	Period periodo = Period.between(chooserCalendario.getValue(), fecha);
         		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
-        			//Se comrpueba que las contrase�as sean iguales
+        			//Se comrpueba que las contrasenias sean iguales
             		if(contrasenia.equals(repetirContrasenia)&&!(contrasenia.equals(""))&&!(contrasenia.equals(" "))) {
             			//Se registra el usuario
                 		estado = museo.registrarClientes(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), cifrar.hashing(txtFieldPassword.getText()), chooserCalendario.getValue());
@@ -167,7 +167,7 @@ public class ControladorRegistro {
     }
     /**
      * 
-     * M�todo que muestra la ventana de Login.
+     * Método que muestra la ventana de Login.
      * 
      */
     void abrirLogin() {

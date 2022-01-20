@@ -53,7 +53,7 @@ public class ControladorPopOverCorreo {
 	 
     /**
      * 
-     * Constructor de la clase <b>ControladorPopOverCorreo</b> que guarda la informaciï¿½n del cliente.
+     * Constructor de la clase <b>ControladorPopOverCorreo</b> que guarda la información del cliente.
      * 
      * @param usuario	Cliente que se encuentre iniciado sesiï¿½n en ese momento.
      */
@@ -73,9 +73,9 @@ public class ControladorPopOverCorreo {
     @FXML
     /**
      * 
-     * Envï¿½a un email al email del museo <i>Pictureka</i> con su respectivo tï¿½tulo y cuerpo.
+     * Envía un email al email del museo <i>Pictureka</i> con su respectivo título y cuerpo.
      * 
-     * @param event		Evento causado cuando el cliente pulsa sobre el botï¿½n "Enviar".
+     * @param event		Evento causado cuando el cliente pulsa sobre el botón "Enviar".
      */
     void EnviarEmail(ActionEvent event) {
     	

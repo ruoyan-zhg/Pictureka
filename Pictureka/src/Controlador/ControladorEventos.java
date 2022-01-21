@@ -404,7 +404,7 @@ public class ControladorEventos {
         ControladorTickets controlerTickets = new ControladorTickets(usuario);
         loaderTickets.setController(controlerTickets);
         AnchorPane PaneTickets;
-        System.out.println(logged);
+
         
         if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
@@ -497,7 +497,7 @@ public class ControladorEventos {
 		FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
 		// Se le asigna el controlador de la ventana para editar informacion de los
 		// guardias
-		System.out.println(usuario);
+
 		ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal(usuario);
 		loaderPrincipal.setController(controlerPrincipal);
 		AnchorPane PaneVentanaPrincipal;

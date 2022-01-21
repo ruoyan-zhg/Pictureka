@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 /*
  * 
- * Esta clase maneja el inicio de sesi�n o registro de usuarios, edicci�n de datos
+ * Esta clase maneja el inicio de sesión o registro de usuarios, edicción de datos
  * 
  */
 
@@ -279,7 +279,6 @@ public class Registro {
 	public boolean emailRepetido(String email) { 
 		boolean noRepetido = true;
 		int contador = 0;
-		System.out.println(usuarios.size());
 		while (noRepetido != false && contador < usuarios.size()) {
 			if (usuarios.elementAt(contador).getEmail().equals(email)) {
 				noRepetido = false;	
@@ -296,7 +295,6 @@ public class Registro {
 	public boolean emailRepetidoStaff(String email) {
 		boolean noRepetido = true;
 		int contador = 0;
-		System.out.println(staff.size());
 		while (noRepetido != false && contador < staff.size()) {
 			if (staff.elementAt(contador).getEmail().equals(email)) {
 				noRepetido = false;	

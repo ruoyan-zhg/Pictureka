@@ -118,7 +118,7 @@ public class ControladorInicioSesion {
     	Cifrado cifrar = new Cifrado();
 
     	//Comprueba que lo devuelto por el método loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
-    	if (museo.loginUsuario(textUsuario.getText(), cifrar.hashing(textContrasenia.getText()))==1) {
+    	if (museo.loginUsuario(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText()))==1) {
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
     		confirmacion.showAndWait();
@@ -173,7 +173,7 @@ public class ControladorInicioSesion {
   
     
     	}
-    	else if (museo.loginUsuario(textUsuario.getText(), cifrar.hashing(textContrasenia.getText()))==2) {
+    	else if (museo.loginUsuario(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText()))==2) {
     		
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
@@ -206,7 +206,7 @@ public class ControladorInicioSesion {
 			}
 
     	}
-    	else if (museo.loginUsuario(textUsuario.getText(), cifrar.hashing(textContrasenia.getText()))==3) {
+    	else if (museo.loginUsuario(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText()))==3) {
     		
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal

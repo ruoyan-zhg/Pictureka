@@ -2,6 +2,17 @@ package Modelo;
 
 import java.time.LocalDate;
 
+/**
+ * 
+ * En esta clase se lleva el manejo de los atributos del personal de staff, como guardias y administradores.
+ * 
+ * @author Jolie Alain Vásquez
+ * @author Oscar González Guerra
+ * @author Ruoyan Zhang
+ * @author Lian Salmerón López
+ *
+ */
+
 public class Staff {
 
 	//Atributos
@@ -17,12 +28,20 @@ public class Staff {
 	private LocalDate fechaNacimiento;
 	
 	//Contructores
-
-	
-
-
-
-
+	/**
+	 * 
+	 * Constructor del personal del staff, que necesita su respectiva información para ser creado.
+	 * 
+	 * @param identificadorUser		Número que identifica el tipo de usuario que es.
+	 * @param usuario				Identificador del usuario, con el qué podrá iniciar sesión.
+	 * @param nombre				Nombre del personal de staff.
+	 * @param apellido1				Primer apellido del personal de staff.
+	 * @param apellido2				Segundo apellido del personal de staff.
+	 * @param dni					Número de identifiación del personal de staff.
+	 * @param email					Dirección de correo del personal de staff.
+	 * @param contrasenia			Contraseña del personal de staff, para acceder a la aplicación.
+	 * @param fechaNacimiento		Fecha de nacimiento del personal de staff.
+	 */
 	public Staff(int identificadorUser, String usuario, String nombre, String apellido1, String apellido2, String dni, String email, String contrasenia, LocalDate fechaNacimiento) {
 		super();
 		this.identificadorUser = identificadorUser;
@@ -35,21 +54,6 @@ public class Staff {
 		this.contrasenia = contrasenia;
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	
-	
-	
-	
-	
-	//Met�dos
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	//Getters y Setters

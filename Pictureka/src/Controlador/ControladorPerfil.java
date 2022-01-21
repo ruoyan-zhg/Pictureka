@@ -145,7 +145,7 @@ public class ControladorPerfil {
 	  * 
 	  */
 	  	public void initialize() {
-		 System.out.println(identificador+" "+usuario);
+
 		 	switch(identificador) {
 		 		case 1:
 		 			RUsuario.setText(cliente.getUsuario());

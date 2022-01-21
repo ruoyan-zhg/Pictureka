@@ -1,26 +1,26 @@
 [
   {
     "identificador": 1,
-    "nombre": "El quitasol",
+    "nombre": "Evento de pintura al óleo",
     "imagen": "Quitasol.png",
-    "informacion": "Este es el evento nº1"
+    "informacion": "Disfruta de una exposición de pintruas al óleo, dónde poder entender cómo se realizan estas pinturas a través de talleres, de la mano de grandes profesionales del sector.\n------Horario------\nLunes: 12:00 - 13:30"
   },
   {
     "identificador": 2,
-    "nombre": "Las Meninas",
+    "nombre": "Evento Velázquez",
     "imagen": "LasMeninas.png",
-    "informacion": "Este es el evento nº2"
+    "informacion": "Observa todas las obras del famoso pintor Diego Velázquez, pintor barroco considerado uno de los máximos exponentes de la pintura española y maestro de la pintura universal.\n------Horario------\nMartes: Todo el día\nJueves: Todo el día"
   },
   {
     "identificador": 3,
-    "nombre": "Evento nº3",
+    "nombre": "Evento Capilla Sixtina",
     "imagen": "Sixtina.jpg",
-    "informacion": "Este es el evento nº3"
+    "informacion": "¿Sientes curiosidad por visitar la Capilla Sixtina?\nPues no esperes más, aquí te mostramos varias de esos frescos para analizar y aprender de su historia.\n------Horario------\nViernes: 18:00 - 21:00\nSábado: 11:00 - 15:00"
   },
   {
     "identificador": 4,
-    "nombre": "Lisboa visita",
+    "nombre": "Evento realismo",
     "imagen": "Lisboa.jpg",
-    "informacion": "Este el evento nº4"
+    "informacion": "El realismo es una tendencia a presentar las cosas tal cual son en realidad, sin adornos, exageraciones o matices. Si deseas contemplar diferentes cuadros represetando la vida cotidiana de las personas, paisajes etc. esta es tu oportunidad.\n------Horario------\nMiércoles: Todo el día\nDomingo: 11:00 - 18:00"
   }
 ]

@@ -58,20 +58,5 @@
       "month": 1,
       "day": 12
     }
-  },
-  {
-    "identificadorUser": 2,
-    "usuario": "5003",
-    "nombre": "Juan",
-    "apellido1": "Camero",
-    "apellido2": "Infante",
-    "dni": "67668344A",
-    "email": "juan@gmail.com",
-    "contrasenia": "a376aedda75ae9b9708c2bc200e99dc80a7c23da29104ab3f127c089c42fe212",
-    "fechaNacimiento": {
-      "year": 1996,
-      "month": 7,
-      "day": 16
-    }
   }
 ]

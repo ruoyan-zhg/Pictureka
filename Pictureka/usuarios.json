@@ -45,32 +45,6 @@
   },
   {
     "identificadorCliente": 1,
-    "usuario": "Lie27",
-    "dni": "vs89571",
-    "email": "jojo@gmail.com",
-    "contrasenia": "853e83311298ad541af602fc1996fb8d8901346b13baf2250046caabb13bd9f7",
-    "fechaNacimiento": {
-      "year": 2001,
-      "month": 8,
-      "day": 27
-    },
-    "reservas": []
-  },
-  {
-    "identificadorCliente": 1,
-    "usuario": "Alfonso567",
-    "dni": "NT5475242",
-    "email": "alfon56@gmail.com",
-    "contrasenia": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
-    "fechaNacimiento": {
-      "year": 2001,
-      "month": 1,
-      "day": 20
-    },
-    "reservas": []
-  },
-  {
-    "identificadorCliente": 1,
     "usuario": "Oscar",
     "dni": "75945035A",
     "email": "oscar@gmail.com",

@@ -1,26 +1,20 @@
 [
   {
     "autor": "Jorge",
-    "titulo": "Prueba",
-    "cuerpo": "Esta es una prueba y funciono",
+    "titulo": "Sensor de luz descontrolado",
+    "cuerpo": "Se registraron ciertos cambios bruscos de luz que no fueron registrados por el sensor.\nAtentamente,\nJorge",
     "fecha": "2022-01-07"
   },
   {
     "autor": "Jorge",
-    "titulo": "2Da Prueba",
-    "cuerpo": "La primera elimino todo lo anterior en el json",
-    "fecha": "2022-01-07"
-  },
-  {
-    "autor": "Jorge",
-    "titulo": "3ra prueba",
-    "cuerpo": "Todo correcto en los informes",
-    "fecha": "2022-01-07"
+    "titulo": "Problema del sensor de luz arreglado",
+    "cuerpo": "Se ha arreglado correctamente el sensor de luz que estaba dando problemas.\nGracias",
+    "fecha": "2022-01-08"
   },
   {
     "autor": "Paula",
-    "titulo": "Prueba desde Guardia",
-    "cuerpo": "Probando que un guardia envie un informe",
+    "titulo": "Alta temperatura en la Sala 2",
+    "cuerpo": "Se ha registrado un alta temperatura de 30ºC en la Sala 2. Por favor, solucionen esto cuánto antes.\nGracias por leer.",
     "fecha": "2022-01-07"
   }
 ]

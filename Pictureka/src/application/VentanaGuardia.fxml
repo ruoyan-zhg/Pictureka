@@ -22,16 +22,6 @@
       <VBox fx:id="VBoxPrincipal" prefHeight="834.0" prefWidth="1028.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <JFXToolbar prefHeight="73.0" prefWidth="1156.0" style="-fx-background-color: #FF8000;">
-               <right>
-                  <ImageView fx:id="imgUsuario" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                     <image>
-                        <Image url="@../../Imagenes_Multimedia/guardiaAvatar.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-               </right>
                <left>
                   <ImageView fx:id="imgCerrarSesion" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
@@ -42,6 +32,35 @@
                      </cursor>
                   </ImageView>
                </left>
+               <right>
+                  <GridPane prefHeight="68.0" prefWidth="176.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fx:id="imgUsuario" fitHeight="64.0" fitWidth="72.0" onMouseClicked="#accederPerfil" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                           <image>
+                              <Image url="@../guardiaAvatar.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="imgInforne" fitHeight="75.0" fitWidth="120.0" onMouseClicked="#accederInformes" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/correo.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </right>
             </JFXToolbar>
             <GridPane prefHeight="601.0" prefWidth="1156.0">
               <columnConstraints>

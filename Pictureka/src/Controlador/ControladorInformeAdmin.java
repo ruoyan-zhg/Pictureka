@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -60,6 +61,9 @@ public class ControladorInformeAdmin {
 
 	@FXML
 	private TableColumn<Informe, String> Fecha;
+	
+	@FXML
+    private GridPane gridPaneInforme;
 
 	@FXML
 	private JFXTextField tituloInforme;
@@ -275,5 +279,136 @@ public class ControladorInformeAdmin {
 				+ informes.elementAt(posicion).getTitulo() + "\n\n" + informes.elementAt(posicion).getCuerpo();
 		mostrarInforme.setText(informe);
 	}
+
+	public AnchorPane getAnchorPanePrincipal() {
+		return anchorPanePrincipal;
+	}
+
+	public void setAnchorPanePrincipal(AnchorPane anchorPanePrincipal) {
+		this.anchorPanePrincipal = anchorPanePrincipal;
+	}
+
+	public VBox getVBoxPrincipal() {
+		return VBoxPrincipal;
+	}
+
+	public void setVBoxPrincipal(VBox vBoxPrincipal) {
+		VBoxPrincipal = vBoxPrincipal;
+	}
+
+	public ImageView getImgUsuario() {
+		return imgUsuario;
+	}
+
+	public void setImgUsuario(ImageView imgUsuario) {
+		this.imgUsuario = imgUsuario;
+	}
+
+	public ImageView getImgCerrarSesion() {
+		return imgCerrarSesion;
+	}
+
+	public void setImgCerrarSesion(ImageView imgCerrarSesion) {
+		this.imgCerrarSesion = imgCerrarSesion;
+	}
+
+	public TableColumn<Informe, String> getAutor() {
+		return Autor;
+	}
+
+	public void setAutor(TableColumn<Informe, String> autor) {
+		Autor = autor;
+	}
+
+	public TableColumn<Informe, String> getTitulo() {
+		return Titulo;
+	}
+
+	public void setTitulo(TableColumn<Informe, String> titulo) {
+		Titulo = titulo;
+	}
+
+	public TableColumn<Informe, String> getCuerpo() {
+		return Cuerpo;
+	}
+
+	public void setCuerpo(TableColumn<Informe, String> cuerpo) {
+		Cuerpo = cuerpo;
+	}
+
+	public TableColumn<Informe, String> getFecha() {
+		return Fecha;
+	}
+
+	public void setFecha(TableColumn<Informe, String> fecha) {
+		Fecha = fecha;
+	}
+
+	public JFXTextField getTituloInforme() {
+		return tituloInforme;
+	}
+
+	public void setTituloInforme(JFXTextField tituloInforme) {
+		this.tituloInforme = tituloInforme;
+	}
+
+	public JFXTextArea getCuerpoInforme() {
+		return cuerpoInforme;
+	}
+
+	public void setCuerpoInforme(JFXTextArea cuerpoInforme) {
+		this.cuerpoInforme = cuerpoInforme;
+	}
+
+	public ImageView getImgFormulario() {
+		return imgFormulario;
+	}
+
+	public void setImgFormulario(ImageView imgFormulario) {
+		this.imgFormulario = imgFormulario;
+	}
+
+	public ImageView getImgEnviarInforme() {
+		return imgEnviarInforme;
+	}
+
+	public void setImgEnviarInforme(ImageView imgEnviarInforme) {
+		this.imgEnviarInforme = imgEnviarInforme;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getInforme() {
+		return informe;
+	}
+
+	public void setInforme(String informe) {
+		this.informe = informe;
+	}
+
+	public Vector<Informe> getInformes() {
+		return informes;
+	}
+
+	public void setInformes(Vector<Informe> informes) {
+		this.informes = informes;
+	}
+	
+	public GridPane getGridPaneInforme() {
+		return gridPaneInforme;
+	}
+
+	public void setGridPaneInforme(GridPane gridPaneInforme) {
+		this.gridPaneInforme = gridPaneInforme;
+	}
+	
+	
+	
 
 }

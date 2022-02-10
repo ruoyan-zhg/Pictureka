@@ -57,7 +57,7 @@ public class ControladorVPrincipal {
 
     @FXML
     private Button btnMensaje;
-    
+
     @FXML
     private GridPane gridPaneRegion;
 
@@ -89,23 +89,19 @@ public class ControladorVPrincipal {
     private GridPane gridPaneButton;
 
     @FXML
-    private ButtonBar ButtonBarPrincipal;
-    //#FAFAAF
+    private ImageView imgCerrarSesionCliente;
 
     @FXML
-    private ImageView imgCalendar;
-
-    @FXML
-    private ImageView imgTickets;
+    private Label lblBienvenido;
 
     @FXML
     private ImageView imgUsuario;
 
     @FXML
-    private ImageView imgCerrarSesionCliente;
+    private ImageView imgTickets;
 
     @FXML
-    private Label lblBienvenido;
+    private ImageView imgCalendar;
     
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 	

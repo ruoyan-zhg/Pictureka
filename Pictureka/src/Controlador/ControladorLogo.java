@@ -59,8 +59,8 @@ public class ControladorLogo {
             //Hacemos que la ventana se muestre maximizada
             stage.setMaximized(true);
             //Medidas minimas de la ventana
-	        stage.setMinHeight(900);
-	        stage.setMinWidth(950);
+	        stage.setMinHeight(600);
+	        stage.setMinWidth(700);
             stage.show();
             stage.getIcons().add(new Image("Pictureka2.png"));
             

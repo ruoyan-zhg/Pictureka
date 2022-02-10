@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -41,19 +42,19 @@ public class ControladorGuardia {
     private VBox VBoxPrincipal;
 
     @FXML
+    private ImageView imgCerrarSesion;
+
+    @FXML
     private ImageView imgUsuario;
 
     @FXML
-    private ImageView imgCerrarSesion;
+    private ImageView imgInforne;
 
     @FXML
     private JFXTextField numTicket;
 
     @FXML
     private JFXTextField tituloInforme;
-
-    @FXML
-    private JFXTextArea cuerpoInforme;
 
     @FXML
     private Text SalaText;
@@ -72,6 +73,9 @@ public class ControladorGuardia {
 
     @FXML
     private ImageView imgFormulario;
+
+    @FXML
+    private JFXTextArea cuerpoInforme;
 
     @FXML
     private ImageView imgSala1;
@@ -241,6 +245,44 @@ public class ControladorGuardia {
     	
     	
     }
+    
+    @FXML
+    void accederInformes(MouseEvent event) {
+    	
+    	//Se carga el contenido de la ventana
+    	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaInformeAdmin.fxml"));
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
+        ControladorInformeAdmin controlerInforme = new ControladorInformeAdmin(usuario);
+        loaderPrincipal.setController(controlerInforme);
+        AnchorPane PaneVentanaPrincipal;
+
+		try {
+			//Se carga en un AnchorPane la ventana
+			PaneVentanaPrincipal = (AnchorPane) loaderPrincipal.load();
+			
+			//Se elimina el contenido de la ventana padre
+			anchorPanePrincipal.getChildren().clear();
+        	
+        	//Se ajusta el AnchorPane para que sea escalable
+            AnchorPane.setTopAnchor(PaneVentanaPrincipal, 0.0);
+            AnchorPane.setRightAnchor(PaneVentanaPrincipal, 0.0);
+            AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
+            AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
+            
+
+            //Se añade el contenido de la ventana cargada en el AnchorPane del padre
+            anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
+            controlerInforme.getImgUsuario().setImage(new Image("/guardiaAvatar.png"));
+            controlerInforme.getGridPaneInforme().setVisible(false);
+            
+           
+            
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+    	
+    }
+    
 
     @FXML
     /**

@@ -1,17 +1,20 @@
-[
+[					
   {
+    "id": 3,
     "autor": "Jorge",
     "titulo": "Sensor de luz descontrolado",
     "cuerpo": "Se registraron ciertos cambios bruscos de luz que no fueron registrados por el sensor.\nAtentamente,\nJorge",
     "fecha": "2022-01-07"
   },
   {
+    "id": 3,
     "autor": "Jorge",
     "titulo": "Problema del sensor de luz arreglado",
     "cuerpo": "Se ha arreglado correctamente el sensor de luz que estaba dando problemas.\nGracias",
     "fecha": "2022-01-08"
   },
   {
+    "id": 2,
     "autor": "Paula",
     "titulo": "Alta temperatura en la Sala 2",
     "cuerpo": "Se ha registrado un alta temperatura de 30ºC en la Sala 2. Por favor, solucionen esto cuánto antes.\nGracias por leer.",

@@ -120,10 +120,17 @@ public class ControladorInformeAdmin {
 	 * @param event		Evento causado cuando el administrador pulsa sobre la tabla.
 	 */
 	public void clickItem(MouseEvent event) {
-		//Comrpueba que la seleccion del usaurio no sea vacia
+		// Comrpueba que la seleccion del usaurio no sea vacia
+		modelo_Museo museo = new modelo_Museo();
 		if (!tablaInformes.getSelectionModel().isEmpty()) {
-			int posicion = tablaInformes.getSelectionModel().getSelectedIndex();
-			mostrarInforme(-posicion + informes.size() - 1);
+			if (museo.devolverIdentificador(usuario) == 3) {
+				int posicion = tablaInformes.getSelectionModel().getSelectedIndex();
+				mostrarInforme(-posicion + informes.size() - 1);
+			}
+			else if (museo.devolverIdentificador(usuario)==2) {
+				int posicion = tablaInformes.getSelectionModel().getSelectedIndex();
+				mostrarInforme(-posicion + informes.size() - 1);
+			}
 		}
 
 	}
@@ -183,56 +190,80 @@ public class ControladorInformeAdmin {
 	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atrás.
 	 */
 	void volverAtras(MouseEvent event) {
-		FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
-		ControladorAdministrador controlerAdmin = new ControladorAdministrador(usuario);
-		loaderEdit.setController(controlerAdmin);
+		
+		modelo_Museo museo = new modelo_Museo();
+		
+		if (museo.devolverIdentificador(usuario)==2) {
+			FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
+			ControladorGuardia controlerGuardia = new ControladorGuardia(usuario);
+			loaderEdit.setController(controlerGuardia);
+			
+			try {
+				AnchorPane PaneEdit = (AnchorPane) loaderEdit.load();
+				anchorPanePrincipal.getChildren().clear();
+				AnchorPane.setTopAnchor(PaneEdit, 0.0);
+				AnchorPane.setRightAnchor(PaneEdit, 0.0);
+				AnchorPane.setLeftAnchor(PaneEdit, 0.0);
+				AnchorPane.setBottomAnchor(PaneEdit, 0.0);
+				anchorPanePrincipal.getChildren().setAll(PaneEdit);
 
-		try {
-			AnchorPane PaneEdit = (AnchorPane) loaderEdit.load();
-			anchorPanePrincipal.getChildren().clear();
-			AnchorPane.setTopAnchor(PaneEdit, 0.0);
-			AnchorPane.setRightAnchor(PaneEdit, 0.0);
-			AnchorPane.setLeftAnchor(PaneEdit, 0.0);
-			AnchorPane.setBottomAnchor(PaneEdit, 0.0);
-			anchorPanePrincipal.getChildren().setAll(PaneEdit);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		else if (museo.devolverIdentificador(usuario)==3) {
+			FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
+			ControladorAdministrador controlerAdmin = new ControladorAdministrador(usuario);
+			loaderEdit.setController(controlerAdmin);
+			
+			
+			try {
+				AnchorPane PaneEdit = (AnchorPane) loaderEdit.load();
+				anchorPanePrincipal.getChildren().clear();
+				AnchorPane.setTopAnchor(PaneEdit, 0.0);
+				AnchorPane.setRightAnchor(PaneEdit, 0.0);
+				AnchorPane.setLeftAnchor(PaneEdit, 0.0);
+				AnchorPane.setBottomAnchor(PaneEdit, 0.0);
+				anchorPanePrincipal.getChildren().setAll(PaneEdit);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 	}
 
 	@FXML
 	/**
 	 * 
-	 * Envia el informe escrito por el administrador, con su respectivo título y cuerpo.
+	 * Envia el informe escrito por el administrador, con su respectivo título y
+	 * cuerpo.
 	 * 
-	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen para enviar el informe.
+	 * @param event Evento causado cuando el administrador pulsa sobre la imagen
+	 *              para enviar el informe.
 	 */
 	void enviarInforme(MouseEvent event) {
 		Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
 		Alert error = new Alert(Alert.AlertType.ERROR);
-		//Se comprueba que ninguno de los dos campos se encuentren vacios
+		// Se comprueba que ninguno de los dos campos se encuentren vacios
 		if (!(tituloInforme.getText().isEmpty() | cuerpoInforme.getText().isEmpty())) {
-			//Se comprueba que el cuerpo del email tenga un minimo de 20 caracteres
-			if (cuerpoInforme.getText().matches("^.{20,}")) {
-				modelo_Museo museo = new modelo_Museo();
-				String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
-				try {
-					//Se escribe el nuevo informe y se refresca la tabla
-					museo.getRegistro().escribirInforme(nombre, tituloInforme.getText(), cuerpoInforme.getText());
-					refrescarTabla();
-					confirmacion.setHeaderText("Informe guardado con éxito");
-					confirmacion.show();
-				} catch (FileNotFoundException e) {
-					error.setHeaderText("¡Archivo no encontrado!");
-					error.show();
-				}
-
-			} else {
-				error.setHeaderText("Porfavor el cuerpo del informe debe ser mayor a 20 caracteres");
+			// Se comprueba que el cuerpo del email tenga un minimo de 20 caracteres
+			modelo_Museo museo = new modelo_Museo();
+			String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
+			try {
+				//String que guarda el dni del guardia al quee se le quiere enviar el informe
+				String destino = "";
+				// Se escribe el nuevo informe y se refresca la tabla
+				museo.getRegistro().escribirInforme(3, nombre, tituloInforme.getText(), destino, cuerpoInforme.getText());
+				refrescarTabla();
+				confirmacion.setHeaderText("Informe guardado con éxito");
+				confirmacion.show();
+			} catch (FileNotFoundException e) {
+				error.setHeaderText("¡Archivo no encontrado!");
 				error.show();
 			}
+
 		} else {
 			error.setHeaderText("Porfavor rellene los campos del informe!");
 			error.show();
@@ -247,24 +278,49 @@ public class ControladorInformeAdmin {
 	private void refrescarTabla() {
 		modelo_Museo museo = new modelo_Museo();
 		Vector<Informe> _informes = museo.getRegistro().devolverInforme();
-		//Elimina el contenido de la tabla
-		tablaInformes.getItems().clear();
-		if (_informes.size() > 0) {
-			this.informes = _informes;
-			//Rellena la tabla con la informacion del Json de Informes
-			for (int i = (informes.size() - 1); i >= 0; i--) {
-				// Se muestran los informes obtenidos en la tabla
-				tablaInformes.getItems().add(informes.elementAt(i));
-			}
-			// Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al
-			// tipo de dato que queremos guardar
-			Autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-			Titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-			Cuerpo.setCellValueFactory(new PropertyValueFactory<>("cuerpo"));
-			Fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-			mostrarInforme(0);
+		
+		if (museo.devolverIdentificador(usuario)==3) {
+			//Elimina el contenido de la tabla
+			tablaInformes.getItems().clear();
+			if (_informes.size() > 0) {
+				this.informes = _informes;
+				//Rellena la tabla con la informacion del Json de Informes
+				for (int i = (informes.size() - 1); i >= 0; i--) {
+					// Se muestran los informes obtenidos en la tabla
+					tablaInformes.getItems().add(informes.elementAt(i));
+				}
+				// Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al
+				// tipo de dato que queremos guardar
+				Autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+				Titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+				Cuerpo.setCellValueFactory(new PropertyValueFactory<>("cuerpo"));
+				Fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+				mostrarInforme(0);
 
+			}
 		}
+		else if (museo.devolverIdentificador(usuario) == 2) {
+			// Elimina el contenido de la tabla
+			tablaInformes.getItems().clear();
+			if (_informes.size() > 0) {
+				this.informes = _informes;
+				// Rellena la tabla con la informacion del Json de Informes
+				for (int i = (informes.size() - 1); i >= 0; i--) {
+					// Se muestran los informes obtenidos en la tabla
+					tablaInformes.getItems().add(informes.elementAt(i));
+
+					// Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al
+					// tipo de dato que queremos guardar
+					Autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+					Titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+					Cuerpo.setCellValueFactory(new PropertyValueFactory<>("cuerpo"));
+					Fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+					mostrarInforme(0);
+
+				}
+			}
+		}
+
 	}
 	
 	/**

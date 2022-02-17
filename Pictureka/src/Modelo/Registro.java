@@ -529,9 +529,9 @@ public class Registro {
 		return this.informes;
 	}
 	
-	public void escribirInforme(String autor, String titulo, String cuerpo) throws FileNotFoundException {
+	public void escribirInforme(int id, String autor, String titulo, String destino, String cuerpo) throws FileNotFoundException {
 		recuperarInformes();
-		Informe informe = new Informe (autor, titulo, cuerpo);
+		Informe informe = new Informe (id, autor, titulo, destino, cuerpo);
 		informes.addElement(informe);
 		escribirInformes();
 	}

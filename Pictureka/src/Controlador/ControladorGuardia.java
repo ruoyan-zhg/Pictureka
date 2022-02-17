@@ -163,44 +163,39 @@ public class ControladorGuardia {
     	
     }
     
-    @FXML
-    /**
-     * 
-     * Envía el correspondiente informe a todos los administradores, con su respectivo título y cuerpo.
-     * 
-     * @param event		Evento causado cuando el guardia pulsa sobre la imagen de envío del informe.
-     */
-    void enviar(MouseEvent event) {
-    	Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
+	@FXML
+	/**
+	 * 
+	 * Envía el correspondiente informe a todos los administradores, con su
+	 * respectivo título y cuerpo.
+	 * 
+	 * @param event Evento causado cuando el guardia pulsa sobre la imagen de envío
+	 *              del informe.
+	 */
+	void enviar(MouseEvent event) {
+		Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
 		Alert error = new Alert(Alert.AlertType.ERROR);
-		//Se comprueba que el titulo y cuerpo del informe no se encuentren vacios
-    	if(!(tituloInforme.getText().isEmpty() | cuerpoInforme.getText().isEmpty() )) {
-    		//Se comprueba que el cuerpo del informe tenga al menos 20 caracteres
-    		if(cuerpoInforme.getText().matches("^.{20,}")) {
-    			modelo_Museo museo = new modelo_Museo();
-    			String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
-    			try {
-    				//se escribe el informe en le Json
-    				museo.getRegistro().escribirInforme(nombre, tituloInforme.getText(), cuerpoInforme.getText());
-    				confirmacion.setHeaderText("Informe guardado con exito");
-        			confirmacion.show();
-    			}
-    			catch(FileNotFoundException e){
-    				error.setHeaderText("Archivo no encontrado!");
-            		error.show();
-    			}
-    			
-    		}
-    		else {
-        		error.setHeaderText("Porfavor el cuerpo del informe debe ser mayor a 20 caracteres");
-        		error.show();
-    		}
-    	}
-    	else {
-    		error.setHeaderText("Porfavor rellene los campos del informe!");
-    		error.show();
-    	}
-    }
+		// Se comprueba que el titulo y cuerpo del informe no se encuentren vacios
+		if (!(tituloInforme.getText().isEmpty() | cuerpoInforme.getText().isEmpty())) {
+			// Se comprueba que el cuerpo del informe tenga al menos 20 caracteres
+			modelo_Museo museo = new modelo_Museo();
+			String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
+			try {
+				String destino = "todos";
+				// se escribe el informe en le Json
+				museo.getRegistro().escribirInforme(2, nombre, tituloInforme.getText(), destino, cuerpoInforme.getText());
+				confirmacion.setHeaderText("Informe guardado con exito");
+				confirmacion.show();
+			} catch (FileNotFoundException e) {
+				error.setHeaderText("Archivo no encontrado!");
+				error.show();
+			}
+
+		} else {
+			error.setHeaderText("Porfavor rellene los campos del informe!");
+			error.show();
+		}
+	}
 
     @FXML
     /**

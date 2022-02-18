@@ -3,13 +3,20 @@ package Controlador;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Vector;
+
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import Modelo.Informe;
+import Modelo.Museo;
+import Modelo.Staff;
 import Modelo.modelo_Museo;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -63,6 +70,9 @@ public class ControladorInformeAdmin {
 	private TableColumn<Informe, String> Fecha;
 	
 	@FXML
+    private JFXComboBox<String> ComboBoxPersonal;
+	
+	@FXML
     private GridPane gridPaneInforme;
 
 	@FXML
@@ -110,6 +120,8 @@ public class ControladorInformeAdmin {
 	 */
 	public void initialize() {
 		refrescarTabla();
+		MostrarPersonal();
+		System.out.println(ComboBoxPersonal.getValue());
 	}
 
 	@FXML
@@ -245,8 +257,7 @@ public class ControladorInformeAdmin {
 			String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
 			try {
 				//String que guarda el dni del guardia al quee se le quiere enviar el informe
-				//TODO
-				String destino = "";
+				String destino = devolverDestino();
 				// Se escribe el nuevo informe y se refresca la tabla
 				museo.getRegistro().escribirInforme(3, nombre, tituloInforme.getText(), destino, cuerpoInforme.getText());
 				refrescarTabla();
@@ -314,7 +325,6 @@ public class ControladorInformeAdmin {
 				}
 			}
 		}
-
 	}
 	
 	/**
@@ -330,6 +340,32 @@ public class ControladorInformeAdmin {
 		
 	}
 
+	private void MostrarPersonal() {
+		modelo_Museo museo = new modelo_Museo();	
+		Vector<Staff> personal= museo.getRegistro().getStaff();		//se recuperan el personal que se mostrara
+		
+		ObservableList<String> items = FXCollections.observableArrayList();
+		items.add("Todos");
+		items.add("Solo administradores");
+		for (Staff a : personal) {
+			items.add(a.getNombre()+" "+a.getApellido1()+" - "+ a.getUsuario());
+		}
+		ComboBoxPersonal.setItems(items);
+		ComboBoxPersonal.setValue("Todos");
+	}
+	
+	public String devolverDestino() {
+		String destino = "Error";
+		if (ComboBoxPersonal.getValue() == "Todos" | ComboBoxPersonal.getValue() == "Solo administradores") {
+			destino = ComboBoxPersonal.getValue();
+		}
+		else {
+			String[] datosEnvio = ComboBoxPersonal.getValue().split(" - ");
+			destino = datosEnvio[1];
+		}
+		return destino;
+	}
+	
 	public AnchorPane getAnchorPanePrincipal() {
 		return anchorPanePrincipal;
 	}

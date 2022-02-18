@@ -551,6 +551,11 @@ public class Registro {
 		datos.serializarVectorInformesAJson(informes);
 	}
 
+	public Vector<Staff> getStaff() {
+		recuperarStaff();
+		return staff;
+	}
+
 	
 	
 

@@ -37,6 +37,9 @@ public class Informe {
 	}
 
 
+
+
+
 	public String getDestino() {
 		return destino;
 	}

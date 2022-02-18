@@ -121,16 +121,8 @@ public class ControladorInformeAdmin {
 	 */
 	public void clickItem(MouseEvent event) {
 		// Comrpueba que la seleccion del usaurio no sea vacia
-		modelo_Museo museo = new modelo_Museo();
 		if (!tablaInformes.getSelectionModel().isEmpty()) {
-			if (museo.devolverIdentificador(usuario) == 3) {
-				int posicion = tablaInformes.getSelectionModel().getSelectedIndex();
-				mostrarInforme(-posicion + informes.size() - 1);
-			}
-			else if (museo.devolverIdentificador(usuario)==2) {
-				int posicion = tablaInformes.getSelectionModel().getSelectedIndex();
-				mostrarInforme(-posicion + informes.size() - 1);
-			}
+			mostrarInforme();
 		}
 
 	}
@@ -253,6 +245,7 @@ public class ControladorInformeAdmin {
 			String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
 			try {
 				//String que guarda el dni del guardia al quee se le quiere enviar el informe
+				//TODO
 				String destino = "";
 				// Se escribe el nuevo informe y se refresca la tabla
 				museo.getRegistro().escribirInforme(3, nombre, tituloInforme.getText(), destino, cuerpoInforme.getText());
@@ -295,7 +288,6 @@ public class ControladorInformeAdmin {
 				Titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
 				Cuerpo.setCellValueFactory(new PropertyValueFactory<>("cuerpo"));
 				Fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-				mostrarInforme(0);
 
 			}
 		}
@@ -304,18 +296,20 @@ public class ControladorInformeAdmin {
 			tablaInformes.getItems().clear();
 			if (_informes.size() > 0) {
 				this.informes = _informes;
+				String usuarioDestino = museo.devolverStaff(usuario).getUsuario();
 				// Rellena la tabla con la informacion del Json de Informes
 				for (int i = (informes.size() - 1); i >= 0; i--) {
-					// Se muestran los informes obtenidos en la tabla
-					tablaInformes.getItems().add(informes.elementAt(i));
+					if (informes.get(i).getDestino().equals(usuarioDestino) | informes.get(i).getDestino().equals("Todos")) {
+						// Se muestran los informes obtenidos en la tabla
+						tablaInformes.getItems().add(informes.elementAt(i));
 
-					// Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al
-					// tipo de dato que queremos guardar
-					Autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-					Titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-					Cuerpo.setCellValueFactory(new PropertyValueFactory<>("cuerpo"));
-					Fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-					mostrarInforme(0);
+						// Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al
+						// tipo de dato que queremos guardar
+						Autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+						Titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+						Cuerpo.setCellValueFactory(new PropertyValueFactory<>("cuerpo"));
+						Fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));	
+					}
 
 				}
 			}
@@ -327,13 +321,13 @@ public class ControladorInformeAdmin {
 	 * 
 	 * Muestra la información del informe seleccionado en la tabla.
 	 * 
-	 * @param posicion
 	 */
-	private void mostrarInforme(int posicion) {
-		this.informe = "Autor:  " + informes.elementAt(posicion).getAutor() + "\n" + "Fecha:  "
-				+ informes.elementAt(posicion).getFecha() + "\n\n" + "Titulo:  "
-				+ informes.elementAt(posicion).getTitulo() + "\n\n" + informes.elementAt(posicion).getCuerpo();
+	public void mostrarInforme() {
+		this.informe = "Autor:  " + tablaInformes.getSelectionModel().getSelectedItem().getAutor() + "\n" + "Fecha:  "
+				+ tablaInformes.getSelectionModel().getSelectedItem().getFecha() + "\n\n" + "Titulo:  "
+				+ tablaInformes.getSelectionModel().getSelectedItem().getTitulo() + "\n\n" + tablaInformes.getSelectionModel().getSelectedItem().getCuerpo();
 		mostrarInforme.setText(informe);
+		
 	}
 
 	public AnchorPane getAnchorPanePrincipal() {

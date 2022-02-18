@@ -181,7 +181,8 @@ public class ControladorGuardia {
 			modelo_Museo museo = new modelo_Museo();
 			String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
 			try {
-				String destino = "todos";
+				//El informe que el guardia escribe lo pueden visualizar todos 
+				String destino = "Solo administradores";
 				// se escribe el informe en le Json
 				museo.getRegistro().escribirInforme(2, nombre, tituloInforme.getText(), destino, cuerpoInforme.getText());
 				confirmacion.setHeaderText("Informe guardado con exito");

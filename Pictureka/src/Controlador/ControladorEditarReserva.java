@@ -71,6 +71,8 @@ public class ControladorEditarReserva {
     
     String usuario;
     
+    String dniUsuario;
+    
     private String infoReserva;
     
     private Datos datos = new Datos();
@@ -78,7 +80,7 @@ public class ControladorEditarReserva {
     private Vector<Reserva> reservas = datos.desserializarJsonAReservas();
     private Vector<Cliente> usuarios = datos.desserializarJsonAusuarios();
     
-    private Vector<Integer> identificadores = new Vector<Integer>();
+   
     private Vector<Reserva> reservasEspecificas = new Vector<Reserva>();
     
     /**
@@ -87,8 +89,11 @@ public class ControladorEditarReserva {
      * 
      */
     public void initialize() {
+    	dniUsuario = buscarDni();
     	getReserUser();
 		refrescarTabla();
+		
+		
 	}
     
     /**
@@ -143,21 +148,8 @@ public class ControladorEditarReserva {
         		}
         	}
         	
-        	for(int i = 0; i<usuarios.size(); i++) {
-        		if(usuarios.elementAt(i).getUsuario().equals(usuario)) {
-        			for(int j = 0; j<usuarios.elementAt(i).getReservas().size(); j++) {
-        				if(usuarios.elementAt(i).getReservas().elementAt(j)==idEliminar) {
-        					usuarios.elementAt(i).getReservas().removeElementAt(j);
-        				}
-        				
-        	    	}
-        		}
-        	}
-        	for(int i = 0; i<identificadores.size(); i++) {
-        		if(identificadores.elementAt(i)==idEliminar) {
-        			identificadores.remove(identificadores.elementAt(i));
-        		}
-        	}
+        	
+        	
         	for(int i = 0; i<reservas.size(); i++) {
         		if(reservas.elementAt(i).getIdentificador()==idEliminar) {
         			reservas.remove(reservas.elementAt(i));
@@ -289,19 +281,10 @@ public class ControladorEditarReserva {
      */
     private void getReserUser() {
     	//Almacena los identificadores de las reservas del usuario 
-    	for(int i=0; i<usuarios.size();i++) {
-    		if(usuarios.elementAt(i).getUsuario().equals(usuario)) {
-    			identificadores=usuarios.elementAt(i).getReservas();
-    		}
-    	}
-    	//Cuando las haya almacenado busca en el vector de reservas generales 
-    	//las reservas del usuario y las almacena en un vector se reservas especificas
     	for(int i=0; i<reservas.size();i++) {
-    		for(int j=0; j<identificadores.size(); j++) {
-				if(reservas.elementAt(i).getIdentificador()==identificadores.elementAt(j)) {
-					reservasEspecificas.add(reservas.elementAt(i));
-				}
-			}
+    		if(reservas.elementAt(i).getId_Duenio().equals(dniUsuario)) {
+    			reservasEspecificas.add(reservas.elementAt(i));
+    		}
     	}
     	
     }
@@ -328,6 +311,21 @@ public class ControladorEditarReserva {
 			
 		}
 	}
+    
+    public String buscarDni() {
+    	Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
+    	int i=0;
+    	boolean encontrado = false;
+    	String dni = null;
+    	while(i<clientes.size() && encontrado==false) {
+    		if(clientes.elementAt(i).getUsuario().equals(this.usuario)) {
+    			dni=clientes.elementAt(i).getDni();
+    			encontrado=true;
+    		}
+    		i++;
+    	}
+		return dni;
+    }
     
     
 }

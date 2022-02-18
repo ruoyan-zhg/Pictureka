@@ -22,7 +22,6 @@ public class Cliente {
 	private String email;
 	private String contrasenia;
 	private LocalDate fechaNacimiento;
-	private Vector<Integer> reservas;
 	
 	
 	//Constructores
@@ -34,16 +33,15 @@ public class Cliente {
 	 * @param email Email del usuario
 	 * @param contrasenia constrasenia del usuario
 	 * @param fechaNacimiento fecha de nacimiento del usuario
-	 * @param reservas Reservas realizadas por el usuario
 	 */
-	public Cliente(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento, Vector<Integer> reservas) {
+	public Cliente(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento) {
 		this.identificadorCliente = 1;
 		this.usuario = usuario;
 		this.dni = dni;
 		this.email = email;
 		this.contrasenia = contrasenia;
 		this.fechaNacimiento = fechaNacimiento;
-		this.reservas = reservas;
+		
 
 	}
 
@@ -109,13 +107,7 @@ public class Cliente {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Vector<Integer> getReservas() {
-		return reservas;
-	}
 
-	public void setReservas(Vector<Integer> reservas) {
-		this.reservas = reservas;
-	}
 
 	
 	

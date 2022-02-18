@@ -9,11 +9,7 @@
       "year": 1998,
       "month": 5,
       "day": 28
-    },
-    "reservas": [
-      784425,
-      558878
-    ]
+    }
   },
   {
     "identificadorCliente": 1,
@@ -25,10 +21,7 @@
       "year": 1985,
       "month": 9,
       "day": 11
-    },
-    "reservas": [
-      185063
-    ]
+    }
   },
   {
     "identificadorCliente": 1,
@@ -40,8 +33,7 @@
       "year": 2002,
       "month": 9,
       "day": 30
-    },
-    "reservas": []
+    }
   },
   {
     "identificadorCliente": 1,
@@ -53,7 +45,6 @@
       "year": 2000,
       "month": 11,
       "day": 27
-    },
-    "reservas": []
+    }
   }
 ]

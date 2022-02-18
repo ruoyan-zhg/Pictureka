@@ -18,6 +18,7 @@ import java.time.LocalTime;
 public class Reserva {
 	private int identificador = 0;
 	private int numTickets = 0;
+	private String id_Duenio;
 	private LocalDate fecha;
 	private LocalTime hora;
 	
@@ -25,13 +26,15 @@ public class Reserva {
 	 * Constructor Reserva
 	 * @param identificador: indica el numero asignado a la reserva
 	 * @param numTickets: es el numero de tickets que se han reservado
+	 * @param id_Duenio: indica el dni de la persona que hizo esa reserva
 	 * @param fecha: almacena la fecha de la reserva
 	 * @param hora: almacena la hora de la reserva
 	 */
-	public Reserva(int identificador, int numTickets, LocalDate fecha, LocalTime hora) {
+	public Reserva(int identificador, int numTickets, String duenio, LocalDate fecha, LocalTime hora) {
 		super();
 		this.identificador = identificador;
 		this.numTickets = numTickets;
+		this.id_Duenio = duenio;
 		this.fecha = fecha;
 		this.hora = hora;
 	}
@@ -50,6 +53,15 @@ public class Reserva {
 
 	public void setIdentificador(int identificador) {
 		this.identificador = identificador;
+	}
+	
+
+	public String getId_Duenio() {
+		return id_Duenio;
+	}
+
+	public void setId_Duenio(String id_Duenio) {
+		this.id_Duenio = id_Duenio;
 	}
 
 	public LocalDate getFecha() {

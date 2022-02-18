@@ -507,32 +507,12 @@ public class ControladorGuardia {
 				Datos datos = new Datos();
 				Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
 				Vector<Reserva> tickets = datos.desserializarJsonAReservas();
-				// Se recorre el vector de clientes
-				for (int i = 0; i < clientes.size(); i++) {
-					// Se recorre el vector de reservas de cada cliente para comprobar que tal
-					// identificador exista
-					for (int j = 0; j < clientes.get(i).getReservas().size(); j++) {
-						if (clientes.get(i).getReservas().get(j) == identificadorReserva) {
-							reservaEncontrada = true;
-							for (int t = 0; t < tickets.size(); t++) {
-								if (tickets.get(t).getIdentificador() == identificadorReserva) {
-
-									if (tickets.get(t).getFecha().isAfter(fechaActual)) {
-										informative.setHeaderText("Reserva válida");
-										informative.showAndWait();
-									} else {
-										error.setHeaderText("La reserva es inválida.");
-										error.setContentText("Caducó: " + tickets.get(t).getFecha());
-										error.showAndWait();
-									}
-
-								}
-							}
-
-						}
-
+				int i = 0;
+				while(i<tickets.size() && reservaEncontrada==false) {
+					if(tickets.elementAt(i).getIdentificador()==identificadorReserva) {
+						reservaEncontrada = true;
 					}
-
+					i++;
 				}
 				if (reservaEncontrada == false) {
 					error.setHeaderText("La reserva que busca no existe.");

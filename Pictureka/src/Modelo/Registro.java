@@ -60,7 +60,7 @@ public class Registro {
 					
 					if (usuarioRepetido(usuario)) {
 						
-						usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia, fechaNacimiento, new Vector<Integer>()));
+						usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia, fechaNacimiento));
 						escribirUsuarios();
 						
 						estado = "Validacion completada con exito";
@@ -498,7 +498,7 @@ public class Registro {
 	
 	public Cliente recuperar1Cliente(String usuario) {
 		boolean encontrado = false;
-		Cliente cli = new Cliente(usuario, usuario, usuario, usuario, null, null);
+		Cliente cli = new Cliente(usuario, usuario, usuario, usuario, null);
 		int contador = 0;
 		while (encontrado != true && contador < usuarios.size()) {
 			if (usuarios.elementAt(contador).getEmail().equals(usuario)||usuarios.elementAt(contador).getUsuario().equals(usuario)) {

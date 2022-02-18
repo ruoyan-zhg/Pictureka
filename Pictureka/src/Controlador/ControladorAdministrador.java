@@ -122,8 +122,7 @@ public class ControladorAdministrador {
 				// Se muestran los guardias obtenidos en la tabla
 				tableClientes.getItems()
 						.add(new Cliente (clientes.get(i).getUsuario(), clientes.get(i).getDni(), clientes.get(i).getEmail(),
-								clientes.get(i).getContrasenia(), clientes.get(i).getFechaNacimiento(),
-								clientes.get(i).getReservas()));
+								clientes.get(i).getContrasenia(), clientes.get(i).getFechaNacimiento()));
 			
 		}
 

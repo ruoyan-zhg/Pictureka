@@ -2,6 +2,7 @@
   {
     "identificador": 784425,
     "numTickets": 2,
+    "id_Duenio": "1110584H",
     "fecha": {
       "year": 2022,
       "month": 2,
@@ -17,6 +18,7 @@
   {
     "identificador": 558878,
     "numTickets": 7,
+    "id_Duenio": "1110584H",
     "fecha": {
       "year": 2022,
       "month": 2,
@@ -32,6 +34,7 @@
   {
     "identificador": 185063,
     "numTickets": 4,
+    "id_Duenio": "87654378P",
     "fecha": {
       "year": 2022,
       "month": 1,

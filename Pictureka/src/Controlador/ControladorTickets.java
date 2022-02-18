@@ -80,8 +80,19 @@ public class ControladorTickets {
     private ImageView imgTickets;
     
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
+    
+    private String dniUsuario;
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
+    
+    private Datos datos = new Datos();
+    
+    private Vector<Cliente> clientes = new Vector<Cliente>();
+    
+    public void initialize() {
+    	clientes = datos.desserializarJsonAusuarios();
+    	dniUsuario = buscarDni();
+    }
     
     /**
      * 
@@ -219,15 +230,9 @@ public class ControladorTickets {
 							
 							if (horaSeleccionada.isAfter(LocalTime.of(10, 00)) && horaSeleccionada.isBefore(LocalTime.of(20, 00))) {
 								
-								//Se recorre el vector de clientes
-								for (int i=0; i<clientes.size(); i++) {
-						    		if (clientes.get(i).getUsuario().equals(usuario)) {
-						    			//Se introduce el identificador en el vector de reservas
-						    			clientes.get(i).getReservas().add(idReserva);
-						    		}
-						    	}
+								
 								//En el json de reservas se aniade la reserva con su respectiva informacion
-						    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
+						    	reservas.addElement(new Reserva(idReserva,tickets,dniUsuario,dateTickets.getValue(), hourTickets.getValue()));
 						    	datos.serializarVectorReservasAJson(reservas);
 						    	datos.serializarArrayAJson(clientes);
 						    	
@@ -253,13 +258,9 @@ public class ControladorTickets {
 							// Comprobar con el horario de viernes a sabado
 							if (horaSeleccionada.isAfter(LocalTime.of(10, 00)) && horaSeleccionada.isBefore(LocalTime.of(21, 00))) {
 								
-								for (int i=0; i<clientes.size(); i++) {
-						    		if (clientes.get(i).getUsuario().equals(usuario)) {
-						    			clientes.get(i).getReservas().add(idReserva);
-						    		}
-						    	}
+								
 								//En el json de reservas se aniade la reserva con su respectiva informacion
-						    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
+						    	reservas.addElement(new Reserva(idReserva,tickets,dniUsuario,dateTickets.getValue(), hourTickets.getValue()));
 						    	datos.serializarVectorReservasAJson(reservas);
 						    	datos.serializarArrayAJson(clientes);
 						    	
@@ -280,13 +281,9 @@ public class ControladorTickets {
 							// Comprobar con el horario del domingo
 							if (horaSeleccionada.isAfter(LocalTime.of(11, 00)) && horaSeleccionada.isBefore(LocalTime.of(19, 00))) {
 								
-								for (int i=0; i<clientes.size(); i++) {
-						    		if (clientes.get(i).getUsuario().equals(usuario)) {
-						    			clientes.get(i).getReservas().add(idReserva);
-						    		}
-						    	}
+								
 								//En el json de reservas se aniade la reserva con su respectiva información
-						    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
+						    	reservas.addElement(new Reserva(idReserva,tickets,dniUsuario,dateTickets.getValue(), hourTickets.getValue()));
 						    	datos.serializarVectorReservasAJson(reservas);
 						    	datos.serializarArrayAJson(clientes);
 						    	
@@ -319,13 +316,9 @@ public class ControladorTickets {
 								// Comrpobar con el horario de lunes a jueves
 								if (horaSeleccionada.isAfter(LocalTime.of(10, 00)) && horaSeleccionada.isBefore(LocalTime.of(20, 00))) {
 									
-									for (int i=0; i<clientes.size(); i++) {
-							    		if (clientes.get(i).getUsuario().equals(usuario)) {
-							    			clientes.get(i).getReservas().add(idReserva);
-							    		}
-							    	}
+									
 									//En el json de reservas se aniade la reserva con su respectiva informacion
-							    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
+							    	reservas.addElement(new Reserva(idReserva,tickets,dniUsuario,dateTickets.getValue(), hourTickets.getValue()));
 							    	datos.serializarVectorReservasAJson(reservas);
 							    	datos.serializarArrayAJson(clientes);
 							    	
@@ -346,13 +339,9 @@ public class ControladorTickets {
 								// Comprobar con el horario de viernes a sabado
 								if (horaSeleccionada.isAfter(LocalTime.of(10, 00)) && horaSeleccionada.isBefore(LocalTime.of(21, 00))) {
 									
-									for (int i=0; i<clientes.size(); i++) {
-							    		if (clientes.get(i).getUsuario().equals(usuario)) {
-							    			clientes.get(i).getReservas().add(idReserva);
-							    		}
-							    	}
+									
 									//En el json de reservas se aniade la reserva con su respectiva informacion
-							    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
+							    	reservas.addElement(new Reserva(idReserva,tickets,dniUsuario,dateTickets.getValue(), hourTickets.getValue()));
 							    	datos.serializarVectorReservasAJson(reservas);
 							    	datos.serializarArrayAJson(clientes);
 							    	
@@ -372,13 +361,9 @@ public class ControladorTickets {
 								// Comprobar con el horario de domingo
 								if (horaSeleccionada.isAfter(LocalTime.of(11, 00)) && horaSeleccionada.isBefore(LocalTime.of(19, 00))) {
 									
-									for (int i=0; i<clientes.size(); i++) {
-							    		if (clientes.get(i).getUsuario().equals(usuario)) {
-							    			clientes.get(i).getReservas().add(idReserva);
-							    		}
-							    	}
+									
 									//En el json de reservas se aniade la reserva con su respectiva informacion
-							    	reservas.addElement(new Reserva(idReserva,tickets,dateTickets.getValue(), hourTickets.getValue()));
+							    	reservas.addElement(new Reserva(idReserva,tickets,dniUsuario,dateTickets.getValue(), hourTickets.getValue()));
 							    	datos.serializarVectorReservasAJson(reservas);
 							    	datos.serializarArrayAJson(clientes);
 							    	
@@ -509,6 +494,20 @@ public class ControladorTickets {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+    }
+    
+    public String buscarDni() {
+    	int i=0;
+    	boolean encontrado = false;
+    	String dni = null;
+    	while(i<clientes.size() && encontrado==false) {
+    		if(clientes.elementAt(i).getUsuario().equals(this.usuario)) {
+    			dni=clientes.elementAt(i).getDni();
+    			encontrado=true;
+    		}
+    		i++;
+    	}
+		return dni;
     }
 
 }

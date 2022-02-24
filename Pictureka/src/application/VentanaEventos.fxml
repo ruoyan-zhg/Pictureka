@@ -235,7 +235,7 @@
                      <graphic>
                         <ImageView fitHeight="62.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Downloads/llamada-telefonica.png" />
+                              <Image url="@../../Imagenes_Multimedia/llamada-telefonica.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -243,7 +243,7 @@
                      <graphic>
                         <ImageView fitHeight="62.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Downloads/email.png" />
+                              <Image url="@../../Imagenes_Multimedia/email.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -251,7 +251,7 @@
                      <graphic>
                         <ImageView fitHeight="62.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Downloads/charlar.png" />
+                              <Image url="@../../Imagenes_Multimedia/charlar.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>

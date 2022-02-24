@@ -18,6 +18,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -63,7 +64,8 @@ public class controladorEditarEventos {
 	private ComboBox comboBoxElegirEvento;
 
 	@FXML
-	private JFXTextArea txtAreaInfo;
+    private TextArea txtAreaInfo;
+
 
 	@FXML
 	private Region imgAniadirImagen;
@@ -113,6 +115,10 @@ public class controladorEditarEventos {
 	public void initialize() {
 		ObservableList<String> list = FXCollections.observableArrayList("1", "2", "3", "4");
 		comboBoxElegirEvento.setItems(list);
+		Image image = new Image("file:" + "/C:/Users/jolie/OneDrive/Documentos/GitHub/PR_INF_21-22-pictureka/Pictureka/Imagenes_Multimedia/anadir-imagen.png");
+		imgAniadirImagen.setBackground(
+				new Background(new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY)));
+		
 
 		eventos = handler.desserializarJsonAEventos();// Ingresamos los datos del Json al vector de eventos
 	}

@@ -348,7 +348,9 @@ public class ControladorInformeAdmin {
 		items.add("Todos");
 		items.add("Solo administradores");
 		for (Staff a : personal) {
-			items.add(a.getNombre()+" "+a.getApellido1()+" - "+ a.getUsuario());
+			if(this.usuario != a.getUsuario()) {
+				items.add(a.getNombre()+" "+a.getApellido1()+" - "+ a.getUsuario());
+			}
 		}
 		ComboBoxPersonal.setItems(items);
 		ComboBoxPersonal.setValue("Todos");

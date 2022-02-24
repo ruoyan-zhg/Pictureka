@@ -95,7 +95,7 @@ public class ControladorTickets {
     
     private Vector<Cliente> clientes = new Vector<Cliente>();
     
-    public void initialize() {
+    public void initializeTicket() {
     	clientes = datos.desserializarJsonAusuarios();
     	dniUsuario = buscarDni();
     }

@@ -46,5 +46,37 @@
       "second": 0,
       "nano": 0
     }
+  },
+  {
+    "identificador": 407912,
+    "numTickets": 3,
+    "id_Duenio": "1110584H",
+    "fecha": {
+      "year": 2022,
+      "month": 2,
+      "day": 25
+    },
+    "hora": {
+      "hour": 15,
+      "minute": 51,
+      "second": 0,
+      "nano": 0
+    }
+  },
+  {
+    "identificador": 455362,
+    "numTickets": 8,
+    "id_Duenio": "1110584H",
+    "fecha": {
+      "year": 2022,
+      "month": 2,
+      "day": 28
+    },
+    "hora": {
+      "hour": 16,
+      "minute": 8,
+      "second": 0,
+      "nano": 0
+    }
   }
 ]

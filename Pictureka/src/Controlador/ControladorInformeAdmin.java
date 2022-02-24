@@ -121,7 +121,6 @@ public class ControladorInformeAdmin {
 	public void initialize() {
 		refrescarTabla();
 		MostrarPersonal();
-		System.out.println(ComboBoxPersonal.getValue());
 	}
 
 	@FXML

@@ -519,6 +519,11 @@ public class ControladorGuardia {
 					error.setHeaderText("La reserva que busca no existe.");
 					error.showAndWait();
 				}
+				else {
+					informative.setHeaderText("La reserva es valida.");
+					informative.showAndWait();
+					
+				}
 
 			} else {
 				error.setHeaderText("Rango del identificador del ticket no aceptable.");

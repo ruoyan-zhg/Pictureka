@@ -25,11 +25,11 @@
          <bottom>
             <ToolBar prefHeight="91.0" prefWidth="1156.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button fx:id="btnContacto" mnemonicParsing="false" onAction="#mostrarContacto" prefHeight="74.0" prefWidth="84.0">
+                  <Button fx:id="btnContacto" mnemonicParsing="false" onAction="#mostrarContacto" prefHeight="74.0" prefWidth="84.0" style="-fx-region-border: blue;">
                      <graphic>
-                        <ImageView fitHeight="62.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="62.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: black;">
                            <image>
-                              <Image url="@../../Imagenes_Multimedia/contacto.png" />
+                              <Image url="@../../../../../../Downloads/llamada-telefonica.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -37,7 +37,7 @@
                      <graphic>
                         <ImageView fitHeight="62.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../Imagenes_Multimedia/arroba.png" />
+                              <Image url="@../../../../../../Downloads/email.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -45,7 +45,7 @@
                      <graphic>
                         <ImageView fitHeight="62.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../Imagenes_Multimedia/letter.png" />
+                              <Image url="@../../../../../../Downloads/charlar.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -62,7 +62,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane fx:id="gridPaneRegion" prefHeight="220.0" prefWidth="1020.0" style="-fx-background-color: #efb810; -fx-border-color: #DDDDDD;">
+                  <GridPane fx:id="gridPaneRegion" prefHeight="220.0" prefWidth="1020.0" style="-fx-background-color: linear-gradient(#B06AB3, #4568DC); -fx-border-color: #DDDDDD;">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="10.0" prefWidth="0.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="26.7" prefWidth="0.0" />
@@ -76,7 +76,7 @@
                      <children>
                         <ImageView fx:id="imgView_BtnFlecha1" fitHeight="97.0" fitWidth="113.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#cambioImgAtras" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
                            <image>
-                              <Image url="@../../Imagenes_Multimedia/siguiente.png" />
+                              <Image url="@../../Imagenes_Multimedia/flecha-correcta.png" />
                            </image>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -84,7 +84,7 @@
                         </ImageView>
                         <ImageView fx:id="imgView_BtnFlecha" fitHeight="97.0" fitWidth="113.0" onMouseClicked="#cambioImg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER">
                            <image>
-                              <Image url="@../../Imagenes_Multimedia/siguiente.png" />
+                              <Image url="@../../Imagenes_Multimedia/flecha-correcta.png" />
                            </image>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -129,7 +129,7 @@
             </GridPane>
          </center>
          <top>
-            <GridPane fx:id="gridPaneButton" prefHeight="80.0" style="-fx-background-color: #FFD700;" BorderPane.alignment="CENTER">
+            <GridPane fx:id="gridPaneButton" prefHeight="80.0" style="-fx-background-color: linear-gradient(#4568DC, #B06AB3);" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />

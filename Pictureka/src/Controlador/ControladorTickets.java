@@ -11,10 +11,13 @@ import com.jfoenix.controls.JFXTimePicker;
 import Modelo.Cliente;
 import Modelo.Datos;
 import Modelo.Reserva;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -79,6 +82,9 @@ public class ControladorTickets {
     @FXML
     private ImageView imgTickets;
     
+    @FXML
+    private ComboBox ComboxTickets;
+    
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
     
     private String dniUsuario;
@@ -112,7 +118,11 @@ public class ControladorTickets {
 		 
 	}
 	 
+	 public void initialize() {
+			ObservableList<String> list = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" );
+			ComboxTickets.setItems(list);
 	 
+	 }
 
     @FXML
     /**

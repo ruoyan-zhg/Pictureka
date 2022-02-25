@@ -25,7 +25,7 @@
          <bottom>
             <ToolBar prefHeight="91.0" prefWidth="1156.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button fx:id="btnContacto" mnemonicParsing="false" onAction="#mostrarContacto" prefHeight="74.0" prefWidth="84.0" style="-fx-region-border: blue;">
+                  <Button fx:id="btnContacto" mnemonicParsing="false" onAction="#mostrarContacto" prefHeight="74.0" prefWidth="84.0">
                      <graphic>
                         <ImageView fitHeight="62.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: black;">
                            <image>

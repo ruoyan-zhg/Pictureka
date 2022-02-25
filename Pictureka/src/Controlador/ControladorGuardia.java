@@ -494,7 +494,7 @@ public class ControladorGuardia {
 		Alert error = new Alert(Alert.AlertType.ERROR);
 		Alert informative = new Alert(Alert.AlertType.CONFIRMATION);
 		LocalDate fechaActual = LocalDate.now();
-		boolean reservaEncontrada = false;
+		String reservaEncontrada = "no encontrada";
 
 		// Se obtiene el texto del JtextField
 		String ticketAcomprobar = numTicket.getText();
@@ -509,14 +509,23 @@ public class ControladorGuardia {
 				Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
 				Vector<Reserva> tickets = datos.desserializarJsonAReservas();
 				int i = 0;
-				while(i<tickets.size() && reservaEncontrada==false) {
+				while(i<tickets.size() && reservaEncontrada.equals("no encontrada")) {
 					if(tickets.elementAt(i).getIdentificador()==identificadorReserva) {
-						reservaEncontrada = true;
+						if(!tickets.elementAt(i).getFecha().isBefore(fechaActual)) {
+							reservaEncontrada = "valida";
+						}
+						else {
+							reservaEncontrada = "invalida";
+						}
 					}
 					i++;
 				}
-				if (reservaEncontrada == false) {
+				if (reservaEncontrada.equals("no encontrada")) {
 					error.setHeaderText("La reserva que busca no existe.");
+					error.showAndWait();
+				}
+				else if(reservaEncontrada.equals("invalida")) {
+					error.setHeaderText("La reserva ya ha caducado.");
 					error.showAndWait();
 				}
 				else {

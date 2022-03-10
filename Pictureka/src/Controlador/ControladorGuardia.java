@@ -11,6 +11,7 @@ import Modelo.Cliente;
 import Modelo.Datos;
 import Modelo.Reserva;
 import Modelo.Sala;
+import Modelo.Staff;
 import Modelo.modelo_Museo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -496,6 +497,12 @@ public class ControladorGuardia {
 		LocalDate fechaActual = LocalDate.now();
 		String reservaEncontrada = "no encontrada";
 
+		modelo_Museo museo = new modelo_Museo();
+		Staff staff = museo.devolverStaff(usuario);
+		String revisor = staff.getUsuario();
+		
+		System.out.println(revisor);
+		
 		// Se obtiene el texto del JtextField
 		String ticketAcomprobar = numTicket.getText();
 		int identificadorReserva = 0;
@@ -513,6 +520,9 @@ public class ControladorGuardia {
 					if(tickets.elementAt(i).getIdentificador()==identificadorReserva) {
 						if(!tickets.elementAt(i).getFecha().isBefore(fechaActual)) {
 							reservaEncontrada = "valida";
+							System.out.println(tickets.get(i).getRevisor());
+							tickets.get(i).setRevisor(revisor);
+							datos.serializarVectorReservasAJson(tickets);
 						}
 						else {
 							reservaEncontrada = "invalida";

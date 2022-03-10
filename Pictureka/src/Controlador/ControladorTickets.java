@@ -179,6 +179,7 @@ public class ControladorTickets {
     	//Creacion de las diferentes alertas
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+    	String revisor = "vacio";
     	
 		int numTickets = 0;
 		//Se cargan los datos de los Json en los vectores
@@ -234,7 +235,7 @@ public class ControladorTickets {
 
 							// En el json de reservas se aniade la reserva con su respectiva informacion
 							reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-									hourTickets.getValue()));
+									hourTickets.getValue(), revisor));
 							datos.serializarVectorReservasAJson(reservas);
 							datos.serializarArrayAJson(clientes);
 
@@ -258,7 +259,7 @@ public class ControladorTickets {
 
 							// En el json de reservas se aniade la reserva con su respectiva informacion
 							reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-									hourTickets.getValue()));
+									hourTickets.getValue(), revisor));
 							datos.serializarVectorReservasAJson(reservas);
 							datos.serializarArrayAJson(clientes);
 
@@ -280,7 +281,7 @@ public class ControladorTickets {
 
 							// En el json de reservas se aniade la reserva con su respectiva información
 							reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-									hourTickets.getValue()));
+									hourTickets.getValue(), revisor));
 							datos.serializarVectorReservasAJson(reservas);
 							datos.serializarArrayAJson(clientes);
 
@@ -315,7 +316,7 @@ public class ControladorTickets {
 
 								// En el json de reservas se aniade la reserva con su respectiva informacion
 								reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-										hourTickets.getValue()));
+										hourTickets.getValue(), revisor));
 								datos.serializarVectorReservasAJson(reservas);
 								datos.serializarArrayAJson(clientes);
 
@@ -338,7 +339,7 @@ public class ControladorTickets {
 
 								// En el json de reservas se aniade la reserva con su respectiva informacion
 								reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-										hourTickets.getValue()));
+										hourTickets.getValue(), revisor));
 								datos.serializarVectorReservasAJson(reservas);
 								datos.serializarArrayAJson(clientes);
 
@@ -360,7 +361,7 @@ public class ControladorTickets {
 
 								// En el json de reservas se aniade la reserva con su respectiva informacion
 								reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-										hourTickets.getValue()));
+										hourTickets.getValue(), revisor));
 								datos.serializarVectorReservasAJson(reservas);
 								datos.serializarArrayAJson(clientes);
 

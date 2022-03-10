@@ -13,7 +13,8 @@
       "minute": 7,
       "second": 0,
       "nano": 0
-    }
+    },
+    "revisor": "vacio"
   },
   {
     "identificador": 558878,
@@ -29,7 +30,8 @@
       "minute": 52,
       "second": 0,
       "nano": 0
-    }
+    },
+    "revisor": "vacio"
   },
   {
     "identificador": 185063,
@@ -45,7 +47,8 @@
       "minute": 15,
       "second": 0,
       "nano": 0
-    }
+    },
+    "revisor": "vacio"
   },
   {
     "identificador": 407912,
@@ -61,7 +64,8 @@
       "minute": 51,
       "second": 0,
       "nano": 0
-    }
+    },
+    "revisor": "vacio"
   },
   {
     "identificador": 455362,
@@ -77,6 +81,24 @@
       "minute": 8,
       "second": 0,
       "nano": 0
-    }
+    },
+    "revisor": "vacio"
+  },
+  {
+    "identificador": 953375,
+    "numTickets": 2,
+    "id_Duenio": "1110584H",
+    "fecha": {
+      "year": 2022,
+      "month": 3,
+      "day": 11
+    },
+    "hora": {
+      "hour": 18,
+      "minute": 15,
+      "second": 0,
+      "nano": 0
+    },
+    "revisor": "2250"
   }
 ]

@@ -21,6 +21,7 @@ public class Reserva {
 	private String id_Duenio;
 	private LocalDate fecha;
 	private LocalTime hora;
+	private String revisor;
 	
 	/**
 	 * Constructor Reserva
@@ -30,13 +31,22 @@ public class Reserva {
 	 * @param fecha: almacena la fecha de la reserva
 	 * @param hora: almacena la hora de la reserva
 	 */
-	public Reserva(int identificador, int numTickets, String duenio, LocalDate fecha, LocalTime hora) {
+	public Reserva(int identificador, int numTickets, String duenio, LocalDate fecha, LocalTime hora, String revisor) {
 		super();
 		this.identificador = identificador;
 		this.numTickets = numTickets;
 		this.id_Duenio = duenio;
 		this.fecha = fecha;
 		this.hora = hora;
+		this.revisor = revisor;
+	}
+
+	public String getRevisor() {
+		return revisor;
+	}
+
+	public void setRevisor(String revisor) {
+		this.revisor = revisor;
 	}
 
 	public int getIdentificador() {

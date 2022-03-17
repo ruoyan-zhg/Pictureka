@@ -1,5 +1,10 @@
 package Modelo;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Vector;
@@ -16,6 +21,10 @@ public class Registro {
 	private Vector <Cliente> usuarios;
 	private Vector<Staff> staff;
 	private Vector<Informe> informes;
+	
+	
+	 static final String USER = "db_lsalmeron";
+	 static final String PASS = "Le963963";
 	
 	public Registro () {
 		Vector <Cliente> _usuarios = new Vector<Cliente>();
@@ -211,47 +220,93 @@ public class Registro {
 	 */
 	public int loginDeUsuarios(String emailOUsuario, String contrasenia) {
 		
-		int tipoUsuario = 0;
-		boolean login = false;
-		boolean esCliente = false;
-		int contador = 0;
-		int contadorStaff = 0;
 		
-		recuperarUsuarios();
-		recuperarStaff();
-		
-		while (login != true && contador < usuarios.size()) {
-			if(usuarios.elementAt(contador).getEmail().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)||
-					usuarios.elementAt(contador).getUsuario().equals(emailOUsuario) && usuarios.elementAt(contador).getContrasenia().equals(contrasenia)) {
-					login = true;
-					esCliente = true;
-					tipoUsuario = 1;
-				
-			}
-			contador++;
-		}
-		
+		Connection conn = null;
+        Statement stmt = null;
+        String sql;
+        String sql2;
+        int tipoUsuario = 0;
+        
+        try {
+            //STEP 1: Register JDBC driver
+        	Class.forName("org.mariadb.jdbc.Driver");
 
-		if (esCliente==false) {
-			while (login !=true && contadorStaff < staff.size()) {
-				if(staff.elementAt(contadorStaff).getEmail().equals(emailOUsuario) && staff.elementAt(contadorStaff).getContrasenia().equals(contrasenia)||
-						staff.elementAt(contadorStaff).getUsuario().equals(emailOUsuario) && staff.elementAt(contadorStaff).getContrasenia().equals(contrasenia)) {
-						login = true;
-						esCliente = false;
-							
-						if (staff.elementAt(contadorStaff).getIdentificadorUser()==2) {
-							tipoUsuario = 2;
-						}
-						else if (staff.elementAt(contadorStaff).getIdentificadorUser()==3) {
-							tipoUsuario = 3;
-						}
-					}
-					contadorStaff++;
+            //STEP 2: Open a connection
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            
+            //Se realiza la consulta en la tabla de CLIENTE
+            sql = "SELECT * FROM CLIENTE "
+            		+ " WHERE (CLIENTE.Usuario = '"+emailOUsuario+"'OR CLIENTE.Email = '"+emailOUsuario+"') AND CLIENTE.Contraseña = '"+contrasenia+"'";
+            stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery( sql );
+			while ( rs.next() ) {
+				String Usuario = rs.getString("Usuario");
+				String Contrasenia = rs.getString("Contraseña");
+				System.out.println( "Usuario = " + Usuario );
+				System.out.println( "Contraseña = " + Contrasenia );
+				tipoUsuario = 1;
+
+			}
+			
+			//Si no se ha encontrado en la de CLIENTE se busca en la de STAFF
+			sql2 = "SELECT * FROM STAFF "
+            		+ " WHERE (STAFF.Usuario = '"+emailOUsuario+"' OR STAFF.Email = '"+emailOUsuario+"') AND STAFF.Contraseña = '"+contrasenia+"'";
+			rs = stmt.executeQuery(sql2);
+			while ( rs.next() ) {
+				String Usuario = rs.getString("Usuario");
+				String Contrasenia = rs.getString("Contraseña");
+				int identificadorUser = rs.getInt("identificadorUser");
+				System.out.println( "Usuario = " + Usuario );
+				System.out.println( "Contraseña = " + Contrasenia );
+				System.out.println( "Identificador = " + identificadorUser );
+				
+				//Dependiendo del Staff que sea sera un identificador u otro
+				if (identificadorUser==2) {
+					
+					tipoUsuario = 2;
 				}
-		}
+				else if (identificadorUser==3) {
+					tipoUsuario = 3;
+				}
+
+			}
+
+			rs.close();
+			stmt.close();
+			
+			//STEP 6: Cerrando conexion.
+			conn.close();     
+        }
+        
+        catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (stmt != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+            }// do nothing
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+		
 		
 		
 		return tipoUsuario;
+		
 	}
 	
   /**

@@ -1,6 +1,8 @@
 package Controlador;
 
 import java.io.IOException;
+
+import Modelo.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,6 +46,9 @@ public class ControladorLogo {
      */
     void entrarApp(ActionEvent event) {
 
+    	//Cliente clienteDefault = new Cliente(0, "vacio", "", "", "", null);
+    	
+    	
     	//Se carga el contenido de la ventana principal
         FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
         //Se le asigna el controlador de la ventana principal

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,8 +25,8 @@ public class Registro {
 	private Vector<Informe> informes;
 	
 	
-	 static final String USER = "db_lsalmeron";
-	 static final String PASS = "Le963963";
+	 static final String USER = "pri_Pictureka";
+	 static final String PASS = "asas";
 	
 	public Registro () {
 		Vector <Cliente> _usuarios = new Vector<Cliente>();
@@ -218,14 +220,13 @@ public class Registro {
 	 * @param contrasenia
 	 * @return
 	 */
-	public int loginDeUsuarios(String emailOUsuario, String contrasenia) {
+	public Cliente loginDeUsuarios(String emailOUsuario, String contrasenia) {
 		
 		
 		Connection conn = null;
         Statement stmt = null;
         String sql;
-        String sql2;
-        int tipoUsuario = 0;
+        Cliente cliente = new Cliente(0, "vacio", "", "", "", null);
         
         try {
             //STEP 1: Register JDBC driver
@@ -243,34 +244,116 @@ public class Registro {
 			ResultSet rs = stmt.executeQuery( sql );
 			while ( rs.next() ) {
 				String Usuario = rs.getString("Usuario");
+				int identificadorCliente = rs.getInt("identificadorUser");
+				String dni = rs.getString("Dni");
+				String email = rs.getString("Email");
 				String Contrasenia = rs.getString("Contraseña");
-				System.out.println( "Usuario = " + Usuario );
-				System.out.println( "Contraseña = " + Contrasenia );
-				tipoUsuario = 1;
-
+				
+				Date fechaNacimeinto = rs.getDate("FechaNacimiento");
+				
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(fechaNacimeinto);
+				LocalDate fecha = LocalDate.of(calendar.get(Calendar.YEAR), (calendar.get(Calendar.MONTH)+1), calendar.get(Calendar.DATE));
+				
+				cliente.setIdentificadorCliente(identificadorCliente);
+				cliente.setUsuario(Usuario);
+				cliente.setDni(dni);
+				cliente.setEmail(email);
+				cliente.setContrasenia(Contrasenia);
+				cliente.setFechaNacimiento(fecha);
+					
 			}
 			
+
+			rs.close();
+			stmt.close();
+			
+			//STEP 6: Cerrando conexion.
+			conn.close();     
+        }
+        
+        catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (stmt != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+            }// do nothing
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+		
+		
+		
+		return cliente;
+		
+	}
+	
+	
+	public Staff loginStaff(String emailOUsuario, String contrasenia) {
+	
+		Connection conn = null;
+        Statement stmt = null;
+        String sql;
+        Staff staff = new Staff(0, "vacio", "", "", "", "", "", "", null);
+        
+        try {
+            //STEP 1: Register JDBC driver
+        	Class.forName("org.mariadb.jdbc.Driver");
+
+            //STEP 2: Open a connection
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            
 			//Si no se ha encontrado en la de CLIENTE se busca en la de STAFF
-			sql2 = "SELECT * FROM STAFF "
+			sql = "SELECT * FROM STAFF "
             		+ " WHERE (STAFF.Usuario = '"+emailOUsuario+"' OR STAFF.Email = '"+emailOUsuario+"') AND STAFF.Contraseña = '"+contrasenia+"'";
-			rs = stmt.executeQuery(sql2);
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery( sql );
+			rs = stmt.executeQuery(sql);
+			
+			
 			while ( rs.next() ) {
 				String Usuario = rs.getString("Usuario");
+				String nombre = rs.getString("Nombre");
+				String apellido1 = rs.getString("Apellido1");
+				String apelldio2 = rs.getString("Apellido2");
+				String dni = rs.getString("Dni");
+				String email = rs.getString("Email");
 				String Contrasenia = rs.getString("Contraseña");
 				int identificadorUser = rs.getInt("identificadorUser");
-				System.out.println( "Usuario = " + Usuario );
-				System.out.println( "Contraseña = " + Contrasenia );
-				System.out.println( "Identificador = " + identificadorUser );
 				
-				//Dependiendo del Staff que sea sera un identificador u otro
-				if (identificadorUser==2) {
-					
-					tipoUsuario = 2;
-				}
-				else if (identificadorUser==3) {
-					tipoUsuario = 3;
-				}
+				Date fechaNacimeinto = rs.getDate("FechaNacimiento");
+				
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(fechaNacimeinto);
+				LocalDate fecha = LocalDate.of(calendar.get(Calendar.YEAR), (calendar.get(Calendar.MONTH)+1), calendar.get(Calendar.DATE));
 
+				
+				
+				staff.setIdentificadorUser(identificadorUser);
+				staff.setUsuario(Usuario);
+				staff.setNombre(nombre);
+				staff.setApellido1(apellido1);
+				staff.setApellido2(apelldio2);
+				staff.setDni(dni);
+				staff.setEmail(email);
+				staff.setContrasenia(Contrasenia);
+				staff.setFechaNacimiento(fecha);
+				
 			}
 
 			rs.close();
@@ -305,9 +388,12 @@ public class Registro {
 		
 		
 		
-		return tipoUsuario;
+		return staff;
+		
 		
 	}
+	
+	
 	
   /**
    * compruebamos el email
@@ -552,30 +638,162 @@ public class Registro {
 	}
 	
 	public Cliente recuperar1Cliente(String usuario) {
-		boolean encontrado = false;
+
 		Cliente cli = new Cliente(usuario, usuario, usuario, usuario, null);
-		int contador = 0;
-		while (encontrado != true && contador < usuarios.size()) {
-			if (usuarios.elementAt(contador).getEmail().equals(usuario)||usuarios.elementAt(contador).getUsuario().equals(usuario)) {
-				encontrado = true;	
-				cli = usuarios.elementAt(contador);
+		Connection conn = null;
+        Statement stmt = null;
+        String sql;
+        
+        try {
+            //STEP 1: Register JDBC driver
+        	Class.forName("org.mariadb.jdbc.Driver");
+
+            //STEP 2: Open a connection
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            
+            //Se realiza la consulta en la tabla de CLIENTE
+            sql = "SELECT * FROM CLIENTE "
+            		+ " WHERE CLIENTE.Usuario = '"+usuario+"'";
+            stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery( sql );
+			while ( rs.next() ) {
+				String Usuario = rs.getString("Usuario");
+
+				String dni = rs.getString("Dni");
+				String email = rs.getString("Email");
+				String Contrasenia = rs.getString("Contraseña");
+				
+				Date fechaNacimeinto = rs.getDate("FechaNacimiento");
+				
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(fechaNacimeinto);
+				LocalDate fecha = LocalDate.of(calendar.get(Calendar.YEAR), (calendar.get(Calendar.MONTH)+1), calendar.get(Calendar.DATE));
+				
+
+				cli.setUsuario(Usuario);
+				cli.setDni(dni);
+				cli.setEmail(email);
+				cli.setContrasenia(Contrasenia);
+				cli.setFechaNacimiento(fecha);
+					
 			}
-			contador++;
-		}
+			
+
+			rs.close();
+			stmt.close();
+			
+			//STEP 6: Cerrando conexion.
+			conn.close();     
+        }
+        
+        catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (stmt != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+            }// do nothing
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+        
 		return cli;
 	}
 	
 	public Staff recuperar1Staff(String usuario) {
-		boolean encontrado = false;
+		
 		Staff sta = new Staff(0, usuario, usuario, usuario, usuario, usuario, usuario, usuario, null);
-		int contador = 0;
-		while (encontrado != true && contador < this.staff.size()) {
-			if (staff.elementAt(contador).getEmail().equals(usuario) ||staff.elementAt(contador).getUsuario().equals(usuario)) {
-				encontrado = true;	
-				sta = staff.elementAt(contador);
+		Connection conn = null;
+        Statement stmt = null;
+        String sql;
+        
+        try {
+            //STEP 1: Register JDBC driver
+        	Class.forName("org.mariadb.jdbc.Driver");
+
+            //STEP 2: Open a connection
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            
+            //Se realiza la consulta en la tabla de CLIENTE
+            sql = "SELECT * FROM STAFF "
+            		+ " WHERE STAFF.Usuario = '"+usuario+"'";
+            stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery( sql );
+			while ( rs.next() ) {
+				String Usuario = rs.getString("Usuario");
+				String nombre = rs.getString("Nombre");
+				String apellido1 = rs.getString("Apellido1");
+				String apelldio2 = rs.getString("Apellido2");
+				String dni = rs.getString("Dni");
+				String email = rs.getString("Email");
+				String Contrasenia = rs.getString("Contraseña");
+				int identificadorUser = rs.getInt("identificadorUser");
+				
+				Date fechaNacimeinto = rs.getDate("FechaNacimiento");
+				
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(fechaNacimeinto);
+				LocalDate fecha = LocalDate.of(calendar.get(Calendar.YEAR), (calendar.get(Calendar.MONTH)+1), calendar.get(Calendar.DATE));
+
+				
+				sta.setIdentificadorUser(identificadorUser);
+				sta.setUsuario(Usuario);
+				sta.setNombre(nombre);
+				sta.setApellido1(apellido1);
+				sta.setApellido2(apelldio2);
+				sta.setDni(dni);
+				sta.setEmail(email);
+				sta.setContrasenia(Contrasenia);
+				sta.setFechaNacimiento(fecha);
 			}
-			contador++;
-		}
+			
+
+			rs.close();
+			stmt.close();
+			
+			//STEP 6: Cerrando conexion.
+			conn.close();     
+        }
+        
+        catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (stmt != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+            }// do nothing
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+        
 		return sta;
 	}
 

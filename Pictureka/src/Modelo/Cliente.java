@@ -44,6 +44,17 @@ public class Cliente {
 		
 
 	}
+	
+	public Cliente(int identificadorCliente, String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento) {
+		this.identificadorCliente = identificadorCliente;
+		this.usuario = usuario;
+		this.dni = dni;
+		this.email = email;
+		this.contrasenia = contrasenia;
+		this.fechaNacimiento = fechaNacimiento;
+		
+
+	}
 
 
 	

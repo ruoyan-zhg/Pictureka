@@ -7,9 +7,12 @@ import java.util.Vector;
 import com.google.common.hash.Hashing;
 import com.jfoenix.controls.JFXButton;
 
+import Modelo.Administrador;
 import Modelo.Cifrado;
 import Modelo.Cliente;
 import Modelo.Datos;
+import Modelo.Guardia;
+import Modelo.Staff;
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -118,7 +121,10 @@ public class ControladorInicioSesion {
     	Cifrado cifrar = new Cifrado();
 
     	//Comprueba que lo devuelto por el método loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
-    	if (museo.loginUsuario(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText()))==1) {
+    	if (museo.loginUsuario(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText())).getIdentificadorCliente()==1) {
+    		
+    		Cliente cli = museo.loginUsuario(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText()));
+    		
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
     		confirmacion.showAndWait();
@@ -145,24 +151,11 @@ public class ControladorInicioSesion {
     		        Stage primaryStage = (Stage)btnInicioSesion.getScene().getWindow();
     		        //Escondemos la ventana
     		        primaryStage.hide();
-    		        //Cargamos los datos en un vector de clientes
-    		        Datos datos = new Datos();
-    		        String nombreUsuario = "";
-    		        Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
-    		        
-    		        //Recorremos el vector para encontrar al usuario que esta iniciando sesion
-    		        for (int i=0; i<clientes.size(); i++) {
-    		        	//Si el usuario introducido por el cliente es igual a un email o un nombre de usuario, se ha encontrado al cliente
-    		        	if (clientes.get(i).getEmail().equals(textUsuario.getText()) | clientes.get(i).getUsuario().equals(textUsuario.getText())) {
-    		        		//Se guarda su nombre para mostrarlo en el Label de bienvenida
-    		        		nombreUsuario = clientes.get(i).getUsuario();
-    		        	}
-    		        }
     		        
     		        controlVPrincipal.setLogged(true);
     		        controlVPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
     		        controlVPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
-    		        controlVPrincipal.getLblBienvenido().setText("¡Bienvenid@ "+(nombreUsuario)+"!");
+    		        controlVPrincipal.getLblBienvenido().setText("¡Bienvenid@ "+(cli.getUsuario())+"!");
     		        controlVPrincipal.getLblBienvenido().setStyle("-fx-background-color: #00aae4");
     		        
     		        
@@ -173,7 +166,9 @@ public class ControladorInicioSesion {
   
     
     	}
-    	else if (museo.loginUsuario(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText()))==2) {
+    	else if (museo.loginStaffs(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText())).getIdentificadorUser()==2) {
+    		
+    		Staff guardia = museo.loginStaffs(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText()));
     		
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
@@ -206,7 +201,9 @@ public class ControladorInicioSesion {
 			}
 
     	}
-    	else if (museo.loginUsuario(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText()))==3) {
+    	else if (museo.loginStaffs(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText())).getIdentificadorUser()==3) {
+    		
+    		Staff admin = museo.loginStaffs(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText()));
     		
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal

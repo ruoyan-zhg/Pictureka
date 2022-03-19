@@ -88,8 +88,11 @@ public class modelo_Museo {
 	 * @param contrasenia contrasenia introducida por el usuario
 	 * @return la informacion o estado del resultado del login del usuario
 	 */
-	public int loginUsuario(String emailOUsuario, String contrasenia) {
+	public Cliente loginUsuario(String emailOUsuario, String contrasenia) {
 		return registro.loginDeUsuarios(emailOUsuario, contrasenia);
+	}
+	public Staff loginStaffs(String emailOUsuario, String contrasenia) {
+		return registro.loginStaff(emailOUsuario, contrasenia);
 	}
 	/**
 	 * Funcion para saber que tipo de usuario es

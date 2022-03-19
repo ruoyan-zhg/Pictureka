@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXToolbar;
@@ -12,6 +17,7 @@ import Modelo.Datos;
 import Modelo.Evento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -79,6 +85,22 @@ public class controladorEditarEventos {
 	private String usuario; // esta el usuario o mail del usuario que tiene la sesion iniciada
 
 	boolean logged; // Este nos dira si la parsona esta logueada o no
+	
+	String directoryName = System.getProperty("user.dir");
+	
+	
+	
+	
+	
+	
+	//cosas BBDD
+		static final String USER = "pri_Pictureka";
+	    static final String PASS = "asas";
+	    Connection conn = null;
+	    Statement stmt = null;
+	    String sql;
+	
+	
 	    
 	/**
 	 * 
@@ -103,9 +125,7 @@ public class controladorEditarEventos {
 
 	private Path pathSRC; // Creamos un objeto Path para guardar el path del src
 
-	Datos handler = new Datos(); // Instanciamos un objeto para meter el Json de eventos en un vector
-
-	private Vector<Evento> eventos = new Vector<Evento>(); // creamos el vector de eventos
+	
 	
 	/**
 	 * 
@@ -113,17 +133,14 @@ public class controladorEditarEventos {
 	 * 
 	 */
 	public void initialize() {
-		eventos = handler.desserializarJsonAEventos();// Ingresamos los datos del Json al vector de eventos
-		String[] nombres = asignarNombreAEventos(); 	//recorre los eveentos y devuelve el nombre de cada posicion de los eventos
-		ObservableList<String> list = FXCollections.observableArrayList("1 - " + nombres[0], "2 - " + nombres[1], "3 - " + nombres[2], "4 - " + nombres[3]);
-		comboBoxElegirEvento.setItems(list);
-		//Image image = new Image("file:" + "/C:/Users/jolie/OneDrive/Documentos/GitHub/PR_INF_21-22-pictureka/Pictureka/Imagenes_Multimedia/anadir-imagen.png");
-		//imgAniadirImagen.setBackground(
-				//new Background(new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY)));
 		
-
-		
+		Vector<String> nombres = asignarNombreAEventos(); 	//recorre los eveentos y devuelve el nombre de cada posicion de los eventos
+		ObservableList<String> list = FXCollections.observableArrayList("1 - " + nombres.elementAt(0), "2 - " + nombres.elementAt(1), "3 - " + nombres.elementAt(2), "4 - " + nombres.elementAt(3));
+		comboBoxElegirEvento.setItems(list);	
 	}
+	
+	
+	
 
 	
 
@@ -178,6 +195,42 @@ public class controladorEditarEventos {
 		}
 
 	}
+	
+	
+	
+	@FXML
+    void cambiarInfo(ActionEvent event) {
+		String[] datosSeleccion = comboBoxElegirEvento.getValue().split(" - ");	//recupera la seleccion
+		int seleccion = Integer.parseInt(datosSeleccion[0]);		//asigna la parte de la seleccion que tiene el numero y omite el nombre
+		
+		
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+            //STEP 2: Open a connection
+            System.out.println("Connecting to a selected database...");
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            
+            sql = "SELECT * FROM EVENTOS WHERE EVENTOS.identificador = '"+seleccion+"';";
+            stmt = conn.createStatement();
+   			ResultSet rs = stmt.executeQuery( sql );
+   			
+   				txtFieldTitulo.setText(rs.getString("nombre"));
+				txtAreaInfo.setText(rs.getString("informacion"));
+				Image image = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+rs.getString("imagen"));
+				imgAniadirImagen.setBackground(
+						new Background(new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY)));
+			
+   			stmt.close();
+   			rs.close();
+   		}
+		catch(SQLException | ClassNotFoundException e){
+			
+		}
+    }
+	
 
 	@FXML
 	/**
@@ -199,16 +252,17 @@ public class controladorEditarEventos {
 						// Si todo sale bien la imagen se guarda en el src
 						try {
 							Files.copy(pathImagen, pathSRC);
+							
+							// Se guardan los datos en la BBDD
+							guardarDatos();
 
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 
-						// Se guradan los datos en el vector de eventos 
-						guardarDatos();
-						// y se actualiza el Json con los datos actualizados del vector
-						handler.serializarVectorEventosAJson(eventos);
+						
+						
 						aviso.setTitle("Exito.");
 						aviso.setHeaderText("Evento cambiado exitosamente.");
 						aviso.showAndWait();
@@ -314,16 +368,34 @@ public class controladorEditarEventos {
 		}
 	}
 	
-	private String[] asignarNombreAEventos() {
-		String[] nombres = new String[4];
-		for (int i = 0; i < eventos.size() ;i++) {
-			nombres[eventos.elementAt(i).getIdentificador()-1] = eventos.elementAt(i).getNombre();		//recupera el nombre de cada una de las posiciones de los eventos
-		}
-		for (int i = 0; i < eventos.size() ;i++) {
-			if (nombres[i].equals(null)) {		//en caso de que una no exista, le asigna vacio
-				nombres[i] = "Vacio";
+	private Vector<String> asignarNombreAEventos() {
+		Vector<String> nombres = new Vector<String>(4);
+		
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+
+            //STEP 2: Open a connection
+            System.out.println("Connecting to a selected database...");
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            
+            sql = "SELECT * FROM EVENTOS";
+            stmt = conn.createStatement();
+   			ResultSet rs = stmt.executeQuery( sql );
+   			while ( rs.next() ) {
+				nombres.add(rs.getString("nombre"));
 			}
+   			
+   			stmt.close();
+   			rs.close();
+   		}
+		catch(SQLException | ClassNotFoundException e){
+			
 		}
+		
+		
+		
 		return nombres;
 	}
 
@@ -331,38 +403,41 @@ public class controladorEditarEventos {
 								// haya solicitado
 		String[] datosSeleccion = comboBoxElegirEvento.getValue().split(" - ");	//recupera la seleccion
 		int seleccion = Integer.parseInt(datosSeleccion[0]);		//asigna la parte de la seleccion que tiene el numero y omite el nombre
-		int contador = 0;
-		boolean encontrado = false;
-		while (contador < eventos.size() && encontrado != true) {	//recorre hasta encontrar el que se quiere reemplazar
-			if(eventos.elementAt(contador).getIdentificador() == seleccion){	//si coincide el identificador, se procede a cambiarlo
-				encontrado = true;
-				eventos.elementAt(contador).setNombre(txtFieldTitulo.getText());
-				eventos.elementAt(contador).setImagen(imagen);
-				eventos.elementAt(contador).setInformacion(txtAreaInfo.getText());
-			}
-			contador++;
-		}
-		if(encontrado = false) {
-			eventos.add(new Evento(seleccion, txtFieldTitulo.getText(), imagen, txtAreaInfo.getText()));	//si no habia evento con ese identificador, se procede a crearlo
-		}
-		/*if (seleccion == 1) {
-			eventos.elementAt(0).setNombre(txtFieldTitulo.getText());
-			eventos.elementAt(0).setImagen(imagen);
-			eventos.elementAt(0).setInformacion(txtAreaInfo.getText());
+		
+		
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
 
-		} else if (seleccion == 2) {
-			eventos.elementAt(1).setNombre(txtFieldTitulo.getText());
-			eventos.elementAt(1).setImagen(imagen);
-			eventos.elementAt(1).setInformacion(txtAreaInfo.getText());
-		} else if (seleccion == 3) {
-			eventos.elementAt(2).setNombre(txtFieldTitulo.getText());
-			eventos.elementAt(2).setImagen(imagen);
-			eventos.elementAt(2).setInformacion(txtAreaInfo.getText());
-		} else {
-			eventos.elementAt(3).setNombre(txtFieldTitulo.getText());
-			eventos.elementAt(3).setImagen(imagen);
-			eventos.elementAt(3).setInformacion(txtAreaInfo.getText());
-		}*/
+            //STEP 2: Open a connection
+            System.out.println("Connecting to a selected database...");
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            System.out.println("Connectado a la Base de Datos...");
+            sql = "UPDATE EVENTOS SET "
+            		+ "nombre = '"+txtFieldTitulo.getText()+"', "
+            		+ "imagen = '"+ imagen +"', "
+            		+ "informacion = '"+txtAreaInfo.getText() +"'"
+            				+ "WHERE "
+            				+ "EVENTOS.identificador = '"+seleccion+"';";
+
+            String sqlDos = "INSERT INTO MODIFICA(Usuario, identificadorEvento) VALUES ('"+ usuario+"' , '"+seleccion+"');";
+            System.out.println("sql UPDATE EVENTO //INSERT MODIFICA: "+sql);
+            stmt = conn.createStatement();
+   			ResultSet rs = stmt.executeQuery( sql );
+   			
+   			rs = stmt.executeQuery(sqlDos);
+   			stmt.close();
+   			rs.close();
+   		}
+		catch(SQLException | ClassNotFoundException e){
+			
+		}
+		
+		
+		
+		
+		
 		
 
 	}

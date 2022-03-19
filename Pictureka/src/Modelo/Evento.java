@@ -67,6 +67,7 @@ public class Evento {
    				this.informacion = rs.getString("informacion");
    				this.imagen = rs.getString("imagen");
    			}
+   			stmt.close();
    			rs.close();
    		}
 		catch(SQLException | ClassNotFoundException e){

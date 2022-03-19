@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 /**
@@ -36,6 +37,14 @@ public class Informe {
 		this.fecha = (LocalDate.now()).toString();
 	}
 
+	public Informe(int id, String autor, String titulo, String destino, String cuerpo, String fecha) {
+		this.id = id;
+		this.autor = autor;
+		this.titulo = titulo;
+		this.cuerpo = cuerpo;
+		this.destino = destino;
+		this.fecha = fecha;
+	}
 
 
 

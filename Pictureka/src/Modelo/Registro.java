@@ -1,10 +1,12 @@
 package Modelo;
-import java.io.FileNotFoundException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
@@ -514,20 +516,22 @@ public class Registro {
 	
 	
 	public int rDevolderIdentificador(String usuario) {
-		recuperarUsuarios();
-		recuperarStaff();
+		
 		int identificador = 0;
-		if (usuarios!=null) {
-			identificador = identificadorCLiente(usuario);
-			if (identificador == -1 && staff != null) {
-				identificador = identificadorStaff(usuario);
-			}
+		
+		
+		if (recuperar1Cliente(usuario).getIdentificadorCliente()==1) {
+			identificador = 1;
 		}
 		else {
-			if (staff != null) {
-				identificador = identificadorStaff(usuario);
+			if (recuperar1Staff(usuario).getIdentificadorUser()==2) {
+				identificador = 2;
+			}
+			else if (recuperar1Staff(usuario).getIdentificadorUser()==3) {
+				identificador = 3;
 			}
 		}
+		
 		return identificador;
 	}
 	
@@ -538,7 +542,7 @@ public class Registro {
 	}
 
 	public Staff rDevolderStaff(String usuario) {
-		recuperarStaff();
+		//recuperarStaff();
 		Staff sta = recuperar1Staff(usuario);
 		return sta;
 	}
@@ -601,45 +605,84 @@ public class Registro {
 	
 	
 	public void recuperarStaff() {
-		Datos datos = new Datos();
-		//Try catch quizas el archivo no abre
-		Vector<Staff> _staff = datos.desserializarJsonStaff();
-		if(_staff != null){ 
-			this.staff = _staff;
-		}
+
+		Vector<Staff> staffs = new Vector<Staff>();
+		
+		Connection conn = null;
+		Statement stmt = null;
+		String sql;
+		
+		try {
+            //STEP 1: Register JDBC driver
+        	Class.forName("org.mariadb.jdbc.Driver");
+
+            //STEP 2: Open a connection
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            
+            //Se realiza la consulta en la tabla de CLIENTE
+            sql = "SELECT * FROM STAFF";
+            stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery( sql );
+			while ( rs.next() ) {
+				String Usuario = rs.getString("Usuario");
+				String nombre = rs.getString("Nombre");
+				String apellido1 = rs.getString("Apellido1");
+				String apellido2 = rs.getString("Apellido2");
+				String dni = rs.getString("Dni");
+				String email = rs.getString("Email");
+				String Contrasenia = rs.getString("Contraseña");
+				int identificadorUser = rs.getInt("identificadorUser");
+				
+				Date fechaNacimeinto = rs.getDate("FechaNacimiento");
+				
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(fechaNacimeinto);
+				LocalDate fecha = LocalDate.of(calendar.get(Calendar.YEAR), (calendar.get(Calendar.MONTH)+1), calendar.get(Calendar.DATE));
+
+				staffs.add(new Staff(identificadorUser, Usuario, nombre, apellido1, apellido2, dni, email, Contrasenia, fecha));
+				
+			}
+			
+
+			rs.close();
+			stmt.close();
+			
+			//STEP 6: Cerrando conexion.
+			conn.close();     
+        }
+        
+        catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (stmt != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+            }// do nothing
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+		this.staff = staffs;
+		
 	}
 	
-	public int identificadorCLiente(String usuario) {
-		boolean encontrado = false;
-		int identificador = -1;
-		int contador = 0;
-		while (encontrado != true && contador < usuarios.size()) {
-			if (usuarios.elementAt(contador).getEmail().equals(usuario)||usuarios.elementAt(contador).getUsuario().equals(usuario)) {
-				encontrado = true;	
-				identificador = usuarios.elementAt(contador).getIdentificadorCliente();
-			}
-			contador++;
-		}
-		return identificador;
-	}
-	
-	public int identificadorStaff(String usuario) {
-		boolean encontrado = false;
-		int identificador = -1;
-		int contador = 0;
-		while (encontrado != true && contador < staff.size()) {
-			if (staff.elementAt(contador).getEmail().equals(usuario)||staff.elementAt(contador).getUsuario().equals(usuario)) {
-				encontrado = true;	
-				identificador = staff.elementAt(contador).getIdentificadorUser();
-			}
-			contador++;
-		}
-		return identificador;
-	}
 	
 	public Cliente recuperar1Cliente(String usuario) {
 
-		Cliente cli = new Cliente(usuario, usuario, usuario, usuario, null);
+		Cliente cli = new Cliente(0, usuario, usuario, usuario, usuario, null);
 		Connection conn = null;
         Statement stmt = null;
         String sql;
@@ -802,26 +845,76 @@ public class Registro {
 		return this.informes;
 	}
 	
-	public void escribirInforme(int id, String autor, String titulo, String destino, String cuerpo) throws FileNotFoundException {
-		recuperarInformes();
-		Informe informe = new Informe (id, autor, titulo, destino, cuerpo);
-		informes.addElement(informe);
-		escribirInformes();
-	}
-	
+
 
 	private void recuperarInformes() {
-		Datos datos = new Datos();
-		//Try catch quizas el archivo no abre
-		Vector<Informe> _informes = datos.desserializarJsonInforme();
-		if(_informes != null){ 
-			this.informes = _informes;
-		}
-	}
-	public void escribirInformes() throws FileNotFoundException {
-		Datos datos = new Datos();
-		//Try catch quizas el archivo no abre
-		datos.serializarVectorInformesAJson(informes);
+		
+		Vector<Informe> _informes = new Vector<Informe>();
+		Connection conn = null;
+		Statement stmt = null;
+		String sql;
+		
+		try {
+            //STEP 1: Register JDBC driver
+        	Class.forName("org.mariadb.jdbc.Driver");
+
+            //STEP 2: Open a connection
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            
+            //Se realiza la consulta en la tabla de CLIENTE
+            sql = "SELECT * FROM INFORMES";
+            stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery( sql );
+			while ( rs.next() ) {
+				int id = rs.getInt("id_informe");
+				String titulo = rs.getString("titulo");
+				String cuerpo = rs.getString("cuerpo");
+				String destino = rs.getString("destino");
+				String autor = rs.getString("autor");
+				Timestamp fecha = rs.getTimestamp("fecha");
+				
+				SimpleDateFormat df = new SimpleDateFormat("YYYY.MM.dd HH:mm:ss");
+			    String time = df.format(fecha);
+
+				_informes.add(new Informe(id, autor, titulo, destino, cuerpo, time));
+				
+			}
+			
+
+			rs.close();
+			stmt.close();
+			
+			//STEP 6: Cerrando conexion.
+			conn.close();     
+        }
+        
+        catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (stmt != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+            }// do nothing
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+		
+		this.informes = _informes;
+
 	}
 
 	public Vector<Staff> getStaff() {

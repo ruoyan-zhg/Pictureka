@@ -1,5 +1,11 @@
 package Modelo;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  * 
  * Almacena la informacion de los eventos y la direccion de la imagen para poner en el evento
@@ -18,6 +24,13 @@ public class Evento {
 	private String imagen;
 	private String informacion;
 	
+	//cosas BBDD
+	static final String USER = "pri_Pictureka";
+    static final String PASS = "asas";
+    Connection conn = null;
+    Statement stmt = null;
+    String sql;
+	
 	//Constructor
 	/**
 	 * Constructor del evento a mostrar 
@@ -34,6 +47,34 @@ public class Evento {
 		this.imagen = imagen;
 		this.informacion = informacion;
 	}
+	
+	public void obtenerDatosEventoBBDD(int id) {
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+
+            //STEP 2: Open a connection
+            System.out.println("Connecting to a selected database...");
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            System.out.println("Connectado a la Base de Datos...");
+            sql = "SELECT * FROM EVENTOS WHERE EVENTOS.identificador ='"+id+"';";
+            System.out.println("sql Select: "+sql);
+            stmt = conn.createStatement();
+   			ResultSet rs = stmt.executeQuery( sql );
+   			while ( rs.next() ) {
+   				this.nombre = rs.getString("nombre");
+   				this.informacion = rs.getString("informacion");
+   				this.imagen = rs.getString("imagen");
+   			}
+   			rs.close();
+   		}
+		catch(SQLException | ClassNotFoundException e){
+			
+		}
+            
+		}
+		 
 	
 	
 	//getters y setters

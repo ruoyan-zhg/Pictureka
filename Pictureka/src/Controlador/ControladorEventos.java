@@ -130,7 +130,7 @@ public class ControladorEventos {
     
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 		
-   boolean logged; //Este nos dira si la parsona esta logueada o no
+    boolean logged; //Este nos dira si la parsona esta logueada o no
    
    
 	 
@@ -151,7 +151,12 @@ public class ControladorEventos {
     //ArrayList que guardara las imagenes que se mostraran en la ventana principal
   	ArrayList<Image> imagenes = new ArrayList<Image>();
   	Datos handler = new Datos(); //Instanciamos un objeto para meter el Json de eventos en un vector
-  	Vector<Evento> eventos = new Vector<Evento>(); //creamos el vector de eventos
+  	//Vector<Evento> eventos = new Vector<Evento>(); //creamos el vector de eventos
+  	Evento eventoUno = new Evento(1, "", "", "");
+  	Evento eventoDos = new Evento(2, "", "", "");
+  	Evento eventoTres = new Evento(3, "", "", "");
+  	Evento eventoCuatro = new Evento(4, "", "", "");
+  	
   	
   	//Contadores que indicaran como un puntero las imagenes que se muestran en los imgviews del image slider
    	int count = 0;
@@ -159,6 +164,7 @@ public class ControladorEventos {
    	int countTres = 2;
    	
     String directoryName = System.getProperty("user.dir");
+    
    	
   	@FXML
   	/**
@@ -174,8 +180,10 @@ public class ControladorEventos {
   	 	imagenes.add(new Image("/seurat.jpg"));
   	 	imagenes.add(new Image("/VanGogh.jpg"));
   	 	imagenes.add(new Image("/people.jpg"));
-  	 	
-  	 	eventos = handler.desserializarJsonAEventos();
+  	 	eventoUno.obtenerDatosEventoBBDD(eventoUno.getIdentificador());
+  	 	eventoDos.obtenerDatosEventoBBDD(eventoDos.getIdentificador());
+  	 	eventoTres.obtenerDatosEventoBBDD(eventoTres.getIdentificador());
+  	 	eventoCuatro.obtenerDatosEventoBBDD(eventoCuatro.getIdentificador());
   	 	
   	 	//Se colocan las imagenes en las regiones
   	 	region1.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(0)), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -184,10 +192,10 @@ public class ControladorEventos {
   	 	
   	 	
   	 	//Cosas de la Informacion
-  	 	Image arribaIzq = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventos.elementAt(0).getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
-  	 	Image arribaDer = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventos.elementAt(1).getImagen());
-  	 	Image abajoIzq = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventos.elementAt(2).getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
-  	 	Image abajoDer = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventos.elementAt(3).getImagen());
+  	 	Image arribaIzq = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventoUno.getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
+  	 	Image arribaDer = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventoDos.getImagen());
+  	 	Image abajoIzq = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventoTres.getImagen()); //A las imagenes correspondientes le asignamos la direccion en la que se encuentran
+  	 	Image abajoDer = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+eventoCuatro.getImagen());
   	 	
   	 	
   	 	//asignamos imagenes a la region
@@ -199,17 +207,17 @@ public class ControladorEventos {
   	 	
   	 	//asignamos los titulos
   	 	
-  	 	lblEventoUno.setText(eventos.elementAt(0).getNombre());
-  	 	lblEventoDos.setText(eventos.elementAt(1).getNombre());
-  	 	lblEventoTres.setText(eventos.elementAt(2).getNombre());
-  	 	lblEventoCuatro.setText(eventos.elementAt(3).getNombre());
+  	 	lblEventoUno.setText(eventoUno.getNombre());
+  	 	lblEventoDos.setText(eventoDos.getNombre());
+  	 	lblEventoTres.setText(eventoTres.getNombre());
+  	 	lblEventoCuatro.setText(eventoCuatro.getNombre());
   	 	
   	 	//asignamos las descripciones
   	 	
-  	 	txtAreaUno.setText(eventos.elementAt(0).getInformacion());
-  	 	txtAreaDos.setText(eventos.elementAt(1).getInformacion());
-  	 	txtAreaTres.setText(eventos.elementAt(2).getInformacion());
-  	 	txtAreaCuatro.setText(eventos.elementAt(3).getInformacion());
+  	 	txtAreaUno.setText(eventoUno.getInformacion());
+  	 	txtAreaDos.setText(eventoDos.getInformacion());
+  	 	txtAreaTres.setText(eventoTres.getInformacion());
+  	 	txtAreaCuatro.setText(eventoCuatro.getInformacion());
   	 	
   	 	//Mensajes emergentes con la informacion de contacto del museo
 	 	Tooltip correo = new Tooltip("Dirección de correo: \npicturekasfw@gmail.com");
@@ -220,8 +228,7 @@ public class ControladorEventos {
 	 	
 	 	Tooltip contacto = new Tooltip("Número de contacto: \n608693411");
 	 	btnContacto.setTooltip(contacto);
-  	 	
-  	 	
+	 	
   	}
   	
 

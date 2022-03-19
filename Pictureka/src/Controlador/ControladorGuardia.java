@@ -2,7 +2,14 @@ package Controlador;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Vector;
 
 import com.jfoenix.controls.JFXTextArea;
@@ -94,6 +101,9 @@ public class ControladorGuardia {
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
+    static final String USER = "pri_Pictureka";
+	static final String PASS = "asas";
+    
     
 	 /**
 	  * 
@@ -174,24 +184,70 @@ public class ControladorGuardia {
 	 *              del informe.
 	 */
 	void enviar(MouseEvent event) {
+		
+		Connection conn = null;
+		Statement stmt = null;
+		String sql;
+
 		Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
 		Alert error = new Alert(Alert.AlertType.ERROR);
 		// Se comprueba que el titulo y cuerpo del informe no se encuentren vacios
 		if (!(tituloInforme.getText().isEmpty() | cuerpoInforme.getText().isEmpty())) {
 			// Se comprueba que el cuerpo del informe tenga al menos 20 caracteres
 			modelo_Museo museo = new modelo_Museo();
-			String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
-			try {
-				//El informe que el guardia escribe lo pueden visualizar todos 
-				String destino = "Solo administradores";
-				// se escribe el informe en le Json
-				museo.getRegistro().escribirInforme(2, nombre, tituloInforme.getText(), destino, cuerpoInforme.getText());
-				confirmacion.setHeaderText("Informe guardado con exito");
-				confirmacion.show();
-			} catch (FileNotFoundException e) {
-				error.setHeaderText("Archivo no encontrado!");
-				error.show();
-			}
+			Staff guardia = museo.getRegistro().recuperar1Staff(usuario);
+			// El informe que el guardia escribe lo pueden visualizar todos
+			String destino = "Solo administradores";
+			
+
+			 try {
+		            //STEP 1: Register JDBC driver
+		        	Class.forName("org.mariadb.jdbc.Driver");
+
+		            //STEP 2: Open a connection
+
+		            conn = DriverManager.getConnection(
+		                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+		            
+		            //Se realiza la consulta en la tabla de CLIENTE
+		            sql = "INSERT INTO INFORMES(titulo, cuerpo, destino, autor, fecha)"
+		            		+ "VALUES ('"+tituloInforme.getText()+"', '"+cuerpoInforme.getText()+"', '"+destino+"', '"+guardia.getNombre()+"', CURRENT_TIMESTAMP())";
+		            stmt = conn.createStatement();
+					ResultSet rs = stmt.executeQuery( sql );
+
+					rs.close();
+					stmt.close();
+					
+					//STEP 6: Cerrando conexion.
+					conn.close();
+					
+					confirmacion.setHeaderText("Informe guardado con éxito");
+					confirmacion.showAndWait();
+					
+		        }
+		        
+		        catch (SQLException se) {
+		            //Handle errors for JDBC
+		            se.printStackTrace();
+		        } catch (Exception e) {
+		            //Handle errors for Class.forName
+		            e.printStackTrace();
+		        } finally {
+		            //finally block used to close resources
+		            try {
+		                if (stmt != null) {
+		                    conn.close();
+		                }
+		            } catch (SQLException se) {
+		            }// do nothing
+		            try {
+		                if (conn != null) {
+		                    conn.close();
+		                }
+		            } catch (SQLException se) {
+		                se.printStackTrace();
+		            }//end finally try
+		        }//end try
 
 		} else {
 			error.setHeaderText("Porfavor rellene los campos del informe!");

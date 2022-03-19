@@ -126,11 +126,6 @@ public class ControladorPerfil {
 				Cliente provisionalCli = museo.devolverCliente(usuario);
 			 	this.cliente = provisionalCli;
 			 }
-			 else if(identificador == -1) {
-				 Alert error = new Alert(Alert.AlertType.ERROR);
-				 error.setHeaderText("Error: Archivo no encontrado");
-				 error.show();
-			 }
 			 else {
 				Staff provisionalStaff = museo.devolverStaff(usuario);
 		 		this.staff = provisionalStaff;
@@ -221,8 +216,6 @@ public class ControladorPerfil {
      * @param event		Evento causado cuando el usuario pulsa sobre la imagen de volver atrás.
      */
     void volver(MouseEvent event) {
-
-    	modelo_Museo museo = new modelo_Museo();
 
 
     	//Comprueba que lo devuelto por el método loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario

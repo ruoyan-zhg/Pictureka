@@ -2,6 +2,11 @@ package Controlador;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
 
 import com.jfoenix.controls.JFXComboBox;
@@ -94,6 +99,9 @@ public class ControladorInformeAdmin {
 	private String informe;
 
 	private Vector<Informe> informes;
+	
+	static final String USER = "pri_Pictureka";
+	static final String PASS = "asas";
 
 	/**
 	 * 
@@ -196,7 +204,7 @@ public class ControladorInformeAdmin {
 		
 		modelo_Museo museo = new modelo_Museo();
 		
-		if (museo.devolverIdentificador(usuario)==2) {
+		if (museo.getRegistro().recuperar1Staff(usuario).getIdentificadorUser()==2) {
 			FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
 			ControladorGuardia controlerGuardia = new ControladorGuardia(usuario);
 			loaderEdit.setController(controlerGuardia);
@@ -214,7 +222,7 @@ public class ControladorInformeAdmin {
 				e.printStackTrace();
 			}
 		}
-		else if (museo.devolverIdentificador(usuario)==3) {
+		else if (museo.getRegistro().recuperar1Staff(usuario).getIdentificadorUser()==3) {
 			FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
 			ControladorAdministrador controlerAdmin = new ControladorAdministrador(usuario);
 			loaderEdit.setController(controlerAdmin);
@@ -247,25 +255,74 @@ public class ControladorInformeAdmin {
 	 *              para enviar el informe.
 	 */
 	void enviarInforme(MouseEvent event) {
+		
+		Connection conn = null;
+		Statement stmt = null;
+		String sql;
+
 		Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
 		Alert error = new Alert(Alert.AlertType.ERROR);
 		// Se comprueba que ninguno de los dos campos se encuentren vacios
 		if (!(tituloInforme.getText().isEmpty() | cuerpoInforme.getText().isEmpty())) {
-			// Se comprueba que el cuerpo del email tenga un minimo de 20 caracteres
+
 			modelo_Museo museo = new modelo_Museo();
-			String nombre = museo.getRegistro().rDevolverNombreStaff(usuario);
+			Staff admin = museo.getRegistro().recuperar1Staff(usuario);
+
+			// String que guarda el dni del guardia al quee se le quiere enviar el informe
+			String destino = devolverDestino();
+			// Se escribe el nuevo informe y se refresca la tabla
+			
 			try {
-				//String que guarda el dni del guardia al quee se le quiere enviar el informe
-				String destino = devolverDestino();
-				// Se escribe el nuevo informe y se refresca la tabla
-				museo.getRegistro().escribirInforme(3, nombre, tituloInforme.getText(), destino, cuerpoInforme.getText());
-				refrescarTabla();
+	            //STEP 1: Register JDBC driver
+	        	Class.forName("org.mariadb.jdbc.Driver");
+
+	            //STEP 2: Open a connection
+
+	            conn = DriverManager.getConnection(
+	                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+	            
+	            //Se realiza la consulta en la tabla de CLIENTE
+	            sql = "INSERT INTO INFORMES(titulo, cuerpo, destino, autor, fecha)"
+	            		+ "VALUES ('"+tituloInforme.getText()+"', '"+cuerpoInforme.getText()+"', '"+destino+"', '"+admin.getNombre()+"', CURRENT_TIMESTAMP())";
+	            stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery( sql );
+
+				rs.close();
+				stmt.close();
+				
+				//STEP 6: Cerrando conexion.
+				conn.close();
+				
 				confirmacion.setHeaderText("Informe guardado con éxito");
-				confirmacion.show();
-			} catch (FileNotFoundException e) {
-				error.setHeaderText("¡Archivo no encontrado!");
-				error.show();
-			}
+				confirmacion.showAndWait();
+				refrescarTabla();
+				
+	        }
+	        
+	        catch (SQLException se) {
+	            //Handle errors for JDBC
+	            se.printStackTrace();
+	        } catch (Exception e) {
+	            //Handle errors for Class.forName
+	            e.printStackTrace();
+	        } finally {
+	            //finally block used to close resources
+	            try {
+	                if (stmt != null) {
+	                    conn.close();
+	                }
+	            } catch (SQLException se) {
+	            }// do nothing
+	            try {
+	                if (conn != null) {
+	                    conn.close();
+	                }
+	            } catch (SQLException se) {
+	                se.printStackTrace();
+	            }//end finally try
+	        }//end try
+			
+
 
 		} else {
 			error.setHeaderText("Porfavor rellene los campos del informe!");

@@ -118,6 +118,11 @@ public class controladorEditarEventos {
 		}
 
 	}
+	
+	public controladorEditarEventos() {
+		
+		
+		}
 	    
 	    
 	    
@@ -200,34 +205,46 @@ public class controladorEditarEventos {
 	
 	@FXML
     void cambiarInfo(ActionEvent event) {
+		if(comboBoxElegirEvento.getValue() != null) {
 		String[] datosSeleccion = comboBoxElegirEvento.getValue().split(" - ");	//recupera la seleccion
 		int seleccion = Integer.parseInt(datosSeleccion[0]);		//asigna la parte de la seleccion que tiene el numero y omite el nombre
 		
-		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+			System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"+seleccion);
             //STEP 2: Open a connection
             System.out.println("Connecting to a selected database...");
 
             conn = DriverManager.getConnection(
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
             
-            sql = "SELECT * FROM EVENTOS WHERE EVENTOS.identificador = '"+seleccion+"';";
+            sql = "SELECT * FROM EVENTOS WHERE EVENTOS.identificador = '"+seleccion+"'";
             stmt = conn.createStatement();
    			ResultSet rs = stmt.executeQuery( sql );
+   			while(rs.next()) {
+   			txtFieldTitulo.setText(rs.getString("nombre"));
+			txtAreaInfo.setText(rs.getString("informacion"));
+			imagen=rs.getString("imagen");
+			Image image = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+imagen);
+			imgAniadirImagen.setBackground(
+					new Background(new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY)));
+   			}
    			
-   				txtFieldTitulo.setText(rs.getString("nombre"));
-				txtAreaInfo.setText(rs.getString("informacion"));
-				Image image = new Image("file:"+directoryName+"\\Imagenes_Multimedia\\"+rs.getString("imagen"));
-				imgAniadirImagen.setBackground(
-						new Background(new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY)));
-			
+   			
+		
+   			//System.out.println(name+info+img);
+    				
    			stmt.close();
    			rs.close();
    		}
 		catch(SQLException | ClassNotFoundException e){
-			
+			System.err.println(e.getMessage());
+		}
+		
+		}
+		else {
+			Alert error = new Alert(Alert.AlertType.ERROR);
+			error.setHeaderText("Porfavor elige el evento que desees editar.");
 		}
     }
 	
@@ -251,7 +268,10 @@ System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
 
 						// Si todo sale bien la imagen se guarda en el src
 						try {
-							Files.copy(pathImagen, pathSRC);
+							if(pathImagen != null && pathSRC != null) {
+								Files.copy(pathImagen, pathSRC);
+							}
+							
 							
 							// Se guardan los datos en la BBDD
 							guardarDatos();

@@ -27,59 +27,7 @@ public class modelo_Museo {
 		registro = _registro;
 		museo = new Museo();
 	}
-	/**
-	 * Registra de un Cliente
-	 * 
-	 * @param usuario Usuario que decide el usuario
-	 * @param dni Dni del usuario
-	 * @param email Email del usuario
-	 * @param contrasenia constrasenia del usuario
-	 * @param fechaNacimiento fecha de nacimiento del usuario
-	 * @param reservas Reservas realizadas por el usuario
-	 * @return Devuelve la informacion o estado sobre el resultado del registro de los clientes
-	 */
-	public String registrarClientes(String usuario, String dni, String email, String Contrasenia,LocalDate fechaNacimiento) {
-		String estado = this.registro.registrarCliente(usuario, dni, email, Contrasenia, fechaNacimiento);
-		return estado;
-	}
-	/**
-	 * Registra un administrador
-	 * 
-	 * @param usuario Usuario asignado al administrador
-	 * @param dni DNI asignado al administrador
-	 * @param email email asignado al administrador
-	 * @param contrasenia contrasenia asignado al administrador
-	 * @param fechaNacimiento fechaNacimiento asignado al administrador
-	 * @param nombre nombre asignado al administrador
-	 * @param apellido1 apellido1 asignado al administrador
-	 * @param apellido2 apellido2 asignado al administrador
-	 * @return Devuelve la informacion o estado sobre el resultado del registro de los administradores
-	 */
-	public String registrarAdministradores(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
-			String apellido2, LocalDate fechaNacimiento) {
-		String estado = this.registro.registrarAdministrador(usuario, dni, email, contrasenia , nombre, apellido1,
-				 apellido2, fechaNacimiento);
-		return estado;
-	}
-	/**
-	 * Registra un guardias
-	 * 
-	 * @param usuario Usuario asignado al administrador
-	 * @param dni DNI asignado al administrador
-	 * @param email email asignado al administrador
-	 * @param contrasenia contrasenia asignado al administrador
-	 * @param fechaNacimiento fechaNacimiento asignado al administrador
-	 * @param nombre nombre asignado al administrador
-	 * @param apellido1 apellido1 asignado al administrador
-	 * @param apellido2 apellido2 asignado al administrador
-	 * @return Devuelve la informacion o estado sobre el resultado del registro de los guardias
-	 */
-	public String registrarGuardias(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
-			String apellido2, LocalDate fechaNacimiento) {
-		String estado = this.registro.registrarGuardia(usuario, dni, email, contrasenia , nombre, apellido1,
-				 apellido2, fechaNacimiento);
-		return estado;
-	}
+	
 	
 	/**
 	 * Comprueba que la informacion proporcionada es correcta y permitirle entrar en su cuenta

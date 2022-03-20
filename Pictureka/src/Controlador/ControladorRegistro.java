@@ -126,15 +126,15 @@ public class ControladorRegistro {
     	if(!(textUsuarioRegistro.getText().isEmpty() | textDni.getText().isEmpty() | textCorreoElectronico.getText().isEmpty() | contrasenia.isEmpty()
 				| repetirContrasenia.isEmpty() |(fechaNuevo == null) )) {
     			
-    			//Se comprueba que la fecha de nacimiento se encuentre entre un rango aceptable
-        		LocalDate fecha = LocalDate.now();
-            	Period periodo = Period.between(chooserCalendario.getValue(), fecha);
-        		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
-        			//Se comrpueba que las contrasenias sean iguales
-            		if(contrasenia.equals(repetirContrasenia)&&!(contrasenia.equals(""))&&!(contrasenia.equals(" "))) {
+			//Se comprueba que la fecha de nacimiento se encuentre entre un rango aceptable
+    		LocalDate fecha = LocalDate.now();
+        	Period periodo = Period.between(chooserCalendario.getValue(), fecha);
+    		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
+    			//Se comrpueba que las contrasenias sean iguales
+    			if(textUsuarioRegistro.getText().length()<=10) {
+    				if(contrasenia.equals(repetirContrasenia)&&!(contrasenia.equals(""))&&!(contrasenia.equals(" "))) {
             			//Se registra el usuario
-                		estado = museo.registrarClientes(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), cifrar.hashing(txtFieldPassword.getText()), chooserCalendario.getValue());
-                		
+                		estado = museo.getRegistro().registrarCliente(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), cifrar.hashing(txtFieldPassword.getText()), chooserCalendario.getValue());
                 		if (estado.equals("Validacion completada con exito")) {
                 			confirmacion.setHeaderText(estado);
                 			confirmacion.showAndWait();
@@ -145,18 +145,23 @@ public class ControladorRegistro {
                 			error.setHeaderText(estado);
                 			error.show();
                 		}
+                		
                 	}
                 	else {
                 		 error.setHeaderText("Error: las contraseñas no coinciden");
                 		 error.show();
                 	}
             	}
-        		else {
-        			error.setHeaderText("Error: Rango de edad no aceptable");
-           		 	error.show();
-        		}
-        	
-    		
+            	else {
+            		 error.setHeaderText("Error: El usuario sobrepasa 10 digitos");
+            		 error.show();
+            	}
+    			
+        	}
+    		else {
+    			error.setHeaderText("Error: Rango de edad no aceptable");
+       		 	error.show();
+    		}
     	}
     	else {
     		error.setHeaderText("¡Porfavor rellene todos los campos!");

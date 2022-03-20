@@ -110,24 +110,15 @@ public class ControladorTabAniadirAdmin {
     	Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
     	Cifrado cifrar = new Cifrado();
     	
-    	String usuarioNuevo;
-    	String nombreNuevo;
-    	String apellido1Nuevo;
-    	String apellido2Nuevo;
-    	String emailNuevo;
-    	String dniNuevo;
-    	String contraseniaNuevo;
-    	LocalDate fechaNacimientoNuevo;
-    	
     	//Recoge lo introducido por el usuario
-    	usuarioNuevo = textUsuario.getText();
-    	nombreNuevo = textNombre.getText();
-    	apellido1Nuevo = text1Apellido.getText();
-    	apellido2Nuevo = text2Apellido.getText();
-    	emailNuevo = textEmail.getText();
-    	dniNuevo = textDNI.getText();
-    	contraseniaNuevo = textContrasenia.getText();
-    	fechaNacimientoNuevo = DateAdminNacimiento.getValue();
+    	String usuarioNuevo = textUsuario.getText();
+    	String nombreNuevo = textNombre.getText();
+    	String apellido1Nuevo = text1Apellido.getText();
+    	String apellido2Nuevo = text2Apellido.getText();
+    	String emailNuevo = textEmail.getText();
+    	String dniNuevo = textDNI.getText();
+    	String contraseniaNuevo = textContrasenia.getText();
+    	LocalDate fechaNacimientoNuevo = DateAdminNacimiento.getValue();
     	
     	//Comprueba que los diferentes campos no esten vacios
     	if (usuarioNuevo.isEmpty() || nombreNuevo.isEmpty() || apellido1Nuevo.isEmpty() || apellido2Nuevo.isEmpty() || emailNuevo.isEmpty() ||
@@ -138,53 +129,18 @@ public class ControladorTabAniadirAdmin {
     		error.showAndWait();
     	}
     	else {
-			// Se escribe en el json de usuarios
-
-			String emailRepetido = "El email introducido ya ha sido registrado";
-			String usuarioRepetido = "Usuario ya registrado";
-			String validacion = "Validacion completada con exito";
-			String emailIncorrecto = "El email introducido no es valido";
-			String edadAceptable = "Rango de edad no aceptable";
-			String dniRepetido = "El dni introducido ya ha sido registrado";
 			
 			// Dependiendo del estado que devuelva el metodo registrarGuardias, se realizara
 			// una accion u otra
-			if (modelo.registrarAdministradores(usuarioNuevo, dniNuevo, emailNuevo, cifrar.hashing(contraseniaNuevo), nombreNuevo,
-					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(validacion)) {
+			String estado = modelo.getRegistro().registrarStaff(usuarioNuevo, dniNuevo, emailNuevo, cifrar.hashing(contraseniaNuevo), nombreNuevo,
+					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo, 3);
+			if (estado.equals("Validacion completada con exito")) {
 				// se muestra en la tabla al nuevo guardia
 				this.controlerEdit.getTableViewAdministrador().getItems().add(new Administrador(usuarioNuevo, dniNuevo, emailNuevo,
 						contraseniaNuevo, fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
-				confirmacion.setHeaderText(validacion);
-				confirmacion.showAndWait();
 			}
-
-			else if (modelo.registrarAdministradores(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
-					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(emailRepetido)) {
-
-				error.setHeaderText(emailRepetido);
-				error.showAndWait();
-			} else if (modelo.registrarAdministradores(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
-					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(emailIncorrecto)) {
-
-				error.setHeaderText(emailIncorrecto);
-				error.showAndWait();
-			} else if (modelo.registrarAdministradores(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
-					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(usuarioRepetido)) {
-
-				error.setHeaderText(usuarioRepetido);
-				error.showAndWait();
-			} else if (modelo.registrarAdministradores(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
-					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(edadAceptable)) {
-
-				error.setHeaderText(edadAceptable);
-				error.showAndWait();
-
-			} else if (modelo.registrarAdministradores(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo, nombreNuevo,
-					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo).equals(dniRepetido)) {
-				error.setHeaderText(dniRepetido);
-				error.showAndWait();
-
-			}
+			confirmacion.setHeaderText(estado);
+			confirmacion.showAndWait();
 		}
     	
     }

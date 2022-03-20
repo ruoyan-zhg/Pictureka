@@ -49,50 +49,88 @@ public class Registro {
 	 * @return String
 	 */
 	
-	public String registrarCliente(String usuario, String dni, String email, String Contrasenia, LocalDate fechaNacimiento) {
-		/*
-		 * VALORES DE ESTADO
-		 * 
-		 * 0 = completo 
-		 * 1 = sin completar las comprobaciones
-		 * 2 = email no valido 
-		 * 3 = email ya registrado anteriormente
-		 * 4
-		 */
-		
-		recuperarUsuarios();
-		recuperarStaff();
-		String estado = "Validacion incompleta";
-		
-		if (validarEmail(email)) { // devuelve true si el email es valido
-			
-			// Comprobamos si el email esta registrado en clientes y el staff
-			if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido registrado
-				
-				if (dniRepetido(dni) && dniStaffRepetido(dni)) {
-					
-					if (usuarioRepetido(usuario)) {
-						
-						usuarios.addElement(new Cliente(usuario, dni, email, Contrasenia, fechaNacimiento));
-						escribirUsuarios();
-						
-						estado = "Validacion completada con exito";
-					} else {
-						estado = "Usuario ya registrado";
-					}
-				} else {
-					estado = "El dni introducido ya ha sido registrado";
+	public String registrarCliente(String usuario, String dni, String email, String contrasenia, LocalDate fechaNacimiento) {
+		//Conectar con la base de datos 
+		Connection conn = null;
+		Statement stmt = null;
+		String sql = "";
+		//cuando esta a false significa que no hay datos iguales al que se esta registrando
+		boolean correcto = false;
+		if (validarEmail(email)) { // devuelve true si el email es valid
+			try{
+				//credenciales
+				conn = conn = DriverManager.getConnection(
+						"jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+			    //consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
+				//el mismo tipo de usuario
+			    sql = "SELECT * FROM CLIENTE "
+			    		+ "WHERE CLIENTE.Usuario = '"+usuario+"' OR CLIENTE.Email = '"+email+"' OR CLIENTE.Dni = '"+dni+"'";
+		        stmt = conn.createStatement();
+				ResultSet respuestaCliente = stmt.executeQuery( sql );
+				if(respuestaCliente.first()) {
+					//significa que ya alguno de los datos introducitos ya esta registrado
+					correcto = true;
 				}
-
-			} else {
-				estado = "El email introducido ya ha sido registrado";
-			}
+				respuestaCliente.close();
+				stmt.close();
+				if (correcto == false) {
+					//consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
+					//el mismo tipo de usuario
+					sql = "SELECT * FROM STAFF "
+							+ "WHERE STAFF.Usuario = '"+usuario+"' OR STAFF.Email = '"+email+"' OR STAFF.Dni = '"+dni+"'";
+			        stmt = conn.createStatement();
+					ResultSet respuestaStaff = stmt.executeQuery( sql );
+					if(respuestaStaff.first()) {
+						//significa que ya alguno de los datos introducitos ya esta registrado
+						correcto = true;
+					}
+					respuestaStaff.close();
+					stmt.close();
+				}
+				//inserta el usuario en caso de que los datos no se repitan
+				if (correcto == false) {
+					sql = "INSERT INTO `CLIENTE` (`Usuario`, `identificadorUser`, `Dni`, "
+		            		+ "`FechaNacimiento`, `Email`, `Contraseña`) VALUES ('"+usuario+"', "+ 1 +", '"+ dni +"', '"+ fechaNacimiento +"', "
+		            		+ "'"+ email +"', '"+ contrasenia +"')";
+		            stmt = conn.createStatement();
+		            stmt.executeUpdate(sql);  
+		            stmt.close();
+		            usuario = "Validacion completada con exito";
+				}
+				else {
+					usuario = "Datos ya registrado";
+				}
+				
+				//Registrar el nuevo cliente
+				
+			} catch (SQLException se) {
+		        //Handle errors for JDBC
+		        se.printStackTrace();
+		    } catch (Exception e) {
+		        //Handle errors for Class.forName
+		        e.printStackTrace();
+		    } finally {
+		        //finally block used to close resources
+		        try {
+		            if (stmt != null) {
+		                conn.close();
+		            }
+		        } catch (SQLException se) {
+		        }// do nothing
+		        try {
+		            if (conn != null) {
+		                conn.close();
+		            }
+		        } catch (SQLException se) {
+		            se.printStackTrace();
+		        }//end finally try
+		    }//end try
 		} else {
-			estado = "El email introducido no es valido";
+			usuario = "El email introducido no es valido";
 		}
-		return estado;
-	
+		return usuario;
 	}
+	    
 	
 	/**
 	 * aqui se maneja el registro de los administradores, mediante las siguientes comprobaciones
@@ -106,122 +144,91 @@ public class Registro {
 	 * @param fechaNacimiento
 	 * @return
 	 */
-	public String registrarAdministrador(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
-			String apellido2, LocalDate fechaNacimiento) {
-		/*
-		 * VALORES DE ESTADO
-		 * 
-		 * 0 = completo 
-		 * 1 = sin completar las comprobaciones
-		 * 2 = email no valido 
-		 * 3 = email ya registrado anteriormente
-		 * 4 = usuario repetido
-		 * 
-		 */
-		recuperarUsuarios();
-		recuperarStaff();
-
-		String estado = "Validacion incompleta";
-		LocalDate fecha = LocalDate.now();
-		Period periodo = Period.between(fechaNacimiento, fecha);
-
-		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
-
-			if (validarEmail(email)) { // devuelve true si el email es valido
-				if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido registrado
-																			
-					if (dniRepetido(dni) && dniStaffRepetido(dni)) {
-						if (staffRepetido(usuario)) {
-							staff.addElement(new Administrador(usuario, dni, email, contrasenia, fechaNacimiento,
-									nombre, apellido1, apellido2));
-							escribirStaff();
-							estado = "Validacion completada con exito";
-						} else {
-							estado = "Usuario ya registrado";
-						}
-					} else {
-						estado = "El dni introducido ya ha sido registrado";
-					}
-				} else {
-					estado = "El email introducido ya ha sido registrado";
+	public String registrarStaff(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
+		String apellido2, LocalDate fechaNacimiento, int identificador) {
+		//Conectar con la base de datos 
+		Connection conn = null;
+		Statement stmt = null;
+		String sql = "";
+		//cuando esta a false significa que no hay datos iguales al que se esta registrando
+		boolean correcto = false;
+		if (validarEmail(email)) { // devuelve true si el email es valid
+			try{
+				//credenciales
+				conn = conn = DriverManager.getConnection(
+						"jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+			    //consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
+				//el mismo tipo de usuario
+			    sql = "SELECT * FROM CLIENTE "
+			    		+ "WHERE CLIENTE.Usuario = '"+usuario+"' OR CLIENTE.Email = '"+email+"' OR CLIENTE.Dni = '"+dni+"'";
+		        stmt = conn.createStatement();
+				ResultSet respuestaCliente = stmt.executeQuery( sql );
+				if(respuestaCliente.first()) {
+					//significa que ya alguno de los datos introducitos ya esta registrado
+					correcto = true;
 				}
-			} else {
-				estado = "El email introducido no es valido";
-			}
+				respuestaCliente.close();
+				stmt.close();
+				if (correcto == false) {
+					//consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
+					//el mismo tipo de usuario
+					sql = "SELECT * FROM STAFF "
+							+ "WHERE STAFF.Usuario = '"+usuario+"' OR STAFF.Email = '"+email+"' OR STAFF.Dni = '"+dni+"'";
+			        stmt = conn.createStatement();
+					ResultSet respuestaStaff = stmt.executeQuery( sql );
+					if(respuestaStaff.first()) {
+						//significa que ya alguno de los datos introducitos ya esta registrado
+						correcto = true;
+					}
+					respuestaStaff.close();
+					stmt.close();
+				}
+				//inserta el usuario en caso de que los datos no se repitan
+				if (correcto == false) {
+					sql = "INSERT INTO `STAFF` (`Usuario`, `Nombre`, `Apellido1`, `Apellido2`, `identificadorUser`,"
+							+ " `Dni`, `FechaNacimiento`, `Email`, `Contraseña`) VALUES ('"+usuario+"','"+nombre+"','"+apellido1+"',"
+							+ "'"+apellido2+"', "+ identificador +", '"+ dni +"', '"+ fechaNacimiento +"', "
+		            		+ "'"+ email +"', '"+ contrasenia +"')";
+		            stmt = conn.createStatement();
+		            stmt.executeUpdate(sql);  
+		            stmt.close();
+		            usuario = "Validacion completada con exito";
+				}
+				else {
+					usuario = "Datos ya registrado";
+				}
+				
+				//Registrar el nuevo cliente
+				
+			} catch (SQLException se) {
+		        //Handle errors for JDBC
+		        se.printStackTrace();
+		    } catch (Exception e) {
+		        //Handle errors for Class.forName
+		        e.printStackTrace();
+		    } finally {
+		        //finally block used to close resources
+		        try {
+		            if (stmt != null) {
+		                conn.close();
+		            }
+		        } catch (SQLException se) {
+		        }// do nothing
+		        try {
+		            if (conn != null) {
+		                conn.close();
+		            }
+		        } catch (SQLException se) {
+		            se.printStackTrace();
+		        }//end finally try
+		    }//end try
 		} else {
-			estado = "Rango de edad no aceptable";
+			usuario = "El email introducido no es valido";
 		}
-		return estado;
-
+		return usuario;
 	}
 	
-	/**
-	 * aqui se maneja el registro de los guardias, mediante comprobaciones
-	 * @param usuario
-	 * @param dni
-	 * @param email
-	 * @param contrasenia
-	 * @param nombre
-	 * @param apellido1
-	 * @param apellido2
-	 * @param fechaNacimiento
-	 * @return
-	 */
-	public String registrarGuardia(String usuario, String dni, String email, String contrasenia, String nombre, String apellido1,
-			String apellido2, LocalDate fechaNacimiento) {
-		/*
-		 * VALORES DE ESTADO
-		 * 
-		 * 0 = completo 
-		 * 1 = sin completar las comprobaciones
-		 * 2 = email no valido 
-		 * 3 = email ya registrado anteriormente
-		 * 4 = usuario repetido
-		 */
-		
-		recuperarUsuarios();
-		recuperarStaff();
-		String estado = "Validacion incompleta";
-		LocalDate fecha = LocalDate.now();
-		Period periodo = Period.between(fechaNacimiento, fecha);
-
-		if (periodo.getYears() > 18 && periodo.getYears() < 100) {
-
-			if (validarEmail(email)) { // devuelve true si el email es valido
-				if (emailRepetido(email) && emailRepetidoStaff(email)) { // devuelve true si el email no ha sido registrado
-					if (dniRepetido(dni) && dniStaffRepetido(dni)) {
-
-						if (staffRepetido(usuario)) {
-							staff.addElement(new Guardia(usuario, dni, email, contrasenia, fechaNacimiento, nombre,
-									apellido1, apellido2));
-							escribirStaff();
-							estado = "Validacion completada con exito";
-						} else {
-							estado = "Usuario ya registrado";
-						}
-					} else {
-						estado = "El dni introducido ya ha sido registrado";
-					}
-				} else {
-					estado = "El email introducido ya ha sido registrado";
-				}
-			} else {
-				estado = "El email introducido no es valido";
-			}
-		} else {
-			estado = "Rango de edad no aceptable";
-		}
-		return estado;
-
-	}
-
-    
-	/**
-	 * aqui se maneja el login del usuario 
-	 * @param emailOUsuario
-	 * @param contrasenia
-	 * @return
-	 */
+	
 	public Cliente loginDeUsuarios(String emailOUsuario, String contrasenia) {
 		
 		

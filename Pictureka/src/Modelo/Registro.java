@@ -77,7 +77,7 @@ public class Registro {
 					//consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
 					//el mismo tipo de usuario
 					sql = "SELECT * FROM STAFF "
-							+ "WHERE STAFF.Usuario = '"+usuario+"' OR STAFF.Email = '"+email+"' OR STAFF.Dni = '"+dni+"'";
+							+ "WHERE STAFF.Usuario = '"+usuario+"' OR STAFF.Email = '"+email+"'";
 			        stmt = conn.createStatement();
 					ResultSet respuestaStaff = stmt.executeQuery( sql );
 					if(respuestaStaff.first()) {
@@ -160,7 +160,7 @@ public class Registro {
 			    //consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
 				//el mismo tipo de usuario
 			    sql = "SELECT * FROM CLIENTE "
-			    		+ "WHERE CLIENTE.Usuario = '"+usuario+"' OR CLIENTE.Email = '"+email+"' OR CLIENTE.Dni = '"+dni+"'";
+			    		+ "WHERE CLIENTE.Usuario = '"+usuario+"' OR CLIENTE.Email = '"+email+"'";
 		        stmt = conn.createStatement();
 				ResultSet respuestaCliente = stmt.executeQuery( sql );
 				if(respuestaCliente.first()) {

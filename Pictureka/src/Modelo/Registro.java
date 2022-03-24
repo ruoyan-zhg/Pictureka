@@ -689,7 +689,7 @@ public class Registro {
 	
 	public Cliente recuperar1Cliente(String usuario) {
 
-		Cliente cli = new Cliente(0, usuario, usuario, usuario, usuario, null);
+		Cliente cli = new Cliente(1, usuario, usuario, usuario, usuario, null);
 		Connection conn = null;
         Statement stmt = null;
         String sql;
@@ -721,7 +721,7 @@ public class Registro {
 				calendar.setTime(fechaNacimeinto);
 				LocalDate fecha = LocalDate.of(calendar.get(Calendar.YEAR), (calendar.get(Calendar.MONTH)+1), calendar.get(Calendar.DATE));
 				
-
+				
 				cli.setUsuario(Usuario);
 				cli.setDni(dni);
 				cli.setEmail(email);
@@ -760,7 +760,7 @@ public class Registro {
                 se.printStackTrace();
             }//end finally try
         }//end try
-        
+        System.out.println(cli.getUsuario());
 		return cli;
 	}
 	

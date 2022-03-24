@@ -120,14 +120,15 @@ public class ControladorPerfil {
 			 modelo_Museo museo = new modelo_Museo();
 			 //museo obtener identificador de usuario
 			 int _identificador = museo.devolverIdentificador(usuario);
+			 System.out.println(_identificador);
 			 identificador = _identificador;
 			 //guardar el usuario dependiendo del identificador
 			 if (identificador == 1) {
-				Cliente provisionalCli = museo.devolverCliente(usuario);
+				Cliente provisionalCli = museo.getRegistro().recuperar1Cliente(usuario);
 			 	this.cliente = provisionalCli;
 			 }
 			 else {
-				Staff provisionalStaff = museo.devolverStaff(usuario);
+				Staff provisionalStaff = museo.getRegistro().recuperar1Staff(usuario);
 		 		this.staff = provisionalStaff;
 			 }
 		 }
@@ -252,8 +253,6 @@ public class ControladorPerfil {
     		} catch (IOException e1) {
     			e1.printStackTrace();
     		}
-
-
     	}
     	else if (identificador==2) {
     		//Se carga el contenido de la ventana

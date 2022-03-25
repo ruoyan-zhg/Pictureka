@@ -907,7 +907,7 @@ public class Registro {
 			   
 	}
 	
-	public void registrarReserva (int identificador, int num_ticket, LocalDate fecha, LocalTime hora, int id_duenio, String revisor) {
+	public void registrarReserva (int identificador, int num_ticket, LocalDate fecha, LocalTime hora, String id_duenio, String revisor) {
 		Connection conn = null;
         Statement stmt = null;
         String sql;
@@ -922,8 +922,8 @@ public class Registro {
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
             
         
-		 sql = "INSERT INTO `RESERVA` (`identificador`, `num_ticket`, `fecha`, `hora`, `id_duenio`, `revisor`) `"
-				+ "VALUES ('"+identificador+"','"+num_ticket+"','"+fecha+"', '"+hora+"', '"+id_duenio+"', '"+revisor+"')"; 
+		 sql = "INSERT INTO `RESERVA` (`identificador`, `num_ticket`, `fecha`, `hora`, `id_duenio`, `revisor`) "
+				+ "VALUES ("+identificador+","+num_ticket+",'"+fecha+"', '"+hora+"', '"+id_duenio+"', "+revisor+");"; 
         stmt = conn.createStatement();
         stmt.executeUpdate(sql);
         stmt.close();
@@ -1121,10 +1121,7 @@ public class Registro {
 		return staff;
 	}
 
-	
-	
+
 
 	
-	
-
 }

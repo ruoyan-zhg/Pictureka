@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import Modelo.Cliente;
 import Modelo.Datos;
+import Modelo.Registro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -180,7 +181,7 @@ public class ControladorTickets {
     	int idReserva = 0;
     	//Se genera un numero de 6 digitos entre (100000-999999) como identificador
     	idReserva = (int) ((Math.random()*(999999-100000) + 100000));
-		
+		System.out.println(idReserva);
     	//Se comprueba que ninguno de los campos se encuentre vacio
 		if (!(ComboxTickets.getValue()== null | hourTickets.getValue() == null | dateTickets.getValue() == null)) {
 
@@ -195,6 +196,7 @@ public class ControladorTickets {
 				// Se obtienen las fechas actuales
 				LocalDate fechaHoy = LocalDate.now();
 				LocalTime horaHoy = LocalTime.now();
+				System.out.println(horaHoy);
 
 				// la fecha seleccionada es menor que la actual
 				if (dateSeleccionada.isBefore(fechaHoy)) {
@@ -204,7 +206,7 @@ public class ControladorTickets {
 				}
 				// la fecha seleccionada es mayor que la fecha actual
 				else if (dateSeleccionada.isAfter(fechaHoy)) {
-					comprobarFecha(dateSeleccionada, horaSeleccionada, idReserva, tickets);
+					comprobarFecha(idReserva, dateSeleccionada, horaSeleccionada, idReserva, tickets);
 				}
 				// la fecha seleccionada es igual a la fecha actual
 				else {
@@ -212,7 +214,7 @@ public class ControladorTickets {
 					if (horaSeleccionada.isAfter(horaHoy)) {
 						// comprobar si la hora adelantada a la hora actual, se encuentra dentro del
 						// rango de apertura del museo
-						comprobarFecha(dateSeleccionada, horaSeleccionada, idReserva, tickets);
+						comprobarFecha(idReserva, dateSeleccionada, horaSeleccionada, idReserva, tickets);
 
 					} else {
 						error.setHeaderText("La hora seleccionada para reservar es inválida.");
@@ -338,7 +340,7 @@ public class ControladorTickets {
 
 	// comprobar que la hora seleccionada, se encuentra dentro del rango de apertura
 	// del museo
-    public void comprobarFecha(LocalDate dateSeleccionada, LocalTime horaSeleccionada, int idReserva, int tickets) {
+    public void comprobarFecha(int identificador, LocalDate dateSeleccionada, LocalTime horaSeleccionada, int idReserva, int tickets) {
     	// Si el dia que ha seleccionado es un lunes, martes, miercoles o jueves
     	if (dateSeleccionada.getDayOfWeek().toString().equals("MONDAY")
 				| dateSeleccionada.getDayOfWeek().toString().equals("TUESDAY")
@@ -346,33 +348,29 @@ public class ControladorTickets {
 				| dateSeleccionada.getDayOfWeek().toString().equals("THURSDAY")) {
 	
 			// Comrpobar con el horario de lunes a jueves
-    		comprobarHora(dateSeleccionada, horaSeleccionada, idReserva, tickets, 10, 20);
+    		comprobarHora(identificador, dateSeleccionada, horaSeleccionada, idReserva, tickets, 10, 20);
 		}
 		// Si el dia que ha seleccionado es un viernes o sabado
 		else if (dateSeleccionada.getDayOfWeek().toString().equals("FRIDAY")
 				| dateSeleccionada.getDayOfWeek().toString().equals("SATURDAY")) {
 			
-			comprobarHora(dateSeleccionada, horaSeleccionada, idReserva, tickets, 10, 21);
+			comprobarHora(identificador, dateSeleccionada, horaSeleccionada, idReserva, tickets, 10, 21);
 		}
 		// Si el dia que ha seleccionado es un domingo
 		else {
 			// Comprobar con el horario del domingo
-			comprobarHora(dateSeleccionada, horaSeleccionada, idReserva, tickets, 11,19);
+			comprobarHora(identificador, dateSeleccionada, horaSeleccionada, idReserva, tickets, 11,19);
 		}
     }
-    public void comprobarHora(LocalDate dateSeleccionada, LocalTime horaSeleccionada, int idReserva, int tickets, int inicio, int fin) {
-    	String revisor = "vacio";
+    public void comprobarHora(int identificador, LocalDate dateSeleccionada, LocalTime horaSeleccionada, int idReserva, int tickets, int inicio, int fin) {
     	Alert error = new Alert(Alert.AlertType.ERROR);
     	Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
     	//Comprueba que el horario este en el horario de dicho dia
     	if (horaSeleccionada.isAfter(LocalTime.of(inicio, 00))
 				&& horaSeleccionada.isBefore(LocalTime.of(fin, 00))) {
 
-			////////////////////////////////////////////////////////////////////////////////////////
-						
-			//AÑADIR LA RESERVA A LA BASE DE DATOS
-			
-			////////////////////////////////////////////////////////////////////////////////////////
+			Registro registro = new Registro();
+			registro.registrarReserva(identificador, tickets, dateSeleccionada, horaSeleccionada, usuario , "NULL");
 
 			confirmation.setHeaderText("Reserva realizada con éxito.");
 			confirmation.showAndWait();

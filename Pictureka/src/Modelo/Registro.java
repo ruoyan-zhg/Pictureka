@@ -611,7 +611,7 @@ public class Registro {
 	}
 	
 	
-	public void recuperarStaff() {
+	public Vector<Staff> recuperarStaff() {
 
 		Vector<Staff> staffs = new Vector<Staff>();
 		
@@ -683,13 +683,13 @@ public class Registro {
             }//end finally try
         }//end try
 		this.staff = staffs;
-		
+		return staffs;
 	}
 	
 	
 	public Cliente recuperar1Cliente(String usuario) {
 
-		Cliente cli = new Cliente(1, usuario, usuario, usuario, usuario, null);
+		Cliente cli = new Cliente(0, usuario, usuario, usuario, usuario, null);
 		Connection conn = null;
         Statement stmt = null;
         String sql;
@@ -714,7 +714,7 @@ public class Registro {
 				String dni = rs.getString("Dni");
 				String email = rs.getString("Email");
 				String Contrasenia = rs.getString("Contraseña");
-				
+				int identificadorUser = rs.getInt("identificadorUser");
 				Date fechaNacimeinto = rs.getDate("FechaNacimiento");
 				
 				Calendar calendar = Calendar.getInstance();
@@ -723,6 +723,7 @@ public class Registro {
 				
 				
 				cli.setUsuario(Usuario);
+				cli.setIdentificadorCliente(identificadorUser);
 				cli.setDni(dni);
 				cli.setEmail(email);
 				cli.setContrasenia(Contrasenia);
@@ -854,7 +855,7 @@ public class Registro {
 	
 
 
-	private void recuperarInformes() {
+	private Vector<Informe> recuperarInformes() {
 		
 		Vector<Informe> _informes = new Vector<Informe>();
 		Connection conn = null;
@@ -919,9 +920,8 @@ public class Registro {
                 se.printStackTrace();
             }//end finally try
         }//end try
-		
 		this.informes = _informes;
-
+		return _informes;
 	}
 
 	public Vector<Staff> getStaff() {

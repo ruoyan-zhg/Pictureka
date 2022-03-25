@@ -10,7 +10,6 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import Modelo.Cliente;
 import Modelo.Datos;
-import Modelo.Reserva;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -175,18 +174,9 @@ public class ControladorTickets {
      * @param event		Evento causado cuando el usuario confirma su reserva cuando pulsa sobre el botón de "Continuar".
      */
     void ReservarTickets(ActionEvent event) {
-    	
     	//Creacion de las diferentes alertas
     	Alert error = new Alert(Alert.AlertType.ERROR);
-    	Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
-    	String revisor = "vacio";
-    	
-		int numTickets = 0;
-		//Se cargan los datos de los Json en los vectores
-		Datos datos = new Datos();
-    	Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
-    	Vector<Reserva> reservas = datos.desserializarJsonAReservas();
-    	
+   
     	int idReserva = 0;
     	//Se genera un numero de 6 digitos entre (100000-999999) como identificador
     	idReserva = (int) ((Math.random()*(999999-100000) + 100000));
@@ -195,8 +185,8 @@ public class ControladorTickets {
 		if (!(ComboxTickets.getValue()== null | hourTickets.getValue() == null | dateTickets.getValue() == null)) {
 
 			try {
-				String ticketsComboBox = ComboxTickets.getValue().toString();
-				int tickets = Integer.parseInt(ticketsComboBox);
+				//convierto el numero de tickets seleccionado en un entero
+				int tickets = Integer.parseInt(ComboxTickets.getValue().toString());
 				// Se obtienen las fechas y horas actuales para compararla con la hora y fecha
 				// seleccionada
 				LocalDate dateSeleccionada = dateTickets.getValue();
@@ -206,11 +196,6 @@ public class ControladorTickets {
 				LocalDate fechaHoy = LocalDate.now();
 				LocalTime horaHoy = LocalTime.now();
 
-				int hour = horaHoy.getHour();
-				int min = horaHoy.getMinute();
-				// Obtenemos solo la hora y los min de la hora actual
-				LocalTime horaHoy2 = LocalTime.of(hour, min);
-
 				// la fecha seleccionada es menor que la actual
 				if (dateSeleccionada.isBefore(fechaHoy)) {
 					error.setHeaderText("La fecha seleccionada es inválida.");
@@ -219,170 +204,21 @@ public class ControladorTickets {
 				}
 				// la fecha seleccionada es mayor que la fecha actual
 				else if (dateSeleccionada.isAfter(fechaHoy)) {
-
-					// comprobar que la hora seleccionada, se encuentra dentro del rango de apertura
-					// del museo
-
-					if (dateSeleccionada.getDayOfWeek().toString().equals("MONDAY")
-							| dateSeleccionada.getDayOfWeek().toString().equals("TUESDAY")
-							| dateSeleccionada.getDayOfWeek().toString().equals("WEDNESDAY")
-							| dateSeleccionada.getDayOfWeek().toString().equals("THURSDAY")) {
-
-						// Comrpobar con el horario de lunes a jueves
-
-						if (horaSeleccionada.isAfter(LocalTime.of(10, 00))
-								&& horaSeleccionada.isBefore(LocalTime.of(20, 00))) {
-
-							// En el json de reservas se aniade la reserva con su respectiva informacion
-							reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-									hourTickets.getValue(), revisor));
-							datos.serializarVectorReservasAJson(reservas);
-							datos.serializarArrayAJson(clientes);
-
-							confirmation.setHeaderText("Reserva realizada con éxito.");
-							confirmation.showAndWait();
-
-						} else {
-							error.setHeaderText("La hora seleccionada es inválida.");
-							error.setContentText("Revise nuestros horarios de apertura.");
-							error.showAndWait();
-						}
-
-					}
-					// Si el dia que ha seleccionado es un viernes o sabado
-					else if (dateSeleccionada.getDayOfWeek().toString().equals("FRIDAY")
-							| dateSeleccionada.getDayOfWeek().toString().equals("SATURDAY")) {
-
-						// Comprobar con el horario de viernes a sabado
-						if (horaSeleccionada.isAfter(LocalTime.of(10, 00))
-								&& horaSeleccionada.isBefore(LocalTime.of(21, 00))) {
-
-							// En el json de reservas se aniade la reserva con su respectiva informacion
-							reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-									hourTickets.getValue(), revisor));
-							datos.serializarVectorReservasAJson(reservas);
-							datos.serializarArrayAJson(clientes);
-
-							confirmation.setHeaderText("Reserva realizada con éxito.");
-							confirmation.showAndWait();
-
-						} else {
-							error.setHeaderText("La hora seleccionada es inválida.");
-							error.setContentText("Revise nuestros horarios de apertura.");
-							error.showAndWait();
-						}
-
-					}
-					// Si el dia que ha seleccionado es un domingo
-					else {
-						// Comprobar con el horario del domingo
-						if (horaSeleccionada.isAfter(LocalTime.of(11, 00))
-								&& horaSeleccionada.isBefore(LocalTime.of(19, 00))) {
-
-							// En el json de reservas se aniade la reserva con su respectiva información
-							reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-									hourTickets.getValue(), revisor));
-							datos.serializarVectorReservasAJson(reservas);
-							datos.serializarArrayAJson(clientes);
-
-							confirmation.setHeaderText("Reserva realizada con éxito.");
-							confirmation.showAndWait();
-
-						} else {
-							error.setHeaderText("La hora seleccionada es inválida.");
-							error.setContentText("Revise nuestros horarios de apertura.");
-							error.showAndWait();
-						}
-
-					}
-
+					comprobarFecha(dateSeleccionada, horaSeleccionada, idReserva, tickets);
 				}
 				// la fecha seleccionada es igual a la fecha actual
 				else {
 					// comprueba que la hora que se selecciona no es atrasada de la actual
-
-					if (horaSeleccionada.isAfter(horaHoy2)) {
+					if (horaSeleccionada.isAfter(horaHoy)) {
 						// comprobar si la hora adelantada a la hora actual, se encuentra dentro del
 						// rango de apertura del museo
-
-						if (dateSeleccionada.getDayOfWeek().toString().equals("MONDAY")
-								| dateSeleccionada.getDayOfWeek().toString().equals("TUESDAY")
-								| dateSeleccionada.getDayOfWeek().toString().equals("WEDNESDAY")
-								| dateSeleccionada.getDayOfWeek().toString().equals("THURSDAY")) {
-
-							// Comrpobar con el horario de lunes a jueves
-							if (horaSeleccionada.isAfter(LocalTime.of(10, 00))
-									&& horaSeleccionada.isBefore(LocalTime.of(20, 00))) {
-
-								// En el json de reservas se aniade la reserva con su respectiva informacion
-								reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-										hourTickets.getValue(), revisor));
-								datos.serializarVectorReservasAJson(reservas);
-								datos.serializarArrayAJson(clientes);
-
-								confirmation.setHeaderText("Reserva realizada con éxito.");
-								confirmation.showAndWait();
-
-							} else {
-								error.setHeaderText("La hora seleccionada es inválida.");
-								error.setContentText("Revise nuestros horarios de apertura.");
-								error.showAndWait();
-							}
-						}
-						// Si el dia que ha seleccionado es un viernes o sabado
-						else if (dateSeleccionada.getDayOfWeek().toString().equals("FRIDAY")
-								| dateSeleccionada.getDayOfWeek().toString().equals("SATURDAY")) {
-
-							// Comprobar con el horario de viernes a sabado
-							if (horaSeleccionada.isAfter(LocalTime.of(10, 00))
-									&& horaSeleccionada.isBefore(LocalTime.of(21, 00))) {
-
-								// En el json de reservas se aniade la reserva con su respectiva informacion
-								reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-										hourTickets.getValue(), revisor));
-								datos.serializarVectorReservasAJson(reservas);
-								datos.serializarArrayAJson(clientes);
-
-								confirmation.setHeaderText("Reserva realizada con éxito.");
-								confirmation.showAndWait();
-
-							} else {
-								error.setHeaderText("La hora seleccionada es inválida.");
-								error.setContentText("Revise nuestros horarios de apertura.");
-								error.showAndWait();
-							}
-
-						}
-						// Si el dia que ha seleccionado es un domingo
-						else {
-							// Comprobar con el horario de domingo
-							if (horaSeleccionada.isAfter(LocalTime.of(11, 00))
-									&& horaSeleccionada.isBefore(LocalTime.of(19, 00))) {
-
-								// En el json de reservas se aniade la reserva con su respectiva informacion
-								reservas.addElement(new Reserva(idReserva, tickets, dniUsuario, dateTickets.getValue(),
-										hourTickets.getValue(), revisor));
-								datos.serializarVectorReservasAJson(reservas);
-								datos.serializarArrayAJson(clientes);
-
-								confirmation.setHeaderText("Reserva realizada con éxito.");
-								confirmation.showAndWait();
-
-							} else {
-								error.setHeaderText("La hora seleccionada es inválida.");
-								error.setContentText("Revise nuestros horarios de apertura.");
-								error.showAndWait();
-							}
-
-						}
+						comprobarFecha(dateSeleccionada, horaSeleccionada, idReserva, tickets);
 
 					} else {
 						error.setHeaderText("La hora seleccionada para reservar es inválida.");
 						error.showAndWait();
 					}
-
 				}
-
 			} catch (NumberFormatException ex) {
 				error.setHeaderText("Formato del número de tickets incorrecto.");
 				error.showAndWait();
@@ -391,7 +227,6 @@ public class ControladorTickets {
 			error.setHeaderText("Por favor rellene todos los campos.");
 			error.showAndWait();
 		}
-
 	}
     	
     
@@ -501,4 +336,53 @@ public class ControladorTickets {
 		return dni;
     }
 
+	// comprobar que la hora seleccionada, se encuentra dentro del rango de apertura
+	// del museo
+    public void comprobarFecha(LocalDate dateSeleccionada, LocalTime horaSeleccionada, int idReserva, int tickets) {
+    	// Si el dia que ha seleccionado es un lunes, martes, miercoles o jueves
+    	if (dateSeleccionada.getDayOfWeek().toString().equals("MONDAY")
+				| dateSeleccionada.getDayOfWeek().toString().equals("TUESDAY")
+				| dateSeleccionada.getDayOfWeek().toString().equals("WEDNESDAY")
+				| dateSeleccionada.getDayOfWeek().toString().equals("THURSDAY")) {
+	
+			// Comrpobar con el horario de lunes a jueves
+    		comprobarHora(dateSeleccionada, horaSeleccionada, idReserva, tickets, 10, 20);
+		}
+		// Si el dia que ha seleccionado es un viernes o sabado
+		else if (dateSeleccionada.getDayOfWeek().toString().equals("FRIDAY")
+				| dateSeleccionada.getDayOfWeek().toString().equals("SATURDAY")) {
+			
+			comprobarHora(dateSeleccionada, horaSeleccionada, idReserva, tickets, 10, 21);
+		}
+		// Si el dia que ha seleccionado es un domingo
+		else {
+			// Comprobar con el horario del domingo
+			comprobarHora(dateSeleccionada, horaSeleccionada, idReserva, tickets, 11,19);
+		}
+    }
+    public void comprobarHora(LocalDate dateSeleccionada, LocalTime horaSeleccionada, int idReserva, int tickets, int inicio, int fin) {
+    	String revisor = "vacio";
+    	Alert error = new Alert(Alert.AlertType.ERROR);
+    	Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+    	//Comprueba que el horario este en el horario de dicho dia
+    	if (horaSeleccionada.isAfter(LocalTime.of(inicio, 00))
+				&& horaSeleccionada.isBefore(LocalTime.of(fin, 00))) {
+
+			////////////////////////////////////////////////////////////////////////////////////////
+						
+			//AÑADIR LA RESERVA A LA BASE DE DATOS
+			
+			////////////////////////////////////////////////////////////////////////////////////////
+
+			confirmation.setHeaderText("Reserva realizada con éxito.");
+			confirmation.showAndWait();
+
+		} else {
+			error.setHeaderText("La hora seleccionada es inválida.");
+			error.setContentText("Revise nuestros horarios de apertura.");
+			error.showAndWait();
+		}
+    }
 }
+
+

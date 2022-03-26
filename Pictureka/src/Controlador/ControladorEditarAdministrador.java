@@ -104,7 +104,7 @@ public class ControladorEditarAdministrador {
 	private JFXButton btnCancelar;
 
 	@FXML
-	private JFXButton btnGuardarCambios;
+    private ImageView btnGuardarCambios;
 
 	private String usuario; // esta el usuario o mail del usuario que tiene la sesion iniciada
 
@@ -139,32 +139,7 @@ public class ControladorEditarAdministrador {
 	 */
 	public void initialize() {
 
-		Registro datos = new Registro();
-		Vector<Staff> staff = datos.recuperarStaff();
-
-		// Se leen los datos del Json del staff
-		for (int i = 0; i < staff.size(); i++) {
-			// Obtiene solo el personal con numero de identificacion 2
-			if (staff.get(i).getIdentificadorUser() == 3) {
-
-				// Se muestran los guardias obtenidos en la tabla
-				tableViewAdministrador.getItems()
-						.add(new Administrador(staff.get(i).getUsuario(), staff.get(i).getDni(),
-								staff.get(i).getEmail(), staff.get(i).getContrasenia(),
-								staff.get(i).getFechaNacimiento(), staff.get(i).getNombre(),
-								staff.get(i).getApellido1(), staff.get(i).getApellido2()));
-			}
-		}
-		// Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al
-		// tipo de dato que queremos guardar
-		Usuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
-		Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-		PrimerApellido.setCellValueFactory(new PropertyValueFactory<>("apellido1"));
-		SegundoApellido.setCellValueFactory(new PropertyValueFactory<>("apellido2"));
-		Email.setCellValueFactory(new PropertyValueFactory<>("email"));
-		DNI.setCellValueFactory(new PropertyValueFactory<>("dni"));
-		FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-		Contrasenia.setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
+		actualizarTablaAdmins();
 
 	}
 
@@ -273,8 +248,13 @@ public class ControladorEditarAdministrador {
 	 * @param event Evento causado cuando el administrador pulsa el botón
 	 *              "Actualizar Cambios".
 	 */
-	void GuardarTodosCambios(ActionEvent event) {
+	void GuardarTodosCambios(MouseEvent event) {
 
+		actualizarTablaAdmins();
+		
+	}
+
+	void actualizarTablaAdmins() {
 		Registro registro = new Registro();
 		Vector<Staff> staff = registro.recuperarStaff();
 		tableViewAdministrador.getItems().clear();
@@ -303,6 +283,8 @@ public class ControladorEditarAdministrador {
 		FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
 		Contrasenia.setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
 
+
+		
 	}
 
 	@FXML
@@ -506,12 +488,6 @@ public class ControladorEditarAdministrador {
 		this.btnCancelar = btnCancelar;
 	}
 
-	public JFXButton getBtnGuardarCambios() {
-		return btnGuardarCambios;
-	}
-
-	public void setBtnGuardarCambios(JFXButton btnGuardarCambios) {
-		this.btnGuardarCambios = btnGuardarCambios;
-	}
+	
 
 }

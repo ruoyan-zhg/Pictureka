@@ -14,6 +14,7 @@ import java.util.Vector;
 import com.jfoenix.controls.JFXButton;
 
 import Modelo.Cifrado;
+import Modelo.Cliente;
 import Modelo.Datos;
 import Modelo.Registro;
 import Modelo.Staff;
@@ -164,71 +165,32 @@ public class ControladorTabEditarAdmin {
 		Alert error = new Alert(Alert.AlertType.ERROR);
 		Alert informacion = new Alert(Alert.AlertType.INFORMATION);
 		Registro registro = new Registro();
-		Datos datos = new Datos();
-		Cifrado cifrar = new Cifrado();
-
+		
+				
+		
 		// Se guarda en un vector la informacion del json del personal de staff
-		Vector<Staff> staff = registro.recuperarStaff();
-		int i = 0;
+		
 
-		String UsuarioNuevo;
-		String nombreNuevo;
-		String apellido1Nuevo;
-		String apellido2Nuevo;
-		String dniNuevo;
-		String emailNuevo;
-		LocalDate fechaNuevo;
-		String contraseniaNuevo;
+		
 
 		// Obtenemos los datos de los diferentes jtextfield
-		UsuarioNuevo = textUsuarioAdmin.getText();
-		nombreNuevo = textNombreAdmin.getText();
-		apellido1Nuevo = textApellido1Admin.getText();
-		apellido2Nuevo = textApellido2Admin.getText();
-		dniNuevo = textDniAdmin.getText();
-		emailNuevo = textEmailAdmin.getText();
-		fechaNuevo = DateFechaAdmin.getValue();
-		contraseniaNuevo = textContraseniaAdmin.getText();
+		String UsuarioNuevo = textUsuarioAdmin.getText();
+		String nombreNuevo = textNombreAdmin.getText();
+		String apellido1Nuevo = textApellido1Admin.getText();
+		String apellido2Nuevo = textApellido2Admin.getText();
+		String dniNuevo = textDniAdmin.getText();
+		String emailNuevo = textEmailAdmin.getText();
+		LocalDate fechaNuevo = DateFechaAdmin.getValue();
+		String contraseniaNuevo = textContraseniaAdmin.getText();
 
 		// Comprobamos que haya seleccionado un administrador
 		if (!controlerEditAdmin.getTableViewAdministrador().getSelectionModel().isEmpty()) {
-
+			
 			// Comprobamos que el contenido no está vacío
 			if (!(UsuarioNuevo.isEmpty() | nombreNuevo.isEmpty() | apellido1Nuevo.isEmpty() | apellido2Nuevo.isEmpty()
 					| dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null) | contraseniaNuevo.isEmpty())) {
 				
-				
-				
-				registro.recuperarStaff();
-				registro.recuperarClientes();
-				
-				// Recorremos el json staff
-                for (i = 0; i < staff.size(); i++) {
-
-                    // Comrpobamos que el administrador a modificar que se ha seleccionado
-                    // se encuentra en el json
-                    if (staff.get(i).getUsuario().equals(
-                            controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getUsuario())
-                            && staff.get(i).getNombre()
-                                    .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
-                                            .getNombre())
-                            && staff.get(i).getApellido1()
-                                    .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
-                                            .getApellido1())
-                            && staff.get(i).getApellido2()
-                                    .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
-                                            .getApellido2())
-                            && staff.get(i).getEmail()
-                                    .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
-                                            .getEmail())
-                            && staff.get(i).getDni().equals(
-                                    controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getDni())
-                            && staff.get(i).getFechaNacimiento()
-                                    .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
-                                            .getFechaNacimiento())
-                            && staff.get(i).getContrasenia().equals(controlerEditAdmin.getTableViewAdministrador()
-                                    .getSelectionModel().getSelectedItem().getContrasenia())) {
-
+				Staff staff = buscarAdminSelecc();
 
 				// Recorremos el json staff
 				
@@ -239,16 +201,16 @@ public class ControladorTabEditarAdmin {
 
 						// Comprobacion del rango de edad
 						if (periodo.getYears() > 18 && periodo.getYears() < 100) {
-							staff.get(i).setFechaNacimiento(fechaNuevo);
+							//staff.get(i).setFechaNacimiento(fechaNuevo);
 
 							// devuelve true si el usuario no esta repetido
 							if (registro.staffRepetido(UsuarioNuevo) && registro.usuarioRepetido(UsuarioNuevo)) {
-								staff.get(i).setUsuario(UsuarioNuevo);
+								//staff.get(i).setUsuario(UsuarioNuevo);
 								
 
 								// devuelve true si el dni no esta repetido
 								if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
-									staff.get(i).setDni(dniNuevo);
+									//staff.get(i).setDni(dniNuevo);
 									
 
 									// devuelve true si el email no esta repetidp
@@ -259,7 +221,8 @@ public class ControladorTabEditarAdmin {
 										if (registro.validarEmail(emailNuevo)) {
 /********************************************************************************************************/
 											GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-
+											controlerEditAdmin.actualizarTablaAdmins();
+											eliminarContenidoTxtfield();
 											informacion.setHeaderText("Cambios realizados con éxito.");
 											informacion.showAndWait();
 
@@ -271,10 +234,11 @@ public class ControladorTabEditarAdmin {
 
 									} else {
 										// Si el administrador mantiene su mismo email
-										if (staff.get(i).getEmail().equals(emailNuevo)) {
+										if (staff.getEmail().equals(emailNuevo)) {
 											
 											GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-
+											controlerEditAdmin.actualizarTablaAdmins();
+											eliminarContenidoTxtfield();
 											informacion.setHeaderText("Cambios realizados con éxito.");
 											informacion.showAndWait();
 
@@ -288,8 +252,8 @@ public class ControladorTabEditarAdmin {
 								} else { // EL ADMIN MANTIENE SU MISMO DNI
 									// si el administrador mantiene su mismo dni
 
-									if (staff.get(i).getDni().equals(dniNuevo)) {
-										staff.get(i).setDni(dniNuevo);
+									if (staff.getDni().equals(dniNuevo)) {
+										//staff.get(i).setDni(dniNuevo);
 										
 
 										if (registro.emailRepetido(emailNuevo)
@@ -299,7 +263,8 @@ public class ControladorTabEditarAdmin {
 											if (registro.validarEmail(emailNuevo)) {
 												
 												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-												
+												controlerEditAdmin.actualizarTablaAdmins();
+												eliminarContenidoTxtfield();
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
 
@@ -310,10 +275,11 @@ public class ControladorTabEditarAdmin {
 											}
 
 										} else {
-											if (staff.get(i).getEmail().equals(emailNuevo)) {
+											if (staff.getEmail().equals(emailNuevo)) {
 												
 												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-												
+												controlerEditAdmin.actualizarTablaAdmins();
+												eliminarContenidoTxtfield();
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
 
@@ -337,8 +303,8 @@ public class ControladorTabEditarAdmin {
 							// EL ADMIN MANTIENE SU MISMO USUARIO
 							else {
 								// Si el guardia mantiene su mismo usuario
-								if (staff.get(i).getUsuario().equals(UsuarioNuevo)) {
-									staff.get(i).setUsuario(UsuarioNuevo);
+								if (staff.getUsuario().equals(UsuarioNuevo)) {
+									staff.setUsuario(UsuarioNuevo);
 									
 
 									// devuelve true si el email del admin no esta repetido
@@ -347,14 +313,14 @@ public class ControladorTabEditarAdmin {
 
 										if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
 											
-											staff.get(i).setDni(dniNuevo);
+											//staff.get(i).setDni(dniNuevo);
 
 											// Se valdida el nuevo email
 											if (registro.validarEmail(emailNuevo)) {
 
 												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-												
-												registro.escribirStaffNuevo(staff);
+												controlerEditAdmin.actualizarTablaAdmins();
+												eliminarContenidoTxtfield();
 
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
@@ -367,14 +333,15 @@ public class ControladorTabEditarAdmin {
 										} else {
 											// Si el dni es el mismo del admin
 
-											if (staff.get(i).getDni().equals(dniNuevo)) {
-												staff.get(i).setDni(dniNuevo);
+											if (staff.getDni().equals(dniNuevo)) {
+												//staff.get(i).setDni(dniNuevo);
 												
 
 												if (registro.validarEmail(emailNuevo)) {
 													
 													GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-													
+													controlerEditAdmin.actualizarTablaAdmins();
+													eliminarContenidoTxtfield();
 													informacion.setHeaderText("Cambios realizados con éxito.");
 													informacion.showAndWait();
 												} else {
@@ -393,25 +360,28 @@ public class ControladorTabEditarAdmin {
 
 									} else {
 										// Si el email es el mismo del admin
-										if (staff.get(i).getEmail().equals(emailNuevo)) {
-											staff.get(i).setEmail(emailNuevo);
+										if (staff.getEmail().equals(emailNuevo)) {
+											//staff.get(i).setEmail(emailNuevo);
 											
 
 											if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
 												
 												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-
-												registro.escribirStaffNuevo(staff);
+												controlerEditAdmin.actualizarTablaAdmins();
+												eliminarContenidoTxtfield();
+												//registro.escribirStaffNuevo(staff);
 
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
 
 											} else {
 												// Mismo dni del admin
-												if (staff.get(i).getDni().equals(dniNuevo)) {
+												if (staff.getDni().equals(dniNuevo)) {
 													
 													GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-
+													controlerEditAdmin.actualizarTablaAdmins();
+													eliminarContenidoTxtfield();
+													
 													informacion.setHeaderText("Cambios realizados con éxito.");
 													informacion.showAndWait();
 
@@ -440,7 +410,7 @@ public class ControladorTabEditarAdmin {
 							error.setHeaderText("Rango de edad no aceptable.");
 							error.showAndWait();
 						}
-                    }}
+                    
 				
 			} else {
 				error.setHeaderText("Revise que todos losc campos están completos.");
@@ -530,9 +500,63 @@ public class ControladorTabEditarAdmin {
 			}
 		
 			}
+	}
+	//busca el admin que se haya seleccionado en la tabla
+	public Staff buscarAdminSelecc(){
+		Registro registro = new Registro();
+		Vector<Staff> staff = registro.recuperarStaff();
+		registro.recuperarClientes();
+		Staff nuevo = null;
+		int i=0;
+		boolean encontrado = false;
 		
+		// Recorremos el json staff
+        while(i<staff.size() && encontrado==false) {
+
+            // Comrpobamos que el administrador a modificar que se ha seleccionado
+            if (staff.get(i).getUsuario().equals(
+                    controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getUsuario())
+                    && staff.get(i).getNombre()
+                            .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
+                                    .getNombre())
+                    && staff.get(i).getApellido1()
+                            .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
+                                    .getApellido1())
+                    && staff.get(i).getApellido2()
+                            .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
+                                    .getApellido2())
+                    && staff.get(i).getEmail()
+                            .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
+                                    .getEmail())
+                    && staff.get(i).getDni().equals(
+                            controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getDni())
+                    && staff.get(i).getFechaNacimiento()
+                            .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
+                                    .getFechaNacimiento())
+                    && staff.get(i).getContrasenia().equals(controlerEditAdmin.getTableViewAdministrador()
+                            .getSelectionModel().getSelectedItem().getContrasenia())) {
+            	
+            	nuevo = new Staff(3, this.getTextUsuarioAdmin().getText(), this.textNombreAdmin.getText(), this.textApellido1Admin.getText(),
+						this.textApellido2Admin.getText(), this.textDniAdmin.getText(), this.textEmailAdmin.getText(), this.textContraseniaAdmin.getText(), this.DateFechaAdmin.getValue());
+            	encontrado=true;
+            
+            }
+            i++;
+        }
+		return nuevo;
+	}
+	
+	
+	void eliminarContenidoTxtfield() {
 		
-		
+		textUsuarioAdmin.clear();
+		textNombreAdmin.clear();
+		textApellido1Admin.clear();
+		textApellido2Admin.clear();
+		textDniAdmin.clear();
+		textEmailAdmin.clear();
+		textContraseniaAdmin.clear();
+		DateFechaAdmin.getEditor().clear();
 	}
 	
 

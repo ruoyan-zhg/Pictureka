@@ -551,7 +551,7 @@ public class Registro {
 	}
 
 	public Staff rDevolderStaff(String usuario) {
-		//recuperarStaff();
+		recuperarStaff();
 		Staff sta = recuperar1Staff(usuario);
 		return sta;
 	}
@@ -863,16 +863,10 @@ public class Registro {
 				
 				
 				Time hora = rs.getTime("hora");
-				System.out.println(hora);
 				LocalTime time = hora.toLocalTime();
-				System.out.println(time);
-	
-			
-				//Calendar time = Calendar.getInstance();
-				//calendar.setTime(f);
-				//LcalTime hora =
+
 				
-				//Reservas.add(new Reserva(identificador, numTickets, duenio, fecha, horas, revisor));
+				Reservas.add(new Reserva(identificador, num_ticket, id_duenio, fecha, time, revisor));
 
 				
 							}
@@ -906,6 +900,54 @@ public class Registro {
 		return Reservas;
 			   
 	}
+	
+	public void establecerRevisor(String usuario, int id_reserva) {
+		
+		Connection conn = null;
+		Statement stmt = null;
+		String sql;
+
+		try {
+			// STEP 1: Register JDBC driver
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			// STEP 2: Open a connection
+
+			conn = DriverManager.getConnection("jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+
+			// Se realiza la consulta en la tabla de CLIENTE
+			sql = "UPDATE RESERVA SET `revisor`='"+usuario+"' "
+					+ "WHERE  `identificador`="+id_reserva+"";
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+
+			rs.close();
+			stmt.close();
+
+			// STEP 6: Cerrando conexion.
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					conn.close();
+				}
+			} catch (SQLException se) {
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+
+	}
+	
+	
 	
 	public void registrarReserva (int identificador, int num_ticket, LocalDate fecha, LocalTime hora, String id_duenio, String revisor) {
 		Connection conn = null;

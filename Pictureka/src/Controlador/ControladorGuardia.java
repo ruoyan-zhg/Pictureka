@@ -16,6 +16,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import Modelo.Cliente;
 import Modelo.Datos;
+import Modelo.Registro;
 import Modelo.Reserva;
 import Modelo.Sala;
 import Modelo.Staff;
@@ -568,17 +569,15 @@ public class ControladorGuardia {
 			// Se comrpueba que el numero introducido se encuentre dentro del rango
 			if (identificadorReserva >= 100000 && identificadorReserva <= 999999) {
 
-				Datos datos = new Datos();
-				Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
-				Vector<Reserva> tickets = datos.desserializarJsonAReservas();
+				Registro datos = new Registro();
+				Vector<Reserva> tickets = datos.recuperarReserva();
 				int i = 0;
 				while(i<tickets.size() && reservaEncontrada.equals("no encontrada")) {
 					if(tickets.elementAt(i).getIdentificador()==identificadorReserva) {
 						if(!tickets.elementAt(i).getFecha().isBefore(fechaActual)) {
 							reservaEncontrada = "valida";
-							System.out.println(tickets.get(i).getRevisor());
-							tickets.get(i).setRevisor(revisor);
-							datos.serializarVectorReservasAJson(tickets);
+							datos.establecerRevisor(revisor, identificadorReserva);
+
 						}
 						else {
 							reservaEncontrada = "invalida";
@@ -592,6 +591,7 @@ public class ControladorGuardia {
 				}
 				else if(reservaEncontrada.equals("invalida")) {
 					error.setHeaderText("La reserva ya ha caducado.");
+					error.setContentText("Caducó en: " + tickets.elementAt(i).getFecha());
 					error.showAndWait();
 				}
 				else {

@@ -828,7 +828,7 @@ public class Registro {
 		        }//end try
 		 
 		        
-		   //this.Cliente = Clientes;
+		   this.usuarios = Clientes;
 	   return Clientes;
 	}
 	

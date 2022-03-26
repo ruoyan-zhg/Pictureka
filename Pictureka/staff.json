@@ -1,9 +1,39 @@
 [
   {
+    "identificadorUser": 3,
+    "usuario": "1032",
+    "nombre": "Jorge",
+    "apellido1": "Hernández",
+    "apellido2": "Fernández",
+    "dni": "54820482A",
+    "email": "jorge@gmail.com",
+    "contrasenia": "f27d0f76caf99e9451067cd444fc99ee2d4d392fdaf0ffb11a0087cc75fa270c",
+    "fechaNacimiento": {
+      "year": 1997,
+      "month": 11,
+      "day": 25
+    }
+  },
+  {
+    "identificadorUser": 3,
+    "usuario": "1180",
+    "nombre": "Álvaro",
+    "apellido1": "Moreno",
+    "apellido2": "Barro",
+    "dni": "48295802F",
+    "email": "alvaro.barro@gmail.com",
+    "contrasenia": "316ba210a936152681eeea68198c68fbec1efc7f065668d983e5c0d8b7a6a755",
+    "fechaNacimiento": {
+      "year": 1956,
+      "month": 1,
+      "day": 12
+    }
+  },
+  {
     "identificadorUser": 2,
     "usuario": "2250",
     "nombre": "Paula",
-    "apellido1": "Sanchez",
+    "apellido1": "Sanchéz",
     "apellido2": "Morales",
     "dni": "43578445K",
     "email": "paula@gmail.com",
@@ -15,25 +45,10 @@
     }
   },
   {
-    "identificadorUser": 3,
-    "usuario": "1032",
-    "nombre": "Jorge",
-    "apellido1": "Hernandez",
-    "apellido2": "Fernandez",
-    "dni": "54820482J",
-    "email": "jorge@gmail.com",
-    "contrasenia": "f27d0f76caf99e9451067cd444fc99ee2d4d392fdaf0ffb11a0087cc75fa270c",
-    "fechaNacimiento": {
-      "year": 1997,
-      "month": 11,
-      "day": 25
-    }
-  },
-  {
     "identificadorUser": 2,
     "usuario": "3090",
     "nombre": "Rodrigo",
-    "apellido1": "Gonzalez",
+    "apellido1": "González",
     "apellido2": "Canalejas",
     "dni": "69990581P",
     "email": "rodrigo@gmail.com",
@@ -42,21 +57,6 @@
       "year": 1998,
       "month": 6,
       "day": 8
-    }
-  },
-  {
-    "identificadorUser": 3,
-    "usuario": "1180",
-    "nombre": "Alvaro",
-    "apellido1": "Gomez",
-    "apellido2": "Barro",
-    "dni": "48295802D",
-    "email": "alvaro.barro@gmail.com",
-    "contrasenia": "316ba210a936152681eeea68198c68fbec1efc7f065668d983e5c0d8b7a6a755",
-    "fechaNacimiento": {
-      "year": 1956,
-      "month": 1,
-      "day": 12
     }
   }
 ]

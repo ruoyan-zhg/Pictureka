@@ -1,7 +1,14 @@
 package Controlador;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
 import com.jfoenix.controls.JFXButton;
@@ -88,6 +95,12 @@ public class ControladorTabEditarAdmin {
 
     @FXML
     private JFXButton btnGuardar;
+    
+    static final String USER = "pri_Pictureka";
+    static final String PASS = "asas";
+    Connection conn = null;
+    Statement stmt = null;
+    String sql;
 
     /**
      * 
@@ -100,6 +113,7 @@ public class ControladorTabEditarAdmin {
     public ControladorTabEditarAdmin(ControladorEditarAdministrador controlerEdit) {
     	
     	this.controlerEditAdmin = controlerEdit;
+    
     }
     
     
@@ -154,7 +168,7 @@ public class ControladorTabEditarAdmin {
 		Cifrado cifrar = new Cifrado();
 
 		// Se guarda en un vector la informacion del json del personal de staff
-		Vector<Staff> staff = datos.desserializarJsonStaff();
+		Vector<Staff> staff = registro.recuperarStaff();
 		int i = 0;
 
 		String UsuarioNuevo;
@@ -182,37 +196,42 @@ public class ControladorTabEditarAdmin {
 			// Comprobamos que el contenido no está vacío
 			if (!(UsuarioNuevo.isEmpty() | nombreNuevo.isEmpty() | apellido1Nuevo.isEmpty() | apellido2Nuevo.isEmpty()
 					| dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null) | contraseniaNuevo.isEmpty())) {
-
+				
+				
+				
 				registro.recuperarStaff();
-				registro.recuperarUsuarios();
+				registro.recuperarClientes();
+				
+				// Recorremos el json staff
+                for (i = 0; i < staff.size(); i++) {
+
+                    // Comrpobamos que el administrador a modificar que se ha seleccionado
+                    // se encuentra en el json
+                    if (staff.get(i).getUsuario().equals(
+                            controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getUsuario())
+                            && staff.get(i).getNombre()
+                                    .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
+                                            .getNombre())
+                            && staff.get(i).getApellido1()
+                                    .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
+                                            .getApellido1())
+                            && staff.get(i).getApellido2()
+                                    .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
+                                            .getApellido2())
+                            && staff.get(i).getEmail()
+                                    .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
+                                            .getEmail())
+                            && staff.get(i).getDni().equals(
+                                    controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getDni())
+                            && staff.get(i).getFechaNacimiento()
+                                    .equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
+                                            .getFechaNacimiento())
+                            && staff.get(i).getContrasenia().equals(controlerEditAdmin.getTableViewAdministrador()
+                                    .getSelectionModel().getSelectedItem().getContrasenia())) {
+
 
 				// Recorremos el json staff
-				for (i = 0; i < staff.size(); i++) {
-
-					// Comrpobamos que el administrador a modificar que se ha seleccionado
-					// se encuentra en el json
-					if (staff.get(i).getUsuario().equals(
-							controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getUsuario())
-							&& staff.get(i).getNombre()
-									.equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
-											.getNombre())
-							&& staff.get(i).getApellido1()
-									.equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
-											.getApellido1())
-							&& staff.get(i).getApellido2()
-									.equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
-											.getApellido2())
-							&& staff.get(i).getEmail()
-									.equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
-											.getEmail())
-							&& staff.get(i).getDni().equals(
-									controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getDni())
-							&& staff.get(i).getFechaNacimiento()
-									.equals(controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem()
-											.getFechaNacimiento())
-							&& staff.get(i).getContrasenia().equals(controlerEditAdmin.getTableViewAdministrador()
-									.getSelectionModel().getSelectedItem().getContrasenia())) {
-
+				
 						LocalDate fecha = LocalDate.now();
 						Period periodo = Period.between(fechaNuevo, fecha);
 
@@ -223,7 +242,7 @@ public class ControladorTabEditarAdmin {
 							staff.get(i).setFechaNacimiento(fechaNuevo);
 
 							// devuelve true si el usuario no esta repetido
-							if (registro.staffRepetido(UsuarioNuevo)) {
+							if (registro.staffRepetido(UsuarioNuevo) && registro.usuarioRepetido(UsuarioNuevo)) {
 								staff.get(i).setUsuario(UsuarioNuevo);
 								
 
@@ -238,18 +257,8 @@ public class ControladorTabEditarAdmin {
 
 										// Valida el email nuevo
 										if (registro.validarEmail(emailNuevo)) {
-
-											staff.get(i).setEmail(emailNuevo);
-											
-
-											// Modifica los valores restantes del vector
-											staff.get(i).setNombre(nombreNuevo);
-											staff.get(i).setApellido1(apellido1Nuevo);
-											staff.get(i).setApellido2(apellido2Nuevo);
-											staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-											// Sobreescribe el contenido del vector
-											registro.escribirStaffNuevo(staff);
+/********************************************************************************************************/
+											GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
 
 											informacion.setHeaderText("Cambios realizados con éxito.");
 											informacion.showAndWait();
@@ -263,16 +272,8 @@ public class ControladorTabEditarAdmin {
 									} else {
 										// Si el administrador mantiene su mismo email
 										if (staff.get(i).getEmail().equals(emailNuevo)) {
-											staff.get(i).setEmail(emailNuevo);
 											
-
-											staff.get(i).setNombre(nombreNuevo);
-											staff.get(i).setApellido1(apellido1Nuevo);
-											staff.get(i).setApellido2(apellido2Nuevo);
-											staff.get(i).setDni(dniNuevo);
-											staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-											registro.escribirStaffNuevo(staff);
+											GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
 
 											informacion.setHeaderText("Cambios realizados con éxito.");
 											informacion.showAndWait();
@@ -296,16 +297,9 @@ public class ControladorTabEditarAdmin {
 											
 
 											if (registro.validarEmail(emailNuevo)) {
-												staff.get(i).setEmail(emailNuevo);
 												
-
-												staff.get(i).setNombre(nombreNuevo);
-												staff.get(i).setApellido1(apellido1Nuevo);
-												staff.get(i).setApellido2(apellido2Nuevo);
-												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-												registro.escribirStaffNuevo(staff);
-
+												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+												
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
 
@@ -317,16 +311,9 @@ public class ControladorTabEditarAdmin {
 
 										} else {
 											if (staff.get(i).getEmail().equals(emailNuevo)) {
-												staff.get(i).setEmail(emailNuevo);
 												
-
-												staff.get(i).setNombre(nombreNuevo);
-												staff.get(i).setApellido1(apellido1Nuevo);
-												staff.get(i).setApellido2(apellido2Nuevo);
-												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-												registro.escribirStaffNuevo(staff);
-
+												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+												
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
 
@@ -365,14 +352,8 @@ public class ControladorTabEditarAdmin {
 											// Se valdida el nuevo email
 											if (registro.validarEmail(emailNuevo)) {
 
-												staff.get(i).setEmail(emailNuevo);
+												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
 												
-
-												staff.get(i).setNombre(nombreNuevo);
-												staff.get(i).setApellido1(apellido1Nuevo);
-												staff.get(i).setApellido2(apellido2Nuevo);
-												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
 												registro.escribirStaffNuevo(staff);
 
 												informacion.setHeaderText("Cambios realizados con éxito.");
@@ -391,16 +372,9 @@ public class ControladorTabEditarAdmin {
 												
 
 												if (registro.validarEmail(emailNuevo)) {
-													staff.get(i).setEmail(emailNuevo);
 													
-
-													staff.get(i).setNombre(nombreNuevo);
-													staff.get(i).setApellido1(apellido1Nuevo);
-													staff.get(i).setApellido2(apellido2Nuevo);
-													staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-													registro.escribirStaffNuevo(staff);
-
+													GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+													
 													informacion.setHeaderText("Cambios realizados con éxito.");
 													informacion.showAndWait();
 												} else {
@@ -425,12 +399,7 @@ public class ControladorTabEditarAdmin {
 
 											if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
 												
-
-												staff.get(i).setNombre(nombreNuevo);
-												staff.get(i).setApellido1(apellido1Nuevo);
-												staff.get(i).setApellido2(apellido2Nuevo);
-												staff.get(i).setDni(dniNuevo);
-												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
+												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
 
 												registro.escribirStaffNuevo(staff);
 
@@ -440,14 +409,8 @@ public class ControladorTabEditarAdmin {
 											} else {
 												// Mismo dni del admin
 												if (staff.get(i).getDni().equals(dniNuevo)) {
-													staff.get(i).setDni(dniNuevo);
-
-													staff.get(i).setNombre(nombreNuevo);
-													staff.get(i).setApellido1(apellido1Nuevo);
-													staff.get(i).setApellido2(apellido2Nuevo);
-													staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-													registro.escribirStaffNuevo(staff);
+													
+													GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
 
 													informacion.setHeaderText("Cambios realizados con éxito.");
 													informacion.showAndWait();
@@ -477,10 +440,8 @@ public class ControladorTabEditarAdmin {
 							error.setHeaderText("Rango de edad no aceptable.");
 							error.showAndWait();
 						}
-
-					}
-
-				}
+                    }}
+				
 			} else {
 				error.setHeaderText("Revise que todos losc campos están completos.");
 				error.showAndWait();
@@ -490,6 +451,88 @@ public class ControladorTabEditarAdmin {
 			error.showAndWait();
 		}
 
+	}
+	
+
+	void GuardarAdminBBDD(String UsuarioNuevo,String nombreNuevo,String apellido1Nuevo,String apellido2Nuevo,String dniNuevo,String emailNuevo,LocalDate fechaNuevo,String contraseniaNuevo) {
+		
+		
+		
+		
+		// Obtenemos los datos de los diferentes jtextfield
+		UsuarioNuevo = textUsuarioAdmin.getText();
+		nombreNuevo = textNombreAdmin.getText();
+		apellido1Nuevo = textApellido1Admin.getText();
+		apellido2Nuevo = textApellido2Admin.getText();
+		dniNuevo = textDniAdmin.getText();
+		emailNuevo = textEmailAdmin.getText();
+		fechaNuevo = DateFechaAdmin.getValue();
+		contraseniaNuevo = textContraseniaAdmin.getText();
+		
+		Date date = Date.valueOf(fechaNuevo);
+		
+		String userSelecc = controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getUsuario();
+		
+		if (!controlerEditAdmin.getTableViewAdministrador().getSelectionModel().isEmpty()) {
+
+			// Comprobamos que el contenido no está vacío
+			if (!(UsuarioNuevo.isEmpty() | nombreNuevo.isEmpty() | apellido1Nuevo.isEmpty() | apellido2Nuevo.isEmpty()
+					| dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null) | contraseniaNuevo.isEmpty())) {
+				LocalDate fecha = LocalDate.now();
+				Period periodo = Period.between(fechaNuevo, fecha);
+
+				// Comprobaciones para los distintos casos que se pueden dar
+
+				// Comprobacion del rango de edad
+				if (periodo.getYears() > 18 && periodo.getYears() < 100) {
+					
+					try {
+						Class.forName("org.mariadb.jdbc.Driver");
+
+			            //STEP 2: Open a connection
+			            System.out.println("Connecting to a selected database...");
+
+			            conn = DriverManager.getConnection(
+			                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+			            System.out.println("Connectado a la Base de Datos...");
+			            sql = "UPDATE STAFF SET "
+			            		+ "Usuario = '"+UsuarioNuevo+"', "
+			            		+ "Nombre = '"+ nombreNuevo +"', "
+			            		+ "Apellido1 = '"+apellido1Nuevo +"',"
+	            				+ "Apellido2 = '"+apellido2Nuevo+"', "
+			            		+ "identificadorUser = 3, "
+			            		+ "Dni = '"+dniNuevo +"', "
+	            				+ "FechaNacimiento = '"+date+"', "
+			            		+ "Email= '"+ emailNuevo +"', "
+			            		+ "Contraseña = '"+contraseniaNuevo +"' "
+			            				+ "WHERE "
+			            				+ "STAFF.Usuario = '"+userSelecc+"';";
+
+			           
+			            stmt = conn.createStatement();
+			   			ResultSet rs = stmt.executeQuery( sql );
+			   			
+			   			stmt.close();
+			   			rs.close();
+			   		}
+					catch(SQLException | ClassNotFoundException e){
+						
+					}
+				}
+				
+				
+
+				
+				
+				
+				
+				
+			}
+		
+			}
+		
+		
+		
 	}
 	
 

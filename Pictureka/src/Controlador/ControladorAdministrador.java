@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXToolbar;
 import Modelo.Cliente;
 import Modelo.Datos;
 import Modelo.Guardia;
+import Modelo.Registro;
 import Modelo.Reserva;
 import Modelo.Sala;
 import Modelo.Staff;
@@ -75,9 +76,6 @@ public class ControladorAdministrador {
     private TableColumn<Cliente, String> colFecha;
 
     @FXML
-    private TableColumn<Cliente, Vector<Reserva>> colReservas;
-
-    @FXML
     private ImageView imgEditarGuardias;
 
     @FXML
@@ -111,8 +109,8 @@ public class ControladorAdministrador {
     
     public void initialize() {
 
-		Datos datos = new Datos();
-		Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
+		Registro datos = new Registro();
+		Vector<Cliente> clientes = datos.recuperarClientes();
 
 		// Se leen los datos del Json del staff
 		for (int i = 0; i < clientes.size(); i++) {
@@ -133,7 +131,7 @@ public class ControladorAdministrador {
 		colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		colContrasenia.setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
 		colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-		colReservas.setCellValueFactory(new PropertyValueFactory<>("reservas"));
+		
 		
 
 	}
@@ -560,6 +558,8 @@ public class ControladorAdministrador {
     	
     	
     }
+    
+    
     
     /**
      * 

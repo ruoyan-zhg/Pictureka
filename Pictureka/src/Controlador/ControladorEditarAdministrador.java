@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
 import Modelo.Administrador;
 import Modelo.Datos;
+import Modelo.Registro;
 import Modelo.Staff;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -138,8 +139,8 @@ public class ControladorEditarAdministrador {
 	 */
 	public void initialize() {
 
-		Datos datos = new Datos();
-		Vector<Staff> staff = datos.desserializarJsonStaff();
+		Registro datos = new Registro();
+		Vector<Staff> staff = datos.recuperarStaff();
 
 		// Se leen los datos del Json del staff
 		for (int i = 0; i < staff.size(); i++) {
@@ -274,13 +275,13 @@ public class ControladorEditarAdministrador {
 	 */
 	void GuardarTodosCambios(ActionEvent event) {
 
-		Datos datos = new Datos();
-		Vector<Staff> staff = datos.desserializarJsonStaff();
+		Registro registro = new Registro();
+		Vector<Staff> staff = registro.recuperarStaff();
 		tableViewAdministrador.getItems().clear();
 		// Se leen los datos del Json del staff
 		for (int i = 0; i < staff.size(); i++) {
 			// Obtiene solo el personal con numero de identificacion 2
-			if (staff.get(i).getIdentificadorUser() == 2) {
+			if (staff.get(i).getIdentificadorUser() == 3) {
 
 				// Se muestran los guardias obtenidos en la tabla
 				tableViewAdministrador.getItems()
@@ -397,6 +398,16 @@ public class ControladorEditarAdministrador {
 
 		}
 
+	}
+	
+	
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public AnchorPane getAnchorPaneEditAdmin() {

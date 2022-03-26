@@ -89,7 +89,6 @@
                               <TableColumn fx:id="colEmail" prefWidth="194.0" text="Email" />
                               <TableColumn fx:id="colContrasenia" prefWidth="135.0" text="Contrasenia" />
                               <TableColumn fx:id="colFecha" prefWidth="203.0" text="Fecha de nacimiento" />
-                              <TableColumn fx:id="colReservas" prefWidth="107.0" text="Reservas" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

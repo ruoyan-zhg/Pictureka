@@ -46,11 +46,11 @@
                <effect>
                   <DropShadow color="#ff8000" />
                </effect></TextField>
-            <Label fx:id="lblApellido1Guardia" text="Primer apellido" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="lblApellido1Guardia" text="Primer apellido" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label fx:id="lblApellido2Guardia" text="Segundo apellido" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="lblApellido2Guardia" text="Segundo apellido" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="17.0" />
                </font></Label>
@@ -78,7 +78,7 @@
                <effect>
                   <DropShadow color="#ff8000" />
                </effect></TextField>
-            <Label fx:id="lblFechaGuardia" text="Fecha de nacimiento" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label fx:id="lblFechaGuardia" text="Fecha de nacimiento" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <Label fx:id="lblContraseniaGuardia" text="Contraseña" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
@@ -91,7 +91,7 @@
                <effect>
                   <DropShadow color="#ff8000" />
                </effect></DatePicker>
-            <JFXButton fx:id="btnGuardar" onAction="#GuardarGuardiaEdit" prefHeight="59.0" prefWidth="166.0" style="-fx-background-color: FF8000; -fx-border-radius: 15;" text="Guardar cambios" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <JFXButton fx:id="btnGuardar" onAction="#GuardarGuardiaEdit" prefHeight="59.0" prefWidth="166.0" style="-fx-background-color: FF8000; -fx-border-radius: 15; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Guardar cambios" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>

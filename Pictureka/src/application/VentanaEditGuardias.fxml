@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
@@ -42,6 +43,29 @@
                      </cursor>
                   </ImageView>
                </left>
+               <center>
+                  <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fx:id="btnGuardarCambios" fitHeight="70.0" fitWidth="50.0" onMouseClicked="#GuardarTodosCambios" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" GridPane.halignment="RIGHT">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/reloading.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </center>
             </JFXToolbar>
             <GridPane fx:id="gridPaneMaster" prefHeight="714.0" prefWidth="1156.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
@@ -85,24 +109,15 @@
             </GridPane>
             <GridPane fx:id="gridPaneEdit" prefHeight="72.0" prefWidth="1156.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="50.0" prefWidth="0.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" percentWidth="100.0" prefWidth="0.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="btnCancelar" onAction="#CancelarEdiccion" prefHeight="76.0" prefWidth="172.0" style="-fx-background-color: FF8000; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Cancelar" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                  <JFXButton fx:id="btnCancelar" onAction="#CancelarEdiccion" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: FF8000; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Cancelar" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </JFXButton>
-                  <JFXButton fx:id="btnGuardarCambios" onAction="#GuardarTodosCambios" prefHeight="76.0" prefWidth="178.0" style="-fx-background-color: FF8000; -fx-border-color: white; -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);" text="Actualizar cambios" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-                     <font>
-                        <Font size="16.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />

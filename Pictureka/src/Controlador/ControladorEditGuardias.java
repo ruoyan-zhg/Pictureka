@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
 import Modelo.Datos;
 import Modelo.Guardia;
+import Modelo.Registro;
 import Modelo.Staff;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -103,7 +104,7 @@ public class ControladorEditGuardias {
 	private JFXButton btnCancelar;
 
 	@FXML
-	private JFXButton btnGuardarCambios;
+	private ImageView btnGuardarCambios;
 
 	private String usuario; // esta el usuario o mail del usuario que tiene la sesion iniciada
 
@@ -137,34 +138,7 @@ public class ControladorEditGuardias {
 	 * 
 	 */
 	public void initialize() {
-
-		Datos datos = new Datos();
-		Vector<Staff> staff = datos.desserializarJsonStaff();
-
-		// Se leen los datos del Json del staff
-		for (int i = 0; i < staff.size(); i++) {
-			// Obtiene solo el personal con numero de identificacion 2
-			if (staff.get(i).getIdentificadorUser() == 2) {
-
-				// Se muestran los guardias obtenidos en la tabla
-				tableView.getItems()
-						.add(new Guardia(staff.get(i).getUsuario(), staff.get(i).getDni(), staff.get(i).getEmail(),
-								staff.get(i).getContrasenia(), staff.get(i).getFechaNacimiento(),
-								staff.get(i).getNombre(), staff.get(i).getApellido1(), staff.get(i).getApellido2()));
-			}
-		}
-
-		// Obtenemos el las diferentes columnas de la tabla y asociamos cada columna al
-		// tipo de dato que queremos guardar
-		Usuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
-		Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-		PrimerApellido.setCellValueFactory(new PropertyValueFactory<>("apellido1"));
-		SegundoApellido.setCellValueFactory(new PropertyValueFactory<>("apellido2"));
-		Email.setCellValueFactory(new PropertyValueFactory<>("email"));
-		DNI.setCellValueFactory(new PropertyValueFactory<>("dni"));
-		FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-		Contrasenia.setCellValueFactory(new PropertyValueFactory<>("contrasenia"));
-
+		actualizarTablaGuardias();
 	}
 
 	@FXML
@@ -318,10 +292,15 @@ public class ControladorEditGuardias {
 	 * @param event Evento causado cuando el administrador pulsa el botón
 	 *              "Actualizar Cambios".
 	 */
-	void GuardarTodosCambios(ActionEvent event) {
-
-		Datos datos = new Datos();
-		Vector<Staff> staff = datos.desserializarJsonStaff();
+	void GuardarTodosCambios(MouseEvent event) {
+		actualizarTablaGuardias();	
+	}
+	
+	
+	
+	void actualizarTablaGuardias() {
+		Registro registro = new Registro();
+		Vector<Staff> staff = registro.recuperarStaff();
 		tableView.getItems().clear();
 		// Se leen los datos del Json del staff
 		for (int i = 0; i < staff.size(); i++) {

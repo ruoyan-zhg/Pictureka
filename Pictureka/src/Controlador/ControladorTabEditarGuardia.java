@@ -1,5 +1,11 @@
 package Controlador;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Vector;
@@ -89,6 +95,12 @@ public class ControladorTabEditarGuardia {
 
 	@FXML
 	private JFXButton btnGuardar;
+	
+	static final String USER = "pri_Pictureka";
+	static final String PASS = "asas";
+	Connection conn = null;
+	Statement stmt = null;
+	String sql;
 
 	Guardia guardia;
 
@@ -149,31 +161,20 @@ public class ControladorTabEditarGuardia {
 		Alert error = new Alert(Alert.AlertType.ERROR);
 		Alert informacion = new Alert(Alert.AlertType.INFORMATION);
 		Registro registro = new Registro();
-		Datos datos = new Datos();
 		Cifrado cifrar = new Cifrado();
 		
 		// Se guarda en un vector la informacion del json del personal de staff
-		Vector<Staff> staff = datos.desserializarJsonStaff();
-		int i = 0;
-
-		String UsuarioNuevo;
-		String nombreNuevo;
-		String apellido1Nuevo;
-		String apellido2Nuevo;
-		String dniNuevo;
-		String emailNuevo;
-		LocalDate fechaNuevo;
-		String contraseniaNuevo;
+		
 
 		// Obtenemos los datos de los diferentes jtextfield
-		UsuarioNuevo = textUsuarioGuardia.getText();
-		nombreNuevo = textNombreGuardia.getText();
-		apellido1Nuevo = textApellido1Guardia.getText();
-		apellido2Nuevo = textApellido2Guardia.getText();
-		dniNuevo = textDniGuardia.getText();
-		emailNuevo = textEmailGuardia.getText();
-		fechaNuevo = DateFechaGuardia.getValue();
-		contraseniaNuevo = textContraseniaGuardia.getText();
+		String UsuarioNuevo = textUsuarioGuardia.getText();
+		String nombreNuevo = textNombreGuardia.getText();
+		String apellido1Nuevo = textApellido1Guardia.getText();
+		String apellido2Nuevo = textApellido2Guardia.getText();
+		String dniNuevo = textDniGuardia.getText();
+		String emailNuevo = textEmailGuardia.getText();
+		LocalDate fechaNuevo = DateFechaGuardia.getValue();
+		String contraseniaNuevo = textContraseniaGuardia.getText();
 
 		// Comprobamos que haya seleccionado un guardia
 		if (!controlerEditGuardia.getTableView().getSelectionModel().isEmpty()) {
@@ -182,36 +183,11 @@ public class ControladorTabEditarGuardia {
 			if (!(UsuarioNuevo.isEmpty() | nombreNuevo.isEmpty() | apellido1Nuevo.isEmpty() | apellido2Nuevo.isEmpty()
 					| dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null) | contraseniaNuevo.isEmpty())) {
 
-				registro.recuperarStaff();
-				registro.recuperarUsuarios();
-
-				// Recorremos el json staff
-				for (i = 0; i < staff.size(); i++) {
-
-					// Comrpobamos que el guardia a modificar que ha seleccionado el administrador
-					// se encuentra en el json
-					if (staff.get(i).getUsuario().equals(
-							controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getUsuario())
-							&& staff.get(i).getNombre()
-									.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
-											.getNombre())
-							&& staff.get(i).getApellido1()
-									.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
-											.getApellido1())
-							&& staff.get(i).getApellido2()
-									.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
-											.getApellido2())
-							&& staff.get(i).getEmail()
-									.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
-											.getEmail())
-							&& staff.get(i).getDni().equals(
-									controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getDni())
-							&& staff.get(i).getFechaNacimiento()
-									.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
-											.getFechaNacimiento())
-							&& staff.get(i).getContrasenia().equals(controlerEditGuardia.getTableView()
-									.getSelectionModel().getSelectedItem().getContrasenia())) {
-
+				Staff staff = buscarGuardiaSelecc();
+				if((staff.getContrasenia().equals(cifrar.hashing(contraseniaNuevo))==false)) {
+					contraseniaNuevo = cifrar.hashing(contraseniaNuevo);
+					
+				}
 						LocalDate fecha = LocalDate.now();
 						Period periodo = Period.between(fechaNuevo, fecha);
 
@@ -219,37 +195,24 @@ public class ControladorTabEditarGuardia {
 
 						// Comprobacion del rango de edad
 						if (periodo.getYears() > 18 && periodo.getYears() < 100) {
-							staff.get(i).setFechaNacimiento(fechaNuevo);
-
+							
 							// devuelve true si el usuario no esta repetido
 							if (registro.staffRepetido(UsuarioNuevo)) {
-								staff.get(i).setUsuario(UsuarioNuevo);
 								
-
 								// devuelve true si el dni no esta repetido
 								if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
-									staff.get(i).setDni(dniNuevo);
-									
-
+		
 									// devuelve true si el email no esta repetido
 									if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
 										
 
 										// Valida el email nuevo
 										if (registro.validarEmail(emailNuevo)) {
-
-											staff.get(i).setEmail(emailNuevo);
 											
-
-											// Modifica los valores restantes del vector
-											staff.get(i).setNombre(nombreNuevo);
-											staff.get(i).setApellido1(apellido1Nuevo);
-											staff.get(i).setApellido2(apellido2Nuevo);
-											staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-											// Sobreescribe el contenido del vector
-											registro.escribirStaffNuevo(staff);
-
+											
+											GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+											controlerEditGuardia.actualizarTablaGuardias();
+											eliminarContenidoTxtfield();
 											informacion.setHeaderText("Cambios realizados con éxito.");
 											informacion.showAndWait();
 
@@ -261,17 +224,11 @@ public class ControladorTabEditarGuardia {
 
 									} else {
 										// Si el guardia mantiene su mismo email
-										if (staff.get(i).getEmail().equals(emailNuevo)) {
-											staff.get(i).setEmail(emailNuevo);
+										if (staff.getEmail().equals(emailNuevo)) {
 											
-
-											staff.get(i).setNombre(nombreNuevo);
-											staff.get(i).setApellido1(apellido1Nuevo);
-											staff.get(i).setApellido2(apellido2Nuevo);
-											staff.get(i).setDni(dniNuevo);
-											staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-											registro.escribirStaffNuevo(staff);
+											GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+											controlerEditGuardia.actualizarTablaGuardias();
+											eliminarContenidoTxtfield();
 
 											informacion.setHeaderText("Cambios realizados con éxito.");
 											informacion.showAndWait();
@@ -286,24 +243,20 @@ public class ControladorTabEditarGuardia {
 								} else { // EL GUARDIA MANTIENE SU MISMO DNI
 									// si el guardia mantiene su mismo dni
 
-									if (staff.get(i).getDni().equals(dniNuevo)) {
-										staff.get(i).setDni(dniNuevo);
-										
+									if (staff.getDni().equals(dniNuevo)) {
+																		
 
 										if (registro.emailRepetido(emailNuevo)
 												&& registro.emailRepetidoStaff(emailNuevo)) {
 											
 
 											if (registro.validarEmail(emailNuevo)) {
-												staff.get(i).setEmail(emailNuevo);
+												staff.setEmail(emailNuevo);
 												
 
-												staff.get(i).setNombre(nombreNuevo);
-												staff.get(i).setApellido1(apellido1Nuevo);
-												staff.get(i).setApellido2(apellido2Nuevo);
-												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-												registro.escribirStaffNuevo(staff);
+												GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+												controlerEditGuardia.actualizarTablaGuardias();
+												eliminarContenidoTxtfield();
 
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
@@ -315,16 +268,11 @@ public class ControladorTabEditarGuardia {
 											}
 
 										} else {
-											if (staff.get(i).getEmail().equals(emailNuevo)) {
-												staff.get(i).setEmail(emailNuevo);
+											if (staff.getEmail().equals(emailNuevo)) {
 												
-
-												staff.get(i).setNombre(nombreNuevo);
-												staff.get(i).setApellido1(apellido1Nuevo);
-												staff.get(i).setApellido2(apellido2Nuevo);
-												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-												registro.escribirStaffNuevo(staff);
+												GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+												controlerEditGuardia.actualizarTablaGuardias();
+												eliminarContenidoTxtfield();
 
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
@@ -349,30 +297,21 @@ public class ControladorTabEditarGuardia {
 							// EL GUARDIA MANTIENE SU MISMO USUARIO
 							else {
 								// Si el guardia mantiene su mismo usuario
-								if (staff.get(i).getUsuario().equals(UsuarioNuevo)) {
-									staff.get(i).setUsuario(UsuarioNuevo);
-									
+								if (staff.getUsuario().equals(UsuarioNuevo)) {
+																
 
 									// devuelve true si el email del guardia no esta repetido
 									if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
 										
 
 										if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
-											
-											
 
 											// Se valdida el nuevo email
 											if (registro.validarEmail(emailNuevo)) {
 
-												staff.get(i).setEmail(emailNuevo);
-												
-
-												staff.get(i).setNombre(nombreNuevo);
-												staff.get(i).setApellido1(apellido1Nuevo);
-												staff.get(i).setApellido2(apellido2Nuevo);
-												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-												registro.escribirStaffNuevo(staff);
+												GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+												controlerEditGuardia.actualizarTablaGuardias();
+												eliminarContenidoTxtfield();
 
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
@@ -385,20 +324,16 @@ public class ControladorTabEditarGuardia {
 										} else {
 											// Si el dni es el mismo del guardia
 
-											if (staff.get(i).getDni().equals(dniNuevo)) {
-												staff.get(i).setDni(dniNuevo);
+											if (staff.getDni().equals(dniNuevo)) {
+												
 												
 
 												if (registro.validarEmail(emailNuevo)) {
-													staff.get(i).setEmail(emailNuevo);
 													
 
-													staff.get(i).setNombre(nombreNuevo);
-													staff.get(i).setApellido1(apellido1Nuevo);
-													staff.get(i).setApellido2(apellido2Nuevo);
-													staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-													registro.escribirStaffNuevo(staff);
+													GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+													controlerEditGuardia.actualizarTablaGuardias();
+													eliminarContenidoTxtfield();
 
 													informacion.setHeaderText("Cambios realizados con éxito.");
 													informacion.showAndWait();
@@ -418,36 +353,27 @@ public class ControladorTabEditarGuardia {
 
 									} else {
 										// Si el email es el mismo del guardia
-										if (staff.get(i).getEmail().equals(emailNuevo)) {
-											staff.get(i).setEmail(emailNuevo);
+										if (staff.getEmail().equals(emailNuevo)) {
+											
 											
 
 											if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
 												
 
-												staff.get(i).setNombre(nombreNuevo);
-												staff.get(i).setApellido1(apellido1Nuevo);
-												staff.get(i).setApellido2(apellido2Nuevo);
-												staff.get(i).setDni(dniNuevo);
-												staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-												registro.escribirStaffNuevo(staff);
+												GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+												controlerEditGuardia.actualizarTablaGuardias();
+												eliminarContenidoTxtfield();
 
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
 
 											} else {
 												// Mismo dni del guardia
-												if (staff.get(i).getDni().equals(dniNuevo)) {
-													staff.get(i).setDni(dniNuevo);
-
-													staff.get(i).setNombre(nombreNuevo);
-													staff.get(i).setApellido1(apellido1Nuevo);
-													staff.get(i).setApellido2(apellido2Nuevo);
-													staff.get(i).setContrasenia(cifrar.hashing(contraseniaNuevo));
-
-													registro.escribirStaffNuevo(staff);
-
+												if (staff.getDni().equals(dniNuevo)) {
+													
+													GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+													controlerEditGuardia.actualizarTablaGuardias();
+													eliminarContenidoTxtfield();
 													informacion.setHeaderText("Cambios realizados con éxito.");
 													informacion.showAndWait();
 
@@ -477,9 +403,7 @@ public class ControladorTabEditarGuardia {
 							error.showAndWait();
 						}
 
-					}
-
-				}
+					
 			} else {
 				error.setHeaderText("Revise que todos losc campos están completos.");
 				error.showAndWait();
@@ -489,6 +413,133 @@ public class ControladorTabEditarGuardia {
 			error.showAndWait();
 		}
 	}
+
+	
+	void GuardarGuardiaBBDD(String UsuarioNuevo,String nombreNuevo,String apellido1Nuevo,String apellido2Nuevo,String dniNuevo,String emailNuevo,LocalDate fechaNuevo,String contraseniaNuevo) {
+
+		Date date = Date.valueOf(fechaNuevo);
+		
+		String userSelecc = controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getUsuario();
+		
+		if (!controlerEditGuardia.getTableView().getSelectionModel().isEmpty()) {
+
+			// Comprobamos que el contenido no está vacío
+			if (!(UsuarioNuevo.isEmpty() | nombreNuevo.isEmpty() | apellido1Nuevo.isEmpty() | apellido2Nuevo.isEmpty()
+					| dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null) | contraseniaNuevo.isEmpty())) {
+				LocalDate fecha = LocalDate.now();
+				Period periodo = Period.between(fechaNuevo, fecha);
+
+				// Comprobaciones para los distintos casos que se pueden dar
+
+				// Comprobacion del rango de edad
+				if (periodo.getYears() > 18 && periodo.getYears() < 100) {
+					
+					try {
+						Class.forName("org.mariadb.jdbc.Driver");
+
+			            //STEP 2: Open a connection
+			            System.out.println("Connecting to a selected database...");
+
+			            conn = DriverManager.getConnection(
+			                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+			            System.out.println("Connectado a la Base de Datos...");
+			            sql = "UPDATE STAFF SET "
+			            		+ "Usuario = '"+UsuarioNuevo+"', "
+			            		+ "Nombre = '"+ nombreNuevo +"', "
+			            		+ "Apellido1 = '"+apellido1Nuevo +"',"
+	            				+ "Apellido2 = '"+apellido2Nuevo+"', "
+			            		+ "identificadorUser = 2, "
+			            		+ "Dni = '"+dniNuevo +"', "
+	            				+ "FechaNacimiento = '"+date+"', "
+			            		+ "Email= '"+ emailNuevo +"', "
+			            		+ "Contraseña = '"+contraseniaNuevo +"' "
+			            				+ "WHERE "
+			            				+ "STAFF.Usuario = '"+userSelecc+"';";
+
+			           
+			            stmt = conn.createStatement();
+			   			ResultSet rs = stmt.executeQuery( sql );
+			   			
+			   			stmt.close();
+			   			rs.close();
+			   		}
+					catch(SQLException | ClassNotFoundException e){
+						
+					}
+				}
+				
+			}
+		
+			}
+	}
+	
+	
+	
+	
+	
+	public Staff buscarGuardiaSelecc() {
+		Registro registro = new Registro();
+		Vector<Staff> staff = registro.recuperarStaff();
+		registro.recuperarClientes();
+		Staff nuevo = null;
+		int i=0;
+		boolean encontrado = false;
+		while(i<staff.size() && encontrado==false) {
+
+			// Comrpobamos que el guardia a modificar que ha seleccionado el administrador
+			// se encuentra en el json
+			if (staff.get(i).getUsuario().equals(
+					controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getUsuario())
+					&& staff.get(i).getNombre()
+							.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
+									.getNombre())
+					&& staff.get(i).getApellido1()
+							.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
+									.getApellido1())
+					&& staff.get(i).getApellido2()
+							.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
+									.getApellido2())
+					&& staff.get(i).getEmail()
+							.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
+									.getEmail())
+					&& staff.get(i).getDni().equals(
+							controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem().getDni())
+					&& staff.get(i).getFechaNacimiento()
+							.equals(controlerEditGuardia.getTableView().getSelectionModel().getSelectedItem()
+									.getFechaNacimiento())
+					&& staff.get(i).getContrasenia().equals(controlerEditGuardia.getTableView()
+							.getSelectionModel().getSelectedItem().getContrasenia())) {
+
+				nuevo = new Staff(2, this.getTextUsuarioGuardia().getText(), this.textNombreGuardia.getText(), this.textApellido1Guardia.getText(),
+						this.textApellido2Guardia.getText(), this.textDniGuardia.getText(), this.textEmailGuardia.getText(), this.textContraseniaGuardia.getText(), this.DateFechaGuardia.getValue());
+            	encontrado=true;
+			
+			}
+			i++;
+		}
+		return nuevo;
+	}
+	
+	void eliminarContenidoTxtfield() {
+			
+			textUsuarioGuardia.clear();
+			textNombreGuardia.clear();
+			textApellido1Guardia.clear();
+			textApellido2Guardia.clear();
+			textDniGuardia.clear();
+			textEmailGuardia.clear();
+			textContraseniaGuardia.clear();
+			DateFechaGuardia.getEditor().clear();
+		}
+		
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public AnchorPane getAnchorTabEditarGuardia() {
 		return AnchorTabEditarGuardia;

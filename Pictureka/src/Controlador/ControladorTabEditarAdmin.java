@@ -165,6 +165,7 @@ public class ControladorTabEditarAdmin {
 		Alert error = new Alert(Alert.AlertType.ERROR);
 		Alert informacion = new Alert(Alert.AlertType.INFORMATION);
 		Registro registro = new Registro();
+		Cifrado cifrar = new Cifrado();
 		
 				
 		
@@ -191,6 +192,10 @@ public class ControladorTabEditarAdmin {
 					| dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null) | contraseniaNuevo.isEmpty())) {
 				
 				Staff staff = buscarAdminSelecc();
+				if((staff.getContrasenia().equals(cifrar.hashing(contraseniaNuevo))==false)) {
+					contraseniaNuevo = cifrar.hashing(contraseniaNuevo);
+					
+				}
 
 				// Recorremos el json staff
 				
@@ -426,19 +431,7 @@ public class ControladorTabEditarAdmin {
 
 	void GuardarAdminBBDD(String UsuarioNuevo,String nombreNuevo,String apellido1Nuevo,String apellido2Nuevo,String dniNuevo,String emailNuevo,LocalDate fechaNuevo,String contraseniaNuevo) {
 		
-		
-		
-		
-		// Obtenemos los datos de los diferentes jtextfield
-		UsuarioNuevo = textUsuarioAdmin.getText();
-		nombreNuevo = textNombreAdmin.getText();
-		apellido1Nuevo = textApellido1Admin.getText();
-		apellido2Nuevo = textApellido2Admin.getText();
-		dniNuevo = textDniAdmin.getText();
-		emailNuevo = textEmailAdmin.getText();
-		fechaNuevo = DateFechaAdmin.getValue();
-		contraseniaNuevo = textContraseniaAdmin.getText();
-		
+
 		Date date = Date.valueOf(fechaNuevo);
 		
 		String userSelecc = controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getUsuario();
@@ -489,13 +482,6 @@ public class ControladorTabEditarAdmin {
 						
 					}
 				}
-				
-				
-
-				
-				
-				
-				
 				
 			}
 		

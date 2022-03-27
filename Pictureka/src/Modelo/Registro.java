@@ -969,9 +969,6 @@ public class Registro {
         stmt = conn.createStatement();
         stmt.executeUpdate(sql);
         stmt.close();
-		//while ( rs.next() ) {
-			//int identificadorUser = rs.getInt("identificador");
-			//int tickets = rs.getInt(num_ticket);
 			
         }catch (SQLException se) {
 	        //Handle errors for JDBC
@@ -996,6 +993,77 @@ public class Registro {
 	        }//end finally try
 	    }//end try  
         
+	}
+	
+	public Vector<Reserva> buscarReserva (String usuario) {
+		
+		Vector<Reserva> Reservas = new Vector<Reserva>();
+		Connection conn = null;
+		Statement stmt = null;
+		String sql; 
+		
+		try {
+            //STEP 1: Register JDBC driver
+        	Class.forName("org.mariadb.jdbc.Driver");
+
+            //STEP 2: Open a connection
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            
+            //Se realiza la consulta en la tabla de CLIENTE
+            sql = "SELECT * FROM RESERVA "
+                  + "WHERE (RESERVA.id_duenio ='"+usuario+ "');";
+            stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery( sql );
+			while ( rs.next() ) {
+				int identificador = rs.getInt("identificador");
+				int num_ticket = rs.getInt("num_ticket");
+				String id_duenio = rs.getString("id_duenio");
+				Date day =rs.getDate("fecha");
+				String revisor = rs.getString("revisor");
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(day);
+				LocalDate fecha = LocalDate.of(calendar.get(Calendar.YEAR), (calendar.get(Calendar.MONTH)+1), calendar.get(Calendar.DATE));
+				
+				
+				Time hora = rs.getTime("hora");
+				LocalTime time = hora.toLocalTime();
+
+				
+				Reservas.add(new Reserva(identificador, num_ticket, id_duenio, fecha, time, revisor));
+
+				
+							}
+			 rs.close();
+			stmt.close();
+			
+			//STEP 6: Cerrando conexion.
+			conn.close(); 
+			
+			}
+			 catch (Exception e) {
+		            //Handle errors for Class.forName
+		            e.printStackTrace();
+		        } finally {
+		            //finally block used to close resources
+		            try {
+		                if (stmt != null) {
+		                    conn.close();
+		                }
+		            } catch (SQLException se) {
+		            }// do nothing
+		            try {
+		                if (conn != null) {
+		                    conn.close();
+		                }
+		            } catch (SQLException se) {
+		                se.printStackTrace();
+		            }//end finally try
+		        }//end try
+		
+		return Reservas;
+		
 	}
 	
 	

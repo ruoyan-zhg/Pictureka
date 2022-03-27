@@ -7,6 +7,7 @@ import java.util.Vector;
 import com.jfoenix.controls.JFXTextArea;
 import Modelo.Cliente;
 import Modelo.Datos;
+import Modelo.Registro;
 import Modelo.Reserva;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -71,14 +72,13 @@ public class ControladorEditarReserva {
     
     String usuario;
     
-    String dniUsuario;
     
     private String infoReserva;
     
     private Datos datos = new Datos();
     
-    private Vector<Reserva> reservas = datos.desserializarJsonAReservas();
-    private Vector<Cliente> usuarios = datos.desserializarJsonAusuarios();
+    
+    
     
    
     private Vector<Reserva> reservasEspecificas = new Vector<Reserva>();
@@ -89,7 +89,6 @@ public class ControladorEditarReserva {
      * 
      */
     public void initialize() {
-    	dniUsuario = buscarDni();
     	getReserUser();
 		refrescarTabla();
 		
@@ -136,7 +135,7 @@ public class ControladorEditarReserva {
      * @param event		Evento causado cuando el cliente pulsa sobre el botón "Eliminar".
      */	
     void eliminarReserva(ActionEvent event) {
-    	
+    	/*
     	Alert alerta = new Alert(AlertType.INFORMATION);
     	//Se comrpueba que la seleccion no este vacia
     	if(tablaReservas.getSelectionModel().getSelectedItem()!=null) {
@@ -165,9 +164,9 @@ public class ControladorEditarReserva {
     	else {
     		alerta.setHeaderText("¡Porfavor seleccione alguna reserva para eliminar!");
     		alerta.showAndWait();
-    	}
+    	}*/
     	
-    }
+    } 
     
     
     @FXML
@@ -280,12 +279,12 @@ public class ControladorEditarReserva {
      * 
      */
     private void getReserUser() {
-    	//Almacena los identificadores de las reservas del usuario 
-    	for(int i=0; i<reservas.size();i++) {
-    		if(reservas.elementAt(i).getId_Duenio().equals(dniUsuario)) {
-    			reservasEspecificas.add(reservas.elementAt(i));
-    		}
-    	}
+    	//Obtener los datos de la reserva
+    	
+    	Registro registro = new Registro ();
+    	reservasEspecificas = registro.buscarReserva(usuario);
+    	
+    	
     	
     }
 
@@ -312,20 +311,7 @@ public class ControladorEditarReserva {
 		}
 	}
     
-    public String buscarDni() {
-    	Vector<Cliente> clientes = datos.desserializarJsonAusuarios();
-    	int i=0;
-    	boolean encontrado = false;
-    	String dni = null;
-    	while(i<clientes.size() && encontrado==false) {
-    		if(clientes.elementAt(i).getUsuario().equals(this.usuario)) {
-    			dni=clientes.elementAt(i).getDni();
-    			encontrado=true;
-    		}
-    		i++;
-    	}
-		return dni;
-    }
+    
     
     
 }

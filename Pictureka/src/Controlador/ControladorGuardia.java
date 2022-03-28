@@ -16,6 +16,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import Modelo.Cliente;
 import Modelo.Datos;
+import Modelo.M_Reservas;
 import Modelo.Registro;
 import Modelo.Reserva;
 import Modelo.Sala;
@@ -558,7 +559,6 @@ public class ControladorGuardia {
 		Staff staff = museo.devolverStaff(usuario);
 		String revisor = staff.getUsuario();
 		
-		System.out.println(revisor);
 		
 		// Se obtiene el texto del JtextField
 		String ticketAcomprobar = numTicket.getText();
@@ -569,14 +569,14 @@ public class ControladorGuardia {
 			// Se comrpueba que el numero introducido se encuentre dentro del rango
 			if (identificadorReserva >= 100000 && identificadorReserva <= 999999) {
 
-				Registro datos = new Registro();
-				Vector<Reserva> tickets = datos.recuperarReserva();
+				M_Reservas reservas = new M_Reservas();
+				Vector<Reserva> tickets = reservas.recuperarReserva();
 				int i = 0;
 				while(i<tickets.size() && reservaEncontrada.equals("no encontrada")) {
 					if(tickets.elementAt(i).getIdentificador()==identificadorReserva) {
 						if(!tickets.elementAt(i).getFecha().isBefore(fechaActual)) {
 							reservaEncontrada = "valida";
-							datos.establecerRevisor(revisor, identificadorReserva);
+							reservas.establecerRevisor(revisor, identificadorReserva);
 
 						}
 						else {

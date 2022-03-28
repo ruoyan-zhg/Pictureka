@@ -120,7 +120,6 @@ public class ControladorPerfil {
 			 modelo_Museo museo = new modelo_Museo();
 			 //museo obtener identificador de usuario
 			 int _identificador = museo.devolverIdentificador(usuario);
-			 System.out.println(_identificador);
 			 identificador = _identificador;
 			 //guardar el usuario dependiendo del identificador
 			 if (identificador == 1) {

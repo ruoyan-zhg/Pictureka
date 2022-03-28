@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import Modelo.Cliente;
 import Modelo.Datos;
+import Modelo.M_Reservas;
 import Modelo.Registro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -181,7 +182,6 @@ public class ControladorTickets {
     	int idReserva = 0;
     	//Se genera un numero de 6 digitos entre (100000-999999) como identificador
     	idReserva = (int) ((Math.random()*(999999-100000) + 100000));
-		System.out.println(idReserva);
     	//Se comprueba que ninguno de los campos se encuentre vacio
 		if (!(ComboxTickets.getValue()== null | hourTickets.getValue() == null | dateTickets.getValue() == null)) {
 
@@ -196,7 +196,6 @@ public class ControladorTickets {
 				// Se obtienen las fechas actuales
 				LocalDate fechaHoy = LocalDate.now();
 				LocalTime horaHoy = LocalTime.now();
-				System.out.println(horaHoy);
 
 				// la fecha seleccionada es menor que la actual
 				if (dateSeleccionada.isBefore(fechaHoy)) {
@@ -369,7 +368,7 @@ public class ControladorTickets {
     	if (horaSeleccionada.isAfter(LocalTime.of(inicio, 00))
 				&& horaSeleccionada.isBefore(LocalTime.of(fin, 00))) {
 
-			Registro registro = new Registro();
+			M_Reservas registro = new M_Reservas();
 			registro.registrarReserva(identificador, tickets, dateSeleccionada, horaSeleccionada, usuario , "NULL");
 
 			confirmation.setHeaderText("Reserva realizada con éxito.");

@@ -7,6 +7,7 @@ import java.util.Vector;
 import com.jfoenix.controls.JFXTextArea;
 import Modelo.Cliente;
 import Modelo.Datos;
+import Modelo.M_Reservas;
 import Modelo.Registro;
 import Modelo.Reserva;
 import javafx.event.ActionEvent;
@@ -70,16 +71,9 @@ public class ControladorEditarReserva {
     
     boolean logged;
     
-    String usuario;
-    
+    private String usuario;
     
     private String infoReserva;
-    
-    private Datos datos = new Datos();
-    
-    
-    
-    
    
     private Vector<Reserva> reservasEspecificas = new Vector<Reserva>();
     
@@ -135,36 +129,26 @@ public class ControladorEditarReserva {
      * @param event		Evento causado cuando el cliente pulsa sobre el botón "Eliminar".
      */	
     void eliminarReserva(ActionEvent event) {
-    	/*
+    	
+    	M_Reservas reservas = new M_Reservas(); 
+    	
     	Alert alerta = new Alert(AlertType.INFORMATION);
     	//Se comrpueba que la seleccion no este vacia
     	if(tablaReservas.getSelectionModel().getSelectedItem()!=null) {
     		int idEliminar = tablaReservas.getSelectionModel().getSelectedItem().getIdentificador();
-    		for(int i = 0; i<reservasEspecificas.size(); i++) {
-        		if(idEliminar==reservasEspecificas.elementAt(i).getIdentificador()) {
-        			reservasEspecificas.removeElement(reservasEspecificas.elementAt(i));
-        			
-        		}
-        	}
-        	
-        	
-        	
-        	for(int i = 0; i<reservas.size(); i++) {
-        		if(reservas.elementAt(i).getIdentificador()==idEliminar) {
-        			reservas.remove(reservas.elementAt(i));
-        		}
-        	}
-        	
+    		reservas.eliminarReserva(idEliminar);
+    		//obtiene las reservas de dicho usuario
+    		getReserUser();
+    		//muestra las reservas sin la reserva que se "elimino"
         	refrescarTabla();
-        	datos.serializarVectorReservasAJson(reservas);
-        	datos.serializarArrayAJson(usuarios);
+        	
         	alerta.setHeaderText("La reserva se ha eliminado con éxito!");
     		alerta.showAndWait();
     	}
     	else {
     		alerta.setHeaderText("¡Porfavor seleccione alguna reserva para eliminar!");
     		alerta.showAndWait();
-    	}*/
+    	}
     	
     } 
     
@@ -248,7 +232,7 @@ public class ControladorEditarReserva {
 
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
 	        anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-
+	        controlerPerfil.getBarra().setStyle("-fx-background-color: #00aae4");
 
 
 		} catch (IOException e1) {
@@ -280,12 +264,8 @@ public class ControladorEditarReserva {
      */
     private void getReserUser() {
     	//Obtener los datos de la reserva
-    	
-    	Registro registro = new Registro ();
-    	reservasEspecificas = registro.buscarReserva(usuario);
-    	
-    	
-    	
+    	M_Reservas reservas = new M_Reservas ();
+    	reservasEspecificas = reservas.buscarReserva(usuario);
     }
 
     /**

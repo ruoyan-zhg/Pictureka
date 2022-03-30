@@ -545,7 +545,7 @@ public class Registro {
 	}
 	
 	public Cliente rDevolverCliente(String usuario) {
-		recuperarUsuarios();
+		recuperarClientes();
 		Cliente cli = recuperar1Cliente(usuario);
 		return cli;
 	}
@@ -563,54 +563,6 @@ public class Registro {
 	}
 	
 	
-	
-
-	
-	
-	/**
-	 * ESCRITURA Y LECTURA DE LOS CLIENTES
-	 */
-	public void recuperarUsuarios() {
-		Datos datos = new Datos();
-		//Try catch quizas el archivo no abre
-		Vector<Cliente> _usuarios = datos.desserializarJsonAusuarios();
-		if(_usuarios != null){ 
-			this.usuarios = _usuarios ;
-		}
-	}
-	
-	public void escribirUsuarios() {
-		Datos datos = new Datos();
-		//Try catch quizas el archivo no abre
-		for (int i = 0; i< usuarios.size(); i++) {
-			
-		}
-		datos.serializarArrayAJson(usuarios);
-	}
-	
-	
-	
-	/**
-	 * ESCRITURA Y LECTURA DE JSON DEL STAFF
-	 */
-	public void escribirStaff() {
-		Datos datos = new Datos();
-		//Try catch quizas el archivo no abre
-		for (int i = 0; i< staff.size(); i++) {
-			
-		}
-		datos.serializarStaffAJson(staff);
-	}
-		
-	
-	public void escribirStaffNuevo(Vector<Staff> staffNuevo) {
-		Datos datos = new Datos();
-		//Try catch quizas el archivo no abre
-		for (int i = 0; i< staffNuevo.size(); i++) {
-			
-		}
-		datos.serializarStaffAJson(staffNuevo);
-	}
 	
 	
 	public Vector<Staff> recuperarStaff() {

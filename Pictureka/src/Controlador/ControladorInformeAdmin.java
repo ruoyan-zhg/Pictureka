@@ -256,6 +256,7 @@ public class ControladorInformeAdmin {
 		Connection conn = null;
 		Statement stmt = null;
 		String sql;
+		String sql2;
 
 		Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
 		Alert error = new Alert(Alert.AlertType.ERROR);
@@ -284,6 +285,12 @@ public class ControladorInformeAdmin {
 	            stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery( sql );
 
+				
+				sql2 = "INSERT INTO MANEJA(Usuario)"
+						+ "VALUES('"+admin.getUsuario()+"');";
+				
+				rs = stmt.executeQuery(sql2);
+				
 				rs.close();
 				stmt.close();
 				

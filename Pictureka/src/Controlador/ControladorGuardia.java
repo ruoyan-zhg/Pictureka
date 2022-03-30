@@ -190,6 +190,7 @@ public class ControladorGuardia {
 		Connection conn = null;
 		Statement stmt = null;
 		String sql;
+		String sql2;
 
 		Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
 		Alert error = new Alert(Alert.AlertType.ERROR);
@@ -217,6 +218,13 @@ public class ControladorGuardia {
 		            stmt = conn.createStatement();
 					ResultSet rs = stmt.executeQuery( sql );
 
+					
+					sql2 = "INSERT INTO MANEJA(Usuario)"
+							+ "VALUES('"+guardia.getUsuario()+"');";
+					
+					rs = stmt.executeQuery(sql2);
+					
+					
 					rs.close();
 					stmt.close();
 					

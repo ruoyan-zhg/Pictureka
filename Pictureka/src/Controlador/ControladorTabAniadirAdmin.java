@@ -130,17 +130,20 @@ public class ControladorTabAniadirAdmin {
     	}
     	else {
 			
-			// Dependiendo del estado que devuelva el metodo registrarGuardias, se realizara
-			// una accion u otra
-			String estado = modelo.getRegistro().registrarStaff(usuarioNuevo, dniNuevo, emailNuevo, cifrar.hashing(contraseniaNuevo), nombreNuevo,
-					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo, 3);
-			if (estado.equals("Validacion completada con exito")) {
-				// se muestra en la tabla al nuevo guardia
-				this.controlerEdit.getTableViewAdministrador().getItems().add(new Administrador(usuarioNuevo, dniNuevo, emailNuevo,
-						contraseniaNuevo, fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
-			}
-			confirmacion.setHeaderText(estado);
-			confirmacion.showAndWait();
+    		if (dniNuevo.length()==9) {
+    			// Dependiendo del estado que devuelva el metodo registrarGuardias, se realizara
+    			// una accion u otra
+    			String estado = modelo.getRegistro().registrarStaff(usuarioNuevo, dniNuevo, emailNuevo, cifrar.hashing(contraseniaNuevo), nombreNuevo,
+    					apellido1Nuevo, apellido2Nuevo, fechaNacimientoNuevo, 3);
+    			if (estado.equals("Validacion completada con exito")) {
+    				// se muestra en la tabla al nuevo guardia
+    				this.controlerEdit.getTableViewAdministrador().getItems().add(new Administrador(usuarioNuevo, dniNuevo, emailNuevo,
+    						contraseniaNuevo, fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
+    			}
+    			confirmacion.setHeaderText(estado);
+    			confirmacion.showAndWait();
+    		}
+			
 		}
     	
     }

@@ -166,13 +166,8 @@ public class ControladorTabEditarAdmin {
 		Alert informacion = new Alert(Alert.AlertType.INFORMATION);
 		Registro registro = new Registro();
 		Cifrado cifrar = new Cifrado();
-		
-				
-		
-		// Se guarda en un vector la informacion del json del personal de staff
-		
 
-		
+		// Se guarda en un vector la informacion del json del personal de staff
 
 		// Obtenemos los datos de los diferentes jtextfield
 		String UsuarioNuevo = textUsuarioAdmin.getText();
@@ -186,47 +181,89 @@ public class ControladorTabEditarAdmin {
 
 		// Comprobamos que haya seleccionado un administrador
 		if (!controlerEditAdmin.getTableViewAdministrador().getSelectionModel().isEmpty()) {
-			
+
 			// Comprobamos que el contenido no está vacío
 			if (!(UsuarioNuevo.isEmpty() | nombreNuevo.isEmpty() | apellido1Nuevo.isEmpty() | apellido2Nuevo.isEmpty()
 					| dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null) | contraseniaNuevo.isEmpty())) {
-				
+
 				Staff staff = buscarAdminSelecc();
-				if((staff.getContrasenia().equals(cifrar.hashing(contraseniaNuevo))==false)) {
+				if ((staff.getContrasenia().equals(cifrar.hashing(contraseniaNuevo)) == false)) {
 					contraseniaNuevo = cifrar.hashing(contraseniaNuevo);
-					
+
 				}
 
 				// Recorremos el json staff
-				
-						LocalDate fecha = LocalDate.now();
-						Period periodo = Period.between(fechaNuevo, fecha);
 
-						// Comprobaciones para los distintos casos que se pueden dar
+				LocalDate fecha = LocalDate.now();
+				Period periodo = Period.between(fechaNuevo, fecha);
 
-						// Comprobacion del rango de edad
-						if (dniNuevo.length()==9) {
-							if (periodo.getYears() > 18 && periodo.getYears() < 100) {
-								//staff.get(i).setFechaNacimiento(fechaNuevo);
+				// Comprobaciones para los distintos casos que se pueden dar
 
-								// devuelve true si el usuario no esta repetido
-								if (registro.staffRepetido(UsuarioNuevo) && registro.usuarioRepetido(UsuarioNuevo)) {
-									//staff.get(i).setUsuario(UsuarioNuevo);
-									
+				// Comprobacion del rango de edad
+				if (dniNuevo.length() == 9) {
+					if (UsuarioNuevo.length() <= 10) {
+						if (periodo.getYears() > 18 && periodo.getYears() < 100) {
+							// staff.get(i).setFechaNacimiento(fechaNuevo);
 
-									// devuelve true si el dni no esta repetido
-									if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
-										//staff.get(i).setDni(dniNuevo);
-										
+							// devuelve true si el usuario no esta repetido
+							if (registro.staffRepetido(UsuarioNuevo) && registro.usuarioRepetido(UsuarioNuevo)) {
+								// staff.get(i).setUsuario(UsuarioNuevo);
 
-										// devuelve true si el email no esta repetidp
-										if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
-											
+								// devuelve true si el dni no esta repetido
+								if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
+									// staff.get(i).setDni(dniNuevo);
 
-											// Valida el email nuevo
+									// devuelve true si el email no esta repetidp
+									if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
+
+										// Valida el email nuevo
+										if (registro.validarEmail(emailNuevo)) {
+											/********************************************************************************************************/
+											GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo,
+													dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+											controlerEditAdmin.actualizarTablaAdmins();
+											eliminarContenidoTxtfield();
+											informacion.setHeaderText("Cambios realizados con éxito.");
+											informacion.showAndWait();
+
+										} else {
+											error.setHeaderText("Formato de email incorrecto.");
+											error.showAndWait();
+
+										}
+
+									} else {
+										// Si el administrador mantiene su mismo email
+										if (staff.getEmail().equals(emailNuevo)) {
+
+											GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo,
+													dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+											controlerEditAdmin.actualizarTablaAdmins();
+											eliminarContenidoTxtfield();
+											informacion.setHeaderText("Cambios realizados con éxito.");
+											informacion.showAndWait();
+
+										} else {
+											error.setHeaderText("Email ya registrado.");
+											error.showAndWait();
+
+										}
+
+									}
+								} else { // EL ADMIN MANTIENE SU MISMO DNI
+									// si el administrador mantiene su mismo dni
+
+									if (staff.getDni().equals(dniNuevo)) {
+										// staff.get(i).setDni(dniNuevo);
+
+										if (registro.emailRepetido(emailNuevo)
+												&& registro.emailRepetidoStaff(emailNuevo)) {
+
 											if (registro.validarEmail(emailNuevo)) {
-	/********************************************************************************************************/
-												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+
+												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo,
+														apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo,
+														contraseniaNuevo);
 												controlerEditAdmin.actualizarTablaAdmins();
 												eliminarContenidoTxtfield();
 												informacion.setHeaderText("Cambios realizados con éxito.");
@@ -235,14 +272,15 @@ public class ControladorTabEditarAdmin {
 											} else {
 												error.setHeaderText("Formato de email incorrecto.");
 												error.showAndWait();
-												
+
 											}
 
 										} else {
-											// Si el administrador mantiene su mismo email
 											if (staff.getEmail().equals(emailNuevo)) {
-												
-												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+
+												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo,
+														apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo,
+														contraseniaNuevo);
 												controlerEditAdmin.actualizarTablaAdmins();
 												eliminarContenidoTxtfield();
 												informacion.setHeaderText("Cambios realizados con éxito.");
@@ -251,178 +289,143 @@ public class ControladorTabEditarAdmin {
 											} else {
 												error.setHeaderText("Email ya registrado.");
 												error.showAndWait();
-												
-											}
 
-										}
-									} else { // EL ADMIN MANTIENE SU MISMO DNI
-										// si el administrador mantiene su mismo dni
-
-										if (staff.getDni().equals(dniNuevo)) {
-											//staff.get(i).setDni(dniNuevo);
-											
-
-											if (registro.emailRepetido(emailNuevo)
-													&& registro.emailRepetidoStaff(emailNuevo)) {
-												
-
-												if (registro.validarEmail(emailNuevo)) {
-													
-													GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-													controlerEditAdmin.actualizarTablaAdmins();
-													eliminarContenidoTxtfield();
-													informacion.setHeaderText("Cambios realizados con éxito.");
-													informacion.showAndWait();
-
-												} else {
-													error.setHeaderText("Formato de email incorrecto.");
-													error.showAndWait();
-													
-												}
-
-											} else {
-												if (staff.getEmail().equals(emailNuevo)) {
-													
-													GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-													controlerEditAdmin.actualizarTablaAdmins();
-													eliminarContenidoTxtfield();
-													informacion.setHeaderText("Cambios realizados con éxito.");
-													informacion.showAndWait();
-
-												} else {
-													error.setHeaderText("Email ya registrado.");
-													error.showAndWait();
-													
-												}
-											}
-
-										} else {
-											error.setHeaderText("Dni ya registrado.");
-											error.showAndWait();
-											
-										}
-
-									}
-
-								}
-
-								// EL ADMIN MANTIENE SU MISMO USUARIO
-								else {
-									// Si el guardia mantiene su mismo usuario
-									if (staff.getUsuario().equals(UsuarioNuevo)) {
-										staff.setUsuario(UsuarioNuevo);
-										
-
-										// devuelve true si el email del admin no esta repetido
-										if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
-											
-
-											if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
-												
-												//staff.get(i).setDni(dniNuevo);
-
-												// Se valdida el nuevo email
-												if (registro.validarEmail(emailNuevo)) {
-
-													GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-													controlerEditAdmin.actualizarTablaAdmins();
-													eliminarContenidoTxtfield();
-
-													informacion.setHeaderText("Cambios realizados con éxito.");
-													informacion.showAndWait();
-
-												} else {
-													error.setHeaderText("Formato de email incorrecto.");
-													error.showAndWait();
-													
-												}
-											} else {
-												// Si el dni es el mismo del admin
-
-												if (staff.getDni().equals(dniNuevo)) {
-													//staff.get(i).setDni(dniNuevo);
-													
-
-													if (registro.validarEmail(emailNuevo)) {
-														
-														GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-														controlerEditAdmin.actualizarTablaAdmins();
-														eliminarContenidoTxtfield();
-														informacion.setHeaderText("Cambios realizados con éxito.");
-														informacion.showAndWait();
-													} else {
-														error.setHeaderText("Formato de email incorrecto.");
-														error.showAndWait();
-														
-													}
-
-												} else {
-													error.setHeaderText("Dni ya registrado.");
-													error.showAndWait();
-													
-												}
-
-											}
-
-										} else {
-											// Si el email es el mismo del admin
-											if (staff.getEmail().equals(emailNuevo)) {
-												//staff.get(i).setEmail(emailNuevo);
-												
-
-												if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
-													
-													GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-													controlerEditAdmin.actualizarTablaAdmins();
-													eliminarContenidoTxtfield();
-													//registro.escribirStaffNuevo(staff);
-
-													informacion.setHeaderText("Cambios realizados con éxito.");
-													informacion.showAndWait();
-
-												} else {
-													// Mismo dni del admin
-													if (staff.getDni().equals(dniNuevo)) {
-														
-														GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-														controlerEditAdmin.actualizarTablaAdmins();
-														eliminarContenidoTxtfield();
-														
-														informacion.setHeaderText("Cambios realizados con éxito.");
-														informacion.showAndWait();
-
-													} else {
-														error.setHeaderText("Dni ya registrado.");
-														error.showAndWait();
-														
-													}
-												}
-											} else {
-												error.setHeaderText("Email ya registrado.");
-												error.showAndWait();
-												
 											}
 										}
 
 									} else {
-										error.setHeaderText("Usuario ya registrado.");
+										error.setHeaderText("Dni ya registrado.");
 										error.showAndWait();
-										
+
 									}
 
 								}
 
-							} else {
-								error.setHeaderText("Rango de edad no aceptable.");
-								error.showAndWait();
 							}
-						}
-						else {
-							error.setHeaderText("El DNI debe tener una longutid de 9 digitos.");
+
+							// EL ADMIN MANTIENE SU MISMO USUARIO
+							else {
+								// Si el guardia mantiene su mismo usuario
+								if (staff.getUsuario().equals(UsuarioNuevo)) {
+									staff.setUsuario(UsuarioNuevo);
+
+									// devuelve true si el email del admin no esta repetido
+									if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
+
+										if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
+
+											// staff.get(i).setDni(dniNuevo);
+
+											// Se valdida el nuevo email
+											if (registro.validarEmail(emailNuevo)) {
+
+												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo,
+														apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo,
+														contraseniaNuevo);
+												controlerEditAdmin.actualizarTablaAdmins();
+												eliminarContenidoTxtfield();
+
+												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.showAndWait();
+
+											} else {
+												error.setHeaderText("Formato de email incorrecto.");
+												error.showAndWait();
+
+											}
+										} else {
+											// Si el dni es el mismo del admin
+
+											if (staff.getDni().equals(dniNuevo)) {
+												// staff.get(i).setDni(dniNuevo);
+
+												if (registro.validarEmail(emailNuevo)) {
+
+													GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo,
+															apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo,
+															contraseniaNuevo);
+													controlerEditAdmin.actualizarTablaAdmins();
+													eliminarContenidoTxtfield();
+													informacion.setHeaderText("Cambios realizados con éxito.");
+													informacion.showAndWait();
+												} else {
+													error.setHeaderText("Formato de email incorrecto.");
+													error.showAndWait();
+
+												}
+
+											} else {
+												error.setHeaderText("Dni ya registrado.");
+												error.showAndWait();
+
+											}
+
+										}
+
+									} else {
+										// Si el email es el mismo del admin
+										if (staff.getEmail().equals(emailNuevo)) {
+											// staff.get(i).setEmail(emailNuevo);
+
+											if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
+
+												GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo,
+														apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo,
+														contraseniaNuevo);
+												controlerEditAdmin.actualizarTablaAdmins();
+												eliminarContenidoTxtfield();
+												// registro.escribirStaffNuevo(staff);
+
+												informacion.setHeaderText("Cambios realizados con éxito.");
+												informacion.showAndWait();
+
+											} else {
+												// Mismo dni del admin
+												if (staff.getDni().equals(dniNuevo)) {
+
+													GuardarAdminBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo,
+															apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo,
+															contraseniaNuevo);
+													controlerEditAdmin.actualizarTablaAdmins();
+													eliminarContenidoTxtfield();
+
+													informacion.setHeaderText("Cambios realizados con éxito.");
+													informacion.showAndWait();
+
+												} else {
+													error.setHeaderText("Dni ya registrado.");
+													error.showAndWait();
+
+												}
+											}
+										} else {
+											error.setHeaderText("Email ya registrado.");
+											error.showAndWait();
+
+										}
+									}
+
+								} else {
+									error.setHeaderText("Usuario ya registrado.");
+									error.showAndWait();
+
+								}
+
+							}
+
+						} else {
+							error.setHeaderText("Rango de edad no aceptable.");
 							error.showAndWait();
 						}
-                    
-				
+					} else {
+						error.setHeaderText("El DNI debe tener una longutid de 9 digitos.");
+						error.showAndWait();
+					}
+				} else {
+					error.setHeaderText("La longitud del Usuario no es válida.");
+					error.showAndWait();
+				}
+
 			} else {
 				error.setHeaderText("Revise que todos losc campos están completos.");
 				error.showAndWait();

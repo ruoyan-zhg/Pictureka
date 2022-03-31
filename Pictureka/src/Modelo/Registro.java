@@ -155,6 +155,8 @@ public class Registro {
 		//cuando esta a false significa que no hay datos iguales al que se esta registrando
 		boolean correcto = false;
 		if(dni.length()==9) {
+			if (usuario.length() <= 10) {
+				
 			if (validarEmail(email)) { // devuelve true si el email es valid
 				try{
 					//credenciales
@@ -227,6 +229,9 @@ public class Registro {
 			    }//end try
 			} else {
 				usuario = "El email introducido no es valido";
+			}
+			}else {
+				usuario = "La longitud del Usuario no es válida";
 			}
 		}
 		else{

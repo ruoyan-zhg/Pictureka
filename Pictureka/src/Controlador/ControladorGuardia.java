@@ -581,7 +581,7 @@ public class ControladorGuardia {
 				Vector<Reserva> tickets = reservas.recuperarReserva();
 				int i = 0;
 				while(i<tickets.size() && reservaEncontrada.equals("no encontrada")) {
-					if(tickets.elementAt(i).getIdentificador()==identificadorReserva) {
+					if((tickets.elementAt(i).getIdentificador()==identificadorReserva) && (reservas.visualizarVisibilidad(identificadorReserva)==1)) {
 						if(!tickets.elementAt(i).getFecha().isBefore(fechaActual)) {
 							reservaEncontrada = "valida";
 							reservas.establecerRevisor(revisor, identificadorReserva);

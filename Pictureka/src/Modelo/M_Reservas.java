@@ -136,6 +136,55 @@ public class M_Reservas {
 		return Reservas;
 			   
 	}
+	
+	
+	public int visualizarVisibilidad (int identificador) {
+		
+		int visible = -1;
+		
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+
+            //STEP 2: Open a connection
+
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            sql = "SELECT visible  FROM RESERVA"
+            	+ " WHERE identificador = "+identificador+";";
+
+            stmt = conn.createStatement();
+   			ResultSet rs = stmt.executeQuery( sql );
+   			while ( rs.next() ) {
+   				visible = rs.getInt("visible");
+   			}
+   						
+   			stmt.close();
+   			rs.close();
+		}catch (SQLException se) {
+	        //Handle errors for JDBC
+	        se.printStackTrace();
+	    } catch (Exception e) {
+	        //Handle errors for Class.forName
+	        e.printStackTrace();
+	    } finally {
+	        //finally block used to close resources
+	        try {
+	            if (stmt != null) {
+	                conn.close();
+	            }
+	        } catch (SQLException se) {
+	        }// do nothing
+	        try {
+	            if (conn != null) {
+	                conn.close();
+	            }
+	        } catch (SQLException se) {
+	            se.printStackTrace();
+	        }//end finally try
+	    }//end try 
+		
+		return visible;
+	}
 
 	public void registrarReserva (int identificador, int num_ticket, LocalDate fecha, LocalTime hora, String id_duenio, String revisor) {
         

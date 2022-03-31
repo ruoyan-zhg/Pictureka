@@ -123,9 +123,8 @@ public class ControladorRegistro {
     	String repetirContrasenia = textFieldRepeatPassword.getText();
     	LocalDate fechaNuevo = chooserCalendario.getValue();
     	//Se comprueba que ninguno de los campos este vacio
-    	if(!(textUsuarioRegistro.getText().isEmpty() | textDni.getText().isEmpty() | textCorreoElectronico.getText().isEmpty() | contrasenia.isEmpty()
-				| repetirContrasenia.isEmpty() |(fechaNuevo == null) )) {
-    			
+	    if(!(textUsuarioRegistro.getText().isEmpty() | textDni.getText().isEmpty() | textCorreoElectronico.getText().isEmpty() | contrasenia.isEmpty()
+					| repetirContrasenia.isEmpty() |(fechaNuevo == null) )) {	
 			//Se comprueba que la fecha de nacimiento se encuentre entre un rango aceptable
     		LocalDate fecha = LocalDate.now();
         	Period periodo = Period.between(chooserCalendario.getValue(), fecha);
@@ -133,19 +132,23 @@ public class ControladorRegistro {
     			//Se comrpueba que las contrasenias sean iguales
     			if(textUsuarioRegistro.getText().length()<=10) {
     				if(contrasenia.equals(repetirContrasenia)&&!(contrasenia.equals(""))&&!(contrasenia.equals(" "))) {
-            			//Se registra el usuario
-                		estado = museo.getRegistro().registrarCliente(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), cifrar.hashing(txtFieldPassword.getText()), chooserCalendario.getValue());
-                		if (estado.equals("Validacion completada con exito")) {
-                			confirmacion.setHeaderText(estado);
-                			confirmacion.showAndWait();
-                			abrirLogin();
-                			
-                		}
-                		else {
-                			error.setHeaderText(estado);
-                			error.show();
-                		}
-                		
+    					if(textDni.getText().length()==9) {
+    						//Se registra el usuario
+	                		estado = museo.getRegistro().registrarCliente(textUsuarioRegistro.getText(), textDni.getText(), textCorreoElectronico.getText(), cifrar.hashing(txtFieldPassword.getText()), chooserCalendario.getValue());
+	                		if (estado.equals("Validacion completada con exito")) {
+	                			confirmacion.setHeaderText(estado);
+	                			confirmacion.showAndWait();
+	                			abrirLogin();
+	                			
+	                		}
+	                		else {
+	                			error.setHeaderText(estado);
+	                			error.show();
+	                		}
+    					}else {
+    						error.setHeaderText("Error: El DNI introducido no es valido");
+	                		error.show();
+    					}
                 	}
                 	else {
                 		 error.setHeaderText("Error: las contraseñas no coinciden");
@@ -166,10 +169,9 @@ public class ControladorRegistro {
     	else {
     		error.setHeaderText("¡Porfavor rellene todos los campos!");
     		error.show();
-    		
+    			
     	}
-    	
-    }
+	}
     /**
      * 
      * Método que muestra la ventana de Login.

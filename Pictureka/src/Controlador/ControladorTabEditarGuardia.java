@@ -194,70 +194,26 @@ public class ControladorTabEditarGuardia {
 						// Comprobaciones para los distintos casos que se pueden dar
 
 						// Comprobacion del rango de edad
-						if (periodo.getYears() > 18 && periodo.getYears() < 100) {
-							
-							// devuelve true si el usuario no esta repetido
-							if (registro.staffRepetido(UsuarioNuevo)) {
+						if(dniNuevo.length()==9) {
+							if (periodo.getYears() > 18 && periodo.getYears() < 100) {
 								
-								// devuelve true si el dni no esta repetido
-								if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
-		
-									// devuelve true si el email no esta repetido
-									if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
-										
-
-										// Valida el email nuevo
-										if (registro.validarEmail(emailNuevo)) {
-											
-											
-											GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-											controlerEditGuardia.actualizarTablaGuardias();
-											eliminarContenidoTxtfield();
-											informacion.setHeaderText("Cambios realizados con éxito.");
-											informacion.showAndWait();
-
-										} else {
-											error.setHeaderText("Formato de email incorrecto.");
-											error.showAndWait();
-											
-										}
-
-									} else {
-										// Si el guardia mantiene su mismo email
-										if (staff.getEmail().equals(emailNuevo)) {
-											
-											GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-											controlerEditGuardia.actualizarTablaGuardias();
-											eliminarContenidoTxtfield();
-
-											informacion.setHeaderText("Cambios realizados con éxito.");
-											informacion.showAndWait();
-
-										} else {
-											error.setHeaderText("Email ya registrado.");
-											error.showAndWait();
-											
-										}
-
-									}
-								} else { // EL GUARDIA MANTIENE SU MISMO DNI
-									// si el guardia mantiene su mismo dni
-
-									if (staff.getDni().equals(dniNuevo)) {
-																		
-
-										if (registro.emailRepetido(emailNuevo)
-												&& registro.emailRepetidoStaff(emailNuevo)) {
+								// devuelve true si el usuario no esta repetido
+								if (registro.staffRepetido(UsuarioNuevo)) {
+									
+									// devuelve true si el dni no esta repetido
+									if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
+			
+										// devuelve true si el email no esta repetido
+										if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
 											
 
+											// Valida el email nuevo
 											if (registro.validarEmail(emailNuevo)) {
-												staff.setEmail(emailNuevo);
 												
-
+												
 												GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
 												controlerEditGuardia.actualizarTablaGuardias();
 												eliminarContenidoTxtfield();
-
 												informacion.setHeaderText("Cambios realizados con éxito.");
 												informacion.showAndWait();
 
@@ -268,6 +224,7 @@ public class ControladorTabEditarGuardia {
 											}
 
 										} else {
+											// Si el guardia mantiene su mismo email
 											if (staff.getEmail().equals(emailNuevo)) {
 												
 												GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
@@ -282,53 +239,20 @@ public class ControladorTabEditarGuardia {
 												error.showAndWait();
 												
 											}
+
 										}
+									} else { // EL GUARDIA MANTIENE SU MISMO DNI
+										// si el guardia mantiene su mismo dni
 
-									} else {
-										error.setHeaderText("Dni ya registrado.");
-										error.showAndWait();
-										
-									}
+										if (staff.getDni().equals(dniNuevo)) {
+																			
 
-								}
-
-							}
-
-							// EL GUARDIA MANTIENE SU MISMO USUARIO
-							else {
-								// Si el guardia mantiene su mismo usuario
-								if (staff.getUsuario().equals(UsuarioNuevo)) {
-																
-
-									// devuelve true si el email del guardia no esta repetido
-									if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
-										
-
-										if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
-
-											// Se valdida el nuevo email
-											if (registro.validarEmail(emailNuevo)) {
-
-												GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-												controlerEditGuardia.actualizarTablaGuardias();
-												eliminarContenidoTxtfield();
-
-												informacion.setHeaderText("Cambios realizados con éxito.");
-												informacion.showAndWait();
-
-											} else {
-												error.setHeaderText("Formato de email incorrecto.");
-												error.showAndWait();
-												
-											}
-										} else {
-											// Si el dni es el mismo del guardia
-
-											if (staff.getDni().equals(dniNuevo)) {
-												
+											if (registro.emailRepetido(emailNuevo)
+													&& registro.emailRepetidoStaff(emailNuevo)) {
 												
 
 												if (registro.validarEmail(emailNuevo)) {
+													staff.setEmail(emailNuevo);
 													
 
 													GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
@@ -337,6 +261,7 @@ public class ControladorTabEditarGuardia {
 
 													informacion.setHeaderText("Cambios realizados con éxito.");
 													informacion.showAndWait();
+
 												} else {
 													error.setHeaderText("Formato de email incorrecto.");
 													error.showAndWait();
@@ -344,68 +269,149 @@ public class ControladorTabEditarGuardia {
 												}
 
 											} else {
-												error.setHeaderText("Dni ya registrado.");
-												error.showAndWait();
-												
-											}
-
-										}
-
-									} else {
-										// Si el email es el mismo del guardia
-										if (staff.getEmail().equals(emailNuevo)) {
-											
-											
-
-											if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
-												
-
-												GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
-												controlerEditGuardia.actualizarTablaGuardias();
-												eliminarContenidoTxtfield();
-
-												informacion.setHeaderText("Cambios realizados con éxito.");
-												informacion.showAndWait();
-
-											} else {
-												// Mismo dni del guardia
-												if (staff.getDni().equals(dniNuevo)) {
+												if (staff.getEmail().equals(emailNuevo)) {
 													
 													GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
 													controlerEditGuardia.actualizarTablaGuardias();
 													eliminarContenidoTxtfield();
+
 													informacion.setHeaderText("Cambios realizados con éxito.");
 													informacion.showAndWait();
+
+												} else {
+													error.setHeaderText("Email ya registrado.");
+													error.showAndWait();
+													
+												}
+											}
+
+										} else {
+											error.setHeaderText("Dni ya registrado.");
+											error.showAndWait();
+											
+										}
+
+									}
+
+								}
+
+								// EL GUARDIA MANTIENE SU MISMO USUARIO
+								else {
+									// Si el guardia mantiene su mismo usuario
+									if (staff.getUsuario().equals(UsuarioNuevo)) {
+																	
+
+										// devuelve true si el email del guardia no esta repetido
+										if (registro.emailRepetido(emailNuevo) && registro.emailRepetidoStaff(emailNuevo)) {
+											
+
+											if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
+
+												// Se valdida el nuevo email
+												if (registro.validarEmail(emailNuevo)) {
+
+													GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+													controlerEditGuardia.actualizarTablaGuardias();
+													eliminarContenidoTxtfield();
+
+													informacion.setHeaderText("Cambios realizados con éxito.");
+													informacion.showAndWait();
+
+												} else {
+													error.setHeaderText("Formato de email incorrecto.");
+													error.showAndWait();
+													
+												}
+											} else {
+												// Si el dni es el mismo del guardia
+
+												if (staff.getDni().equals(dniNuevo)) {
+													
+													
+
+													if (registro.validarEmail(emailNuevo)) {
+														
+
+														GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+														controlerEditGuardia.actualizarTablaGuardias();
+														eliminarContenidoTxtfield();
+
+														informacion.setHeaderText("Cambios realizados con éxito.");
+														informacion.showAndWait();
+													} else {
+														error.setHeaderText("Formato de email incorrecto.");
+														error.showAndWait();
+														
+													}
 
 												} else {
 													error.setHeaderText("Dni ya registrado.");
 													error.showAndWait();
 													
 												}
+
 											}
+
 										} else {
-											error.setHeaderText("Email ya registrado.");
-											error.showAndWait();
-											
+											// Si el email es el mismo del guardia
+											if (staff.getEmail().equals(emailNuevo)) {
+												
+												
+
+												if (registro.dniRepetido(dniNuevo) && registro.dniStaffRepetido(dniNuevo)) {
+													
+
+													GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+													controlerEditGuardia.actualizarTablaGuardias();
+													eliminarContenidoTxtfield();
+
+													informacion.setHeaderText("Cambios realizados con éxito.");
+													informacion.showAndWait();
+
+												} else {
+													// Mismo dni del guardia
+													if (staff.getDni().equals(dniNuevo)) {
+														
+														GuardarGuardiaBBDD(UsuarioNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo);
+														controlerEditGuardia.actualizarTablaGuardias();
+														eliminarContenidoTxtfield();
+														informacion.setHeaderText("Cambios realizados con éxito.");
+														informacion.showAndWait();
+
+													} else {
+														error.setHeaderText("Dni ya registrado.");
+														error.showAndWait();
+														
+													}
+												}
+											} else {
+												error.setHeaderText("Email ya registrado.");
+												error.showAndWait();
+												
+											}
 										}
+
+									} else {
+										error.setHeaderText("Usuario ya registrado.");
+										error.showAndWait();
+										
 									}
 
-								} else {
-									error.setHeaderText("Usuario ya registrado.");
-									error.showAndWait();
-									
 								}
 
+							} else {
+								error.setHeaderText("Rango de edad no aceptable.");
+								error.showAndWait();
 							}
-
-						} else {
-							error.setHeaderText("Rango de edad no aceptable.");
+						}
+						else {
+							error.setHeaderText("El DNI debe tener una longitud de 9 digitos.");
 							error.showAndWait();
 						}
 
 					
 			} else {
-				error.setHeaderText("Revise que todos losc campos están completos.");
+				error.setHeaderText("Revise que todos los campos están completos.");
 				error.showAndWait();
 			}
 		} else {

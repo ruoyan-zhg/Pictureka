@@ -154,78 +154,83 @@ public class Registro {
 		String sql = "";
 		//cuando esta a false significa que no hay datos iguales al que se esta registrando
 		boolean correcto = false;
-		if (validarEmail(email)) { // devuelve true si el email es valid
-			try{
-				//credenciales
-				conn = conn = DriverManager.getConnection(
-						"jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
-			    //consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
-				//el mismo tipo de usuario
-			    sql = "SELECT * FROM CLIENTE "
-			    		+ "WHERE CLIENTE.Usuario = '"+usuario+"' OR CLIENTE.Email = '"+email+"'";
-		        stmt = conn.createStatement();
-				ResultSet respuestaCliente = stmt.executeQuery( sql );
-				if(respuestaCliente.first()) {
-					//significa que ya alguno de los datos introducitos ya esta registrado
-					correcto = true;
-				}
-				respuestaCliente.close();
-				stmt.close();
-				if (correcto == false) {
-					//consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
+		if(dni.length()==9) {
+			if (validarEmail(email)) { // devuelve true si el email es valid
+				try{
+					//credenciales
+					conn = conn = DriverManager.getConnection(
+							"jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+				    //consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
 					//el mismo tipo de usuario
-					sql = "SELECT * FROM STAFF "
-							+ "WHERE STAFF.Usuario = '"+usuario+"' OR STAFF.Email = '"+email+"' OR STAFF.Dni = '"+dni+"'";
+				    sql = "SELECT * FROM CLIENTE "
+				    		+ "WHERE CLIENTE.Usuario = '"+usuario+"' OR CLIENTE.Email = '"+email+"'";
 			        stmt = conn.createStatement();
-					ResultSet respuestaStaff = stmt.executeQuery( sql );
-					if(respuestaStaff.first()) {
+					ResultSet respuestaCliente = stmt.executeQuery( sql );
+					if(respuestaCliente.first()) {
 						//significa que ya alguno de los datos introducitos ya esta registrado
 						correcto = true;
 					}
-					respuestaStaff.close();
+					respuestaCliente.close();
 					stmt.close();
-				}
-				//inserta el usuario en caso de que los datos no se repitan
-				if (correcto == false) {
-					sql = "INSERT INTO `STAFF` (`Usuario`, `Nombre`, `Apellido1`, `Apellido2`, `identificadorUser`,"
-							+ " `Dni`, `FechaNacimiento`, `Email`, `Contraseña`) VALUES ('"+usuario+"','"+nombre+"','"+apellido1+"',"
-							+ "'"+apellido2+"', "+ identificador +", '"+ dni +"', '"+ fechaNacimiento +"', "
-		            		+ "'"+ email +"', '"+ contrasenia +"')";
-		            stmt = conn.createStatement();
-		            stmt.executeUpdate(sql);  
-		            stmt.close();
-		            usuario = "Validacion completada con exito";
-				}
-				else {
-					usuario = "Datos ya registrado";
-				}
-				
-				//Registrar el nuevo cliente
-				
-			} catch (SQLException se) {
-		        //Handle errors for JDBC
-		        se.printStackTrace();
-		    } catch (Exception e) {
-		        //Handle errors for Class.forName
-		        e.printStackTrace();
-		    } finally {
-		        //finally block used to close resources
-		        try {
-		            if (stmt != null) {
-		                conn.close();
-		            }
-		        } catch (SQLException se) {
-		        }// do nothing
-		        try {
-		            if (conn != null) {
-		                conn.close();
-		            }
-		        } catch (SQLException se) {
-		            se.printStackTrace();
-		        }//end finally try
-		    }//end try
-		} else {
-			usuario = "El email introducido no es valido";
+					if (correcto == false) {
+						//consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
+						//el mismo tipo de usuario
+						sql = "SELECT * FROM STAFF "
+								+ "WHERE STAFF.Usuario = '"+usuario+"' OR STAFF.Email = '"+email+"' OR STAFF.Dni = '"+dni+"'";
+				        stmt = conn.createStatement();
+						ResultSet respuestaStaff = stmt.executeQuery( sql );
+						if(respuestaStaff.first()) {
+							//significa que ya alguno de los datos introducitos ya esta registrado
+							correcto = true;
+						}
+						respuestaStaff.close();
+						stmt.close();
+					}
+					//inserta el usuario en caso de que los datos no se repitan
+					if (correcto == false) {
+						sql = "INSERT INTO `STAFF` (`Usuario`, `Nombre`, `Apellido1`, `Apellido2`, `identificadorUser`,"
+								+ " `Dni`, `FechaNacimiento`, `Email`, `Contraseña`) VALUES ('"+usuario+"','"+nombre+"','"+apellido1+"',"
+								+ "'"+apellido2+"', "+ identificador +", '"+ dni +"', '"+ fechaNacimiento +"', "
+			            		+ "'"+ email +"', '"+ contrasenia +"')";
+			            stmt = conn.createStatement();
+			            stmt.executeUpdate(sql);  
+			            stmt.close();
+			            usuario = "Validacion completada con exito";
+					}
+					else {
+						usuario = "Datos ya registrado";
+					}
+					
+					//Registrar el nuevo cliente
+					
+				} catch (SQLException se) {
+			        //Handle errors for JDBC
+			        se.printStackTrace();
+			    } catch (Exception e) {
+			        //Handle errors for Class.forName
+			        e.printStackTrace();
+			    } finally {
+			        //finally block used to close resources
+			        try {
+			            if (stmt != null) {
+			                conn.close();
+			            }
+			        } catch (SQLException se) {
+			        }// do nothing
+			        try {
+			            if (conn != null) {
+			                conn.close();
+			            }
+			        } catch (SQLException se) {
+			            se.printStackTrace();
+			        }//end finally try
+			    }//end try
+			} else {
+				usuario = "El email introducido no es valido";
+			}
+		}
+		else{
+			usuario = "La longitud del DNI introducido no es valida";
 		}
 		return usuario;
 	}

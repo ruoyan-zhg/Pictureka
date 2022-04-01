@@ -599,7 +599,7 @@ public class ControladorGuardia {
 				}
 				else if(reservaEncontrada.equals("invalida")) {
 					error.setHeaderText("La reserva ya ha caducado.");
-					error.setContentText("Caducó en: " + tickets.elementAt(i).getFecha());
+					error.setContentText("Caducó en: " + tickets.elementAt(i-1).getFecha());
 					error.showAndWait();
 				}
 				else {

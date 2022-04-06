@@ -211,9 +211,7 @@ public class controladorEditarEventos {
 		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"+seleccion);
             //STEP 2: Open a connection
-            System.out.println("Connecting to a selected database...");
 
             conn = DriverManager.getConnection(
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
@@ -395,7 +393,6 @@ public class controladorEditarEventos {
 			Class.forName("org.mariadb.jdbc.Driver");
 
             //STEP 2: Open a connection
-            System.out.println("Connecting to a selected database...");
 
             conn = DriverManager.getConnection(
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
@@ -429,11 +426,9 @@ public class controladorEditarEventos {
 			Class.forName("org.mariadb.jdbc.Driver");
 
             //STEP 2: Open a connection
-            System.out.println("Connecting to a selected database...");
 
             conn = DriverManager.getConnection(
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
-            System.out.println("Connectado a la Base de Datos...");
             sql = "UPDATE EVENTOS SET "
             		+ "nombre = '"+txtFieldTitulo.getText()+"', "
             		+ "imagen = '"+ imagen +"', "
@@ -442,7 +437,7 @@ public class controladorEditarEventos {
             				+ "EVENTOS.identificador = '"+seleccion+"';";
 
             String sqlDos = "INSERT INTO MODIFICA(Usuario, identificadorEvento) VALUES ('"+ usuario+"' , '"+seleccion+"');";
-            System.out.println("sql UPDATE EVENTO //INSERT MODIFICA: "+sql);
+            //System.out.println("sql UPDATE EVENTO //INSERT MODIFICA: "+sql);
             stmt = conn.createStatement();
    			ResultSet rs = stmt.executeQuery( sql );
    			

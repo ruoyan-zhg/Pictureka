@@ -61,7 +61,7 @@ public class Registro {
 		if (validarEmail(email)) { // devuelve true si el email es valid
 			try{
 				//credenciales
-				conn = conn = DriverManager.getConnection(
+				conn = DriverManager.getConnection(
 						"jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
 			    //consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
 				//el mismo tipo de usuario
@@ -160,7 +160,7 @@ public class Registro {
 			if (validarEmail(email)) { // devuelve true si el email es valid
 				try{
 					//credenciales
-					conn = conn = DriverManager.getConnection(
+					conn = DriverManager.getConnection(
 							"jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
 				    //consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
 					//el mismo tipo de usuario

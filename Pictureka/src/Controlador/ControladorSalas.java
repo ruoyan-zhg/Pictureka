@@ -13,8 +13,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 /**
  * 
@@ -114,7 +116,66 @@ public class ControladorSalas {
 	 */
 	public void initialize() {
 		Museo museo = new Museo();
-		textLuz.setText("Actualmente esta cargada la sala "+sala.getIdentificador());
+		
+		if (sala.getIdentificador() == 1) {
+			
+			textLuz.setText("LUZ BRILLANTE 75%:  Analog reading = 651\n"
+					       +"LUZ BRILLANTE 70%:  Analog reading = 625\n"
+					       +"LUZ BRILLANTE 66%:  Analog reading = 600\n"
+					       +"LUZ BRILLANTE 75%:  Analog reading = 651");
+			
+			
+			textTemperatura.setText("TEMPERATURA ESTABLE: 24 °C\n"
+								  +"TEMPERATURA ESTABLE: 24.2 °C\n"
+								  +"TEMPERATURA ESTABLE: 24.4 °C\n"
+								  +"TEMPERATURA ESTABLE: 24.6 °C");
+			
+		}
+		else if (sala.getIdentificador()==2) {
+			
+		textLuz.setText("LUZ TENUE 48%:  Analog reading = 397\n"
+				       +"LUZ TENUE 50%:  Analog reading = 400\n"
+				       +"LUZ TENUE 44%:  Analog reading = 390\n"
+				       +"LUZ TENUE 45%:  Analog reading = 393");
+		
+		
+		textTemperatura.setText("TEMPERATURA ESTABLE: 26 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.9 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.8 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.6 °C");
+		}
+		else if (sala.getIdentificador()==3) {
+			
+		textLuz.setText("LUZ BRILLANTE 80%:  Analog reading = 670\n"
+				       +"LUZ BRILLANTE 84%:  Analog reading = 674\n"
+				       +"LUZ BRILLANTE 86%:  Analog reading = 676\n"
+				       +"LUZ BRILLANTE 85%:  Analog reading = 675");
+		
+		
+		textTemperatura.setText("TEMPERATURA ESTABLE: 29.9 °C\n"
+							  +"¡¡TEMPERATURA ALTA!!: 30.1 °C\n"
+							  +"¡¡TEMPERATURA ALTA!!: 30.5 °C\n"
+							  +"¡¡TEMPERATURA ALTA!!: 31.3 °C");
+			
+		}
+		else if (sala.getIdentificador()==4) {
+	
+		textLuz.setText("LUZ BRILLANTE 91%:  Analog reading = 690\n"
+				       +"LUZ BRILLANTE 94%:  Analog reading = 694\n"
+				       +"LUZ BRILLANTE 93%:  Analog reading = 693\n"
+				       +"LUZ BRILLANTE 92%:  Analog reading = 692");
+		
+		
+		textTemperatura.setText("TEMPERATURA ESTABLE: 25.9 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.1 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.3 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.2 °C");
+			
+			
+		}
+		
+		
+		//textLuz.setText("Actualmente esta cargada la sala "+sala.getIdentificador());
 		//Dependiendo del usuario que se encuentre iniciado sesion se muestra una u otro avatar
 		if (tipoStaff.equals("Guardia")) {
 			imgAvatar.setImage(new Image("/guardiaAvatar.png"));

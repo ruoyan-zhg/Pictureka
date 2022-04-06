@@ -53,13 +53,11 @@ public class Evento {
 			Class.forName("org.mariadb.jdbc.Driver");
 
             //STEP 2: Open a connection
-            System.out.println("Connecting to a selected database...");
 
             conn = DriverManager.getConnection(
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
-            System.out.println("Connectado a la Base de Datos...");
             sql = "SELECT * FROM EVENTOS WHERE EVENTOS.identificador ='"+id+"';";
-            System.out.println("sql Select: "+sql);
+            //System.out.println("sql Select: "+sql);
             stmt = conn.createStatement();
    			ResultSet rs = stmt.executeQuery( sql );
    			while ( rs.next() ) {

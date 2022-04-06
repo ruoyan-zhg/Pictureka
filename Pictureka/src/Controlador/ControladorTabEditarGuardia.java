@@ -447,11 +447,9 @@ public class ControladorTabEditarGuardia {
 						Class.forName("org.mariadb.jdbc.Driver");
 
 			            //STEP 2: Open a connection
-			            System.out.println("Connecting to a selected database...");
 
 			            conn = DriverManager.getConnection(
 			                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
-			            System.out.println("Connectado a la Base de Datos...");
 			            sql = "UPDATE STAFF SET "
 			            		+ "Usuario = '"+UsuarioNuevo+"', "
 			            		+ "Nombre = '"+ nombreNuevo +"', "

@@ -137,7 +137,7 @@ public class ControladorTabAniadirAdmin {
 			if (estado.equals("Validacion completada con exito")) {
 				// se muestra en la tabla al nuevo guardia
 				this.controlerEdit.getTableViewAdministrador().getItems()
-						.add(new Administrador(usuarioNuevo, dniNuevo, emailNuevo, contraseniaNuevo,
+						.add(new Administrador(usuarioNuevo, dniNuevo, emailNuevo, cifrar.hashing(contraseniaNuevo),
 								fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
 			}
 			confirmacion.setHeaderText(estado);

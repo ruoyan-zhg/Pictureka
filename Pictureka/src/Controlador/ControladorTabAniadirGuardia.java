@@ -142,7 +142,7 @@ public class ControladorTabAniadirGuardia {
 			if (estado.equals("Validacion completada con exito")) {
 				// se muestra en la tabla al nuevo guardia
 				this.controlerEdit.getTableView().getItems().add(new Guardia(usuarioNuevo, dniNuevo, emailNuevo,
-						contraseniaNuevo, fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
+						cifrar.hashing(contraseniaNuevo), fechaNacimientoNuevo, nombreNuevo, apellido1Nuevo, apellido2Nuevo));
 			}
 			confirmacion.setHeaderText(estado);
 			confirmacion.showAndWait();

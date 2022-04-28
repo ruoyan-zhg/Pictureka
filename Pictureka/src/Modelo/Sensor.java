@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.sql.Timestamp;
+
 /**
  * 
  * En esta clase se almacena la informacion del sensor que se gestiona
@@ -12,50 +14,64 @@ package Modelo;
  */
 
 public class Sensor {
-	private int numeracionSensor;
-	private int voltaje;
-	private String fabricante;
-	private String datoActual;
+	private String tipo;
+	private int ID_Sala;
+	private int Posicion;
+	private int lectura;
+	private Timestamp Fecha;
+	
+	public Sensor(String tipo, int iD_Sala, int posicion, int lectura, Timestamp fecha) {
+		super();
+		this.tipo = tipo;
+		ID_Sala = iD_Sala;
+		Posicion = posicion;
+		this.lectura = lectura;
+		Fecha = fecha;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public int getID_Sala() {
+		return ID_Sala;
+	}
+
+	public void setID_Sala(int iD_Sala) {
+		ID_Sala = iD_Sala;
+	}
+
+	public int getPosicion() {
+		return Posicion;
+	}
+
+	public void setPosicion(int posicion) {
+		Posicion = posicion;
+	}
+
+	public int getLectura() {
+		return lectura;
+	}
+
+	public void setLectura(int lectura) {
+		this.lectura = lectura;
+	}
+
+	public Timestamp getFecha() {
+		return Fecha;
+	}
+
+	public void setFecha(Timestamp fecha) {
+		Fecha = fecha;
+	} 
 	
 	
 	
-	/**
-	 * @param numeracionSensor: el numero del sensor
-	 * @param voltaje: La cantidad de voltaje que recibe el sensor
-	 * @param fabricante: El fabricante del sensor
-	 * @param datoActual: lectura del dato del sensor
-	 */
-	public Sensor(int numeracionSensor, int voltaje, String fabricante, String datoActual) {
-		this.numeracionSensor = numeracionSensor;
-		this.voltaje = voltaje;
-		this.fabricante = fabricante;
-		this.datoActual = datoActual;
-	}
 	
-	public int getNumeracionSensor() {
-		return numeracionSensor;
-	}
-	public void setNumeracionSensor(int numeracionSensor) {
-		this.numeracionSensor = numeracionSensor;
-	}
-	public int getVoltaje() {
-		return voltaje;
-	}
-	public void setVoltaje(int voltaje) {
-		this.voltaje = voltaje;
-	}
-	public String getFabricante() {
-		return fabricante;
-	}
-	public void setFabricante(String fabricante) {
-		this.fabricante = fabricante;
-	}
-	public String getDatoActual() {
-		return datoActual;
-	}
-	public void setDatoActual(String datoActual) {
-		this.datoActual = datoActual;
-	}
 	
 	
 

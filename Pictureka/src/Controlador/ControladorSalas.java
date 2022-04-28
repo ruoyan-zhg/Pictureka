@@ -1,10 +1,25 @@
 package Controlador;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Vector;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToolbar;
 import Modelo.Museo;
+import Modelo.Reserva;
 import Modelo.Sala;
+import Modelo.Sensor;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -86,6 +101,15 @@ public class ControladorSalas {
     
     private String tipoStaff;
 	 
+    static final String USER = "pri_Pictureka";
+	
+    static final String PASS = "asas";
+    
+    Connection conn = null;
+    
+    Statement stmt = null;
+    
+    String sql;
     
     /**
      * 
@@ -116,64 +140,13 @@ public class ControladorSalas {
 	 */
 	public void initialize() {
 		Museo museo = new Museo();
-		
-		if (sala.getIdentificador() == 1) {
-			
-			textLuz.setText("LUZ BRILLANTE 75%:  Analog reading = 651\n"
-					       +"LUZ BRILLANTE 70%:  Analog reading = 625\n"
-					       +"LUZ BRILLANTE 66%:  Analog reading = 600\n"
-					       +"LUZ BRILLANTE 75%:  Analog reading = 651");
-			
-			
-			textTemperatura.setText("TEMPERATURA ESTABLE: 24 °C\n"
-								  +"TEMPERATURA ESTABLE: 24.2 °C\n"
-								  +"TEMPERATURA ESTABLE: 24.4 °C\n"
-								  +"TEMPERATURA ESTABLE: 24.6 °C");
-			
+		//recibir datos de BD
+		Vector<Sensor> sensores = sensoresBD(this.sala.getIdentificador());
+				
+		//Escribir datos en tablas
+		if(sensores!=null) {
+			actualizarDatos(sensores);
 		}
-		else if (sala.getIdentificador()==2) {
-			
-		textLuz.setText("LUZ TENUE 48%:  Analog reading = 397\n"
-				       +"LUZ TENUE 50%:  Analog reading = 400\n"
-				       +"LUZ TENUE 44%:  Analog reading = 390\n"
-				       +"LUZ TENUE 45%:  Analog reading = 393");
-		
-		
-		textTemperatura.setText("TEMPERATURA ESTABLE: 26 °C\n"
-							  +"TEMPERATURA ESTABLE: 26.9 °C\n"
-							  +"TEMPERATURA ESTABLE: 26.8 °C\n"
-							  +"TEMPERATURA ESTABLE: 26.6 °C");
-		}
-		else if (sala.getIdentificador()==3) {
-			
-		textLuz.setText("LUZ BRILLANTE 80%:  Analog reading = 670\n"
-				       +"LUZ BRILLANTE 84%:  Analog reading = 674\n"
-				       +"LUZ BRILLANTE 86%:  Analog reading = 676\n"
-				       +"LUZ BRILLANTE 85%:  Analog reading = 675");
-		
-		
-		textTemperatura.setText("TEMPERATURA ESTABLE: 29.9 °C\n"
-							  +"¡¡TEMPERATURA ALTA!!: 30.1 °C\n"
-							  +"¡¡TEMPERATURA ALTA!!: 30.5 °C\n"
-							  +"¡¡TEMPERATURA ALTA!!: 31.3 °C");
-			
-		}
-		else if (sala.getIdentificador()==4) {
-	
-		textLuz.setText("LUZ BRILLANTE 91%:  Analog reading = 690\n"
-				       +"LUZ BRILLANTE 94%:  Analog reading = 694\n"
-				       +"LUZ BRILLANTE 93%:  Analog reading = 693\n"
-				       +"LUZ BRILLANTE 92%:  Analog reading = 692");
-		
-		
-		textTemperatura.setText("TEMPERATURA ESTABLE: 25.9 °C\n"
-							  +"TEMPERATURA ESTABLE: 26.1 °C\n"
-							  +"TEMPERATURA ESTABLE: 26.3 °C\n"
-							  +"TEMPERATURA ESTABLE: 26.2 °C");
-			
-			
-		}
-		
 		
 		//textLuz.setText("Actualmente esta cargada la sala "+sala.getIdentificador());
 		//Dependiendo del usuario que se encuentre iniciado sesion se muestra una u otro avatar
@@ -185,7 +158,72 @@ public class ControladorSalas {
 		}
 	}
 
-	 	
+	private void actualizarDatos(Vector<Sensor> sensores) {
+		for(int i = 0; i<sensores.size();i++) {
+			if(sensores.elementAt(i).getTipo().equals("Luz")) {
+				textLuz.setText(textLuz.getText() + "LUZ BRILLANTE 75%:  Analog reading = "+ sensores.elementAt(i).getLectura() +"\n");
+			}
+			else if(sensores.elementAt(i).getTipo().equals("Temperatura")) {
+				textTemperatura.setText(textTemperatura.getText() + "TEMPERATURA ESTABLE: "+ sensores.elementAt(i).getLectura() +" °C\n");
+				
+			}
+			else {
+				
+			}
+		}
+	}
+	private Vector<Sensor> sensoresBD(int sala) {
+		Vector<Sensor> sensores = new Vector<Sensor>();
+		try {
+            //STEP 1: Register JDBC driver
+        	Class.forName("org.mariadb.jdbc.Driver");
+
+            //STEP 2: Open a connection
+            conn = DriverManager.getConnection(
+                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+            
+            //Se realiza la consulta en la tabla de CLIENTE
+            sql = "SELECT * FROM SENSORES WHERE SENSORES.ID_Sala = "+sala+" ;";
+            stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery( sql );
+			while ( rs.next() ) {
+				String tipo = rs.getString("tipo");
+				int ID_Sala = rs.getInt("ID_Sala");
+				int Posicion = rs.getInt("Posicion");
+				int lectura = rs.getInt("lectura");
+				Timestamp Fecha = rs.getTimestamp("Fecha");
+				
+				sensores.add(new Sensor(tipo, ID_Sala, Posicion, lectura, Fecha));
+			}
+			 rs.close();
+			stmt.close();
+			
+			conn.close(); 
+			
+			}
+			 catch (Exception e) {
+		            //Handle errors for Class.forName
+		            e.printStackTrace();
+		        } finally {
+		            //finally block used to close resources
+		            try {
+		                if (stmt != null) {
+		                    conn.close();
+		                }
+		            } catch (SQLException se) {
+		            }// do nothing
+		            try {
+		                if (conn != null) {
+		                    conn.close();
+		                }
+		            } catch (SQLException se) {
+		                se.printStackTrace();
+		            }//end finally try
+		        }//end try
+		
+		return sensores;
+			   
+	}
 	@FXML
 	/**
 	 * 

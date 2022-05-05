@@ -13,7 +13,8 @@ import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToolbar;
 import Modelo.Museo;
@@ -28,10 +29,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
+
 
 /**
  * 
@@ -100,6 +100,7 @@ public class ControladorSalas {
     private Sala sala;
     
     private String tipoStaff;
+
 	 
     static final String USER = "pri_Pictureka";
 	
@@ -110,7 +111,11 @@ public class ControladorSalas {
     Statement stmt = null;
     
     String sql;
-    
+
+	 
+    Timer timer_uno = new Timer(true);
+    Timer timer_dos = new Timer(true);
+    Timer timer_tres = new Timer(true);
     /**
      * 
      * Constructor de la clase <b>ControladorSalas</b> que guarda la información del usuario.
@@ -140,12 +145,74 @@ public class ControladorSalas {
 	 */
 	public void initialize() {
 		Museo museo = new Museo();
+
 		//recibir datos de BD
-		Vector<Sensor> sensores = sensoresBD(this.sala.getIdentificador());
+		//Vector<Sensor> sensores = sensoresBD(this.sala.getIdentificador());
 				
 		//Escribir datos en tablas
-		if(sensores!=null) {
-			actualizarDatos(sensores);
+		//if(sensores!=null) {
+			//actualizarDatos(sensores);
+
+		
+		if (sala.getIdentificador() == 1) {
+			
+			textLuz.setText("LUZ BRILLANTE 75%:  Analog reading = 651\n"
+					       +"LUZ BRILLANTE 70%:  Analog reading = 625\n"
+					       +"LUZ BRILLANTE 66%:  Analog reading = 600\n"
+					       +"LUZ BRILLANTE 75%:  Analog reading = 651");
+			
+			textTemperatura.setText("TEMPERATURA ESTABLE: 24 °C\n"
+								  +"TEMPERATURA ESTABLE: 24.2 °C\n"
+								  +"TEMPERATURA ESTABLE: 24.4 °C\n"
+								  +"TEMPERATURA ESTABLE: 24.6 °C");
+			getData();
+			
+			
+		}
+		else if (sala.getIdentificador()==2) {
+			
+		textLuz.setText("LUZ TENUE 48%:  Analog reading = 397\n"
+				       +"LUZ TENUE 50%:  Analog reading = 400\n"
+				       +"LUZ TENUE 44%:  Analog reading = 390\n"
+				       +"LUZ TENUE 45%:  Analog reading = 393");
+		
+		
+		textTemperatura.setText("TEMPERATURA ESTABLE: 26 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.9 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.8 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.6 °C");
+			getData();
+		}
+		else if (sala.getIdentificador()==3) {
+			
+		textLuz.setText("LUZ BRILLANTE 80%:  Analog reading = 670\n"
+				       +"LUZ BRILLANTE 84%:  Analog reading = 674\n"
+				       +"LUZ BRILLANTE 86%:  Analog reading = 676\n"
+				       +"LUZ BRILLANTE 85%:  Analog reading = 675");
+		
+		
+		textTemperatura.setText("TEMPERATURA ESTABLE: 29.9 °C\n"
+							  +"¡¡TEMPERATURA ALTA!!: 30.1 °C\n"
+							  +"¡¡TEMPERATURA ALTA!!: 30.5 °C\n"
+							  +"¡¡TEMPERATURA ALTA!!: 31.3 °C");
+			getData();
+			
+		}
+		else if (sala.getIdentificador()==4) {
+	
+		textLuz.setText("LUZ BRILLANTE 91%:  Analog reading = 690\n"
+				       +"LUZ BRILLANTE 94%:  Analog reading = 694\n"
+				       +"LUZ BRILLANTE 93%:  Analog reading = 693\n"
+				       +"LUZ BRILLANTE 92%:  Analog reading = 692");
+		
+		
+		textTemperatura.setText("TEMPERATURA ESTABLE: 25.9 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.1 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.3 °C\n"
+							  +"TEMPERATURA ESTABLE: 26.2 °C");
+			
+			getData();
+
 		}
 		
 		//textLuz.setText("Actualmente esta cargada la sala "+sala.getIdentificador());
@@ -157,6 +224,7 @@ public class ControladorSalas {
 			imgAvatar.setImage(new Image("/administradorAvatar.png"));
 		}
 	}
+	//}
 
 	private void actualizarDatos(Vector<Sensor> sensores) {
 		for(int i = 0; i<sensores.size();i++) {
@@ -172,8 +240,8 @@ public class ControladorSalas {
 			}
 		}
 	}
-	private Vector<Sensor> sensoresBD(int sala) {
-		Vector<Sensor> sensores = new Vector<Sensor>();
+	private Sensor sensoresBD(String tipo, int posicion) {
+		Sensor sensor = new Sensor(tipo, sala.getIdentificador(), posicion, 0, null);
 		try {
             //STEP 1: Register JDBC driver
         	Class.forName("org.mariadb.jdbc.Driver");
@@ -183,17 +251,15 @@ public class ControladorSalas {
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
             
             //Se realiza la consulta en la tabla de CLIENTE
-            sql = "SELECT * FROM SENSORES WHERE SENSORES.ID_Sala = "+sala+" ;";
+            sql = "SELECT * FROM SENSORES WHERE (SENSORES.ID_Sala = "+sala.getIdentificador()+") AND (SENSORES.tipo = '"+tipo+"') and (SENSORES.posicion = "+posicion+") ;";
             stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery( sql );
 			while ( rs.next() ) {
-				String tipo = rs.getString("tipo");
-				int ID_Sala = rs.getInt("ID_Sala");
-				int Posicion = rs.getInt("Posicion");
-				int lectura = rs.getInt("lectura");
-				Timestamp Fecha = rs.getTimestamp("Fecha");
 				
-				sensores.add(new Sensor(tipo, ID_Sala, Posicion, lectura, Fecha));
+				sensor.setLectura( rs.getInt("lectura"));
+				sensor.setFecha( rs.getTimestamp("Fecha"));
+				
+				
 			}
 			 rs.close();
 			stmt.close();
@@ -221,7 +287,7 @@ public class ControladorSalas {
 		            }//end finally try
 		        }//end try
 		
-		return sensores;
+		return sensor;
 			   
 	}
 	@FXML
@@ -232,6 +298,9 @@ public class ControladorSalas {
 	 * @param event		Evento causado cuando el guardia pulsa sobre la imagen de vuelta atrás.
 	 */
 	void volverAtrasSalas(MouseEvent event) {
+		timer_uno.cancel();
+		timer_dos.cancel();
+		timer_tres.cancel();
 		if(tipoStaff.equals("Guardia")) {
 			//Se carga el contenido de la ventana
 	    	FXMLLoader loaderGuardia = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
@@ -305,6 +374,9 @@ public class ControladorSalas {
      * @param event		Evento causado cuando el usuario pulsa sobre la imagen de su avatar.
      */
     void verPerfil(MouseEvent event) {
+    	timer_uno.cancel();
+		timer_dos.cancel();
+		timer_tres.cancel();
     	if(logged == false) {
         	Alert error = new Alert(Alert.AlertType.ERROR);
 			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
@@ -344,5 +416,76 @@ public class ControladorSalas {
         }
 
     }
+    
+    
+    public void getData() {
+    	
+    	timer_uno.scheduleAtFixedRate(new temperaturaTask(),0,  4000);
+    	timer_dos.scheduleAtFixedRate(new luzTask(), 0, 4000);
+    	timer_tres.scheduleAtFixedRate(new distanciaTask(), 0, 4000);
+    	
+    }
+
+    
+    class temperaturaTask extends TimerTask {
+        public void run() {
+        	Sensor sensorTemp = sensoresBD("Temperatura", 1);
+        	textTemperatura.setText(sensorTemp.getLectura()+"°C Fecha"+sensorTemp.getFecha()+"\n"+textTemperatura.getText());
+          
+          
+        }
+      }
+    
+    class luzTask extends TimerTask {
+        public void run() {
+        	Sensor sensorLuz = sensoresBD("Luz", 1);
+        	textLuz.setText("Intensidad de Luz: "+sensorLuz.getLectura()+"  Fecha"+sensorLuz.getFecha()+"\n"+textLuz.getText());
+         
+          //timer.cancel(); //Terminate the timer thread
+          
+        }
+      }
+    
+    class distanciaTask extends TimerTask {
+        public void run() {
+        	Sensor sensorDist_1 = sensoresBD("Distancia", 1);
+        	Sensor sensorDist_2 = sensoresBD("Distancia", 2);
+        	Sensor sensorDist_3 = sensoresBD("Distancia", 3);
+        	Sensor sensorDist_4 = sensoresBD("Distancia", 4);
+        	
+        	if(sensorDist_1.getLectura()<30) {
+        		btnA.setStyle("-fx-background-color: #ff0000; ");
+        	}
+        	else {
+        		btnA.setStyle("-fx-background-color: #ffAA00; ");
+        	}
+        	
+        	if(sensorDist_2.getLectura()<30) {
+        		btnA.setStyle("-fx-background-color: #ff0000; ");
+        	}
+        	else {
+        		btnA.setStyle("-fx-background-color: #ffAA00; ");
+        	}
+        	if(sensorDist_3.getLectura()<30) {
+        		btnA.setStyle("-fx-background-color: #ff0000; ");
+        	}
+        	else {
+        		btnA.setStyle("-fx-background-color: #ffAA00; ");
+        	}
+        	
+        	if(sensorDist_4.getLectura()<30) {
+        		btnA.setStyle("-fx-background-color: #ff0000; ");
+        	}
+        	else {
+        		btnA.setStyle("-fx-background-color: #ffAA00; ");
+        	}
+        	
+          
+        }
+      }
+    
+    
+    
+    
     
 }

@@ -159,10 +159,10 @@ public class ControladorSalas {
 	private void actualizarDatos(Vector<Sensor> sensores) {
 		for(int i = 0; i<sensores.size();i++) {
 			if(sensores.elementAt(i).getTipo().equals("Luz")) {
-				textLuz.setText("LUZ BRILLANTE 75%:  Analog reading = "+ sensores.elementAt(i).getLectura()+textLuz.getText()+"\n");
+				textLuz.setText("LUZ BRILLANTE 75%:  Analog reading = "+ sensores.elementAt(i).getLectura()+" \n"+textLuz.getText());
 			}
 			else if(sensores.elementAt(i).getTipo().equals("Temperatura")) {
-				textTemperatura.setText("TEMPERATURA ESTABLE: "+ sensores.elementAt(i).getLectura()+textTemperatura.getText() +" °C\n");
+				textTemperatura.setText("TEMPERATURA ESTABLE: "+ sensores.elementAt(i).getLectura() +" °C \n"+textTemperatura.getText());
 			}
 			else {
 				if(sensores.elementAt(i).getPosicion()==1) {

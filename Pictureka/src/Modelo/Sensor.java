@@ -17,10 +17,10 @@ public class Sensor {
 	private String tipo;
 	private int ID_Sala;
 	private int Posicion;
-	private int lectura;
+	private float lectura;
 	private Timestamp Fecha;
 	
-	public Sensor(String tipo, int iD_Sala, int posicion, int lectura, Timestamp fecha) {
+	public Sensor(String tipo, int iD_Sala, int posicion, float lectura, Timestamp fecha) {
 		super();
 		this.tipo = tipo;
 		ID_Sala = iD_Sala;
@@ -53,11 +53,11 @@ public class Sensor {
 		Posicion = posicion;
 	}
 
-	public int getLectura() {
+	public float getLectura() {
 		return lectura;
 	}
 
-	public void setLectura(int lectura) {
+	public void setLectura(float lectura) {
 		this.lectura = lectura;
 	}
 

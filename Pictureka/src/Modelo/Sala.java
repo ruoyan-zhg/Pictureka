@@ -14,9 +14,11 @@ import java.util.Vector;
 
 public class Sala {
 	private int identificador;
+	/*
 	private Vector <SensorLuz> sensoresLuz;
 	private Vector <SensorTemperatura> sensoresTemperatura;
 	private Vector<SensorDistancia> sensoresDistancia;
+	*/
 	private Vector<Evento> eventos;
 	
 	
@@ -26,10 +28,12 @@ public class Sala {
 	 * @param identificador: almacena el numero de la sala que se quiere gestionar
 	 */
 	public Sala(int identificador) {
+		/*
 		this.identificador = identificador;
 		this.sensoresDistancia = new Vector<SensorDistancia>();
 		this.sensoresTemperatura = new Vector<SensorTemperatura>();
 		this.sensoresLuz = new Vector<SensorLuz>();
+		*/
 		this.eventos = new Vector<Evento>();
 	}
 	
@@ -53,7 +57,7 @@ public class Sala {
 		this.eventos = eventos;
 	}
 
-
+/*
 	public Vector<SensorLuz> getSensoresLuz() {
 		return sensoresLuz;
 	}
@@ -72,5 +76,5 @@ public class Sala {
 	public void setSensoresDistancia(Vector<SensorDistancia> sensoresDistancia) {
 		this.sensoresDistancia = sensoresDistancia;
 	}
-
+*/
 }

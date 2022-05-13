@@ -1,17 +1,10 @@
 package Controlador;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Vector;
-
-import com.google.common.hash.Hashing;
 import com.jfoenix.controls.JFXButton;
 
-import Modelo.Administrador;
 import Modelo.Cifrado;
 import Modelo.Cliente;
-import Modelo.Datos;
-import Modelo.Guardia;
 import Modelo.Staff;
 import Modelo.modelo_Museo;
 import javafx.event.ActionEvent;

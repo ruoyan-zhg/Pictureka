@@ -159,10 +159,14 @@ public class ControladorSalas {
 	private void actualizarDatos(Vector<Sensor> sensores) {
 		for(int i = 0; i<sensores.size();i++) {
 			if(sensores.elementAt(i).getTipo().equals("Luz")) {
-				textLuz.setText("LUZ BRILLANTE 75%:  Analog reading = "+ sensores.elementAt(i).getLectura()+" \n"+textLuz.getText());
+				textLuz.setText("LUZ: " + (int)(sensores.elementAt(i).getLectura()*100)/1024 + "% |  Analog reading = "+ sensores.elementAt(i).getLectura()+" \n"+textLuz.getText());
+				
+				if (sensores.elementAt(i).getLectura()<50) {
+					
+				}
 			}
 			else if(sensores.elementAt(i).getTipo().equals("Temperatura")) {
-				textTemperatura.setText("TEMPERATURA ESTABLE: "+ sensores.elementAt(i).getLectura() +" °C \n"+textTemperatura.getText());
+				textTemperatura.setText("TEMPERATURA: "+ sensores.elementAt(i).getLectura() +" °C \n"+textTemperatura.getText());
 			}
 			else {
 				if(sensores.elementAt(i).getPosicion()==1) {
@@ -180,7 +184,7 @@ public class ControladorSalas {
 			}
 		}
 	}
-	private void actualizarBoton(int lectura, JFXButton btn) {
+	private void actualizarBoton(float lectura, JFXButton btn) {
 		if(lectura<30) {
 			btn.setStyle("-fx-background-color: #ff0000; ");
 		}
@@ -207,7 +211,7 @@ public class ControladorSalas {
 				String tipo = rs.getString("tipo");
 				int ID_Sala = rs.getInt("ID_Sala");
 				int Posicion = rs.getInt("Posicion");
-				int lectura = rs.getInt("lectura");
+				float lectura = rs.getFloat("lectura");
 				Timestamp Fecha = rs.getTimestamp("Fecha");
 				
 				sensores.add(new Sensor(tipo, ID_Sala, Posicion, lectura, Fecha));

@@ -11,6 +11,8 @@ import java.util.Vector;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToolbar;
+
+import Modelo.Alerta;
 import Modelo.Sensor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -82,18 +84,22 @@ public class ControladorHistorico {
 	    private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 	    
 	    private String tipoStaff;
+	    
+	    Alerta alertNotificaciones;
 		
 	    boolean logged; //Este nos dira si la parsona esta logueada o no
 	    
-	    public ControladorHistorico(String usuario, String _tipoStaff) {
+	    public ControladorHistorico(String usuario, String _tipoStaff, Alerta alert) {
 			 if (usuario == "vacio") {
 				 logged = false;
 				 this.usuario = usuario;
+				 this.alertNotificaciones = alert;
 			 }
 			 else {
 				 this.usuario = usuario;
 				 logged = true;
 				 tipoStaff =_tipoStaff;
+				 this.alertNotificaciones = alert;
 			 }
 			
 		}
@@ -120,6 +126,9 @@ public class ControladorHistorico {
 
 	    @FXML
 	    void cerrarSesion(MouseEvent event) {
+	    	
+	    	alertNotificaciones.getTimer_alert().cancel();
+	    	
 	    	//Se carga el contenido de la ventana
 	    	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
 	    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
@@ -160,6 +169,9 @@ public class ControladorHistorico {
 
 	    @FXML
 	    void regresar(ActionEvent event) {
+	    	
+	    	alertNotificaciones.getTimer_alert().cancel();
+	    	
 	    	
 	    	if(tipoStaff.equals("Guardia")) {
 				//Se carga el contenido de la ventana

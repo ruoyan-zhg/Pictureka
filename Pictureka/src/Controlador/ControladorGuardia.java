@@ -12,8 +12,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
+import org.controlsfx.control.PopOver;
+
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+
+import Modelo.Alerta;
 import Modelo.Cliente;
 import Modelo.Datos;
 import Modelo.M_Reservas;
@@ -45,7 +49,7 @@ import javafx.scene.text.Text;
 
 public class ControladorGuardia {
 
-    @FXML
+	@FXML
     private AnchorPane anchorPanePrincipal;
 
     @FXML
@@ -59,6 +63,12 @@ public class ControladorGuardia {
 
     @FXML
     private ImageView imgInforne;
+
+    @FXML
+    private ImageView btnHistorial;
+
+    @FXML
+    private ImageView ImgNotificaciones;
 
     @FXML
     private JFXTextField numTicket;
@@ -99,9 +109,6 @@ public class ControladorGuardia {
     @FXML
     private ImageView imgSala3;
     
-    @FXML
-    private ImageView btnHistorial;
-    
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
@@ -109,6 +116,7 @@ public class ControladorGuardia {
     static final String USER = "pri_Pictureka";
 	static final String PASS = "asas";
     
+	 Alerta alert = new Alerta(usuario, "Guardia", this);
     
 	 /**
 	  * 
@@ -128,6 +136,17 @@ public class ControladorGuardia {
 		 }
 		 
 	}
+	 
+	 @FXML
+	 
+	 
+	 public void initialize() {
+		 
+		 
+		 alert.getDatos();
+	 }
+	 
+	 
 
     @FXML
     /**
@@ -147,7 +166,7 @@ public class ControladorGuardia {
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
         	//Se le asigna el controlador de la ventana para editar información de los guardias
-            ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
+            ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario, alert);
             loaderPrincipala.setController(controlerPrincipal);
             AnchorPane PaneVentanaPrincipal;
 
@@ -188,7 +207,7 @@ public class ControladorGuardia {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaHistorico.fxml"));
     	//Se le asigna el controlador de la ventana para editar información de los guardias
-        ControladorHistorico controlerHistorico = new ControladorHistorico(usuario, "Guardia");
+        ControladorHistorico controlerHistorico = new ControladorHistorico(usuario, "Guardia", alert);
         loaderPrincipala.setController(controlerHistorico);
         AnchorPane PaneVentanaPrincipal;
 
@@ -315,6 +334,9 @@ public class ControladorGuardia {
      */
     void cerrarSesion(MouseEvent event) {
     	
+    	//Se cancela el timer ya que se cierra sesion
+    	alert.getTimer_alert().cancel();
+    	
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
     	//Se le asigna el controlador de la ventana para editar informacion de los guardias
@@ -356,7 +378,7 @@ public class ControladorGuardia {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaInformeAdmin.fxml"));
     	//Se le asigna el controlador de la ventana para editar informacion de los guardias
-        ControladorInformeAdmin controlerInforme = new ControladorInformeAdmin(usuario);
+        ControladorInformeAdmin controlerInforme = new ControladorInformeAdmin(usuario, alert);
         loaderPrincipal.setController(controlerInforme);
         AnchorPane PaneVentanaPrincipal;
 
@@ -396,6 +418,7 @@ public class ControladorGuardia {
      * @param event		Evento causado cuando el guardia pulsa sobre la imagen de la primera sala.
      */
     void sala1(MouseEvent event) {
+    	
     	modelo_Museo museo = new modelo_Museo();
     	Sala temporal = museo.getMuseo().recuperar1Salas(1);
     	if (temporal.getIdentificador() != -1){			//debido a que si tiene un identificador -1 significa que no exite
@@ -403,7 +426,7 @@ public class ControladorGuardia {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Guardia");
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Guardia", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -454,7 +477,7 @@ public class ControladorGuardia {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Guardia");
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Guardia", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -505,7 +528,7 @@ public class ControladorGuardia {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Guardia");
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Guardia", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -555,7 +578,7 @@ public class ControladorGuardia {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Guardia");
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Guardia", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -588,6 +611,41 @@ public class ControladorGuardia {
     	}
     	
     }
+    
+    @FXML
+    void desplegarNotificaciones(MouseEvent event) {
+    	
+    	//Se carga el contenido de la ventana
+    	FXMLLoader loaderNotificaciones = new FXMLLoader(getClass().getResource("/application/PopOverNotificaciones.fxml"));
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
+    	
+        ControladorPopOverNotificacion controlerNoti = new ControladorPopOverNotificacion(usuario, "Guardia"
+        		+ "", this, alert);
+        loaderNotificaciones.setController(controlerNoti);
+        AnchorPane PopOverNoti;
+
+		try {
+			//Se carga en un AnchorPane la ventana
+			PopOverNoti = (AnchorPane) loaderNotificaciones.load();
+        	
+        	//Se ajusta el AnchorPane para que sea escalable
+            AnchorPane.setTopAnchor(PopOverNoti, 0.0);
+            AnchorPane.setRightAnchor(PopOverNoti, 0.0);
+            AnchorPane.setLeftAnchor(PopOverNoti, 0.0);
+            AnchorPane.setBottomAnchor(PopOverNoti, 0.0);
+            
+            PopOver popOver = new PopOver(PopOverNoti);
+            popOver.show(ImgNotificaciones);
+            
+           
+            
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+    	
+    	
+    }
+    
 
     @FXML
     /**
@@ -672,6 +730,16 @@ public class ControladorGuardia {
 		error.show();
 		
 	}
+
+	public ImageView getImgNotificaciones() {
+		return ImgNotificaciones;
+	}
+
+	public void setImgNotificaciones(ImageView imgNotificaciones) {
+		ImgNotificaciones = imgNotificaciones;
+	}
+
+    
     
   
 	

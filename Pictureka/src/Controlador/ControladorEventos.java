@@ -26,6 +26,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
 import Modelo.*;
+import animatefx.animation.SlideInLeft;
+import animatefx.animation.SlideInRight;
 
 /**
  * 
@@ -305,6 +307,11 @@ public class ControladorEventos {
 	 	region2.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countDos)), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	region3.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countTres)), CornerRadii.EMPTY, Insets.EMPTY)));
     	
+	 	new SlideInRight(region1).setCycleCount(1).play();
+    	new SlideInRight(region2).setCycleCount(1).play();
+    	new SlideInRight(region3).setCycleCount(1).play();
+	 	
+	 	
     }
     
     
@@ -336,6 +343,10 @@ public class ControladorEventos {
 	 	region2.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countDos)), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	region3.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countTres)), CornerRadii.EMPTY, Insets.EMPTY)));
     	
+	 	new SlideInLeft(region1).setCycleCount(1).play();
+    	new SlideInLeft(region2).setCycleCount(1).play();
+    	new SlideInLeft(region3).setCycleCount(1).play();
+	 	
     }
 
     @FXML

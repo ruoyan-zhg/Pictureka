@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
 import Modelo.Administrador;
+import Modelo.Alerta;
 import Modelo.Datos;
 import Modelo.Registro;
 import Modelo.Staff;
@@ -111,6 +112,8 @@ public class ControladorEditarAdministrador {
 	boolean logged; // Este nos dira si la parsona esta logueada o no
 
 	ControladorTabEditarAdmin controlerTabEdit;
+	
+	Alerta alertaNotiAdmin;
 
 	/**
 	 * 
@@ -119,12 +122,14 @@ public class ControladorEditarAdministrador {
 	 * 
 	 * @param usuario El administrador que se encuentra iniciado sesión.
 	 */
-	public ControladorEditarAdministrador(String usuario) {
+	public ControladorEditarAdministrador(String usuario, Alerta alerta) {
 		if (usuario == "vacio") {
 			logged = false;
 			this.usuario = usuario;
+			this.alertaNotiAdmin = alerta;
 		} else {
 			this.usuario = usuario;
+			this.alertaNotiAdmin = alerta;
 			logged = true;
 		}
 
@@ -220,6 +225,8 @@ public class ControladorEditarAdministrador {
 	 */
 	void CancelarEdiccion(ActionEvent event) {
 
+		alertaNotiAdmin.getTimer_alert().cancel();
+
 		FXMLLoader loaderAdmin = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
 		ControladorAdministrador controlerAdmin = new ControladorAdministrador(usuario);
 		loaderAdmin.setController(controlerAdmin);
@@ -297,6 +304,8 @@ public class ControladorEditarAdministrador {
 	 */
 	void cerrarSesion(MouseEvent event) {
 
+		alertaNotiAdmin.getTimer_alert().cancel();
+		
 		FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
 		ControladorVPrincipal controlerPrincipal = new ControladorVPrincipal("vacio");
 		loaderApp.setController(controlerPrincipal);

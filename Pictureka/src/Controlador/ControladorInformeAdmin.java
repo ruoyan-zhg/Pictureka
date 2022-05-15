@@ -11,6 +11,8 @@ import java.util.Vector;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+
+import Modelo.Alerta;
 import Modelo.Informe;
 import Modelo.Staff;
 import Modelo.modelo_Museo;
@@ -99,6 +101,8 @@ public class ControladorInformeAdmin {
 	
 	static final String USER = "pri_Pictureka";
 	static final String PASS = "asas";
+	
+	Alerta alert;
 
 	/**
 	 * 
@@ -107,12 +111,14 @@ public class ControladorInformeAdmin {
 	 * 
 	 * @param usuario El administrador que est� iniciado sesión.
 	 */
-	public ControladorInformeAdmin(String usuario) {
+	public ControladorInformeAdmin(String usuario, Alerta alertaNoti) {
 		if (usuario == "vacio") {
 			logged = false;
 			this.usuario = usuario;
+			this.alert = alertaNoti;
 		} else {
 			this.usuario = usuario;
+			this.alert = alertaNoti;
 			logged = true;
 		}
 
@@ -198,6 +204,8 @@ public class ControladorInformeAdmin {
 	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atrás.
 	 */
 	void volverAtras(MouseEvent event) {
+		
+		alert.getTimer_alert().cancel();
 		
 		modelo_Museo museo = new modelo_Museo();
 		

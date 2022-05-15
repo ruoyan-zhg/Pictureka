@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.beans.EventHandler;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,14 +13,30 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 
+import org.controlsfx.control.Notifications;
+
+import Controlador.ControladorAdministrador;
+import Controlador.ControladorGuardia;
+import Controlador.ControladorInformeAdmin;
+import Controlador.ControladorPopOverNotificacion;
 import Controlador.ControladorSalas;
 import Controlador.ControladorVPrincipal;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 
 
 
@@ -37,8 +54,6 @@ public class Alerta {
 	static final String USER = "pri_Pictureka";
 
 	static final String PASS = "asas";
-	
-	Stage stage;
 
 	Connection conn = null;
 	
@@ -48,69 +63,112 @@ public class Alerta {
 	
 	Timer timer_alert = new Timer(true);
 	
+	Alert alert = new Alert(Alert.AlertType.WARNING);
 	
-	public Alerta(String usuario, String tipoStaff) {
+	Vector<Sensor> sensores = new Vector<Sensor>();
+	
+	ControladorGuardia controlerG;
+	
+	ControladorAdministrador controlerA;
+	
+	Media sound = new Media(new File("src/arpSound.mp3").toURI().toString());
+    
+	//contador que guarda el numero de sensores inestables
+	int i = 0;
+
+	
+	public Alerta(String usuario, String tipoStaff, ControladorGuardia controller) {
 		
 		this.usuario = usuario;
 		this.tipoStaff = tipoStaff;
+		this.controlerG = controller;
 			
 	}
 	
-	private void abrirSensores(Sala sala) {
+	public Alerta(String usuario, String tipoStaff, ControladorAdministrador controllerA) {
 		
-		 FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
-	        //Se le asigna el controlador de la ventana principal
-	        ControladorSalas controlerPrincipal = new ControladorSalas(usuario, sala, tipoStaff);
-	        loaderApp.setController(controlerPrincipal);
-	        
-	        //Sacamos una ventana nueva
-	        Parent root;
-	        try {
-	            root = loaderApp.load();
-	            //Stage stage = new Stage();
-	            stage.setScene(new Scene(root));
-	            //Hacemos que la ventana se muestre maximizada
-	            stage.setMaximized(true);
-	            //Medidas minimas de la ventana
-		        stage.setMinHeight(600);
-		        stage.setMinWidth(700);
-	            stage.show();
-	            stage.getIcons().add(new Image("Pictureka2.png"));
-	            
-	} catch (IOException e) {
-     e.printStackTrace();
- }
-		
-		
-		
+		this.usuario = usuario;
+		this.tipoStaff = tipoStaff;
+		this.controlerA = controllerA;
+			
 	}
 	
 	
-	private void checkSala(Sensor sensor) {
+
+	public void showNotificaciones(Sensor sensor, String tipoStaff) {	
 		
-		Sala salaSensor = new Sala(sensor.getID_Sala());
+		i++;
+				
+		/*
+		Stage owner = new Stage(StageStyle.TRANSPARENT);
+        StackPane root = new StackPane();
+        root.setStyle("-fx-background-color: TRANSPARENT");
+        Scene scene = new Scene(root, 1, 1);
+        scene.setFill(Color.TRANSPARENT);
+        owner.setScene(scene);
+        owner.setWidth(1);
+        owner.setHeight(1);
+        owner.toBack();
+        owner.show();
+   */   
+		System.out.println(i);
+		Notifications notificacion = Notifications.create().title("ADVERTENCIA")
+				.text("SALA: " + sensor.getID_Sala() + "\nSensor " + sensor.getTipo())
+				/* .threshold(4, Notifications.create().title("Notificaciones colapsadas")) */.hideAfter(
+						Duration.seconds(3));
+		
+		if (tipoStaff.equals("Guardia")) {
+			this.controlerG.getImgNotificaciones().setImage(new Image("/Notification.png"));
+		}
+		else if (tipoStaff.equals("Administrador")) {
+			this.controlerA.getImgNotiAdmin().setImage(new Image("Notification.png"));
+		}
+		
+		
+		
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
+		notificacion.showWarning();
+
+	}
+	
+	
+
+
+
+
+
+
+	private boolean checkSala(Sensor sensor) {
 		
 		if (sensor.getTipo().equals("Luz")) {
 			if (sensor.getLectura() < 512) {
-				abrirSensores(salaSensor);
+				sensores.add(new Sensor(sensor.getTipo(), sensor.getID_Sala(), sensor.getPosicion(), sensor.getLectura(), sensor.getFecha()));
+				showNotificaciones(sensor, tipoStaff);
+				return true;
 			}
 		}
 		else if (sensor.getTipo().equals("Temperatura")) {
 			if (sensor.getLectura() < 14 || sensor.getLectura() > 26) {
-				abrirSensores(salaSensor);
+				sensores.add(new Sensor(sensor.getTipo(), sensor.getID_Sala(), sensor.getPosicion(), sensor.getLectura(), sensor.getFecha()));
+				showNotificaciones(sensor, tipoStaff);
+				return true;
 			}
 			
 		}
 		else if (sensor.getTipo().equals("Distancia")) {
 			if (sensor.getLectura() < 30) {
-				abrirSensores(salaSensor);
+				sensores.add(new Sensor(sensor.getTipo(), sensor.getID_Sala(), sensor.getPosicion(), sensor.getLectura(), sensor.getFecha()));
+				showNotificaciones(sensor, tipoStaff);
+				return true;
 			}
 		}
 		
 		else {
-			
-			System.out.println("ERROR");
+			System.out.println("Nope");
+			return false;
 		}
+		return false;
 		
 	}
 		
@@ -136,7 +194,7 @@ public class Alerta {
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
             
             //Se realiza la consulta en la tabla de CLIENTE
-            sql = "SELECT * FROM SENSORES WHERE SENSORES.ID_Sala = "+sala+" ;";
+            sql = "SELECT * FROM SENSORES;";
             stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery( sql );
 			while ( rs.next() ) {
@@ -155,35 +213,26 @@ public class Alerta {
 				switch (ID_Sala) {
 				
 				case 1:
-					if (!stage.isShowing()) {
-						checkSala(sensor);
-						sala1 = true;
-					}
+						//checkSala(sensor);
+						sala1 = checkSala(sensor);
+						
 					break;
 				case 2:
-					if (!stage.isShowing()) {
-						checkSala(sensor);
-						sala1 = true;
-					}
+						//checkSala(sensor);
+						sala2 = checkSala(sensor);
 					break;
 				case 3:
-					if (!stage.isShowing()) {
-						checkSala(sensor);
-						sala1 = true;
-					}
+						//checkSala(sensor);
+						sala3 = checkSala(sensor);
 					break;
 				case 4:
-					if (!stage.isShowing()) {
-						checkSala(sensor);
-						sala1 = true;
-					}
+						//checkSala(sensor);
+						sala4 = checkSala(sensor);
 					break;
 				default:
 				
 				
 				}
-				
-				//sensores.add(new Sensor(tipo, ID_Sala, Posicion, lectura, Fecha));
 			}
 			 rs.close();
 			stmt.close();
@@ -214,25 +263,40 @@ public class Alerta {
 	}
 	
 	public void getDatos() {
-		timer_alert.scheduleAtFixedRate(new Task(1), 0 ,  4000);
+		timer_alert.scheduleAtFixedRate(new Task(), 0 ,  12000);
 	}
 	
 	
 	class Task extends TimerTask {
-
-		int sala = 0;
-		
-    	public Task(int sala) {
-    		this.sala = sala;
-    	}
-		
 		
 		public void run() {
-			sensoresBD();
+			Platform.runLater(new Runnable() {
+				public void run() {
+					i=0;
+					sensoresBD();
+				}
+			});
 
 
 		}
 	}
 	
+	public Timer getTimer_alert() {
+		return timer_alert;
+	}
+
+
+	public void setTimer_alert(Timer timer_alert) {
+		this.timer_alert = timer_alert;
+	}
+	
+	public Vector<Sensor> getSensores() {
+		return sensores;
+	}
+
+	public void setSensores(Vector<Sensor> sensores) {
+		this.sensores = sensores;
+	}
+
 	
 }

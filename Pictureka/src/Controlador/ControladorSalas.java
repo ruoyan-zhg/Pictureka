@@ -13,6 +13,8 @@ import java.util.Vector;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToolbar;
+
+import Modelo.Alerta;
 import Modelo.Museo;
 import Modelo.Sala;
 import Modelo.Sensor;
@@ -107,7 +109,7 @@ public class ControladorSalas {
     
     Timer timer_uno = new Timer(true);
     
-    
+    Alerta alert;
     
     /**
      * 
@@ -117,16 +119,18 @@ public class ControladorSalas {
      * @param _sala			La sala en la que se encuentre el usuario.
      * @param _tipoStaff	Tipo de Staff que se encuentra iniciado sesión.
      */
-	 public ControladorSalas(String usuario, Sala _sala, String _tipoStaff) {
+	 public ControladorSalas(String usuario, Sala _sala, String _tipoStaff, Alerta alertaNoti) {
 		 if (usuario == "vacio") {
 			 logged = false;
 			 this.usuario = usuario;
+			 this.alert = alertaNoti;
 		 }
 		 else {
 			 this.usuario = usuario;
 			 logged = true;
 			 this.sala = _sala;
 			 tipoStaff =_tipoStaff;
+			 this.alert = alertaNoti;
 		 }
 		 
 	}
@@ -184,6 +188,7 @@ public class ControladorSalas {
 			}
 		}
 	}
+
 	private void actualizarBoton(float lectura, JFXButton btn) {
 		if(lectura<30) {
 			btn.setStyle("-fx-background-color: #ff0000; ");
@@ -253,8 +258,14 @@ public class ControladorSalas {
 	 * @param event		Evento causado cuando el guardia pulsa sobre la imagen de vuelta atrás.
 	 */
 	void volverAtrasSalas(MouseEvent event) {
+		
 		timer_uno.cancel();
+		
+		
 		if(tipoStaff.equals("Guardia")) {
+			
+			alert.getTimer_alert().cancel();
+			
 			//Se carga el contenido de la ventana
 	    	FXMLLoader loaderGuardia = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
 	    	//Se le asigna el controlador de la ventana para editar información de los guardias
@@ -286,6 +297,9 @@ public class ControladorSalas {
 			
 		}
 		else {
+			
+			alert.getTimer_alert().cancel();
+			
 			//Se carga el contenido de la ventana
 	    	FXMLLoader loaderAdministrador = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
 	    	//Se le asigna el controlador de la ventana para editar información de los guardias
@@ -387,5 +401,16 @@ public class ControladorSalas {
     		}
         }
       }
+    
+    
+	public JFXToolbar getToolBarSala() {
+		return ToolBarSala;
+	}
+	public void setToolBarSala(JFXToolbar toolBarSala) {
+		ToolBarSala = toolBarSala;
+	}
+    
+    
+    
     
 }

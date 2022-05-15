@@ -68,10 +68,11 @@ public class Main extends Application {
 			scale.setAutoReverse(true);
 			
 			
-			
 			//Mostramos las animaciones creadas
 			fill.play();
 			scale.play();
+			
+			
 			//Se muestra el icono en todas las ventanas
 			primaryStage.getIcons().add(new Image("Pictureka2.png"));
 			primaryStage.show();

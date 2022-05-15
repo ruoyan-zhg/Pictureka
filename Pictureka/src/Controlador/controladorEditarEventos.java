@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.util.Vector;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXToolbar;
+
+import Modelo.Alerta;
 import Modelo.Datos;
 import Modelo.Evento;
 import javafx.collections.FXCollections;
@@ -88,7 +90,7 @@ public class controladorEditarEventos {
 	
 	String directoryName = System.getProperty("user.dir");
 	
-	
+	Alerta alertaNotiAdmin;
 	
 	
 	
@@ -108,12 +110,14 @@ public class controladorEditarEventos {
 	 *  
 	 * @param usuario	El administrador que se encuentre iniciado sesión.
 	 */
-	public controladorEditarEventos(String usuario) {
+	public controladorEditarEventos(String usuario, Alerta alerta) {
 		if (usuario == "vacio") {
 			logged = false;
 			this.usuario = usuario;
+			this.alertaNotiAdmin = alerta;
 		} else {
 			this.usuario = usuario;
+			this.alertaNotiAdmin = alerta;
 			logged = true;
 		}
 
@@ -357,6 +361,8 @@ public class controladorEditarEventos {
 	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atrás.
 	 */
 	void regresarPrincipalAdmin(MouseEvent event) {
+		
+		alertaNotiAdmin.getTimer_alert().cancel();
 		abrirAdmin();
 
 	}

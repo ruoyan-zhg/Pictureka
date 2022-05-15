@@ -15,5 +15,12 @@
 	<classpathentry kind="lib" path="lib/guava-31.0.1-jre.jar"/>
 	<classpathentry kind="lib" path="lib/mariadb-java-client-3.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.36.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/AnimateFX-1.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/javafx-base-17.0.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/javafx-controls-17.0.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/javafx-fxml-17.0.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/javafx-graphics-17.0.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/javafx-media-17.0.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/javafx-web-17.0.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

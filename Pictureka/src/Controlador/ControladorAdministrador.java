@@ -3,8 +3,11 @@ package Controlador;
 import java.io.IOException;
 import java.util.Vector;
 
+import org.controlsfx.control.PopOver;
+
 import com.jfoenix.controls.JFXToolbar;
 
+import Modelo.Alerta;
 import Modelo.Cliente;
 import Modelo.Datos;
 import Modelo.Guardia;
@@ -53,6 +56,9 @@ public class ControladorAdministrador {
 
     @FXML
     private ImageView imgAvatarAdmin;
+    
+    @FXML
+    private ImageView imgNotiAdmin;
 
     @FXML
     private ImageView imgInformes;
@@ -109,9 +115,13 @@ public class ControladorAdministrador {
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
+    Alerta alert = new Alerta(usuario, "Administrador", this);
     
     public void initialize() {
 
+    	
+    	
+    	
 		Registro datos = new Registro();
 		Vector<Cliente> clientes = datos.recuperarClientes();
 
@@ -136,6 +146,7 @@ public class ControladorAdministrador {
 		colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
 		
 		
+		alert.getDatos();
 
 	}
     
@@ -170,7 +181,7 @@ public class ControladorAdministrador {
     	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaInformeAdmin.fxml"));
     	//Se le asigna el controlador de la ventana para editar informacion de los guardias
     	
-        ControladorInformeAdmin controlerSala1 = new ControladorInformeAdmin(usuario);
+        ControladorInformeAdmin controlerSala1 = new ControladorInformeAdmin(usuario, alert);
         loaderSala1.setController(controlerSala1);
         AnchorPane PaneSala1;
 
@@ -204,7 +215,7 @@ public class ControladorAdministrador {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaHistorico.fxml"));
     	//Se le asigna el controlador de la ventana para editar información de los guardias
-        ControladorHistorico controlerHistorico = new ControladorHistorico(usuario, "Administrador");
+        ControladorHistorico controlerHistorico = new ControladorHistorico(usuario, "Administrador", alert);
         loaderPrincipala.setController(controlerHistorico);
         AnchorPane PaneVentanaPrincipal;
 
@@ -283,6 +294,9 @@ public class ControladorAdministrador {
      * @param event		Evento causado cuando el administrador pulsa sobre la imagen de cerrar sesión.
      */
     void cerrarSesion(MouseEvent event) {
+    	
+    	alert.getTimer_alert().cancel();
+    	
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaPrincipal.fxml"));
     	this.usuario = "vacio";
@@ -316,7 +330,7 @@ public class ControladorAdministrador {
     void editarEventos(MouseEvent event) {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaEditarEventos.fxml"));
-        controladorEditarEventos controlerEditEvents = new controladorEditarEventos(usuario);
+        controladorEditarEventos controlerEditEvents = new controladorEditarEventos(usuario, alert);
         loaderEdit.setController(controlerEditEvents);
         
         try {
@@ -344,7 +358,7 @@ public class ControladorAdministrador {
     void editarGuardias(MouseEvent event) {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaEditGuardias.fxml"));
-        ControladorEditGuardias controlerEdit = new ControladorEditGuardias(usuario);
+        ControladorEditGuardias controlerEdit = new ControladorEditGuardias(usuario, alert);
         loaderEdit.setController(controlerEdit);
         
         try {
@@ -384,7 +398,7 @@ public class ControladorAdministrador {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador");
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -434,7 +448,7 @@ public class ControladorAdministrador {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador");
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -483,7 +497,7 @@ public class ControladorAdministrador {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador" );
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -532,7 +546,7 @@ public class ControladorAdministrador {
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador");
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -576,7 +590,7 @@ public class ControladorAdministrador {
 
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaEditarAdministrador.fxml"));
-        ControladorEditarAdministrador controlerEdit = new ControladorEditarAdministrador(usuario);
+        ControladorEditarAdministrador controlerEdit = new ControladorEditarAdministrador(usuario, alert);
         loaderEdit.setController(controlerEdit);
         
         try {
@@ -597,6 +611,39 @@ public class ControladorAdministrador {
     	
     }
     
+    @FXML
+    void mostrarNotificaciones(MouseEvent event) {
+    	
+    	//Se carga el contenido de la ventana
+    	FXMLLoader loaderNotificaciones = new FXMLLoader(getClass().getResource("/application/PopOverNotificaciones.fxml"));
+    	//Se le asigna el controlador de la ventana para editar informacion de los guardias
+    	
+        ControladorPopOverNotificacion controlerNoti = new ControladorPopOverNotificacion(usuario, "Administrador", this, alert);
+        loaderNotificaciones.setController(controlerNoti);
+        AnchorPane PopOverNoti;
+
+		try {
+			//Se carga en un AnchorPane la ventana
+			PopOverNoti = (AnchorPane) loaderNotificaciones.load();
+        	
+        	//Se ajusta el AnchorPane para que sea escalable
+            AnchorPane.setTopAnchor(PopOverNoti, 0.0);
+            AnchorPane.setRightAnchor(PopOverNoti, 0.0);
+            AnchorPane.setLeftAnchor(PopOverNoti, 0.0);
+            AnchorPane.setBottomAnchor(PopOverNoti, 0.0);
+            
+            PopOver popOver = new PopOver(PopOverNoti);
+            popOver.show(imgNotiAdmin);
+            
+           
+            
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+    	
+    	
+    }
+    
     
     
     /**
@@ -611,9 +658,17 @@ public class ControladorAdministrador {
 		
 	}
     
+    
+    
+    
+	public ImageView getImgNotiAdmin() {
+		return imgNotiAdmin;
+	}
 
-    
-    
+	public void setImgNotiAdmin(ImageView imgNotiAdmin) {
+		this.imgNotiAdmin = imgNotiAdmin;
+	}
+
 	public JFXToolbar getToolBarAdministrador() {
 		return toolBarAdministrador;
 	}

@@ -4,15 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.controlsfx.control.PopOver;
-
+import animatefx.animation.SlideInLeft;
+import animatefx.animation.SlideInRight;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -25,10 +24,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
-import javafx.stage.Stage;
-
 /**
  * 
  * En la clase ControladorVPrincipal, manejamos todos los eventos que ocurren en la vista <b>VentanaPrincipal</b>.
@@ -213,7 +209,9 @@ public class ControladorVPrincipal {
 	 	regionDos.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countDos)), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	regionTres.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countTres)), CornerRadii.EMPTY, Insets.EMPTY)));
     	
-    	
+    	new SlideInRight(regionUno).setCycleCount(1).play();
+    	new SlideInRight(regionDos).setCycleCount(1).play();
+    	new SlideInRight(regionTres).setCycleCount(1).play();
     	
     }
     
@@ -247,7 +245,9 @@ public class ControladorVPrincipal {
 	 	regionDos.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countDos)), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	regionTres.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(countTres)), CornerRadii.EMPTY, Insets.EMPTY)));
     	
-    	
+	 	new SlideInLeft(regionUno).setCycleCount(1).play();
+    	new SlideInLeft(regionDos).setCycleCount(1).play();
+    	new SlideInLeft(regionTres).setCycleCount(1).play();
     }
 
     @FXML

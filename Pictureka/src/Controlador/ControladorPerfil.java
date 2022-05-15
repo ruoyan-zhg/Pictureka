@@ -2,6 +2,8 @@ package Controlador;
 
 import java.io.IOException;
 import com.jfoenix.controls.JFXToolbar;
+
+import Modelo.Alerta;
 import Modelo.Cliente;
 import Modelo.Staff;
 import Modelo.modelo_Museo;
@@ -99,6 +101,9 @@ public class ControladorPerfil {
     private Cliente cliente;
 
     private Staff staff;
+    
+    Alerta alertaNotificaciones;
+    
 
     /**
      * 
@@ -132,6 +137,37 @@ public class ControladorPerfil {
 			 }
 		 }
 	}
+	 
+	 
+	 public ControladorPerfil(String usuario, Alerta alerta)  {
+		 if (usuario == "vacio") {
+			 logged = false;
+			 this.usuario = usuario;
+			 this.alertaNotificaciones = alerta;
+			 Alert error = new Alert(Alert.AlertType.ERROR);
+			 error.setHeaderText("Error: PROGRAMADOR UN USUARIO NO DEBERIA VER SUS CREDENCIALES SIN HABER INICIADO SESION");
+			 error.show();
+		 }
+		 else {
+			 this.usuario = usuario;
+			 this.alertaNotificaciones = alerta;
+			 logged = true;
+			 modelo_Museo museo = new modelo_Museo();
+			 //museo obtener identificador de usuario
+			 int _identificador = museo.devolverIdentificador(usuario);
+			 identificador = _identificador;
+			 //guardar el usuario dependiendo del identificador
+			 if (identificador == 1) {
+				Cliente provisionalCli = museo.getRegistro().recuperar1Cliente(usuario);
+			 	this.cliente = provisionalCli;
+			 }
+			 else {
+				Staff provisionalStaff = museo.getRegistro().recuperar1Staff(usuario);
+		 		this.staff = provisionalStaff;
+			 }
+		 }
+	}
+	 
 
 	 @FXML
 	 /**
@@ -217,7 +253,8 @@ public class ControladorPerfil {
      */
     void volver(MouseEvent event) {
 
-
+    	
+    	
     	//Comprueba que lo devuelto por el método loginUsuario se corresponde con los diferentes identificadores que tienen cada usuario
     	if (identificador==1) {
     		//Se carga el contenido de la ventana
@@ -254,6 +291,9 @@ public class ControladorPerfil {
     		}
     	}
     	else if (identificador==2) {
+    		
+    		alertaNotificaciones.getTimer_alert().cancel();
+    		
     		//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaGuardia.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias
@@ -286,6 +326,9 @@ public class ControladorPerfil {
 
     	}
     	else if (identificador==3) {
+    		
+    		alertaNotificaciones.getTimer_alert().cancel();
+    		
     		//Se carga el contenido de la ventana
         	FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias

@@ -67,6 +67,7 @@ public class ControladorInicioSesion {
     @FXML
     private ImageView btnVolver;
     
+    
     @FXML
     /**
      * 

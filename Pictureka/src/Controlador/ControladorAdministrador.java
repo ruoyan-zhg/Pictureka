@@ -255,7 +255,7 @@ public class ControladorAdministrador {
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPrincipala = new FXMLLoader(getClass().getResource("/application/VentanaPerfil.fxml"));
     	//Se le asigna el controlador de la ventana para editar informacion de los guardias
-        ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario);
+        ControladorPerfil controlerPrincipal = new ControladorPerfil(usuario, alert);
         loaderPrincipala.setController(controlerPrincipal);
         AnchorPane PaneVentanaPrincipal;
 

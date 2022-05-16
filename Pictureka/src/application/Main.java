@@ -36,8 +36,8 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/VentanaLogo.fxml"));
 			ControladorLogo controlLogo = new ControladorLogo();
 			//Creamos 2 tipos de animaciones
-			ScaleTransition scale = new ScaleTransition();
-			JFXFillTransition fill = new JFXFillTransition();
+			//ScaleTransition scale = new ScaleTransition();
+			//JFXFillTransition fill = new JFXFillTransition();
 
 			
 			//Asociamos la vista con el controlador
@@ -52,13 +52,16 @@ public class Main extends Application {
 			primaryStage.setResizable(false);
 			
 			//Animacion del boton de entrar
+			/*
 			fill.setCycleCount(TranslateTransition.INDEFINITE);
 			fill.setDuration(Duration.millis(2500));
 			fill.setRegion(controlLogo.getBtnEntrar());
 			fill.setFromValue(Color.WHITE);
 			fill.setToValue(Color.rgb(210, 167, 244));
+			*/
 			
 			//Animacion de la imagen del logo
+			/*
 			scale.setNode(controlLogo.getImageLogo());
 			scale.setDuration(Duration.millis(2500));
 			scale.setCycleCount(TranslateTransition.INDEFINITE);
@@ -66,11 +69,12 @@ public class Main extends Application {
 			scale.setByX(0.3);
 			scale.setByY(0.3);
 			scale.setAutoReverse(true);
+			*/
 			
 			
 			//Mostramos las animaciones creadas
-			fill.play();
-			scale.play();
+			//fill.play();
+			//scale.play();
 			
 			
 			//Se muestra el icono en todas las ventanas

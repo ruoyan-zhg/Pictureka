@@ -1,5 +1,6 @@
 package Controlador;
 
+import java.io.File;
 import java.io.IOException;
 import com.jfoenix.controls.JFXButton;
 
@@ -7,9 +8,12 @@ import Modelo.Cifrado;
 import Modelo.Cliente;
 import Modelo.Staff;
 import Modelo.modelo_Museo;
+import animatefx.animation.Bounce;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -21,7 +25,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * 
@@ -66,6 +75,28 @@ public class ControladorInicioSesion {
 
     @FXML
     private ImageView btnVolver;
+    
+    @FXML
+    
+    public void initialize() {
+	
+    	//Instantiating Media class  
+        Media media = new Media(new File("src/Seoul.mp4").toURI().toString());  
+          
+        //Instantiating MediaPlayer class   
+        MediaPlayer mediaPlayer = new MediaPlayer(media);  
+          
+        //Instantiating MediaView class   
+        MediaView mediaView = new MediaView(mediaPlayer);  
+          
+        //by setting this property to true, the Video will be played   
+        mediaPlayer.setAutoPlay(true);  
+        mediaPlayer.setCycleCount(Timeline.INDEFINITE);
+
+        //gridPaneLogin.getChildren().addAll(mediaView);
+    	
+    	
+    }
     
     
     @FXML
@@ -150,11 +181,13 @@ public class ControladorInicioSesion {
     		        controlVPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
     		        controlVPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
     		        controlVPrincipal.getLblBienvenido().setText("¡Bienvenid@ "+(cli.getUsuario())+"!");
+    		        new Bounce(controlVPrincipal.getLblBienvenido()).setDelay(new Duration(1000)).play();
     		        controlVPrincipal.getLblBienvenido().setStyle("-fx-background-color: #00aae4");
+    		        controlVPrincipal.getLblBienvenido().setStyle("-fx-effect: dropshadow(gaussian, gray, 8, 0.5, 8, 8)");
+    		        
     		        
     		        
     			} catch (IOException e) {
-    				// TODO Auto-generated catch block
     				e.printStackTrace();
     			}
   

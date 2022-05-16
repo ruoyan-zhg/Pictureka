@@ -111,7 +111,6 @@ public class Alerta {
         owner.toBack();
         owner.show();
    */   
-		System.out.println(i);
 		Notifications notificacion = Notifications.create().title("ADVERTENCIA")
 				.text("SALA: " + sensor.getID_Sala() + "\nSensor " + sensor.getTipo())
 				/* .threshold(4, Notifications.create().title("Notificaciones colapsadas")) */.hideAfter(

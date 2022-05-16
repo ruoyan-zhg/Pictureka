@@ -141,7 +141,7 @@ public class ControladorSalas {
 	 * 
 	 */
 	public void initialize() {
-		Museo museo = new Museo();
+
 		//recibir datos de BD
 		Vector<Sensor> sensores = sensoresBD(this.sala.getIdentificador());
 				

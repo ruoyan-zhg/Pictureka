@@ -294,8 +294,8 @@ public class ControladorInformeAdmin {
 				ResultSet rs = stmt.executeQuery( sql );
 
 				
-				sql2 = "INSERT INTO MANEJA(Usuario)"
-						+ "VALUES('"+admin.getUsuario()+"');";
+				sql2 = "INSERT INTO MANEJA(Usuario, Fecha)"
+						+ "VALUES('"+admin.getUsuario()+"', CURRENT_TIMESTAMP());";
 				
 				rs = stmt.executeQuery(sql2);
 				

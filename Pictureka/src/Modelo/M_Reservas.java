@@ -84,7 +84,7 @@ public class M_Reservas {
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
             
             //Se realiza la consulta en la tabla de CLIENTE
-            sql = "SELECT * FROM RESERVA";
+            sql = "SELECT * FROM RESERVA Order by RESERVA.identificador asc";
             stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery( sql );
 			while ( rs.next() ) {

@@ -17,6 +17,9 @@ import Modelo.Sensor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -71,6 +74,15 @@ public class ControladorHistorico {
 
 	    @FXML
 	    private TableColumn<Sensor, Timestamp> timestampTabla;
+	    
+	    final NumberAxis xAxis = new NumberAxis();
+        final NumberAxis yAxis = new NumberAxis();
+	    
+	    @FXML
+	    private LineChart<String, Float> graficaLineal;
+	    
+	    @FXML
+	    private LineChart<String, Float> graficaLinealLuz;
 
 	    @FXML
 	    private Button btnRegresar;
@@ -116,12 +128,19 @@ public class ControladorHistorico {
 			}
 		 
 	    	cargarTabla();
+	    	sensoresAGraficaTemperatura();
+	    	sensoresAGraficaLuz();
+	    	
 	    	
 	    }
 
 	    @FXML
 	    void actualizarTabla(ActionEvent event) {
 	    	cargarTabla();
+	    	graficaLineal.getData().remove(0);
+	    	graficaLinealLuz.getData().remove(0);
+	    	sensoresAGraficaTemperatura();
+	    	sensoresAGraficaLuz();
 	    }
 
 	    @FXML
@@ -315,7 +334,7 @@ public class ControladorHistorico {
 	                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
 	            
 	            //Se realiza la consulta en la tabla de CLIENTE
-	            sql = "SELECT * FROM SENSORES ;";
+	            sql = "SELECT * FROM HISTORIAL ;";
 	            stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery( sql );
 				while ( rs.next() ) {
@@ -355,6 +374,133 @@ public class ControladorHistorico {
 	    	
 	    	return sensores; 
 	    }
+	    
+	    
+	    public void sensoresAGraficaTemperatura() {
+	    	
+	    	graficaLineal.setTitle("Media de temperatura diaria");
+	    	XYChart.Series series = new XYChart.Series();
+	    	float dom = 0, lun=0, mar=0, mie=0, jue=0, vie=0, sab=0;
+	    	int dom_ = 0, lun_=0, mar_=0, mie_=0, jue_=0, vie_=0, sab_=0;
+	    	int j=0;
+	    	
+	    	Vector<Sensor> sensores = getSensores();
+	    	for(int i=0; i<sensores.size();i++) {
+	    		if(sensores.get(i).getTipo().equals("Temperatura")) {
+	    			j=sensores.get(i).getFecha().getDay();
+		    		switch(j) {
+		    		case 0:
+		    			dom+=sensores.get(i).getLectura();
+		    			dom_++;
+		    			break;
+		    		case 1:
+		    			lun+=sensores.get(i).getLectura();
+		    			lun_++;
+		    			break;
+		    		case 2:
+		    			mar+=sensores.get(i).getLectura();
+		    			mar_++;
+		    			break;
+		    		case 3:
+		    			mie+=sensores.get(i).getLectura();
+		    			mie_++;
+		    			break;
+		    		case 4:
+		    			jue+=sensores.get(i).getLectura();
+		    			jue_++;
+		    			break;
+		    		case 5:
+		    			vie+=sensores.get(i).getLectura();
+		    			vie_++;
+		    			break;
+		    		case 6:
+		    			sab+=sensores.get(i).getLectura();
+		    			sab_++;
+		    			break;
+		    		
+		    		}
+	    		}
+	    	}
+	    	series.setName("Temperatura");
+	    	series.getData().add(new XYChart.Data("Dom", (dom/dom_)));
+	        series.getData().add(new XYChart.Data("Lun", (lun/lun_)));
+	        series.getData().add(new XYChart.Data("Mar", (mar/mar_)));
+	        series.getData().add(new XYChart.Data("Mie", (mie/mie_)));
+	        series.getData().add(new XYChart.Data("Jue", (jue/jue_)));
+	        series.getData().add(new XYChart.Data("Vie", (vie/vie_)));
+	        series.getData().add(new XYChart.Data("Sab", (sab/sab_)));
+	        
+	    	
+	    	
+	        graficaLineal.getData().add(series);
+	        //System.out.println(series.getData().get(0).);
+	        
+	        
+	    }
+	    
+	    
+	    public void sensoresAGraficaLuz() {
+	    	
+	    	graficaLinealLuz.setTitle("Media de luminidad diaria");
+	    	XYChart.Series series = new XYChart.Series();
+	    	float dom = 0, lun=0, mar=0, mie=0, jue=0, vie=0, sab=0;
+	    	int dom_ = 0, lun_=0, mar_=0, mie_=0, jue_=0, vie_=0, sab_=0;
+	    	int j=0;
+	    	
+	    	Vector<Sensor> sensores = getSensores();
+	    	for(int i=0; i<sensores.size();i++) {
+	    		if(sensores.get(i).getTipo().equals("Luz")) {
+	    			j=sensores.get(i).getFecha().getDay();
+		    		switch(j) {
+		    		case 0:
+		    			dom+=sensores.get(i).getLectura();
+		    			dom_++;
+		    			break;
+		    		case 1:
+		    			lun+=sensores.get(i).getLectura();
+		    			lun_++;
+		    			break;
+		    		case 2:
+		    			mar+=sensores.get(i).getLectura();
+		    			mar_++;
+		    			break;
+		    		case 3:
+		    			mie+=sensores.get(i).getLectura();
+		    			mie_++;
+		    			break;
+		    		case 4:
+		    			jue+=sensores.get(i).getLectura();
+		    			jue_++;
+		    			break;
+		    		case 5:
+		    			vie+=sensores.get(i).getLectura();
+		    			vie_++;
+		    			break;
+		    		case 6:
+		    			sab+=sensores.get(i).getLectura();
+		    			sab_++;
+		    			break;
+		    		
+		    		}
+	    		}
+	    	}
+	    	series.setName("Luminidad");
+	    	
+	    	series.getData().add(new XYChart.Data("Dom", (dom/dom_)));
+	        series.getData().add(new XYChart.Data("Lun", (lun/lun_)));
+	        series.getData().add(new XYChart.Data("Mar", (mar/mar_)));
+	        series.getData().add(new XYChart.Data("Mie", (mie/mie_)));
+	        series.getData().add(new XYChart.Data("Jue", (jue/jue_)));
+	        series.getData().add(new XYChart.Data("Vie", (vie/vie_)));
+	        series.getData().add(new XYChart.Data("Sab", (sab/sab_)));
+	        
+	    	
+	    	
+	        graficaLinealLuz.getData().add(series);
+	        //System.out.println(series.getData().get(0).);
+	        
+	    }
+	    
 	    
 	    
 	    public JFXToolbar getToolBarAdmin() {

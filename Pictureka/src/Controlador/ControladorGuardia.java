@@ -109,6 +109,8 @@ public class ControladorGuardia {
     @FXML
     private ImageView imgSala3;
     
+    LocalDate fechaActual = LocalDate.now();
+    
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
@@ -659,7 +661,7 @@ public class ControladorGuardia {
     	
 		Alert error = new Alert(Alert.AlertType.ERROR);
 		Alert informative = new Alert(Alert.AlertType.CONFIRMATION);
-		LocalDate fechaActual = LocalDate.now();
+		
 		String reservaEncontrada = "no encontrada";
 
 		modelo_Museo museo = new modelo_Museo();
@@ -679,7 +681,7 @@ public class ControladorGuardia {
 				M_Reservas reservas = new M_Reservas();
 				Vector<Reserva> tickets = reservas.recuperarReserva();
 				int i = 0;
-				while(i<tickets.size() && reservaEncontrada.equals("no encontrada")) {
+				/*while(i<tickets.size() && reservaEncontrada.equals("no encontrada")) {
 					if((tickets.elementAt(i).getIdentificador()==identificadorReserva) && (reservas.visualizarVisibilidad(identificadorReserva)==1)) {
 						if(!tickets.elementAt(i).getFecha().isBefore(fechaActual)) {
 							reservaEncontrada = "valida";
@@ -692,16 +694,16 @@ public class ControladorGuardia {
 					}
 					i++;
 				}
+				*/
+				reservaEncontrada = busBinReservas(tickets, identificadorReserva, 0, tickets.size()-1);
+				
+				
 				if (reservaEncontrada.equals("no encontrada")) {
 					error.setHeaderText("La reserva que busca no existe.");
 					error.showAndWait();
 				}
-				else if(reservaEncontrada.equals("invalida")) {
-					error.setHeaderText("La reserva ya ha caducado.");
-					error.setContentText("Caducó en: " + tickets.elementAt(i-1).getFecha());
-					error.showAndWait();
-				}
-				else {
+				else if(reservaEncontrada.equals("valida")){
+					reservas.establecerRevisor(revisor, identificadorReserva);
 					informative.setHeaderText("La reserva es valida.");
 					informative.showAndWait();
 					
@@ -719,6 +721,52 @@ public class ControladorGuardia {
 
 	}
     
+    private String busBinReservas(Vector<Reserva> reservas, int idReserva, int inicio, int fin) {
+    	
+    	if(inicio>fin) {
+    		return "no encontrada";
+    	}
+    	else {
+    		M_Reservas visibilidad = new M_Reservas();
+    		int medio = (inicio+fin)/2;
+    		if(reservas.get(medio).getIdentificador()==idReserva && visibilidad.visualizarVisibilidad(idReserva)==1) {
+    			if(!reservas.get(medio).getFecha().isBefore(fechaActual)) {
+					return "valida";
+				}
+				else {
+					Alert error = new Alert(Alert.AlertType.ERROR);
+					error.setHeaderText("La reserva ya ha caducado.");
+					error.setContentText("Caducó en: " + reservas.elementAt(medio).getFecha());
+					error.show();
+					return "invalida";
+				}
+    		}
+    		else {
+    			if(idReserva<reservas.get(medio).getIdentificador()) {
+    				return busBinReservas(reservas, idReserva, inicio, medio);
+    			}
+    			else {
+    				return busBinReservas(reservas, idReserva, medio+1, fin);
+    			}
+    		}
+    	}
+    }
+    /*
+	if (inicio > fin) {
+		return -1;
+	} else {
+		int mitad = (inicio + fin) / 2;
+		if (numBuscar == nums[mitad]) {
+			return mitad;
+		} else {
+			if (numBuscar < nums[mitad]) {
+				return busquedaRecursivaOrdenado(nums, numBuscar, inicio, mitad);
+			} else {
+				return busquedaRecursivaOrdenado(nums, numBuscar, mitad + 1, fin);
+			}
+		}
+	}
+	*/
     /**
      * 
      * Método que muestra un error al guardia sobre la sala.

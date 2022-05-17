@@ -76,28 +76,6 @@ public class ControladorInicioSesion {
     @FXML
     private ImageView btnVolver;
     
-    @FXML
-    
-    public void initialize() {
-	
-    	//Instantiating Media class  
-        Media media = new Media(new File("src/Seoul.mp4").toURI().toString());  
-          
-        //Instantiating MediaPlayer class   
-        MediaPlayer mediaPlayer = new MediaPlayer(media);  
-          
-        //Instantiating MediaView class   
-        MediaView mediaView = new MediaView(mediaPlayer);  
-          
-        //by setting this property to true, the Video will be played   
-        mediaPlayer.setAutoPlay(true);  
-        mediaPlayer.setCycleCount(Timeline.INDEFINITE);
-
-        //gridPaneLogin.getChildren().addAll(mediaView);
-    	
-    	
-    }
-    
     
     @FXML
     /**

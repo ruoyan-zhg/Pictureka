@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -156,6 +160,39 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
+                        <JFXTextField fx:id="TextFieldUsuario" editable="false" focusColor="#efb810" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="18.0" />
+                           </font></JFXTextField>
+                        <JFXTextField fx:id="TextFieldDNI" focusColor="#efb810" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="18.0" />
+                           </font></JFXTextField>
+                        <JFXTextField fx:id="TextFieldEmail" focusColor="#efb810" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="18.0" />
+                           </font></JFXTextField>
+                        <JFXDatePicker fx:id="DatePickerFecha" defaultColor="#efb810" prefHeight="31.0" prefWidth="271.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <JFXButton fx:id="BotonGuardar" buttonType="RAISED" onMouseClicked="#GuardarInformacion" prefHeight="31.0" prefWidth="95.0" ripplerFill="#edb611" text="Guardar" GridPane.columnIndex="7" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                        <JFXButton fx:id="BotonCancelar" buttonType="RAISED" onMouseClicked="#Cancelar" prefHeight="31.0" prefWidth="95.0" text="Cancelar" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                        <ImageView fx:id="imgEditUsuario" fitHeight="132.0" fitWidth="68.0" onMouseClicked="#EditarInformacion" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.halignment="RIGHT">
+                           <image>
+                              <Image url="@../../Imagenes_Multimedia/EditarCliente.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <Label fx:id="LabelContrasenia" text="Nueva contraseña:" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <JFXPasswordField fx:id="PasswordField" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXPasswordField>
                      </children>
                   </GridPane>
                </children>

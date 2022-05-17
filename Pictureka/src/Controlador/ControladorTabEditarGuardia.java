@@ -272,7 +272,6 @@ public class ControladorTabEditarGuardia {
 						if(respuestaCliente.first()) {
 							//significa que ya alguno de los datos introducitos ya esta registrado
 							correcto = true;
-							System.out.println("obvio");
 						}
 						respuestaCliente.close();
 						stmt.close();
@@ -280,7 +279,7 @@ public class ControladorTabEditarGuardia {
 							//consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
 							//el mismo tipo de usuario
 							sql = "SELECT * FROM (SELECT * FROM CLIENTE WHERE CLIENTE.Usuario != '"+Usuario+"') AS dd"
-						    		+ " WHERE dd.Usuario = '"+Usuario+"' OR dd.Email = '"+emailNuevo+"' OR dd.Dni = '"+dniNuevo+"';";
+						    		+ " WHERE dd.Usuario = '"+Usuario+"' OR dd.Email = '"+emailNuevo+"' ;";
 					        stmt = conn.createStatement();
 							ResultSet respuestaStaff = stmt.executeQuery( sql );
 							if(respuestaStaff.first()) {

@@ -1,12 +1,28 @@
 package Controlador;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToolbar;
 
 import Modelo.Alerta;
+import Modelo.Cifrado;
 import Modelo.Cliente;
+import Modelo.Registro;
 import Modelo.Staff;
 import Modelo.modelo_Museo;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -91,7 +107,34 @@ public class ControladorPerfil {
     
     @FXML
     private ImageView imgReserva;
+    
+    @FXML
+    private JFXTextField TextFieldUsuario;
 
+    @FXML
+    private JFXTextField TextFieldDNI;
+
+    @FXML
+    private JFXTextField TextFieldEmail;
+
+    @FXML
+    private JFXDatePicker DatePickerFecha;
+
+    @FXML
+    private ImageView imgEditUsuario;
+    
+    @FXML
+    private JFXButton BotonGuardar;
+
+    @FXML
+    private JFXButton BotonCancelar;
+    
+    @FXML
+    private Label LabelContrasenia;
+
+    @FXML
+    private JFXPasswordField PasswordField;
+    
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 
     boolean logged; //Este nos dira si la parsona esta logueada o no
@@ -103,7 +146,16 @@ public class ControladorPerfil {
     private Staff staff;
     
     Alerta alertaNotificaciones;
+
+    Connection conn = null;
     
+    Statement stmt = null;
+    
+    String sql;
+    
+    static final String USER = "pri_Pictureka";
+	
+    static final String PASS = "asas";
 
     /**
      * 
@@ -176,34 +228,11 @@ public class ControladorPerfil {
 	  * 
 	  */
 	  	public void initialize() {
-
-		 	switch(identificador) {
-		 		case 1:
-		 			RUsuario.setText(cliente.getUsuario());
-		 			RDNI.setText(cliente.getDni());
-		 			REmail.setText(cliente.getEmail());
-		 			RFechaDNa.setText((cliente.getFechaNacimiento()).toString());
-		 			LabelApellido1.setVisible(false);
-		 			LabelApellido2.setVisible(false);
-		 			LabelNombre.setVisible(false);
-		 			RApellido1.setVisible(false);
-		 			RApellido2.setVisible(false);
-		 			RNombre.setVisible(false);
-
-		 			break;
-		 		case 2:
-		 			staffConfiguracion();
-		 			imgUsuario1.setImage(new Image("/guardiaAvatar.png"));
-		 			break;
-		 		case 3:
-		 			staffConfiguracion();
-		 			imgUsuario1.setImage(new Image("/administradorAvatar.png"));
-		 			break;
-		 	}
-
+		 	mostrarPerfil();
 	  	}
 	 
-	 @FXML
+
+	@FXML
 	 /**
 	  * 
 	  * Muestra al cliente su lista de reservas, mostrando la información de éstas, ofreciendo la posibilidad de cancelar la 
@@ -362,6 +391,196 @@ public class ControladorPerfil {
     	}
 
     }
+    
+    
+    @FXML
+    void EditarInformacion(MouseEvent event) {
+    	habilitarModoEdicion();
+    	cargarDatosEdicion();
+    	
+    }
+    
+    
+	
+
+	@FXML
+    void GuardarInformacion(MouseEvent event) {
+		GuardarClienteEdit();
+		eliminarContenidoTxtfield();
+		deshabilitarModoEdicion();
+		modelo_Museo museo = new modelo_Museo();
+		this.cliente = museo.getRegistro().recuperar1Cliente(usuario);
+		mostrarPerfil();
+		
+    }
+    
+    @FXML
+    void Cancelar(MouseEvent event) {
+    	deshabilitarModoEdicion();
+    }
+    
+    private void deshabilitarModoEdicion() {
+    	DatePickerFecha.setVisible(false);
+		TextFieldDNI.setVisible(false);
+		TextFieldEmail.setVisible(false);
+		TextFieldUsuario.setVisible(false);
+		BotonCancelar.setVisible(false);
+		BotonGuardar.setVisible(false);
+		RUsuario.setVisible(true);
+		RDNI.setVisible(true);
+		REmail.setVisible(true);
+		RFechaDNa.setVisible(true);
+		PasswordField.setVisible(false);
+		LabelContrasenia.setVisible(false);
+	}
+
+	private void habilitarModoEdicion() {
+    	DatePickerFecha.setVisible(true);
+		TextFieldDNI.setVisible(true);
+		TextFieldEmail.setVisible(true);
+		TextFieldUsuario.setVisible(true);
+		BotonCancelar.setVisible(true);
+		BotonGuardar.setVisible(true);
+		RUsuario.setVisible(false);
+		RDNI.setVisible(false);
+		REmail.setVisible(false);
+		RFechaDNa.setVisible(false);
+		PasswordField.setVisible(true);
+		LabelContrasenia.setVisible(true);
+	}
+	
+	private void cargarDatosEdicion() {
+		TextFieldDNI.setText(RDNI.getText());
+		TextFieldEmail.setText(REmail.getText());
+		TextFieldUsuario.setText(RUsuario.getText());
+		LocalDate FechaNac = LocalDate.parse(RFechaDNa.getText());
+		DatePickerFecha.setValue(FechaNac);
+		
+	}
+	
+	
+	void GuardarClienteEdit() {
+
+		Alert error = new Alert(Alert.AlertType.ERROR);
+		Alert informacion = new Alert(Alert.AlertType.INFORMATION);
+		Registro registro = new Registro();
+		Cifrado cifrar = new Cifrado();
+
+		// Obtenemos los datos de los diferentes jtextfield
+		String Usuario = TextFieldUsuario.getText();
+		String dniNuevo = TextFieldDNI.getText();
+		String emailNuevo = TextFieldEmail.getText();
+		LocalDate fechaNuevo = DatePickerFecha.getValue();
+		String contraseniaNuevo = PasswordField.getText();
+
+		// Comprobamos que el contenido no está vacío
+		if (!(Usuario.isEmpty() | dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null))) {
+			if (contraseniaNuevo.isEmpty()) {
+				contraseniaNuevo = cliente.getContrasenia();
+			}else {
+				if ((cliente.getContrasenia().equals(cifrar.hashing(contraseniaNuevo)) == false)) {
+					contraseniaNuevo = cifrar.hashing(contraseniaNuevo);
+				}
+			}
+			LocalDate fecha = LocalDate.now();
+			Period periodo = Period.between(fechaNuevo, fecha);
+
+			// Comprobacion del rango de edad
+			if (dniNuevo.length() == 9) {
+				if (periodo.getYears() > 18 && periodo.getYears() < 100) {
+					// Valida el email nuevo
+					if (registro.validarEmail(emailNuevo)) {
+						if (GuardarClienteBBDD(Usuario, dniNuevo, emailNuevo, fechaNuevo, contraseniaNuevo)) {
+							mostrarPerfil();
+							eliminarContenidoTxtfield();
+							informacion.setHeaderText("Cambios realizados con éxito.");
+							informacion.showAndWait();
+						}
+					} else {
+						error.setHeaderText("Formato de email incorrecto.");
+						error.showAndWait();
+
+					}
+				} else {
+					error.setHeaderText("Rango de edad no aceptable.");
+					error.showAndWait();
+				}
+			} else {
+				error.setHeaderText("El DNI debe tener una longutid de 9 digitos.");
+				error.showAndWait();
+			}
+		} else {
+			error.setHeaderText("Revise que todos los campos están completos.");
+			error.showAndWait();
+		}
+	}
+
+	public boolean GuardarClienteBBDD(String Usuario, String dniNuevo, String emailNuevo, LocalDate fechaNuevo,
+			String contraseniaNuevo) {
+		boolean registrado = true;
+
+		Date date = Date.valueOf(fechaNuevo);
+
+		LocalDate fecha = LocalDate.now();
+		Period periodo = Period.between(fechaNuevo, fecha);
+
+		// Comprobaciones para los distintos casos que se pueden dar
+		try {
+			boolean correcto = false;
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			conn = DriverManager.getConnection("jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
+
+			// comprobar que no exista en la base de datos de
+
+			sql = "SELECT * FROM (SELECT * FROM STAFF WHERE STAFF.Usuario != '" + Usuario + "') AS dd"
+					+ " WHERE dd.Usuario = '" + Usuario + "' OR dd.Email = '" + emailNuevo + "';";
+			stmt = conn.createStatement();
+			ResultSet respuestaCliente = stmt.executeQuery(sql);
+			if (respuestaCliente.first()) {
+				// significa que ya alguno de los datos introducitos ya esta registrado
+				correcto = true;
+			}
+			respuestaCliente.close();
+			stmt.close();
+			if (correcto == false) {
+				// consulta que comprueba que el usuario no se repita, el email no se repita,
+				// dni no se repita entre
+				// el mismo tipo de usuario
+				sql = "SELECT * FROM (SELECT * FROM CLIENTE WHERE CLIENTE.Usuario != '" + Usuario + "') AS dd"
+						+ " WHERE dd.Usuario = '" + Usuario + "' OR dd.Email = '" + emailNuevo + "' OR dd.Dni = '"
+						+ dniNuevo + "';";
+				stmt = conn.createStatement();
+				ResultSet respuestaStaff = stmt.executeQuery(sql);
+				if (respuestaStaff.first()) {
+					// significa que ya alguno de los datos introducitos ya esta registrado
+					correcto = true;
+				}
+				respuestaStaff.close();
+				stmt.close();
+			}
+			if (correcto == false) {
+				sql = "UPDATE CLIENTE SET " + "Usuario = '" + Usuario + "', " + "Dni = '" + dniNuevo + "', "
+						+ "FechaNacimiento = '" + date + "', " + "Email= '" + emailNuevo + "', " + "Contraseña = '"
+						+ contraseniaNuevo + "' " + "WHERE " + "CLIENTE.Usuario = '" + Usuario + "';";
+
+				stmt = conn.createStatement();
+				stmt.executeQuery(sql);
+				stmt.close();
+			} else {
+				Alert error = new Alert(Alert.AlertType.ERROR);
+				error.setHeaderText("Error: DNI, Emanil ya registrados.");
+				error.showAndWait();
+				registrado = false;
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+		}
+
+		return registrado;
+	}
+
+
+    
     /**
      * 
      * Muestra una información diferente si el usuario iniciado sesión es un guardia o un administrador.
@@ -376,9 +595,63 @@ public class ControladorPerfil {
 		RApellido2.setText(staff.getApellido2());
 		RNombre.setText(staff.getNombre());
 		imgReserva.setVisible(false);
+		imgEditUsuario.setVisible(false);
+		DatePickerFecha.setVisible(false);
+		TextFieldDNI.setVisible(false);
+		TextFieldEmail.setVisible(false);
+		TextFieldUsuario.setVisible(false);	
+		BotonCancelar.setVisible(false);
+		BotonGuardar.setVisible(false);
+		PasswordField.setVisible(false);
+		LabelContrasenia.setVisible(false);
+		
     }
     
     
+    
+    private void eliminarContenidoTxtfield() {
+    	TextFieldDNI.clear();
+		TextFieldEmail.clear();
+		TextFieldUsuario.clear();	
+		PasswordField.clear();
+	}
+    
+
+	 private void mostrarPerfil() {
+		 switch(identificador) {
+	 		case 1:
+	 			RUsuario.setText(cliente.getUsuario());
+	 			RDNI.setText(cliente.getDni());
+	 			REmail.setText(cliente.getEmail());
+	 			RFechaDNa.setText((cliente.getFechaNacimiento()).toString());
+	 			LabelApellido1.setVisible(false);
+	 			LabelApellido2.setVisible(false);
+	 			LabelNombre.setVisible(false);
+	 			RApellido1.setVisible(false);
+	 			RApellido2.setVisible(false);
+	 			RNombre.setVisible(false);
+	 			DatePickerFecha.setVisible(false);
+	 			TextFieldDNI.setVisible(false);
+	 			TextFieldEmail.setVisible(false);
+	 			TextFieldUsuario.setVisible(false);	
+	 			BotonCancelar.setVisible(false);
+	 			BotonGuardar.setVisible(false);
+	 			PasswordField.setVisible(false);
+	 			LabelContrasenia.setVisible(false);
+	 			
+
+	 			break;
+	 		case 2:
+	 			staffConfiguracion();
+	 			imgUsuario1.setImage(new Image("/guardiaAvatar.png"));
+	 			break;
+	 		case 3:
+	 			staffConfiguracion();
+	 			imgUsuario1.setImage(new Image("/administradorAvatar.png"));
+	 			break;
+	 	}
+		
+	}
     
     
     

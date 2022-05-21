@@ -25,6 +25,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
+import javafx.stage.Stage;
 /**
  * 
  * En la clase ControladorVPrincipal, manejamos todos los eventos que ocurren en la vista <b>VentanaPrincipal</b>.
@@ -333,10 +334,17 @@ public class ControladorVPrincipal {
                  AnchorPane.setRightAnchor(PaneTickets, 0.0);
                  AnchorPane.setLeftAnchor(PaneTickets, 0.0);
                  AnchorPane.setBottomAnchor(PaneTickets, 0.0);
-            
+                 
                  //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                  anchorPanePrincipal.getChildren().setAll(PaneTickets);
                //Cambia el color de la barra de la ventana perfil
+                 Stage s = (Stage) anchorPanePrincipal.getScene().getWindow();
+                 
+                 s.setHeight(833);
+                 s.setWidth(1156);
+                 s.setResizable(false);
+                 s.setMaximized(false);
+                 s.show();
                 
                 
                 

@@ -1,5 +1,6 @@
 package Controlador;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,6 +13,7 @@ import Modelo.Cliente;
 import Modelo.Datos;
 import Modelo.M_Reservas;
 import Modelo.Registro;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +29,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 
 /**
  * 
@@ -86,6 +92,12 @@ public class ControladorTickets {
     @FXML
     private ComboBox ComboxTickets;
     
+    @FXML
+    private GridPane grdPaneVideo;
+    
+    @FXML
+    private MediaView mediaViewTicket;
+    
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
     
     private String dniUsuario;
@@ -95,6 +107,7 @@ public class ControladorTickets {
     private Datos datos = new Datos();
     
     private Vector<Cliente> clientes = new Vector<Cliente>();
+    
     
     
     /**
@@ -116,10 +129,31 @@ public class ControladorTickets {
 	}
 	 
 	 public void initialize() {
-			ObservableList<String> list = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" );
+			ObservableList<String> list = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
 			ComboxTickets.setItems(list);
 	    	clientes = datos.desserializarJsonAusuarios();
 	    	dniUsuario = buscarDni();
+	    	
+	    	
+            
+	    	
+	    	 //Instantiating Media class  
+	        Media media = new Media(new File("src/videoTicketsNuevo.mp4").toURI().toString());  
+	          
+	        //Instantiating MediaPlayer class   
+	        MediaPlayer mediaPlayer = new MediaPlayer(media);  
+	         
+	        //Instantiating MediaView class   
+	        mediaViewTicket = new MediaView(mediaPlayer);  
+	          
+	        //by setting this property to true, the Video will be played   
+	        mediaPlayer.setAutoPlay(true);  
+	        mediaViewTicket.setFitWidth(590);
+	        mediaViewTicket.setFitHeight(800);
+	        mediaPlayer.setCycleCount(Timeline.INDEFINITE);
+
+	        
+	        grdPaneVideo.add(mediaViewTicket, 0, 0);
 	 
 	 }
 
@@ -159,7 +193,11 @@ public class ControladorTickets {
 
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
+            Stage s = (Stage) anchorPanePrincipal.getScene().getWindow();
             
+            //s.setMaximized(true);
+            s.setResizable(true);
+            s.show();
            
             
 		} catch (IOException e1) {
@@ -271,7 +309,11 @@ public class ControladorTickets {
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
                 controlerPrincipal.getBarra().setStyle("-fx-background-color: #00aae4");
+                Stage s = (Stage) anchorPanePrincipal.getScene().getWindow();
                 
+                s.setResizable(true);
+                //s.setMaximized(false);
+                s.show();
                
                 
     		} catch (IOException e1) {
@@ -316,7 +358,11 @@ public class ControladorTickets {
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
             
-           
+            Stage s = (Stage) anchorPanePrincipal.getScene().getWindow();
+            
+            //s.setMaximized(true);
+            s.setResizable(true);
+            s.show();
             
 		} catch (IOException e1) {
 			e1.printStackTrace();

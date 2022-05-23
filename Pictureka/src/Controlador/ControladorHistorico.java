@@ -394,22 +394,18 @@ public class ControladorHistorico {
 		    		switch(j) {
 		    		case 0:
 		    			dom+=sensores.get(i).getLectura();
-		    			
 		    			dom_++;
 		    			break;
 		    		case 1:
 		    			lun+=sensores.get(i).getLectura();
-		    			System.out.println(sensores.get(i).getFecha());
 		    			lun_++;
 		    			break;
 		    		case 2:
 		    			mar+=sensores.get(i).getLectura();
-		    			System.out.println(sensores.get(i).getFecha());
 		    			mar_++;
 		    			break;
 		    		case 3:
 		    			mie+=sensores.get(i).getLectura();
-		    			System.out.println(sensores.get(i).getFecha());
 		    			mie_++;
 		    			break;
 		    		case 4:
@@ -422,15 +418,12 @@ public class ControladorHistorico {
 		    			break;
 		    		case 6:
 		    			sab+=sensores.get(i).getLectura();
-		    			System.out.println(sensores.get(i).getFecha());
 		    			sab_++;
 		    			break;
 		    		
 		    		}
 	    		}
 	    	}
-	    	System.out.println(dom_+"  "+lun_+"  "+mar_+"  "+mie_+"  "+jue_+"  "+vie_+"  "+sab_);
-	    	System.out.println(dom/dom_+"  "+lun/lun_+"  "+mar/mar_+"  "+mie/mie_+"  "+jue/jue_+"  "+vie/vie_+"  "+sab/sab_);
 	    	series.setName("Temperatura");
 	    	series.getData().add(new XYChart.Data("Dom", (dom/dom_)));
 	        series.getData().add(new XYChart.Data("Lun", (lun/lun_)));
@@ -443,7 +436,6 @@ public class ControladorHistorico {
 	    	
 	    	
 	        graficaLineal.getData().add(series);
-	        //System.out.println(series.getData().get(0).);
 	        
 	        
 	    }

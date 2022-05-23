@@ -263,9 +263,10 @@ public class ControladorInicioSesion {
     	FXMLLoader loaderApp = new FXMLLoader(getClass().getResource("/application/VentanaRegistro.fxml"));
         ControladorRegistro controlerRegistro = new ControladorRegistro();
         loaderApp.setController(controlerRegistro);
+        AnchorPane registerPane;
         
         try {
-        	AnchorPane registerPane = (AnchorPane) loaderApp.load();
+        	registerPane = (AnchorPane) loaderApp.load();
         	MyAnchorPane.getChildren().clear();
             AnchorPane.setTopAnchor(registerPane, 0.0);
             AnchorPane.setRightAnchor(registerPane, 0.0);

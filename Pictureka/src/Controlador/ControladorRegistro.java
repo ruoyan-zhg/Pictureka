@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 
 import Modelo.Cifrado;
 import Modelo.modelo_Museo;
@@ -76,7 +77,7 @@ public class ControladorRegistro {
     private Label lblFechaNacimiento;
 
     @FXML
-    private DatePicker chooserCalendario;
+    private JFXDatePicker chooserCalendario;
 
     @FXML
     private Label lblContraseniaRegistro;

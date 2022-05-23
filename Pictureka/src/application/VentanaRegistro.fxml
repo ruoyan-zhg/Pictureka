@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -106,14 +106,6 @@
                      </GridPane.margin>
                   </TextField>
                   <Label fx:id="lblFechaNacimiento" text="Fecha de nacimiento:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <DatePicker fx:id="chooserCalendario" prefHeight="31.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <effect>
-                        <DropShadow color="#7bbdff" />
-                     </effect>
-                  </DatePicker>
                   <Label fx:id="lblContraseniaRegistro" text="Contraseña:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
                   <PasswordField fx:id="txtFieldPassword" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9">
                      <GridPane.margin>
@@ -132,6 +124,11 @@
                         <Insets left="150.0" right="150.0" />
                      </GridPane.margin>
                   </PasswordField>
+                  <JFXDatePicker fx:id="chooserCalendario" defaultColor="#0e9ceb" style="-fx-border-color: #0e9ceb;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXDatePicker>
                </children>
             </GridPane>
          </children>

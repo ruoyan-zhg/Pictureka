@@ -25,6 +25,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
+import javafx.stage.Stage;
 import Modelo.*;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideInRight;
@@ -269,7 +270,7 @@ public class ControladorEventos {
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
                 //Cambia el color de la barra de la ventana perfil
-                controlerPerfil.getBarra().setStyle("-fx-background-color: #00aae4");
+                controlerPerfil.getBarra().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
                
                
                 
@@ -444,10 +445,15 @@ public class ControladorEventos {
                  AnchorPane.setRightAnchor(PaneTickets, 0.0);
                  AnchorPane.setLeftAnchor(PaneTickets, 0.0);
                  AnchorPane.setBottomAnchor(PaneTickets, 0.0);
-            
+                 
                  //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                  anchorPanePrincipal.getChildren().setAll(PaneTickets);
-                 
+                 Stage s = (Stage) anchorPanePrincipal.getScene().getWindow();
+                 s.setHeight(833);
+                 s.setWidth(1156);
+                 s.setResizable(false);
+                 s.setMaximized(false);
+                 s.show();
                 
                  
      		} catch (IOException e) {
@@ -538,7 +544,7 @@ public class ControladorEventos {
 			
 			if(logged!=false) {
 				controlerPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
-    			controlerPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
+    			controlerPrincipal.getGridPaneButton().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
 			}
 
 		} catch (IOException e1) {

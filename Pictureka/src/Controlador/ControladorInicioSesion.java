@@ -156,7 +156,7 @@ public class ControladorInicioSesion {
     		        primaryStage.hide();
     		        
     		        controlVPrincipal.setLogged(true);
-    		        controlVPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
+    		        controlVPrincipal.getGridPaneButton().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
     		        controlVPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
     		        controlVPrincipal.getLblBienvenido().setText("¡Bienvenid@ "+(cli.getUsuario())+"!");
     		        new Bounce(controlVPrincipal.getLblBienvenido()).setDelay(new Duration(1000)).play();

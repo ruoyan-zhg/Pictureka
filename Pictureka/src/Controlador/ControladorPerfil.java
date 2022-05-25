@@ -265,8 +265,7 @@ public class ControladorPerfil {
 
              //Se añade el contenido de la ventana cargada en el AnchorPane del padre
  	        anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-
-
+ 	      
 
  		} catch (IOException e1) {
  			e1.printStackTrace();
@@ -306,7 +305,8 @@ public class ControladorPerfil {
                 AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
                 controlerPrincipal.getLblBienvenido().setVisible(false);
-                controlerPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
+                //controlerPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
+                controlerPrincipal.getGridPaneButton().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
     	        controlerPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
 
 
@@ -638,7 +638,7 @@ public class ControladorPerfil {
 	 			BotonGuardar.setVisible(false);
 	 			PasswordField.setVisible(false);
 	 			LabelContrasenia.setVisible(false);
-	 			
+	 			this.barra.setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
 
 	 			break;
 	 		case 2:

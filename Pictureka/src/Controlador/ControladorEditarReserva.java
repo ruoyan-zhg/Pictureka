@@ -191,7 +191,7 @@ public class ControladorEditarReserva {
 
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-                controlerPrincipal.getBarra().setStyle("-fx-background-color:  #FF8000");
+                controlerPrincipal.getBarra().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
                
                 
     		} catch (IOException e1) {
@@ -232,7 +232,7 @@ public class ControladorEditarReserva {
 
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
 	        anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-	        controlerPerfil.getBarra().setStyle("-fx-background-color: #00aae4");
+	        controlerPerfil.getBarra().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
 
 
 		} catch (IOException e1) {

@@ -187,7 +187,7 @@ public class ControladorTickets {
             AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
             controlerPrincipal.setLogged(true);
             controlerPrincipal.getLblBienvenido().setVisible(false);
-            controlerPrincipal.getGridPaneButton().setStyle("-fx-background-color: #00aae4");
+            controlerPrincipal.getGridPaneButton().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
 	        controlerPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
             
 
@@ -308,7 +308,7 @@ public class ControladorTickets {
 
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-                controlerPrincipal.getBarra().setStyle("-fx-background-color: #00aae4");
+                controlerPrincipal.getBarra().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
                 Stage s = (Stage) anchorPanePrincipal.getScene().getWindow();
                 
                 s.setResizable(true);

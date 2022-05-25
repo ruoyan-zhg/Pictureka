@@ -167,8 +167,8 @@
                               </BorderPane>
                            </children>
                         </GridPane>
-                        <Region prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #DDDDDD;" GridPane.rowIndex="1" />
-                        <Label text="¡Próximos eventos!" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Region prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom, #aa4b6F, #3b8d99);" GridPane.rowIndex="1" />
+                        <Label text="¡Próximos eventos!" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font name="Berlin Sans FB" size="33.0" />
                            </font>
@@ -229,7 +229,7 @@
             </GridPane>
          </top>
          <bottom>
-            <ToolBar prefHeight="91.0" prefWidth="1156.0" BorderPane.alignment="CENTER">
+            <ToolBar prefHeight="91.0" prefWidth="1083.0" BorderPane.alignment="CENTER">
                <items>
                   <Button fx:id="btnContacto" mnemonicParsing="false" onAction="#mostrarContacto" prefHeight="74.0" prefWidth="84.0">
                      <graphic>

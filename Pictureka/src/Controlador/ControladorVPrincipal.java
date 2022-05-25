@@ -286,8 +286,7 @@ public class ControladorVPrincipal {
                 
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-                controlerPrincipal.getBarra().setStyle("-fx-background-color: #00aae4");
-               
+                controlerPrincipal.getBarra().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
                 
     		} catch (IOException e1) {
     			e1.printStackTrace();
@@ -456,7 +455,7 @@ public class ControladorVPrincipal {
             }
 	    	else {
 	    		controlerEventos.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
-	            controlerEventos.getGridPaneEventos().setStyle("-fx-background-color: #00aae4");
+	            controlerEventos.getGridPaneEventos().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
             } 
         }catch (IOException e1) {
 			e1.printStackTrace();

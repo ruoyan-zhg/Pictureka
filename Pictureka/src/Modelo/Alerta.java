@@ -193,14 +193,18 @@ public class Alerta {
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
             
             //Se realiza la consulta en la tabla de CLIENTE
-            sql = "SELECT * FROM SENSORES;";
+            sql = "SELECT HISTORIAL.*, SENSORES.Tipo, SENSORES.ID_Sala, SENSORES.Posicion \r\n"
+            		+ "    FROM HISTORIAL \r\n"
+            		+ "        JOIN (SELECT  HISTORIAL.TipoSensor AS tSensor, max(HISTORIAL.Fecha) as fecha FROM HISTORIAL GROUP BY HISTORIAL.TipoSensor)\r\n"
+            		+ "         m ON HISTORIAL.TipoSensor = m.tSensor AND HISTORIAL.Fecha = m.fecha\r\n"
+            		+ "        JOIN SENSORES ON HISTORIAL.TipoSensor = SENSORES.identificador\r\n;";
             stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery( sql );
 			while ( rs.next() ) {
-				String tipo = rs.getString("tipo");
+				String tipo = rs.getString("Tipo");
 				int ID_Sala = rs.getInt("ID_Sala");
 				int Posicion = rs.getInt("Posicion");
-				float lectura = rs.getFloat("lectura");
+				float lectura = rs.getFloat("Lectura");
 				Timestamp Fecha = rs.getTimestamp("Fecha");
 				
 				

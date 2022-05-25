@@ -190,6 +190,7 @@ public class ControladorSalas {
 	}
 
 	private void actualizarBoton(float lectura, JFXButton btn) {
+		
 		if(lectura<30) {
 			btn.setStyle("-fx-background-color: #ff0000; ");
 		}
@@ -209,15 +210,23 @@ public class ControladorSalas {
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
             
             //Se realiza la consulta en la tabla de CLIENTE
-            sql = "SELECT * FROM SENSORES WHERE SENSORES.ID_Sala = "+sala+" ;";
+            sql = "SELECT HISTORIAL.*, SENSORES.Tipo, SENSORES.ID_Sala, SENSORES.Posicion \r\n"
+            		+ "    FROM HISTORIAL \r\n"
+            		+ "        JOIN (SELECT  HISTORIAL.TipoSensor AS tSensor, max(HISTORIAL.Fecha) as fecha FROM HISTORIAL GROUP BY HISTORIAL.TipoSensor)\r\n"
+            		+ "         m ON HISTORIAL.TipoSensor = m.tSensor AND HISTORIAL.Fecha = m.fecha\r\n"
+            		+ "        JOIN SENSORES ON HISTORIAL.TipoSensor = SENSORES.identificador\r\n"
+            		+ "        WHERE SENSORES.ID_Sala ="+sala+";";
+            
             stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery( sql );
 			while ( rs.next() ) {
-				String tipo = rs.getString("tipo");
+				String tipo = rs.getString("Tipo");
 				int ID_Sala = rs.getInt("ID_Sala");
 				int Posicion = rs.getInt("Posicion");
-				float lectura = rs.getFloat("lectura");
+				float lectura = rs.getFloat("Lectura");
 				Timestamp Fecha = rs.getTimestamp("Fecha");
+				
+
 				
 				sensores.add(new Sensor(tipo, ID_Sala, Posicion, lectura, Fecha));
 			}

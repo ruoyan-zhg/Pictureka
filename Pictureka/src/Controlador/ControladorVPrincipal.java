@@ -81,6 +81,9 @@ public class ControladorVPrincipal {
 
     @FXML
     private Region regionMuseo;
+    
+    @FXML
+    private Region regionPensamiento;
 
     @FXML
     private GridPane gridPaneButton;
@@ -141,6 +144,7 @@ public class ControladorVPrincipal {
 	 	imagenes.add(new Image("/VanGogh.jpg"));
 	 	imagenes.add(new Image("/people.jpg"));
 	 	
+	 	
 	 	regionUno.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(0)), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	regionDos.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(1)), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	regionTres.setBackground(new Background(new BackgroundFill(new ImagePattern(imagenes.get(2)), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -148,9 +152,11 @@ public class ControladorVPrincipal {
 	 	
 	 	Image horario = new Image("/Horarios.jpg");
 	 	Image museo = new Image("/museoLouvre.jpg");
+	 	Image pensamiento = new Image("/Pensamiento.jpg");
 	 	
 	 	regionImg.setBackground(new Background(new BackgroundFill(new ImagePattern(horario), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	regionMuseo.setBackground(new Background(new BackgroundFill(new ImagePattern(museo), CornerRadii.EMPTY, Insets.EMPTY)));
+	 	regionPensamiento.setBackground(new Background(new BackgroundFill(new ImagePattern(pensamiento), CornerRadii.EMPTY, Insets.EMPTY)));
 	 	
 	 	//Label que muestra un mensaje de bienvenida al usuario
 	 	lblBienvenido.setVisible(true);
@@ -169,9 +175,6 @@ public class ControladorVPrincipal {
 	 	if (logged==false) {
 	 		imgCerrarSesionCliente.setVisible(false);
 	 	}
-	 	
-	 	
-	 	
 	}
 	
 

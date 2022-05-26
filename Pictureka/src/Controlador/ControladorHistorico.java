@@ -451,7 +451,7 @@ public class ControladorHistorico {
 	    	Vector<Sensor> sensores = getSensores();
 	    	for(int i=0; i<sensores.size();i++) {
 	    		if(sensores.get(i).getTipo().equals("Luz")) {
-	    			//j=sensores.get(i).getFecha().getDay();
+	    			j=sensores.get(i).getFecha().getDay();
 		    		switch(j) {
 		    		case 0:
 		    			dom+=sensores.get(i).getLectura();

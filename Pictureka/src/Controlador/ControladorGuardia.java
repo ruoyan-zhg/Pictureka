@@ -1,6 +1,5 @@
 package Controlador;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Vector;
 
 import org.controlsfx.control.PopOver;
@@ -18,10 +15,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import Modelo.Alerta;
-import Modelo.Cliente;
-import Modelo.Datos;
 import Modelo.M_Reservas;
-import Modelo.Registro;
 import Modelo.Reserva;
 import Modelo.Sala;
 import Modelo.Staff;
@@ -680,21 +674,7 @@ public class ControladorGuardia {
 
 				M_Reservas reservas = new M_Reservas();
 				Vector<Reserva> tickets = reservas.recuperarReserva();
-				int i = 0;
-				/*while(i<tickets.size() && reservaEncontrada.equals("no encontrada")) {
-					if((tickets.elementAt(i).getIdentificador()==identificadorReserva) && (reservas.visualizarVisibilidad(identificadorReserva)==1)) {
-						if(!tickets.elementAt(i).getFecha().isBefore(fechaActual)) {
-							reservaEncontrada = "valida";
-							reservas.establecerRevisor(revisor, identificadorReserva);
-
-						}
-						else {
-							reservaEncontrada = "invalida";
-						}
-					}
-					i++;
-				}
-				*/
+				
 				reservaEncontrada = busBinReservas(tickets, identificadorReserva, 0, tickets.size()-1);
 				
 				
@@ -751,22 +731,7 @@ public class ControladorGuardia {
     		}
     	}
     }
-    /*
-	if (inicio > fin) {
-		return -1;
-	} else {
-		int mitad = (inicio + fin) / 2;
-		if (numBuscar == nums[mitad]) {
-			return mitad;
-		} else {
-			if (numBuscar < nums[mitad]) {
-				return busquedaRecursivaOrdenado(nums, numBuscar, inicio, mitad);
-			} else {
-				return busquedaRecursivaOrdenado(nums, numBuscar, mitad + 1, fin);
-			}
-		}
-	}
-	*/
+    
     /**
      * 
      * Método que muestra un error al guardia sobre la sala.
@@ -786,9 +751,5 @@ public class ControladorGuardia {
 	public void setImgNotificaciones(ImageView imgNotificaciones) {
 		ImgNotificaciones = imgNotificaciones;
 	}
-
-    
-    
-  
 	
 }

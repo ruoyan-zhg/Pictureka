@@ -7,35 +7,19 @@ import com.jfoenix.controls.JFXButton;
 
 import animatefx.animation.Bounce;
 import animatefx.animation.BounceIn;
-import animatefx.animation.GlowBackground;
-import animatefx.animation.Hinge;
-import animatefx.animation.JackInTheBox;
-import animatefx.animation.Jello;
-import animatefx.animation.LightSpeedIn;
 import animatefx.animation.Pulse;
-import animatefx.animation.RollIn;
-import animatefx.animation.RubberBand;
-import animatefx.animation.Shake;
-import animatefx.animation.Swing;
-import animatefx.animation.Wobble;
-import animatefx.animation.ZoomIn;
-import javafx.animation.Interpolator;
-import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -81,8 +65,6 @@ public class ControladorLogo {
 		
     	new BounceIn(imageLogo).playOnFinished(new Bounce(imageLogo).setSpeed(0.4)).setSpeed(0.4).play();
     	new Pulse(btnEntrar).setCycleCount(Timeline.INDEFINITE).setSpeed(0.6).setDelay(new Duration(5000)).play();
-    	
-    	
     	
     	
     }

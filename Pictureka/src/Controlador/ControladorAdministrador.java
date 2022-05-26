@@ -6,19 +6,13 @@ import java.util.Vector;
 import org.controlsfx.control.PopOver;
 
 import com.jfoenix.controls.JFXToolbar;
-
 import Modelo.Alerta;
 import Modelo.Cliente;
-import Modelo.Datos;
-import Modelo.Guardia;
 import Modelo.Registro;
-import Modelo.Reserva;
 import Modelo.Sala;
-import Modelo.Staff;
 import Modelo.modelo_Museo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -314,7 +308,6 @@ public class ControladorAdministrador {
             anchorPanePrincipal.getChildren().setAll(registerPane);
             
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -343,7 +336,6 @@ public class ControladorAdministrador {
             anchorPanePrincipal.getChildren().setAll(PaneEdit);
             
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -371,7 +363,6 @@ public class ControladorAdministrador {
             anchorPanePrincipal.getChildren().setAll(PaneEdit);
             
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -603,7 +594,6 @@ public class ControladorAdministrador {
             anchorPanePrincipal.getChildren().setAll(PaneEdit);
             
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	

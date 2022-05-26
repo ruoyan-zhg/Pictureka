@@ -11,12 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
-import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXToolbar;
-
 import Modelo.Alerta;
-import Modelo.Datos;
-import Modelo.Evento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -148,12 +144,6 @@ public class controladorEditarEventos {
 		comboBoxElegirEvento.setItems(list);	
 	}
 	
-	
-	
-
-	
-
-
 
 	String imagen; // Almacena el nombre (ubicacion de la imagen) que se añadir al evento
 
@@ -232,9 +222,6 @@ public class controladorEditarEventos {
 					new Background(new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY)));
    			}
    			
-   			
-		
-   			//System.out.println(name+info+img);
     				
    			stmt.close();
    			rs.close();
@@ -279,7 +266,7 @@ public class controladorEditarEventos {
 							guardarDatos();
 
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						}
 
@@ -387,7 +374,7 @@ public class controladorEditarEventos {
 			anchorPanePrincipal.getChildren().setAll(PaneEdit);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -443,7 +430,6 @@ public class controladorEditarEventos {
             				+ "EVENTOS.identificador = '"+seleccion+"';";
 
             String sqlDos = "INSERT INTO MODIFICA(Usuario, identificadorEvento) VALUES ('"+ usuario+"' , '"+seleccion+"');";
-            //System.out.println("sql UPDATE EVENTO //INSERT MODIFICA: "+sql);
             stmt = conn.createStatement();
    			ResultSet rs = stmt.executeQuery( sql );
    			
@@ -454,11 +440,6 @@ public class controladorEditarEventos {
 		catch(SQLException | ClassNotFoundException e){
 			
 		}
-		
-		
-		
-		
-		
 		
 
 	}

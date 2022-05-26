@@ -5,9 +5,7 @@ import java.util.Vector;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
-
 import Modelo.Alerta;
-import Modelo.Datos;
 import Modelo.Guardia;
 import Modelo.Registro;
 import Modelo.Staff;
@@ -173,7 +171,6 @@ public class ControladorEditGuardias {
 			anchorPaneEditGuardia.getChildren().setAll(registerPane);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -206,7 +203,6 @@ public class ControladorEditGuardias {
 			AnchorPane.setBottomAnchor(anchorTabAniadir, 0.0);
 			AnchorTabAniadir.getChildren().setAll(anchorTabAniadir);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -237,7 +233,6 @@ public class ControladorEditGuardias {
 			this.controlerTabEdit = controlerPrincipal;
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -362,7 +357,7 @@ public class ControladorEditGuardias {
 			anchorPaneEditGuardia.getChildren().setAll(PaneAdmin);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 

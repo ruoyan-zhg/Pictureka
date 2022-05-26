@@ -5,7 +5,6 @@ import java.util.Vector;
 import org.omg.CORBA.INITIALIZE;
 
 import Modelo.Alerta;
-import Modelo.Sala;
 import Modelo.Sensor;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;

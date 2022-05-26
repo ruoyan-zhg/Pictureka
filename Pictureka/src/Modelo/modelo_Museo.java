@@ -1,7 +1,5 @@
 package Modelo;
 
-import java.time.LocalDate;
-import java.util.Vector;
 
 /**
  * 
@@ -16,7 +14,6 @@ import java.util.Vector;
 
 public class modelo_Museo {
 	private Registro registro;
-	private Museo museo;
 	
 	
 	/**
@@ -25,7 +22,6 @@ public class modelo_Museo {
 	public modelo_Museo() {
 		Registro _registro = new Registro();
 		registro = _registro;
-		museo = new Museo();
 	}
 	
 	
@@ -69,26 +65,12 @@ public class modelo_Museo {
 	public Staff devolverStaff(String usuario) {
 		return registro.rDevolderStaff(usuario);
 	}
-	/**
-	 * Crea una sala apartir del su numero de sala designado
-	 * 
-	 * @param identificador numero de sala
-	 */
-	public void nuevaSala(int identificador) {
-		museo.MNuevaSala(identificador);
-	}
 	
 	public Registro getRegistro() {
 		return registro;
 	}
 	public void setRegistro(Registro registro) {
 		this.registro = registro;
-	}
-	public Museo getMuseo() {
-		return museo;
-	}
-	public void setMuseo(Museo museo) {
-		this.museo = museo;
 	}
 	
 	

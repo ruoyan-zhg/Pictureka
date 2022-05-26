@@ -15,7 +15,6 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXToolbar;
 
 import Modelo.Alerta;
-import Modelo.Datos;
 import Modelo.Evento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

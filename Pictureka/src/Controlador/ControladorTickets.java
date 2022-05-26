@@ -10,7 +10,6 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import Modelo.Cliente;
-import Modelo.Datos;
 import Modelo.M_Reservas;
 import Modelo.Registro;
 import javafx.animation.Timeline;
@@ -35,9 +34,9 @@ import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
 /**
- * 
+ *
  * En esta clase se maneja la funcionalidad para reservar tickets de la vista <b>VentanaTickets</b>
- * 
+ *
  * @author Jolie Alain Vásquez
  * @author Oscar González Guerra
  * @author Ruoyan Zhang
@@ -88,31 +87,29 @@ public class ControladorTickets {
 
     @FXML
     private ImageView imgTickets;
-    
+
     @FXML
     private ComboBox ComboxTickets;
-    
+
     @FXML
     private GridPane grdPaneVideo;
-    
+
     @FXML
     private MediaView mediaViewTicket;
-    
+
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
 
-	
+
     boolean logged; //Este nos dira si la parsona esta logueada o no
-    
-    private Datos datos = new Datos();
-    
+
     private Vector<Cliente> clientes = new Vector<Cliente>();
-    
-    
-    
+
+
+
     /**
-     * 
+     *
      * Constructor de la clase <b>ControladorTickets</b> que guarda información del usuario.
-     * 
+     *
      * @param usuario		El usuario que está inciado sesión en ese momento.
      */
 	 public ControladorTickets(String usuario) {
@@ -124,42 +121,41 @@ public class ControladorTickets {
 			 this.usuario = usuario;
 			 logged = true;
 		 }
-		 
+
 	}
-	 
+
 	 public void initialize() {
 			ObservableList<String> list = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
 			ComboxTickets.setItems(list);
-	    	clientes = datos.desserializarJsonAusuarios();
-	    	
-	    	
+
+
             
-	    	
-	    	 //Instantiating Media class  
-	        Media media = new Media(new File("src/videoTicketsNuevo.mp4").toURI().toString());  
-	          
-	        //Instantiating MediaPlayer class   
-	        MediaPlayer mediaPlayer = new MediaPlayer(media);  
-	         
-	        //Instantiating MediaView class   
-	        mediaViewTicket = new MediaView(mediaPlayer);  
-	          
-	        //by setting this property to true, the Video will be played   
-	        mediaPlayer.setAutoPlay(true);  
+
+	    	 //Instantiating Media class
+	        Media media = new Media(new File("src/videoTicketsNuevo.mp4").toURI().toString());
+
+	        //Instantiating MediaPlayer class
+	        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+	        //Instantiating MediaView class
+	        mediaViewTicket = new MediaView(mediaPlayer);
+
+	        //by setting this property to true, the Video will be played
+	        mediaPlayer.setAutoPlay(true);
 	        mediaViewTicket.setFitWidth(590);
 	        mediaViewTicket.setFitHeight(800);
 	        mediaPlayer.setCycleCount(Timeline.INDEFINITE);
 
-	        
+
 	        grdPaneVideo.add(mediaViewTicket, 0, 0);
-	 
+
 	 }
 
     @FXML
     /**
-     * 
+     *
      * Devuelve al usuario a la ventana principal, cancelando la reserva que se estuviera realizando.
-     * 
+     *
      * @param event		Evento causado cuando el usuario pulsa sobre el botón "Cancelar".
      */
     void CancelarReserva(ActionEvent event) {
@@ -174,10 +170,10 @@ public class ControladorTickets {
 		try {
 			//Se carga en un AnchorPane la ventana
 			PaneVentanaPrincipal = (AnchorPane) loaderPrincipal.load();
-			
+
 			//Se elimina el contenido de la ventana padre
         	anchorPanePrincipal.getChildren().clear();
-        	
+
         	//Se ajusta el AnchorPane para que sea escalable
             AnchorPane.setTopAnchor(PaneVentanaPrincipal, 0.0);
             AnchorPane.setRightAnchor(PaneVentanaPrincipal, 0.0);
@@ -187,17 +183,17 @@ public class ControladorTickets {
             controlerPrincipal.getLblBienvenido().setVisible(false);
             controlerPrincipal.getGridPaneButton().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
 	        controlerPrincipal.getAvatarUsuario().setImage(new Image("/avatarCliente.png"));
-            
+
 
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
             Stage s = (Stage) anchorPanePrincipal.getScene().getWindow();
-            
+
             //s.setMaximized(true);
             s.setResizable(true);
             s.show();
-           
-            
+
+
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -205,16 +201,16 @@ public class ControladorTickets {
 
     @FXML
     /**
-     * 
+     *
      * Método que realiza la reserva de tickets de un cliente. Creando un identificador para cada una de las reservas, junto con
      * la información introducida: número de tickets, fecha y hora de reserva.
-     * 
+     *
      * @param event		Evento causado cuando el usuario confirma su reserva cuando pulsa sobre el botón de "Continuar".
      */
     void ReservarTickets(ActionEvent event) {
     	//Creacion de las diferentes alertas
     	Alert error = new Alert(Alert.AlertType.ERROR);
-   
+
     	int idReserva = 0;
     	//Se genera un numero de 6 digitos entre (100000-999999) como identificador
     	idReserva = (int) ((Math.random()*(999999-100000) + 100000));
@@ -265,14 +261,14 @@ public class ControladorTickets {
 			error.showAndWait();
 		}
 	}
-    	
-    
+
+
 
     @FXML
     /**
-     * 
+     *
      * Dirige al usuario a la ventana para visualizar su información.
-     * 
+     *
      * @param event		Evento causado cuando el usuario pulsa sobre la imagen de su avatar.
      */
     void accederPerfil(MouseEvent event) {
@@ -280,7 +276,7 @@ public class ControladorTickets {
         	Alert error = new Alert(Alert.AlertType.ERROR);
 			error.setHeaderText("Oh no! Para acceder a esta función debes estar iniciado sesión.");
     		error.showAndWait();
-        	
+
         }
         else {
         	//Se carga el contenido de la ventana
@@ -293,27 +289,27 @@ public class ControladorTickets {
     		try {
     			//Se carga en un AnchorPane la ventana
     			PaneVentanaPrincipal = (AnchorPane) loaderPrincipala.load();
-    			
+
     			//Se elimina el contenido de la ventana padre
     			anchorPanePrincipal.getChildren().clear();
-            	
+
             	//Se ajusta el AnchorPane para que sea escalable
                 AnchorPane.setTopAnchor(PaneVentanaPrincipal, 0.0);
                 AnchorPane.setRightAnchor(PaneVentanaPrincipal, 0.0);
                 AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
                 AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
-                
+
 
                 //Se añade el contenido de la ventana cargada en el AnchorPane del padre
                 anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
                 controlerPrincipal.getBarra().setStyle("-fx-background-color:  linear-gradient(to bottom, #80FFDB, #5390D9)");
                 Stage s = (Stage) anchorPanePrincipal.getScene().getWindow();
-                
+
                 s.setResizable(true);
                 //s.setMaximized(false);
                 s.show();
-               
-                
+
+
     		} catch (IOException e1) {
     			e1.printStackTrace();
     		}
@@ -323,9 +319,9 @@ public class ControladorTickets {
 
     @FXML
     /**
-     * 
+     *
      *  Devuelve al usuario a la ventana principal habiendo cerrado su sesión.
-     * 
+     *
      * @param event		Evento causado cuando el usuario pulsa sobre la imagen para cerrar sesión.
      */
     void cerrarSesion(MouseEvent event) {
@@ -342,31 +338,31 @@ public class ControladorTickets {
 		try {
 			//Se carga en un AnchorPane la ventana
 			PaneVentanaPrincipal = (AnchorPane) loaderPrincipal.load();
-			
+
 			//Se elimina el contenido de la ventana padre
 			anchorPanePrincipal.getChildren().clear();
-        	
+
         	//Se ajusta el AnchorPane para que sea escalable
             AnchorPane.setTopAnchor(PaneVentanaPrincipal, 0.0);
             AnchorPane.setRightAnchor(PaneVentanaPrincipal, 0.0);
             AnchorPane.setLeftAnchor(PaneVentanaPrincipal, 0.0);
             AnchorPane.setBottomAnchor(PaneVentanaPrincipal, 0.0);
-            
+
 
             //Se añade el contenido de la ventana cargada en el AnchorPane del padre
             anchorPanePrincipal.getChildren().setAll(PaneVentanaPrincipal);
-            
+
             Stage s = (Stage) anchorPanePrincipal.getScene().getWindow();
-            
+
             //s.setMaximized(true);
             s.setResizable(true);
             s.show();
-            
+
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
     }
-    
+
     public String buscarDni() {
     	int i=0;
     	boolean encontrado = false;
@@ -389,14 +385,14 @@ public class ControladorTickets {
 				| dateSeleccionada.getDayOfWeek().toString().equals("TUESDAY")
 				| dateSeleccionada.getDayOfWeek().toString().equals("WEDNESDAY")
 				| dateSeleccionada.getDayOfWeek().toString().equals("THURSDAY")) {
-	
+
 			// Comrpobar con el horario de lunes a jueves
     		comprobarHora(identificador, dateSeleccionada, horaSeleccionada, idReserva, tickets, 10, 20);
 		}
 		// Si el dia que ha seleccionado es un viernes o sabado
 		else if (dateSeleccionada.getDayOfWeek().toString().equals("FRIDAY")
 				| dateSeleccionada.getDayOfWeek().toString().equals("SATURDAY")) {
-			
+
 			comprobarHora(identificador, dateSeleccionada, horaSeleccionada, idReserva, tickets, 10, 21);
 		}
 		// Si el dia que ha seleccionado es un domingo
@@ -425,5 +421,3 @@ public class ControladorTickets {
 		}
     }
 }
-
-

@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Vector;
 import com.jfoenix.controls.JFXButton;
-
 import Modelo.Cifrado;
 import Modelo.Guardia;
 import Modelo.Registro;

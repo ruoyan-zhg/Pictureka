@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import java.util.Vector;
 import com.jfoenix.controls.JFXTextArea;
 import Modelo.Cliente;
-import Modelo.Datos;
 import Modelo.M_Reservas;
 import Modelo.Registro;
 import Modelo.Reserva;

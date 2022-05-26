@@ -1,8 +1,6 @@
 package Modelo;
 
-import java.beans.EventHandler;
 import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -17,25 +15,11 @@ import org.controlsfx.control.Notifications;
 
 import Controlador.ControladorAdministrador;
 import Controlador.ControladorGuardia;
-import Controlador.ControladorInformeAdmin;
-import Controlador.ControladorPopOverNotificacion;
-import Controlador.ControladorSalas;
-import Controlador.ControladorVPrincipal;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 
@@ -164,7 +148,6 @@ public class Alerta {
 		}
 		
 		else {
-			System.out.println("Nope");
 			return false;
 		}
 		return false;
@@ -175,8 +158,7 @@ public class Alerta {
 	
 	
 	private void sensoresBD() {
-		
-		Sala sala = new Sala(0);
+
 		
 		boolean sala1 = false;
 		boolean sala2 = false;
@@ -210,27 +192,21 @@ public class Alerta {
 				
 				Sensor sensor = new Sensor(tipo, ID_Sala, Posicion, lectura, Fecha);
 				
-				sala.setIdentificador(ID_Sala);
 				
 				
 				switch (ID_Sala) {
 				
 				case 1:
-						//checkSala(sensor);
-						sala1 = checkSala(sensor);
-						
+						checkSala(sensor);	
 					break;
 				case 2:
-						//checkSala(sensor);
-						sala2 = checkSala(sensor);
+						checkSala(sensor);
 					break;
 				case 3:
-						//checkSala(sensor);
-						sala3 = checkSala(sensor);
+						checkSala(sensor);
 					break;
 				case 4:
-						//checkSala(sensor);
-						sala4 = checkSala(sensor);
+						checkSala(sensor);
 					break;
 				default:
 				

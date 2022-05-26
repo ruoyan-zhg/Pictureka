@@ -7,7 +7,6 @@ import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
 import Modelo.Administrador;
 import Modelo.Alerta;
-import Modelo.Datos;
 import Modelo.Registro;
 import Modelo.Staff;
 import javafx.event.ActionEvent;

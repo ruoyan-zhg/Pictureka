@@ -153,7 +153,6 @@ public class ControladorEventos {
     
     //ArrayList que guardara las imagenes que se mostraran en la ventana principal
   	ArrayList<Image> imagenes = new ArrayList<Image>();
-  	Datos handler = new Datos(); //Instanciamos un objeto para meter el Json de eventos en un vector
   	//Vector<Evento> eventos = new Vector<Evento>(); //creamos el vector de eventos
   	Evento eventoUno = new Evento(1, "", "", "");
   	Evento eventoDos = new Evento(2, "", "", "");

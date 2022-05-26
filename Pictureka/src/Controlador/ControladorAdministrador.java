@@ -9,11 +9,9 @@ import com.jfoenix.controls.JFXToolbar;
 
 import Modelo.Alerta;
 import Modelo.Cliente;
-import Modelo.Datos;
 import Modelo.Guardia;
 import Modelo.Registro;
 import Modelo.Reserva;
-import Modelo.Sala;
 import Modelo.Staff;
 import Modelo.modelo_Museo;
 import javafx.fxml.FXML;
@@ -314,7 +312,6 @@ public class ControladorAdministrador {
             anchorPanePrincipal.getChildren().setAll(registerPane);
             
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -343,7 +340,6 @@ public class ControladorAdministrador {
             anchorPanePrincipal.getChildren().setAll(PaneEdit);
             
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -371,7 +367,6 @@ public class ControladorAdministrador {
             anchorPanePrincipal.getChildren().setAll(PaneEdit);
             
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -391,14 +386,12 @@ public class ControladorAdministrador {
      * @param event		Evento causado cuando el administrador pulsa sobre la imagen de la primera sala.
      */
     void sala1(MouseEvent event) {
-    	modelo_Museo museo = new modelo_Museo();
-    	Sala temporal = museo.getMuseo().recuperar1Salas(1);
-    	if (temporal.getIdentificador() != -1){			//debido a que si tiene un identificador -1 significa que no exite
+    		
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador", alert);
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, 1, "Administrador", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -424,11 +417,6 @@ public class ControladorAdministrador {
     		} catch (IOException e1) {
     			e1.printStackTrace();
     		}
-        	
-    	}
-    	else {
-    		mostrarErrorSala();
-    	}
 
     }
 
@@ -441,14 +429,11 @@ public class ControladorAdministrador {
      */
     void sala2(MouseEvent event) {
 
-    	modelo_Museo museo = new modelo_Museo();
-    	Sala temporal = museo.getMuseo().recuperar1Salas(2);
-    	if (temporal.getIdentificador() != -1){		//debido a que si tiene un identificador -1 significa que no exite
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador", alert);
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, 2, "Administrador", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -475,10 +460,6 @@ public class ControladorAdministrador {
     			e1.printStackTrace();
     		}
         	
-    	}
-    	else {
-    		mostrarErrorSala();
-    	}
     }
 
     @FXML
@@ -490,14 +471,11 @@ public class ControladorAdministrador {
      */
     void sala3(MouseEvent event) {
 
-    	modelo_Museo museo = new modelo_Museo();
-    	Sala temporal = museo.getMuseo().recuperar1Salas(3);
-    	if (temporal.getIdentificador() != -1){		//debido a que si tiene un identificador -1 significa que no exite
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informaci�n de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador", alert);
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, 3, "Administrador", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -523,11 +501,6 @@ public class ControladorAdministrador {
     		} catch (IOException e1) {
     			e1.printStackTrace();
     		}
-        	
-    	}
-    	else {
-    		mostrarErrorSala();
-    	}
     }
 
     @FXML
@@ -539,14 +512,11 @@ public class ControladorAdministrador {
      */
     void sala4(MouseEvent event) {
 
-    	modelo_Museo museo = new modelo_Museo();
-    	Sala temporal = museo.getMuseo().recuperar1Salas(4);
-    	if (temporal.getIdentificador() != -1){		//debido a que si tiene un identificador -1 significa que no exite
         	//Se carga el contenido de la ventana
         	FXMLLoader loaderSala1 = new FXMLLoader(getClass().getResource("/application/VentanaSala.fxml"));
         	//Se le asigna el controlador de la ventana para editar informacion de los guardias
         	
-            ControladorSalas controlerSala1 = new ControladorSalas(usuario, temporal, "Administrador", alert);
+            ControladorSalas controlerSala1 = new ControladorSalas(usuario, 4, "Administrador", alert);
             loaderSala1.setController(controlerSala1);
             AnchorPane PaneSala1;
 
@@ -572,11 +542,6 @@ public class ControladorAdministrador {
     		} catch (IOException e1) {
     			e1.printStackTrace();
     		}
-        	
-    	}
-    	else {
-    		mostrarErrorSala();
-    	}
     }
     
     @FXML
@@ -603,7 +568,6 @@ public class ControladorAdministrador {
             anchorPanePrincipal.getChildren().setAll(PaneEdit);
             
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	
@@ -643,23 +607,7 @@ public class ControladorAdministrador {
     	
     	
     }
-    
-    
-    
-    /**
-     * 
-     * M�todo que muestra un error al administrador sobre la sala.
-     * 
-     */
-    private void mostrarErrorSala() {
-    	Alert error = new Alert(Alert.AlertType.ERROR);
-    	error.setHeaderText("La sala no está disponible");
-		error.show();
-		
-	}
-    
-    
-    
+
     
 	public ImageView getImgNotiAdmin() {
 		return imgNotiAdmin;

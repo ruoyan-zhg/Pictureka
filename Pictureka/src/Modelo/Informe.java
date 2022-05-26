@@ -1,6 +1,5 @@
 package Modelo;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
 /**

@@ -25,14 +25,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 /**
- * 
+ *
  * En esta clase se maneja la edición de información de un administrador, en la vista <b>TabEditarAdministrador</b>.
- * 
+ *
  * @author Jolie Alain Vásquez
  * @author Oscar González Guerra
  * @author Ruoyan Zhang
  * @author Lian Salmerón López
- * 
+ *
  */
 public class ControladorTabEditarAdmin {
 
@@ -93,7 +93,7 @@ public class ControladorTabEditarAdmin {
 
     @FXML
     private JFXButton btnGuardar;
-    
+
     static final String USER = "pri_Pictureka";
     static final String PASS = "asas";
     Connection conn = null;
@@ -101,25 +101,25 @@ public class ControladorTabEditarAdmin {
     String sql;
 
     /**
-     * 
+     *
      * Constructor de la clase <b>ControladorTabEditarAdmin</b> al que se le pasa
 	 * el Controlador de edicciones de administradores.
-     * 
+     *
      * @param controlerEdit		Controlador de la clase <b>ControladorEditarAdministrador</b>
 	 *                      	con sus respecitvos atributos y métodos.
      */
     public ControladorTabEditarAdmin(ControladorEditarAdministrador controlerEdit) {
-    	
+
     	this.controlerEditAdmin = controlerEdit;
-    
+
     }
-    
-    
+
+
 	@FXML
 	/**
-	 * 
+	 *
 	 * Inicializa la ventana, comprobando la selección del administrador y mostrando su información en los campos.
-	 * 
+	 *
 	 */
 	public void initialize() {
 
@@ -147,14 +147,14 @@ public class ControladorTabEditarAdmin {
 		}
 
 	}
-    
-    
+
+
 
 	@FXML
 	/**
-	 * 
+	 *
 	 * Guarda los cambios realizados en uno o más de los campos de información del administrador, cambiando el contenido del Json de Staff.
-	 * 
+	 *
 	 * @param event		Evento causado cuando el administrador pulsa sobre el botón "Guardar Cambios".
 	 */
 	 void GuardarAdminEdit(ActionEvent event) {
@@ -163,7 +163,7 @@ public class ControladorTabEditarAdmin {
 		Alert informacion = new Alert(Alert.AlertType.INFORMATION);
 		Registro registro = new Registro();
 		Cifrado cifrar = new Cifrado();
-		
+
 
 		// Obtenemos los datos de los diferentes jtextfield
 		String Usuario = textUsuarioAdmin.getText();
@@ -177,15 +177,15 @@ public class ControladorTabEditarAdmin {
 
 		// Comprobamos que haya seleccionado un administrador
 		if (!controlerEditAdmin.getTableViewAdministrador().getSelectionModel().isEmpty()) {
-			
+
 			// Comprobamos que el contenido no está vacío
 			if (!(Usuario.isEmpty() | nombreNuevo.isEmpty() | apellido1Nuevo.isEmpty() | apellido2Nuevo.isEmpty()
 					| dniNuevo.isEmpty() | emailNuevo.isEmpty() | (fechaNuevo == null) | contraseniaNuevo.isEmpty())) {
-				
+
 				Staff staff = buscarAdminSelecc();
 				if((staff.getContrasenia().equals(cifrar.hashing(contraseniaNuevo))==false)) {
 					contraseniaNuevo = cifrar.hashing(contraseniaNuevo);
-					
+
 				}
 				LocalDate fecha = LocalDate.now();
 				Period periodo = Period.between(fechaNuevo, fecha);
@@ -237,11 +237,11 @@ public class ControladorTabEditarAdmin {
 	}
 	public boolean GuardarAdminBBDD(String Usuario,String nombreNuevo,String apellido1Nuevo,String apellido2Nuevo,String dniNuevo,String emailNuevo,LocalDate fechaNuevo,String contraseniaNuevo) {
 		boolean registrado = true;
-		
+
 		Date date = Date.valueOf(fechaNuevo);
-		
+
 		String userSelecc = controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getUsuario();
-		
+
 		if (!controlerEditAdmin.getTableViewAdministrador().getSelectionModel().isEmpty()) {
 
 			// Comprobamos que el contenido no está vacío
@@ -254,16 +254,16 @@ public class ControladorTabEditarAdmin {
 
 				// Comprobacion del rango de edad
 				if (periodo.getYears() > 18 && periodo.getYears() < 100) {
-					
+
 					try {
 						boolean correcto = false;
 						Class.forName("org.mariadb.jdbc.Driver");
-						
+
 			            conn = DriverManager.getConnection(
 			                    "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
-			            
-			            //comprobar que no exista en la base de datos de 
-					    
+
+			            //comprobar que no exista en la base de datos de
+
 						sql = "SELECT * FROM (SELECT * FROM STAFF WHERE STAFF.Usuario != '"+Usuario+"') AS dd"
 					    		+ " WHERE dd.Usuario = '"+Usuario+"' OR dd.Email = '"+emailNuevo+"' OR dd.Dni = '"+dniNuevo+"';";
 				        stmt = conn.createStatement();
@@ -275,7 +275,7 @@ public class ControladorTabEditarAdmin {
 						respuestaCliente.close();
 						stmt.close();
 						if (correcto == false) {
-							//consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre 
+							//consulta que comprueba que el usuario no se repita, el email no se repita, dni no se repita entre
 							//el mismo tipo de usuario
 							sql = "SELECT * FROM (SELECT * FROM CLIENTE WHERE CLIENTE.Usuario != '"+Usuario+"') AS dd"
 						    		+ " WHERE dd.Usuario = '"+Usuario+"' OR dd.Email = '"+emailNuevo+"' ;";
@@ -330,27 +330,27 @@ public class ControladorTabEditarAdmin {
 		Staff nuevo = null;
 		int i=0;
 		boolean encontrado = false;
-		
+
 		// Recorremos el json staff
         while(i<staff.size() && encontrado==false) {
 
             // Comrpobamos que el administrador a modificar que se ha seleccionado
             if (staff.get(i).getUsuario().equals(
                     controlerEditAdmin.getTableViewAdministrador().getSelectionModel().getSelectedItem().getUsuario())){
-            	
+
             	nuevo = new Staff(3, this.getTextUsuarioAdmin().getText(), this.textNombreAdmin.getText(), this.textApellido1Admin.getText(),
 						this.textApellido2Admin.getText(), this.textDniAdmin.getText(), this.textEmailAdmin.getText(), this.textContraseniaAdmin.getText(), this.DateFechaAdmin.getValue());
             	encontrado=true;
-            
+
             }
             i++;
         }
 		return nuevo;
 	}
-	
-	
+
+
 	void eliminarContenidoTxtfield() {
-		
+
 		textUsuarioAdmin.clear();
 		textNombreAdmin.clear();
 		textApellido1Admin.clear();
@@ -360,7 +360,7 @@ public class ControladorTabEditarAdmin {
 		textContraseniaAdmin.clear();
 		DateFechaAdmin.getEditor().clear();
 	}
-	
+
 
 	public ControladorEditarAdministrador getControlerEditAdmin() {
 		return controlerEditAdmin;
@@ -459,4 +459,3 @@ public class ControladorTabEditarAdmin {
 	}
 
 }
-

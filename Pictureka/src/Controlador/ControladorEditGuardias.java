@@ -5,9 +5,7 @@ import java.util.Vector;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
-
 import Modelo.Alerta;
-import Modelo.Datos;
 import Modelo.Guardia;
 import Modelo.Registro;
 import Modelo.Staff;

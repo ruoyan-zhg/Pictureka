@@ -8,10 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Vector;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToolbar;
-
 import Modelo.Alerta;
 import Modelo.Sensor;
 import javafx.event.ActionEvent;
@@ -20,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+//import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -452,7 +451,7 @@ public class ControladorHistorico {
 	    	Vector<Sensor> sensores = getSensores();
 	    	for(int i=0; i<sensores.size();i++) {
 	    		if(sensores.get(i).getTipo().equals("Luz")) {
-	    			j=sensores.get(i).getFecha().getDay();
+	    			//j=sensores.get(i).getFecha().getDay();
 		    		switch(j) {
 		    		case 0:
 		    			dom+=sensores.get(i).getLectura();
@@ -499,7 +498,6 @@ public class ControladorHistorico {
 	    	
 	    	
 	        graficaLinealLuz.getData().add(series);
-	        //System.out.println(series.getData().get(0).);
 	        
 	    }
 	    

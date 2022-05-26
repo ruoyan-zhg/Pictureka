@@ -11,9 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
-import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXToolbar;
-
 import Modelo.Alerta;
 import Modelo.Evento;
 import javafx.collections.FXCollections;
@@ -40,9 +38,9 @@ import javafx.scene.paint.ImagePattern;
 import javafx.stage.FileChooser;
 
 /**
- * 
+ *
  * En esta clase se maneja los cambios que se realizan a la hora de editar un evento, en la vista <b>VentanaEditarEventos</b>.
- * 
+ *
  * @author Jolie Alain Vásquez
  * @author Oscar González Guerra
  * @author Ruoyan Zhang
@@ -86,27 +84,27 @@ public class controladorEditarEventos {
 	private String usuario; // esta el usuario o mail del usuario que tiene la sesion iniciada
 
 	boolean logged; // Este nos dira si la parsona esta logueada o no
-	
+
 	String directoryName = System.getProperty("user.dir");
-	
+
 	Alerta alertaNotiAdmin;
-	
-	
-	
-	
+
+
+
+
 	//cosas BBDD
 		static final String USER = "pri_Pictureka";
 	    static final String PASS = "asas";
 	    Connection conn = null;
 	    Statement stmt = null;
 	    String sql;
-	
-	
-	    
+
+
+
 	/**
-	 * 
+	 *
 	 *  Constructor de la clase <b>controladorEditarEventos</b>, que guarda la información de un adminsitrador.
-	 *  
+	 *
 	 * @param usuario	El administrador que se encuentre iniciado sesión.
 	 */
 	public controladorEditarEventos(String usuario, Alerta alerta) {
@@ -121,46 +119,40 @@ public class controladorEditarEventos {
 		}
 
 	}
-	
+
 	public controladorEditarEventos() {
-		
-		
+
+
 		}
-	    
-	    
-	    
+
+
+
 	private Path pathImagen;
 
 	private Path pathSRC; // Creamos un objeto Path para guardar el path del src
 
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * Inicializa la ventana de ediatar eventos con su respectiva informaci�n.
-	 * 
+	 *
 	 */
 	public void initialize() {
-		
+
 		Vector<String> nombres = asignarNombreAEventos(); 	//recorre los eveentos y devuelve el nombre de cada posicion de los eventos
 		ObservableList<String> list = FXCollections.observableArrayList("1 - " + nombres.elementAt(0), "2 - " + nombres.elementAt(1), "3 - " + nombres.elementAt(2), "4 - " + nombres.elementAt(3));
-		comboBoxElegirEvento.setItems(list);	
+		comboBoxElegirEvento.setItems(list);
 	}
-	
-	
-	
-
-	
-
 
 
 	String imagen; // Almacena el nombre (ubicacion de la imagen) que se añadir al evento
 
 	@FXML
 	/**
-	 * 
+	 *
 	 * Dirige al administrador a la ventana perfil para visualizar su informacion.
-	 * 
+	 *
 	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de su avatar.
 	 */
 	void accederPerfilAdmin(MouseEvent event) {
@@ -203,22 +195,22 @@ public class controladorEditarEventos {
 		}
 
 	}
-	
-	
-	
+
+
+
 	@FXML
     void cambiarInfo(ActionEvent event) {
 		if(comboBoxElegirEvento.getValue() != null) {
 		String[] datosSeleccion = comboBoxElegirEvento.getValue().split(" - ");	//recupera la seleccion
 		int seleccion = Integer.parseInt(datosSeleccion[0]);		//asigna la parte de la seleccion que tiene el numero y omite el nombre
-		
+
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
             //STEP 2: Open a connection
 
             conn = DriverManager.getConnection(
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
-            
+
             sql = "SELECT * FROM EVENTOS WHERE EVENTOS.identificador = '"+seleccion+"'";
             stmt = conn.createStatement();
    			ResultSet rs = stmt.executeQuery( sql );
@@ -230,37 +222,34 @@ public class controladorEditarEventos {
 			imgAniadirImagen.setBackground(
 					new Background(new BackgroundFill(new ImagePattern(image), CornerRadii.EMPTY, Insets.EMPTY)));
    			}
-   			
-   			
-		
-   			//System.out.println(name+info+img);
-    				
+
+
    			stmt.close();
    			rs.close();
    		}
 		catch(SQLException | ClassNotFoundException e){
 			System.err.println(e.getMessage());
 		}
-		
+
 		}
 		else {
 			Alert error = new Alert(Alert.AlertType.ERROR);
 			error.setHeaderText("Porfavor elige el evento que desees editar.");
 		}
     }
-	
+
 
 	@FXML
 	/**
-	 * 
+	 *
 	 * A�ade los cambios realizados por el administrador a la ventana de eventos.
-	 * 
+	 *
 	 * @param event		Evento causado cuando el administrador pulsa sobre el botón "Añadir Cambios".
 	 */
 	void aniadirCambios(MouseEvent event) {
 		Alert error = new Alert(Alert.AlertType.ERROR);
 		Alert aviso = new Alert(Alert.AlertType.CONFIRMATION);
-		
+
 		//Se comrpueba que la seleccion del comboBox no sea nula
 		if (comboBoxElegirEvento.getValue() != null) {
 			if (txtAreaInfo.getLength() >= 10 && txtAreaInfo.getText() != null) {
@@ -272,18 +261,18 @@ public class controladorEditarEventos {
 							if(pathImagen != null && pathSRC != null) {
 								Files.copy(pathImagen, pathSRC);
 							}
-							
-							
+
+
 							// Se guardan los datos en la BBDD
 							guardarDatos();
 
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
+
 							e.printStackTrace();
 						}
 
-						
-						
+
+
 						aviso.setTitle("Exito.");
 						aviso.setHeaderText("Evento cambiado exitosamente.");
 						aviso.showAndWait();
@@ -316,13 +305,13 @@ public class controladorEditarEventos {
 
 	@FXML
 	/**
-	 * 
+	 *
 	 * Abre el explorador de archivos del administrador, para poder elegir la imagen que desea añadir a la ventana de eventos.
-	 * 
+	 *
 	 * @param event		Evento causado cuando el administrador pulsa sobre la región.
 	 */
 	void aniadirImagen(MouseEvent event) {
-		
+
 		//Abre el explorador de archivos
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Buscar Imagen");
@@ -354,22 +343,22 @@ public class controladorEditarEventos {
 
 	@FXML
 	/**
-	 * 
+	 *
 	 * Devuelve al administrador a su ventana inciial.
-	 * 
+	 *
 	 * @param event		Evento causado cuando el administrador pulsa sobre la imagen de volver atrás.
 	 */
 	void regresarPrincipalAdmin(MouseEvent event) {
-		
+
 		alertaNotiAdmin.getTimer_alert().cancel();
 		abrirAdmin();
 
 	}
 
 	/**
-	 * 
+	 *
 	 * Muestra la ventana inicial del administrador.
-	 * 
+	 *
 	 */
 	void abrirAdmin() {
 		FXMLLoader loaderEdit = new FXMLLoader(getClass().getResource("/application/VentanaAdministrador.fxml"));
@@ -386,14 +375,14 @@ public class controladorEditarEventos {
 			anchorPanePrincipal.getChildren().setAll(PaneEdit);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
-	
+
 	private Vector<String> asignarNombreAEventos() {
 		Vector<String> nombres = new Vector<String>(4);
-		
+
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 
@@ -401,23 +390,23 @@ public class controladorEditarEventos {
 
             conn = DriverManager.getConnection(
                     "jdbc:mariadb://195.235.211.197/priPictureka", USER, PASS);
-            
+
             sql = "SELECT * FROM EVENTOS";
             stmt = conn.createStatement();
    			ResultSet rs = stmt.executeQuery( sql );
    			while ( rs.next() ) {
 				nombres.add(rs.getString("nombre"));
 			}
-   			
+
    			stmt.close();
    			rs.close();
    		}
 		catch(SQLException | ClassNotFoundException e){
-			
+
 		}
-		
-		
-		
+
+
+
 		return nombres;
 	}
 
@@ -425,8 +414,8 @@ public class controladorEditarEventos {
 								// haya solicitado
 		String[] datosSeleccion = comboBoxElegirEvento.getValue().split(" - ");	//recupera la seleccion
 		int seleccion = Integer.parseInt(datosSeleccion[0]);		//asigna la parte de la seleccion que tiene el numero y omite el nombre
-		
-		
+
+
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 
@@ -442,23 +431,17 @@ public class controladorEditarEventos {
             				+ "EVENTOS.identificador = '"+seleccion+"';";
 
             String sqlDos = "INSERT INTO MODIFICA(Usuario, identificadorEvento) VALUES ('"+ usuario+"' , '"+seleccion+"');";
-            //System.out.println("sql UPDATE EVENTO //INSERT MODIFICA: "+sql);
             stmt = conn.createStatement();
    			ResultSet rs = stmt.executeQuery( sql );
-   			
+
    			rs = stmt.executeQuery(sqlDos);
    			stmt.close();
    			rs.close();
    		}
 		catch(SQLException | ClassNotFoundException e){
-			
+
 		}
-		
-		
-		
-		
-		
-		
+
 
 	}
 

@@ -1,19 +1,14 @@
 package Controlador;
 
-import java.io.File;
 import java.io.IOException;
 import com.jfoenix.controls.JFXButton;
-
 import Modelo.Cifrado;
 import Modelo.Cliente;
-import Modelo.Staff;
 import Modelo.modelo_Museo;
 import animatefx.animation.Bounce;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -25,10 +20,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -101,7 +92,7 @@ public class ControladorInicioSesion {
             MyAnchorPane.getChildren().setAll(principal);
             
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
     	
@@ -173,7 +164,7 @@ public class ControladorInicioSesion {
     	}
     	else if (museo.loginStaffs(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText())).getIdentificadorUser()==2) {
     		
-    		Staff guardia = museo.loginStaffs(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText()));
+    		
     		
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
@@ -201,14 +192,14 @@ public class ControladorInicioSesion {
 		        
 		        
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 
     	}
     	else if (museo.loginStaffs(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText())).getIdentificadorUser()==3) {
     		
-    		Staff admin = museo.loginStaffs(textUsuario.getText().trim(), cifrar.hashing(textContrasenia.getText()));
+    		
     		
     		confirmacion.setHeaderText("Login correcto");
     		//Espera a que el usuario interactue con el mensaje para abrir la ventana Principal
@@ -237,7 +228,7 @@ public class ControladorInicioSesion {
 		        //Escondemos la ventana
 		        primaryStage.hide();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
     		
@@ -275,7 +266,7 @@ public class ControladorInicioSesion {
             MyAnchorPane.getChildren().setAll(registerPane);
             
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
     	

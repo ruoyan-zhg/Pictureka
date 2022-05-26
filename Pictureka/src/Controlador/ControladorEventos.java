@@ -2,7 +2,6 @@ package Controlador;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Vector;
 import org.controlsfx.control.PopOver;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;

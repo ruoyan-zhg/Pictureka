@@ -176,7 +176,6 @@ public class ControladorEditarAdministrador {
 			AnchorPane.setBottomAnchor(anchorTabAniadir, 0.0);
 			AnchorTabAniadir.getChildren().setAll(anchorTabAniadir);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -208,7 +207,7 @@ public class ControladorEditarAdministrador {
 			this.controlerTabEdit = controlerTabEdit;
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 
@@ -240,7 +239,7 @@ public class ControladorEditarAdministrador {
 			anchorPaneEditAdmin.getChildren().setAll(PaneAdmin);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -319,7 +318,7 @@ public class ControladorEditarAdministrador {
 			anchorPaneEditAdmin.getChildren().setAll(registerPane);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

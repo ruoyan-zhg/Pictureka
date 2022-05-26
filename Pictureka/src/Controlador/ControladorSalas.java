@@ -15,7 +15,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToolbar;
 
 import Modelo.Alerta;
-import Modelo.Museo;
 import Modelo.Sala;
 import Modelo.Sensor;
 import javafx.fxml.FXML;

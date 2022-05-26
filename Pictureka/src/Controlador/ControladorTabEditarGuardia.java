@@ -12,7 +12,6 @@ import java.util.Vector;
 import com.jfoenix.controls.JFXButton;
 
 import Modelo.Cifrado;
-import Modelo.Datos;
 import Modelo.Guardia;
 import Modelo.Registro;
 import Modelo.Staff;

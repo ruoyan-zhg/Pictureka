@@ -22,7 +22,6 @@ import Modelo.Cliente;
 import Modelo.Registro;
 import Modelo.Staff;
 import Modelo.modelo_Museo;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -521,8 +520,6 @@ public class ControladorPerfil {
 
 		Date date = Date.valueOf(fechaNuevo);
 
-		LocalDate fecha = LocalDate.now();
-		Period periodo = Period.between(fechaNuevo, fecha);
 
 		// Comprobaciones para los distintos casos que se pueden dar
 		try {

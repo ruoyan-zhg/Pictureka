@@ -8,14 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
 import com.jfoenix.controls.JFXButton;
 
 import Modelo.Cifrado;
-import Modelo.Cliente;
-import Modelo.Datos;
 import Modelo.Registro;
 import Modelo.Staff;
 import javafx.event.ActionEvent;
@@ -274,7 +271,6 @@ public class ControladorTabEditarAdmin {
 						if(respuestaCliente.first()) {
 							//significa que ya alguno de los datos introducitos ya esta registrado
 							correcto = true;
-							System.out.println("obvio");
 						}
 						respuestaCliente.close();
 						stmt.close();

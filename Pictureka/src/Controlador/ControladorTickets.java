@@ -99,8 +99,7 @@ public class ControladorTickets {
     private MediaView mediaViewTicket;
     
     private String usuario;		//esta el usuario o mail del usuario que tiene la sesion iniciada
-    
-    private String dniUsuario;
+
 	
     boolean logged; //Este nos dira si la parsona esta logueada o no
     
@@ -132,7 +131,6 @@ public class ControladorTickets {
 			ObservableList<String> list = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
 			ComboxTickets.setItems(list);
 	    	clientes = datos.desserializarJsonAusuarios();
-	    	dniUsuario = buscarDni();
 	    	
 	    	
             

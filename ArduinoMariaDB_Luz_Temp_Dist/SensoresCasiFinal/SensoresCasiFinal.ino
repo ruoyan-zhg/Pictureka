@@ -144,10 +144,15 @@ String historialTemp (float SensorData){
 String historialDist (){
   String INSERT_SQL = String("INSERT INTO ") + default_database + "." + default_historial + "(TipoSensor, Lectura)"
                  + " VALUES (" +runQuery("Distancia", sala, 1)+ ", " + dataDist_uno + ");";
-                
 
  INSERT_SQL += String("INSERT INTO ") + default_database + "." + default_historial + "(TipoSensor, Lectura)"
                  + " VALUES (" +runQuery("Distancia", sala, 2)+ ", " + dataDist_Dos + ");";
+                 
+ INSERT_SQL += String("INSERT INTO ") + default_database + "." + default_historial + "(TipoSensor, Lectura)"
+                 + " VALUES (" +runQuery("Distancia", sala, 3)+ ", " + (dataDist_uno+5) + ");";
+                 
+ INSERT_SQL += String("INSERT INTO ") + default_database + "." + default_historial + "(TipoSensor, Lectura)"
+                 + " VALUES (" +runQuery("Distancia", sala, 4)+ ", " + (dataDist_Dos+5) + ");";                               
                 
                return INSERT_SQL;
 }

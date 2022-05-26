@@ -69,10 +69,5 @@ public class Sensor {
 		Fecha = fecha;
 	} 
 	
-	
-	
-	
-	
-	
 
 }

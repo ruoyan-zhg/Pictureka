@@ -358,7 +358,7 @@ public class ControladorVPrincipal {
        
 
     }
-
+    
     @FXML
     /**
      * 
@@ -366,8 +366,9 @@ public class ControladorVPrincipal {
      * 
      * @param event		Evento causado cuando el usuario pulsa sobre el botón del correo.
      */
+    
     void mandarCorreo(ActionEvent event) {
-    	
+    	/*
     	//Se carga el contenido de la ventana
     	FXMLLoader loaderPop = new FXMLLoader(getClass().getResource("/application/PopOverCorreo.fxml"));
     	//Se le asigna el controlador de la ventana PopOver
@@ -403,7 +404,7 @@ public class ControladorVPrincipal {
 				e.printStackTrace();
 			}
 		}
-
+*/
 	}
 
     @FXML

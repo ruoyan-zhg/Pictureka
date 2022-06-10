@@ -242,7 +242,7 @@ public class Alerta {
 	}
 	
 	public void getDatos() {
-		timer_alert.scheduleAtFixedRate(new Task(), 0 ,  12000);
+		timer_alert.scheduleAtFixedRate(new Task(), 0 ,  14000);
 	}
 	
 	

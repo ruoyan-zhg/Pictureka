@@ -668,37 +668,46 @@ public class ControladorGuardia {
 
 	}
 
-    private String busBinReservas(Vector<Reserva> reservas, int idReserva, int inicio, int fin) {
+	private String busBinReservas(Vector<Reserva> reservas, int idReserva, int inicio, int fin) {
 
-    	if(inicio>fin) {
-    		return "no encontrada";
-    	}
-    	else {
-    		M_Reservas visibilidad = new M_Reservas();
-    		int medio = (inicio+fin)/2;
-    		if(reservas.get(medio).getIdentificador()==idReserva && visibilidad.visualizarVisibilidad(idReserva)==1) {
-    			if(!reservas.get(medio).getFecha().isBefore(fechaActual)) {
-					return "valida";
-				}
-				else {
-					Alert error = new Alert(Alert.AlertType.ERROR);
-					error.setHeaderText("La reserva ya ha caducado.");
-					error.setContentText("Caducó en: " + reservas.elementAt(medio).getFecha());
-					error.show();
-					return "invalida";
-				}
-    		}
-    		else {
-    			if(idReserva<reservas.get(medio).getIdentificador()) {
-    				return busBinReservas(reservas, idReserva, inicio, medio);
-    			}
-    			else {
-    				return busBinReservas(reservas, idReserva, medio+1, fin);
-    			}
-    		}
-    	}
-    }
+		Alert error = new Alert(Alert.AlertType.ERROR);
 
+		if (inicio > fin) {
+			return "no encontrada";
+		} else {
+			M_Reservas visibilidad = new M_Reservas();
+			int medio = (inicio + fin) / 2;
+
+			int res = visibilidad.visualizarVisibilidad(idReserva);
+
+			if (reservas.get(medio).getIdentificador() == idReserva) {
+
+				if (res == 1) {
+
+					if (!reservas.get(medio).getFecha().isBefore(fechaActual)) {
+						return "valida";
+					} else {
+
+						error.setHeaderText("La reserva ya ha caducado.");
+						error.setContentText("Caducó en: " + reservas.elementAt(medio).getFecha());
+						error.show();
+						return "invalida";
+					}
+				} else {
+
+					error.setHeaderText("La reserva no existe.");
+					return "no encontrada";
+
+				}
+			} else {
+				if (idReserva < reservas.get(medio).getIdentificador()) {
+					return busBinReservas(reservas, idReserva, inicio, medio);
+				} else {
+					return busBinReservas(reservas, idReserva, medio + 1, fin);
+				}
+			}
+		}
+	}
 
 	public ImageView getImgNotificaciones() {
 		return ImgNotificaciones;

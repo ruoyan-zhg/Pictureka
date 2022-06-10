@@ -390,7 +390,7 @@ public class ControladorSalas {
 
     }
     public void getData() {
-    	timer_uno.scheduleAtFixedRate(new Task(this.sala), 0 ,  4000);
+    	timer_uno.scheduleAtFixedRate(new Task(this.sala), 0 ,  10500);
 
     }
     class Task extends TimerTask {
